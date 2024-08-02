@@ -1,7 +1,7 @@
 # Vue3
 
 >
-> `# TODO 尚硅谷Vue3入门到实战，最新版vue3+TypeScript前端开发教程`
+> `# TODO 尚硅谷Vue3入门到实战，最新版vue3+TypeScript前端开发教程 P52`
 >
 
 
@@ -40,10 +40,130 @@ vue:
         use(): 使用中间件
     RefImpl:
         value: 代理数据
+    computed(): 计算属性
     createApp(): 创建应用
+    defineExpose(): 组件ref导出定义
+    defineProps(): 定义组件属性
     reactive(): 响应式数据
     ref(): 响应式数据
+    toRef():
+    toRefs():
+    watch():
+    watchEffect(): 监视变化
+
+vue-router:
+    RouterLink:
+    RouterView:
+    createRouter():
+    creatWebHashHistory():
+    createWebHistory():
+    useRoute():
+        :
+            params:
+            query:
+    useRouter():
+        :
+            push():
+            replace():
+
+pinia:
+    createPinia():
+        :
+    defineStore():
+        :
+            $state:
+            $patch(): 修改state
+            $reset(): 重置state
+            $subscribe(): 订阅（变化监听）
+    mapState():
+    storeToRefs():
 ```
 
 setup函数可以返回一个渲染函数，setup相对于Vue2中的生命周期是最早的
+
+v-model双向绑定
+
+computed计算属性：给响应式数据提供了一个处理过程
+
+### 生命周期
+- setup():
+- onBeforeMount():
+- onMounted():
+- onBeforeUpdate():
+- onUpdated():
+- onBeforeUnmount():
+- onUnmounted():
+
+
+
+### 组件通信
+
+
+
+
+### 页面插槽
+
+### 内置组件
+
+
+### HOOKS
+
+响应式数据、修改方法
+
+
+
+
+### 页面路由
+
+```yaml
+router-link:
+    active-class:
+    params:
+    to:
+        name:
+        path:
+        query:
+
+
+router-view:
+
+```
+
+
+嵌套路由
+
+
+
+
+
+
+### 状态管理
+
+
+
+#### Pinia
+
+```javascript
+import { defineStore } from "pinia"
+
+const store = defineStore("storeId", {
+    state: () => {
+        return {
+            状态值
+        }
+    },
+    getters: {
+        getter函数：计算属性（传入state）
+    },
+    actions: {
+        this引用，修改state的方法
+    }
+})
+```
+
+
+定义store，每个store为一个Hooks函数
+
+
+
 

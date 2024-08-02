@@ -54,6 +54,8 @@ std:
         Error: 错误对象
         JSON:
             stringify(): json字符串序列化
+        Object:
+            assign(): 对象赋值
         clearInterval(): 清除定时器
         require(): 导入函数
         setInterval(): 间隔定时器
