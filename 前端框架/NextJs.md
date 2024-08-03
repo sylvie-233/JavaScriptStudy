@@ -1,7 +1,7 @@
 # Next.js
 
 >
->`# TODO Next.js 14 Tutorial P41`
+>
 >
 
 ## 基础介绍
@@ -27,6 +27,7 @@ React服务端实现
 - 加载页面：`loading.tsx`
 - 异常处理：`error.tsx`
 - API Handler：`route.tsx`
+- 中间件：`middleware.ts`
 
 
 ### next
@@ -76,6 +77,9 @@ next:
     font:
         google:
             Inter:
+    headers:
+        cookies():
+        headers():
     link:
         Link:
             href:
@@ -92,8 +96,19 @@ next:
                 replace():
     server:
         NextRequest:
+            cookies:
+            headers:
             nextUrl:
+                pathname:
                 searchParams:
+            url:
+        NextResponse:.
+            cookies:
+            headers:
+            next():
+            redirect():
+            rewrite():
+    Headers:
     Request:
         json():
     Response:
@@ -105,26 +120,14 @@ next:
 
 React:
     ReactNode:
+    Suspense:
+        fallback:
     useState():
 
 ```
 
-### 内置组件
 
-`use client`使用客户端组件
-
-
-
-METADATA动态生成
-
-Link链接
-
-
-
-
-
-
-### 动态路由
+### Routing
 
 - `[id]`：
 - `[...id]`：多级匹配
@@ -146,6 +149,36 @@ layout插槽：`default.tsx`插槽默认页面
 路由拦截：
 
 
+
+
+### Rendering
+
+`use client`使用客户端组件
+
+客户端渲染组件CSC、服务端渲染组件RSC
+
+服务端组件不能使用state
+
+客户端渲染组件的子级也是客户端渲染组件，尽量在叶子节点的组件上使用客户端组件
+
+
+
+
+#### 内置组件
+
+
+METADATA动态生成
+
+Link链接
+
+Suspense占位组件：可实现延迟加载
+
+
+
+
+
+
+
 ### API Handler
 
 ```javascript
@@ -163,6 +196,34 @@ export async function POST(req: Request) {
 page.tsx与route.ts存在冲突，优先显示route.tsx
 
 route.ts的路由规则和page.tsx的规则一样
+
+中间件Middleware
+
+#### Data Fetching
+
+
+#### Middleware
+
+```javascript
+// 中间件处理函数
+export function middleware(req: NextRequest) {
+    return NextResponse.redirect("/xxx")
+}
+
+// 中间件配置
+export const config = {
+    matcher: "/xxx"
+}
+
+```
+
+#### Caching
+
+
+#### Testing
+
+
+
 
 
 
