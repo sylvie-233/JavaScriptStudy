@@ -1,7 +1,7 @@
 # Vue3
 
 >
-> `# TODO 尚硅谷Vue3入门到实战，最新版vue3+TypeScript前端开发教程 P52`
+> `# TODO 尚硅谷Vue3入门到实战，最新版vue3+TypeScript前端开发教程 P61`
 >
 
 
@@ -42,8 +42,11 @@ vue:
         value: 代理数据
     computed(): 计算属性
     createApp(): 创建应用
+    defineEmits():
     defineExpose(): 组件ref导出定义
     defineProps(): 定义组件属性
+    inject:
+    provide:
     reactive(): 响应式数据
     ref(): 响应式数据
     toRef():
@@ -98,10 +101,21 @@ computed计算属性：给响应式数据提供了一个处理过程
 
 ### 组件通信
 
+- props属性传递
+- 自定义事件event
+- 事件总线bus
+- v-model:
+- $attr:
+- $refs/$parent:
 
 
 
 ### 页面插槽
+
+
+
+
+
 
 ### 内置组件
 
