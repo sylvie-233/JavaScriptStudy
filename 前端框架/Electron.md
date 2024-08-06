@@ -125,8 +125,13 @@ electron:
         ipcRenderer:
             invoke():
             once():
+            removeListener():
+            send():
+            sendSync():
     dialog:
         showMessageBox():
+    shell:
+        openExternal():
 
 ```
 

@@ -73,10 +73,15 @@ std:
             assign(): 对象赋值
         Promise:
             all():
+        Proxy:
+            get():
+                
+            set():
         clearInterval(): 清除定时器
         require(): 导入函数
         setInterval(): 间隔定时器
         setTimeout(): 定时器
+    child_process: 子进程
     crypto: 加密包
     events: 事件
         EventEmitter:
