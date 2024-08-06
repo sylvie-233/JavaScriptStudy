@@ -23,7 +23,7 @@ electron-build:
     
 ```
 
-####
+#### bulid.config
 
 ```
 :
@@ -109,7 +109,8 @@ electron:
                 send():
             webPreferences:
                 contextIsolation:
-                preload:
+                nodeIntegration:
+                preload: 窗口预加载脚本
             width:
             close():
             getAllWindows():
