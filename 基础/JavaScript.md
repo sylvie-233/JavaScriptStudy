@@ -6,6 +6,22 @@
 
 ## 核心内容
 ```yaml
+:
+    Object:
+        create():
+        defineProperty():
+        entries():
+        getPrototypeOf():
+        keys():
+        setPrototypeOf():
+        values():
+    Proxy:
+    Reflect:
+        apply():
+        has():
+        ownKeys():
+        preventExtensions():
+        setPrototypeOf():
 ```
 
 
@@ -15,7 +31,7 @@
 ### 文档注释
 ```yaml
 文档注释:
-    @author: 作者
+    @author: 
         author-name:
         <contact-way>: 联系方式
     @class: 类
@@ -79,6 +95,15 @@
  */
 ```
 
+### SourceMap
+```yaml
+:
+    mappings:
+    names: 记录字面量的数组
+    sources: 记录源文件的数组
+    sourcesContent:
+    version:
+```
 
 
 

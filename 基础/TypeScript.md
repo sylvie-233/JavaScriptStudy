@@ -1,9 +1,9 @@
 # TypeScript
 
 >
->`# TODO 2022 TypeScript 从入门到精通完全指南 P21`
+>`# TODO 2022 TypeScript 从入门到精通完全指南 P42`
 >
->`# TODO TYPESCRIPT编程.pdf p38`
+>`# TODO TYPESCRIPT编程.pdf p72`
 >
 
 
@@ -18,23 +18,36 @@ tsc:
     -p: 指定配置文件
     -v: 版本
     -w: 监听文件
+    --declaraion: 生成声明文件
     --help:
-    --init: 初始化项目，生成配置文件
+    --init: 初始化项目，生成配置文件tsconfig.json
+    --watch:
 ```
 
 
-### tsconfig.json
+#### tsconfig.json
 ```yaml
 :
-    compilerOptions: 编译选项
+    compilerOptions: 
+        allowJs: 编译js文件
+        declaration: 编译生成声明文件
         lib: 使用的内置库
-            "DOM|ES2015"
+            "DOM|ES2015|"
+        mapRoot: 生成sourcemap的目录
         module: 使用的模块系统
+            "commonjs|"
+        noImplicitAny: 禁止隐式推导any
+        noUnusedLocals: 未使用的局部变量
         outDir: 输出目录
-        sourceMap:
-        strict:
+        rootDir: 源码目录
+        sourceMap: 生成SourceMap文件
+        strict: 严格模式
+        strictNullChecks: 空类型检查
         target: 编译的JS目标版本
-    include: 源文件列表
+            "es5|"
+    exclude: 排除编译文件
+    fils: 包含编译文件
+    include: 包含编译文件
 ```
 
 
@@ -53,7 +66,10 @@ TypeScript:
     object: 对象
     string: 字符串
         toUpperCase():
+    symbol:
     typeof: 获取变量类型（关键字）
+    unknown: 更为严格的any
+    void:
     Array: 数组
     Error: 异常
     Object: 对象
@@ -66,14 +82,20 @@ DOM:
 ```yaml
 type:
     any:
+    bigint: 字面量以n结尾
     boolean:
     number: 
     string:
+    undefined:
+    void: 空类型
     Array:
+    Function:
 
 Utility Types:
 
 ```
+
+![Ts类型层次结构](../assets/Ts类型层次结构.png)
 
 ts能进行自动类型推断
 
@@ -87,7 +109,12 @@ Union联合类型: `(type1 | type2 | ...)`，联合类型一般和typeof结合�
 
 Literal字面量类型，literal类型在做参数限定的时候很有用（限定只能取哪些字面量），常配合联合类型使用
 
-Type Aliase类型别名：通过type关键字定义类型别名
+Type Aliase类型别名：通过`type`关键字定义类型别名
+
+- 所有类型是`any`的子类型
+- `unknown`与any一样，但unknown不能直接使用，需要typeof判断类型后使用
+- `never`是所有类型的子类型
+（any|unknown类似全集，never类似空集）
 
 
 
@@ -110,8 +137,35 @@ Type Aliase类型别名：通过type关键字定义类型别名
 
 
 
+#### Namespace
 
 
-### 泛型
+
+
+
+#### 泛型
+
+
+
+
+### Declaration
+```typescript
+declare module "模块名称" {
+    export let obj : {}
+    export function func(arg: type): retType
+}
+
+declare global {} // 用于在全局作用域中声明
+```
+
+
+- type: 定义类型别名
+- interface: 定义对象形状
+- enum: 定义枚举
+- namespace: 定义命名空间
+- import/export: 模块导入导出
+
+
+`.d.ts`：类型声明文件，为现有的javascript库提供类型注解
 
 
