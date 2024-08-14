@@ -1,7 +1,7 @@
 # TypeScript
 
 >
->`# TODO 2022 TypeScript 从入门到精通完全指南 P42`
+>`# TODO 2022 TypeScript 从入门到精通完全指南 P50`
 >
 >`# TODO TYPESCRIPT编程.pdf p72`
 >
@@ -71,6 +71,8 @@ TypeScript:
     unknown: 更为严格的any
     void:
     Array: 数组
+        push():
+        reduce():
     Error: 异常
     Object: 对象
     Tuple: 元组（固定元素的数组）
@@ -115,6 +117,15 @@ Type Aliase类型别名：通过`type`关键字定义类型别名
 - `unknown`与any一样，但unknown不能直接使用，需要typeof判断类型后使用
 - `never`是所有类型的子类型
 （any|unknown类似全集，never类似空集）
+
+
+变量限定：`var`、`const`、`let`
+
+
+
+#### Array
+
+`...`扩展运算符
 
 
 
