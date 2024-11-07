@@ -4,6 +4,43 @@
 
 
 ## 核心内容
+```yaml
+CSS3:
+    :hover:
+    background:
+        no-repeat:
+        url():
+    border-radius:
+    bottom:
+    box-shadow:
+        rgba():
+    box-sizing:
+        border-box:
+    color:
+    font-size:
+    font-weight:
+    height:
+    margin:
+    object-fit:
+        cover:
+    opacity:
+    overflow:
+        hidden:
+    padding:
+    position:
+        absolute:
+        relative:
+    transform: # 变换
+        perspective(): # 透视
+        rotateX(): # X旋转
+        scale(): # 缩放
+        skewX(): # 斜切
+        translateY(): # Y平移
+    transform-origin: # 变换锚点
+        bottom:
+    transition: # 过渡
+    width:
+```
 
 
 ## 扩展
@@ -11,10 +48,10 @@
 
 ### SVG
 
-```
-<svg>
-    <g> 分组
-    <defs> 属性定义
+```yaml
+<svg>:
+    <g>: 分组
+    <defs>: 属性定义
         <filter> 过滤器
             id:
         <lineGradient> 线性渐变

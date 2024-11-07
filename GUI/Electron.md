@@ -101,8 +101,7 @@ electron:
         app:
             on(): "activate|window-all-closed"
             whenReady():
-        BrowserWindow:
-            "close|hide|ready-to-show"
+        BrowserWindow: "close|hide|ready-to-show"
             height:
             webContents:
                 openDevTools():
