@@ -1,9 +1,6 @@
 # NodeJs
 
 
-
-
-
 ## 基础介绍
 
 ![NodeJs运行机制](../assets/NodeJs运行机制.png)
@@ -19,27 +16,20 @@ node:
 ### npm
 ```yaml
 npm:
-    -v: 版本
-    init: 初始化项目
-    install: 安装
-        -g: 全局安装
-        --registry: 仓库
+    -v: # 版本
+    init: # 初始化项目
+    install: # 安装
+        -g: # 全局安装
+        --registry: # 仓库
 ```
 
-### package.json
-```
-{
-
-}
+#### package.json
+```yaml
 ```
 
 
 
 ## 核心内容
-
-
-## 标准库
-
 ```yaml
 std:
     builtin:
@@ -62,26 +52,27 @@ std:
         Buffer: 二进制对象
             length:
             alloc():
+            concat():
             from():
             slice():
             toString(): 转换为字符串
             write(): 
         Error: 错误对象
         JSON:
+            parse():
             stringify(): json字符串序列化
         Object:
             assign(): 对象赋值
         Promise:
             all():
         Proxy:
-            get():
-                
+            get():    
             set():
         clearInterval(): 清除定时器
         require(): 导入函数
         setInterval(): 间隔定时器
         setTimeout(): 定时器
-    child_process: 子进程
+    child_process: # 子进程
     crypto: 加密包
     events: 事件
         EventEmitter:
@@ -89,12 +80,17 @@ std:
             listeners():
             on(): 监听事件
             once(): 
-    fs:
+    fs: # 文件操作
         promises:
+        appendFile():
+        close():
         createReadStream(): 创建读取流
         createWriteStream():
+        existsSync(): # 文件存在
+        open():
         readFile():
         readFileSync(): 读取文件
+        writeFile():
         writeFileSync(): 写入文件
     http:
         Server: 服务
@@ -102,9 +98,9 @@ std:
         createServer(): 创建服务
     net:
         Server: 服务
-    path:
+    path: # 路径操作
         resolve(): 路径合并
-    process: 进程
+    process: # 进程
         argv:
         channel:
         stderr:
@@ -115,15 +111,18 @@ std:
     stream:
         pipeline:
         Readable:
-            "data|end|readable"
+            on():
+                data:
+                end:
+                readable:
             pipe():
         Transform:
             _flush():
             _transform():
         Writeable:
             
-    util: 工具包
-    zlib: 压缩包
+    util: # 工具包
+    zlib: # 压缩包
         createGzip():
         
 ```
@@ -140,7 +139,6 @@ promise、async
 - Node内置
 
 
-<br />
 <br />
 <br />
 
