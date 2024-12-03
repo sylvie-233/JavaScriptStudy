@@ -1,5 +1,6 @@
 # NodeJs
 
+`尚硅谷Node.js零基础视频教程: P14`
 
 ## 基础介绍
 
@@ -12,6 +13,8 @@ node:
     -v: 版本
 ```
 
+nodejs命令行工具
+
 
 ### npm
 ```yaml
@@ -23,58 +26,88 @@ npm:
         --registry: # 仓库
 ```
 
+nodejs包管理器
+
+
+
+
 #### package.json
 ```yaml
 ```
+
+nodejs包配置文件
+
+
+
+
+### nvm
+
+nodejs版本管理器
+
 
 
 
 ## 核心内容
 ```yaml
-std:
-    builtin:
+node:
+    _builtin:
         __dirname: 目录名
         __filename: 文件名
-        console:
-        module: 模块
+        console: # 控制台对象
+            log:
+        global: # 全局对象
+        globalThis:
+        module: # 模块对象
             children:
-            exports: 模块导出对象
+            exports: # 模块导出对象
             filename:
             id:
             loaded:
             parent:
             path:
             paths:
-        process: 进程对象
-            env: 环境变量
-            cwd(): 当前工作目录
-            on():
-        Buffer: 二进制对象
+        process: # 进程对象
+            argv:
+            channel:
+            env: # 环境变量
+            stderr:
+            stdin: # 标准输入
+            stdout: # 标准输出
+            exit(): # 进程结束
+            nextTick():
+        Buffer: # 二进制对象（大小固定）
             length:
-            alloc():
+            alloc(): # 直接分配内存创建Buffer
+            allocUnsafe(): # 未初始归零分配
             concat():
-            from():
+            from(): # 由String创建Buffer
             slice():
-            toString(): 转换为字符串
+            toString(): # 转换为字符串
             write(): 
-        Error: 错误对象
+        Error: # 错误对象
         JSON:
             parse():
-            stringify(): json字符串序列化
-        Object:
-            assign(): 对象赋值
+            stringify(): # json字符串序列化
+        Object: # 基类对象
+            assign(): # 对象赋值
         Promise:
             all():
         Proxy:
             get():    
             set():
-        clearInterval(): 清除定时器
-        require(): 导入函数
-        setInterval(): 间隔定时器
-        setTimeout(): 定时器
+        clearInterval(): # 清除定时器
+        require(): # 导入函数
+        setInterval(): # 间隔定时器
+        setTimeout(): # 定时器
+    assert:
+    buffer:
     child_process: # 子进程
-    crypto: 加密包
-    events: 事件
+    cluster:
+    crypto: # 加密包
+    dgram:
+    dns:
+    domain:
+    events: # 事件
         EventEmitter:
             emit(): 触发事件
             listeners():
@@ -96,18 +129,26 @@ std:
         Server: 服务
             listen():
         createServer(): 创建服务
+    https:
     net:
         Server: 服务
+    os: # 操作系统
     path: # 路径操作
         resolve(): 路径合并
-    process: # 进程
-        argv:
-        channel:
-        stderr:
-        stdin:
-        stdout:
-        exit():
-        nextTick():
+    process: # 进程对象
+    querystring:
+    readline:
+        Interface:
+            close():
+            on():
+                _close:
+                _line: # 输入一行
+            prompt(): # 输出提示信息
+            question():
+            setPrompt():
+        createInterface():
+            input:
+            output:
     stream:
         pipeline:
         Readable:
@@ -119,9 +160,17 @@ std:
         Transform:
             _flush():
             _transform():
-        Writeable:
-            
+        Writeable:     
+    string_decoder:
+    timers:
+    tls:
+    tty:
+    url:
     util: # 工具包
+    worker_threads: # 工作线程
+        workerData:
+        parentPort:
+            PostMessage():
     zlib: # 压缩包
         createGzip():
         
