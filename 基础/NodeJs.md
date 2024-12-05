@@ -37,6 +37,7 @@ npm:
             prefix:
             registry:
     init: # 初始化项目
+        -y:
     install: # 安装
         -g: # 全局安装
         --registry: # 仓库
