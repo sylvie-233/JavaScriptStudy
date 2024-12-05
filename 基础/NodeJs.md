@@ -6,11 +6,19 @@
 
 ![NodeJs运行机制](../assets/NodeJs运行机制.png)
 
+- %NODE_PATH%：nodejs主目录
+- %NODE_PATH%/node_cache
+- %NODE_PATH%/node_global
+- %NODE_PATH%/node_modules:
+
+
 
 ### node
 ```yaml
 node:
     -v: 版本
+    --env-file:
+    --test:
 ```
 
 nodejs命令行工具
@@ -20,10 +28,19 @@ nodejs命令行工具
 ```yaml
 npm:
     -v: # 版本
+    config:
+        edit:
+        get:
+        list:
+        set:
+            cache:
+            prefix:
+            registry:
     init: # 初始化项目
     install: # 安装
         -g: # 全局安装
         --registry: # 仓库
+    uninstall:
 ```
 
 nodejs包管理器
@@ -100,6 +117,7 @@ node:
         setInterval(): # 间隔定时器
         setTimeout(): # 定时器
     assert:
+        assert():
     buffer:
     child_process: # 子进程
     cluster:
@@ -131,7 +149,23 @@ node:
         createServer(): 创建服务
     https:
     net:
-        Server: 服务
+        Server: # 服务
+            listen():
+            on():
+                _connection:
+                _data:
+                _error:
+            
+        Socket:
+            setEncoding:
+            connect():
+            destroy():
+            end():
+            on():
+                _data:
+                _error:
+            write():
+        createServer():
     os: # 操作系统
     path: # 路径操作
         resolve(): 路径合并
@@ -162,6 +196,9 @@ node:
             _transform():
         Writeable:     
     string_decoder:
+    test:
+        describe():
+        it():
     timers:
     tls:
     tty:
