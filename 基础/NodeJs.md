@@ -40,6 +40,7 @@ npm:
         -y:
     install: # 安装
         -g: # 全局安装
+        --no-save:
         --registry: # 仓库
     uninstall:
 ```
@@ -169,7 +170,8 @@ node:
         createServer():
     os: # 操作系统
     path: # 路径操作
-        resolve(): 路径合并
+        join():
+        resolve(): # 路径合并
     process: # 进程对象
     querystring:
     readline:
