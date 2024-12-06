@@ -19,11 +19,12 @@ prisma:
     PrismaClient: # 操作客户端
         _model:
             create():
-                data:
             findMany():
-            update():
-                where:
                 data:
+                orderBy:
+                include: 
+                where:
+            update():
 ```
 
 
@@ -48,6 +49,11 @@ model: # 模型
         env(): # 环境变量
         default():
         now():
+        relation():
+            fields: # 本身关联字段
+            references: # 外表关联字段（外表主键）
+        unique():
+        uuid():
 
 
 
