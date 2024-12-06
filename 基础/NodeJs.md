@@ -93,9 +93,13 @@ node:
             stdin: # 标准输入
             stdout: # 标准输出
             exit(): # 进程结束
+            memoryUsage():  # 内存使用情况
             nextTick():
+        Array:
+            forEach():
+            push():
         Buffer: # 二进制对象（大小固定）
-            length:
+            length: # 长度
             alloc(): # 直接分配内存创建Buffer
             allocUnsafe(): # 未初始归零分配
             concat():
@@ -107,6 +111,7 @@ node:
         JSON:
             parse():
             stringify(): # json字符串序列化
+        Number:
         Object: # 基类对象
             assign(): # 对象赋值
         Promise:
@@ -114,6 +119,8 @@ node:
         Proxy:
             get():    
             set():
+        String:
+            split():
         clearInterval(): # 清除定时器
         require(): # 导入函数
         setInterval(): # 间隔定时器
@@ -135,21 +142,52 @@ node:
             once(): 
     fs: # 文件操作
         promises:
-        appendFile():
+        ReadStream: # 读入流
+            on():
+                _close:
+                _data:
+                _end:
+            pipe(): # 管道传输
+        WriteStream: # 写出流
+            end():
+            write():
+        appendFile(): # 追加内容
         close():
-        createReadStream(): 创建读取流
+        createReadStream(): # 创建读取流
         createWriteStream():
         existsSync(): # 文件存在
+        mkdir(): # 创建文件夹
+            _options:
+                recursive: # 递归创建
         open():
-        readFile():
-        readFileSync(): 读取文件
-        writeFile():
-        writeFileSync(): 写入文件
+        readdir(): # 读取目录
+        readFile(): # 读取文件
+        readFileSync(): # 读取文件（同步）
+        rename(): # 文件重命名
+        rm():
+        rmdir():
+            _options:
+                recursive:
+        stat(): # 文件信息
+            atime:
+            ctime:
+            isDirectory():
+            isFile():
+        unlink(): # 删除文件
+        writeFile(): # 写入文件
+            _options:
+                flag:
+                    a: # 追加
+        writeFileSync(): # 写入文件(同步)
     http:
         Server: 服务
             listen():
         createServer(): 创建服务
     https:
+    worker_threads: # 工作线程
+        workerData:
+        parentPort:
+            PostMessage():
     net:
         Server: # 服务
             listen():
@@ -160,7 +198,7 @@ node:
             
         Socket:
             setEncoding:
-            connect():
+            connect(): # socket连接
             destroy():
             end():
             on():
@@ -170,7 +208,15 @@ node:
         createServer():
     os: # 操作系统
     path: # 路径操作
+        sep:
+        basename:
+        extname():
+        dirname():
         join():
+        parse():
+            base:
+            name:
+            root:
         resolve(): # 路径合并
     process: # 进程对象
     querystring:
@@ -197,7 +243,9 @@ node:
         Transform:
             _flush():
             _transform():
-        Writeable:     
+        Writeable:    
+            on():
+            write(): 
     string_decoder:
     test:
         describe():
@@ -207,10 +255,6 @@ node:
     tty:
     url:
     util: # 工具包
-    worker_threads: # 工作线程
-        workerData:
-        parentPort:
-            PostMessage():
     zlib: # 压缩包
         createGzip():
         

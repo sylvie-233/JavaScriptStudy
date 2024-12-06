@@ -6,7 +6,8 @@
 ```yaml
 git:
     config:
-        --global:   
+        --global: 
+    stash:  
 ```
 
 ## 核心内容

@@ -8,8 +8,10 @@ ORM框架
 ```yaml
 prisma:
     generate:
-    migrate:
+    migrate: # 数据库迁移
         --name:
+        dev:
+    studio: # 可视化网站
 ```
 
 
@@ -18,13 +20,22 @@ prisma:
 @prisma/client:
     PrismaClient: # 操作客户端
         _model:
-            create():
-            findMany():
-                data:
+            create(): # 创建
+            delete(): # 删除
+            findMany(): # 
+                data: # 数据
+                include: # 包含关联模型
                 orderBy:
-                include: 
-                where:
+                select: # 字段投影
+                skip: # 分页skip
+                take: # 分页take
+                where: # 条件 
+                    OR:
+                    contains:
+                    startsWith:
+            findUnique():
             update():
+        $disconnect(): # 断开连接
 ```
 
 
@@ -34,25 +45,28 @@ prisma:
 ```yaml
 database: # 数据库连接信息
     provider:
-generator: # 生成代码
+        sqlite: # sqlite3数据库
+generator: # 生成客户端代码
     provider:
-        url:
-model: # 模型
+        prisma-client-js: # js客户端
+    url:
+model: # 模型定义
     _type:
+        Boolean:
         DateTime:
         Int:
         String:
     _@:
-        id:
-        updatedAt:
         autoincrement():
         env(): # 环境变量
-        default():
+        default(): # 默认值
+        id():
         now():
-        relation():
+        relation(): # 模型关联（只需在其中一个模型中定义即可）
             fields: # 本身关联字段
             references: # 外表关联字段（外表主键）
-        unique():
+        unique(): # 唯一约束
+        updatedAt():
         uuid():
 
 
