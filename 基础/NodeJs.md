@@ -107,6 +107,8 @@ node:
             slice():
             toString(): # 转换为字符串
             write(): 
+        Date: # 日期
+            now():
         Error: # 错误对象
         JSON:
             parse():
@@ -114,6 +116,7 @@ node:
         Number:
         Object: # 基类对象
             assign(): # 对象赋值
+            defineProperty():
         Promise:
             all():
         Proxy:

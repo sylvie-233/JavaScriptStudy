@@ -1,6 +1,6 @@
 # express
 
-`Express官方教程：https://expressjs.com/en/guide/writing-middleware.html`
+`Express官方教程：https://expressjs.com/en/guide/overriding-express-api.html`
 
 
 
@@ -33,6 +33,10 @@ express:
         use():
     Request:
         body:
+        cookies:
+        headers:
+        originalUrl:
+        method:
         params:
         on():
             _data:
@@ -43,9 +47,11 @@ express:
         json():
         jsonp():
         redirect(): # 重定向
+        render(): # 渲染模板
         send(): # 响应内容
         sendFile(): # 响应文件
         sendStatus(): # 响应状态码
+        status(): # 响应状态码
     Router: # 子路由
         _options:
             mergeParams:
@@ -54,8 +60,11 @@ express:
         post():
         put():
         use():
-    json(): # json中间件
+    json(): # json 请求体中间件
     static(): # 静态目录挂载(中间件)
+    urlencoded(): # urlencoded 请求中间件
+
+cookie-parser:
 ```
 
 
@@ -70,3 +79,23 @@ express:
 可一次性传入多个处理函数
 
 子路由：`Router`
+
+
+### Middleware
+
+中间件
+- 应用级别
+- 路由级别
+- 异常处理
+- 内置中间件
+- 第三方中间件
+
+
+### Error Handler
+
+异常处理：`(err, req, resp, next)`
+
+
+
+
+### Third-party
