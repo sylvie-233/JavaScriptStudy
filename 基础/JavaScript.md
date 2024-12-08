@@ -7,6 +7,16 @@
 ## 核心内容
 ```yaml
 :
+    windows:
+        FormData:
+            append():
+            delete():
+            entries():
+            get():
+            getAll():
+            has():
+            keys():
+            values():
     Object:
         create():
         defineProperty():

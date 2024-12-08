@@ -1,6 +1,6 @@
 # NodeJs
 
-`尚硅谷Node.js零基础视频教程: P33`
+`尚硅谷Node.js零基础视频教程: P55`
 
 ## 基础介绍
 
@@ -95,6 +95,12 @@ node:
             exit(): # 进程结束
             memoryUsage():  # 内存使用情况
             nextTick():
+            on(): # 监听进程信号signal
+            once():
+                SIGINT:
+                SIGTERM:
+                uncaughtException:
+                unhandledRejection:
         Array:
             forEach():
             push():
@@ -124,6 +130,9 @@ node:
             set():
         String:
             split():
+        URL:
+            pathname:
+            searchParams:
         clearInterval(): # 清除定时器
         require(): # 导入函数
         setInterval(): # 间隔定时器
@@ -183,9 +192,25 @@ node:
                     a: # 追加
         writeFileSync(): # 写入文件(同步)
     http:
-        Server: 服务
+        Request:
+            headers:
+            httpVersion:
+            method:
+            pathname:
+            query:
+            url:
+            on():
+                data:
+                end:
+        Response:
+            statusCode: # 响应状态码
+            statusMessage:
+            end():
+            setHeader(): # 设置响应头
+            write(): # 响应体
+        Server: # http服务
             listen():
-        createServer(): 创建服务
+        createServer(): # 创建http服务
     https:
     worker_threads: # 工作线程
         workerData:
@@ -257,6 +282,8 @@ node:
     tls:
     tty:
     url:
+        Url:
+        parse(): # 解析url
     util: # 工具包
     zlib: # 压缩包
         createGzip():

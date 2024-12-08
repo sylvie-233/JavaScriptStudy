@@ -25,15 +25,23 @@ express:
     Express:
         all():
         delete():
+        engine(): # 设置模板引擎
         get():
         listen():
         post():
         put():
         route():
         use():
+    Multer:
+        File:
+            fieldname:
+            originalname:
     Request:
-        body:
+        body: # 请求体
         cookies:
+        err:
+        file:
+        files:
         headers:
         originalUrl:
         method:
@@ -65,6 +73,16 @@ express:
     urlencoded(): # urlencoded 请求中间件
 
 cookie-parser:
+
+multer:
+    _options:
+        limits:
+        storage:
+    diskStorage: # 磁盘存储
+        destination: # (req, file, cb)
+        filename: # (req, file, cb)
+    array():
+    single():
 ```
 
 
@@ -89,6 +107,15 @@ cookie-parser:
 - 异常处理
 - 内置中间件
 - 第三方中间件
+
+
+#### File Upload
+
+multer库
+
+```js
+
+```
 
 
 ### Error Handler
