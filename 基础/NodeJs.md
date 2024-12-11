@@ -52,14 +52,22 @@ nodejs包管理器
 
 #### package.json
 ```yaml
+package.json:
+    
 ```
 
 nodejs包配置文件
 
 
+#### npx
+
 
 
 ### nvm
+```yaml
+nvm:
+
+```
 
 nodejs版本管理器
 
@@ -123,6 +131,11 @@ node:
         Object: # 基类对象
             assign(): # 对象赋值
             defineProperty():
+                configurable:
+                enumerable:
+                get():
+            getPrototypeOf():
+            setPrototypeOf():
         Promise:
             all():
         Proxy:

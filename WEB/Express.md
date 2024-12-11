@@ -1,6 +1,6 @@
 # express
 
-`Express官方教程：https://expressjs.com/en/guide/overriding-express-api.html`
+`Express官方教程：https://expressjs.com/en/guide/error-handling.html`
 
 
 
@@ -23,6 +23,7 @@ express脚手架
 ```yaml
 express:
     Express:
+        response:
         all():
         delete():
         engine(): # 设置模板引擎
@@ -31,6 +32,9 @@ express:
         post():
         put():
         route():
+        set():
+            view engine: # 模板引擎
+            views: # 模板视图文件夹
         use():
     Multer:
         File:
@@ -68,6 +72,7 @@ express:
         post():
         put():
         use():
+    response:
     json(): # json 请求体中间件
     static(): # 静态目录挂载(中间件)
     urlencoded(): # urlencoded 请求中间件
@@ -83,6 +88,9 @@ multer:
         filename: # (req, file, cb)
     array():
     single():
+
+pug:
+
 ```
 
 
