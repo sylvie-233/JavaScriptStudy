@@ -1,6 +1,6 @@
 # NestJs
 
-``
+`https://docs.nestjs.com/controllers#resources`
 
 nodejs 服务端框架
 
@@ -10,6 +10,9 @@ nodejs 服务端框架
 - `@nestjs/common`
 - `rxjs`
 - `reflect-metadata`
+- `@nestjs/platform-express`
+- `@nestjs/platform-fastify`
+
 
 
 
@@ -41,8 +44,11 @@ project:
 ```yaml
 nest:
     build:
-    g: # 生成文件
+    g: # 生成代码文件
+        controller: # 控制器
         module:
+        resource:
+        service: # CRUD resource router
     new: # 新建项目
     start:
         --watch:
@@ -57,6 +63,8 @@ nest:
     @Delete:
     @Get: # http get 请求
     @Controller: # 控制器
+    @Headers:
+    @HostParam:
     @Ip:
     @Injectable: # 依赖注入
     @Mudule: # 模块
@@ -65,10 +73,15 @@ nest:
         providers:
             provider:
             useClass: # Guard
+    @Next:
     @Param: # path param
     @Patch:
     @Post:
     @Query: # query param
+    @Req: # 请求对象
+    @Res: # 响应对象
+        passthrough:
+    @Session:
     ConsoleLogger:
     HttpException:
     HttpStatus:
@@ -128,9 +141,10 @@ class-validator: # 数据验证(DTO)
     @IsNotEmpty:
     @IsString:
 
-express:
-    Request:
-    Response:
+express: # nestjs内置集成http库
+    Request: # 请求对象
+
+    Response: # 响应对象
 ```
 
 
