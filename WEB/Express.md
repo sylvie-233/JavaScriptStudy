@@ -1,6 +1,6 @@
 # express
 
-`Express官方教程：https://expressjs.com/en/guide/error-handling.html`
+``
 
 
 
@@ -22,13 +22,21 @@ express脚手架
 ## 核心内容
 ```yaml
 express:
-    Express:
+    Express: # express Application
+        locals: # app 本地变量(可用于模板渲染)
+        mountpath: # route path
         response:
-        all():
+        router: # app 内置 router
+        all(): # all request method handler
         delete():
+        disable():
         engine(): # 设置模板引擎
         get():
         listen():
+        on(): # 事件监听
+            mount: # 路由挂载钩子
+        param(): # 自定义path param处理
+        path():
         post():
         put():
         route():
@@ -41,39 +49,55 @@ express:
             fieldname:
             originalname:
     Request:
+        app:
+        baseUrl:
         body: # 请求体
         cookies:
         err:
         file:
         files:
+        host:
+        hostname:
         headers:
-        originalUrl:
+        ip:
+        ips:
         method:
+        originalUrl:
         params:
+        path:
+        query:
+        xhr:
         on():
             _data:
         pipe():
     Response:
+        attachment(): # 附件下载
+        cookie():
+        clearCookie():
         download():
         end():
         json():
         jsonp():
+        location():
         redirect(): # 重定向
         render(): # 渲染模板
         send(): # 响应内容
         sendFile(): # 响应文件
         sendStatus(): # 响应状态码
+        set():
         status(): # 响应状态码
     Router: # 子路由
         _options:
             mergeParams:
         delete():
         get():
+        param(): # 自定义path param处理
         post():
         put():
-        use():
+        use(): # 注册中间件
     response:
     json(): # json 请求体中间件
+    Router(): # 子路由
     static(): # 静态目录挂载(中间件)
     urlencoded(): # urlencoded 请求中间件
 

@@ -78,8 +78,8 @@ nodejs版本管理器
 ```yaml
 node:
     _builtin:
-        __dirname: 目录名
-        __filename: 文件名
+        __dirname: # 目录名
+        __filename: # 文件名
         console: # 控制台对象
             log:
         global: # 全局对象
@@ -138,6 +138,7 @@ node:
             setPrototypeOf():
         Promise:
             all():
+            resolve():
         Proxy:
             get():    
             set():
@@ -298,6 +299,7 @@ node:
         Url:
         parse(): # 解析url
     util: # 工具包
+        inspect():
     zlib: # 压缩包
         createGzip():
         
