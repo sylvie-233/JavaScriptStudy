@@ -1,6 +1,6 @@
 # NestJs
 
-`https://docs.nestjs.com/controllers#resources`
+`https://docs.nestjs.com/providers`
 
 nodejs 服务端框架
 
@@ -58,13 +58,17 @@ nest:
 ## 核心内容
 ```yaml
 @nestjs/common:
+    @All: # all request method
     @Body: # request body
     @Catch:
     @Delete:
     @Get: # http get 请求
     @Controller: # 控制器
+        host:
+    @Header: # 设置响应头
     @Headers:
-    @HostParam:
+    @HostParam: # controller host param
+    @HttpCode: # 响应状态码
     @Ip:
     @Injectable: # 依赖注入
     @Mudule: # 模块
@@ -76,8 +80,11 @@ nest:
     @Next:
     @Param: # path param
     @Patch:
-    @Post:
+    @Post: # post request
     @Query: # query param
+    @Redirect: # 响应重定向
+        url:
+        statusCode:
     @Req: # 请求对象
     @Res: # 响应对象
         passthrough:
@@ -143,8 +150,10 @@ class-validator: # 数据验证(DTO)
 
 express: # nestjs内置集成http库
     Request: # 请求对象
-
     Response: # 响应对象
+        json():
+        send():
+        status():
 ```
 
 
@@ -183,3 +192,8 @@ express: # nestjs内置集成http库
 
 
 ### Custom Decorator
+
+
+
+## 项目实战
+
