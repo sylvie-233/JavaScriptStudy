@@ -42,18 +42,58 @@ react-router-dom:
         pathname:
 
 react-native:
-    Button:
+    ActiveIndicator:
+        animating:
+        size:
+    Alert: # 提示框
+        alert():
+            onPress:
+            text:
+    Button: # 按钮组件
         title:
         onPress:
-    Image:
+    Dimensions: # 动态尺寸
+        addEventListener():
+            change:
+        get():
+            screen:
+            window:
+                height:
+                width:
+    Image: # 图像
         source:
     ImageBackground:
-    ScrollView:
+    Modal: # 模态组件
+        animationType:
+            fade:
+            slide:
+        onRequestClose:
+        presentationStyle:
+            pageSheet:
+        visible:
+    Platform: # 平台查询
+        OS:
+        select():
+            android:
+            ios:
+    Pressable:
+        onLongPress:
+        onPress:
+        onPressIn:
+        onPressOut:
+    SafeAreaView:
+    ScrollView: # 滚动视图
+    StatusBar: # 状态栏
+        backgroundColor:
+        barStyle:
+        hidden:
     StyleSheet:
         create():
     Text:
+        style:
     View:
-        Style:
+        style:
+    useWindowDimensions():
 
 expo-status-bar:
     StatusBar:
@@ -72,11 +112,46 @@ expo-status-bar:
 
 ```
 
+#### app.json
+```yaml
+app.json:
+    expo:
+        name:
+        orientation:
+        splash:
+```
+
+
 
 ### expo
 ```yaml
 expo:
     start:
 ```
+
+
+
+### StyleSheet
+
+
+
+### 自定义组件
+
+
+### 组件渲染
+
+
+
+
+
+
+条件渲染、列表渲染
+
+
+### 组件通信
+
+
+### 组件路由
+
 
 
