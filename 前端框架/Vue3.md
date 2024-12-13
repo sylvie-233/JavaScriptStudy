@@ -10,9 +10,8 @@
 vue-cli基于webpack脚手架、vue3建议使用vite构建
 
 ### 项目结构
-
-```
-:
+```yaml
+目录结构:
     /public:
         favicon.ico:
     /src:
@@ -72,23 +71,19 @@ vue-router:
     creatWebHashHistory():
     createWebHistory():
     useRoute():
-        :
-            params:
-            query:
+        params:
+        query:
     useRouter():
-        :
-            push():
-            replace():
+        push():
+        replace():
 
 pinia:
     createPinia():
-        :
     defineStore():
-        :
-            $state:
-            $patch(): 修改state
-            $reset(): 重置state
-            $subscribe(): 订阅（变化监听）
+        $state:
+        $patch(): 修改state
+        $reset(): 重置state
+        $subscribe(): 订阅（变化监听）
     mapState():
     storeToRefs():
 ```
@@ -236,6 +231,12 @@ const store = defineStore("storeId", {
 
 
 定义store，每个store为一个Hooks函数
+
+
+
+## 项目实战
+
+
 
 
 

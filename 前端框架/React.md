@@ -12,7 +12,6 @@ react-scripts:
 
 
 ## 核心内容
-
 ```yaml
 react:
     createContext(): # 上下文通信
@@ -40,6 +39,17 @@ react-router-dom:
     Switch:
     useLocation(): # 路由导航信息
         pathname:
+
+mobx:
+    @action: # 定义响应式数据操作方法
+        bound:
+    @computed: # 定义计算属性
+        observe():
+    @observable: # 定义响应式数据
+    makeObservable():
+
+mobx-react:
+    @observer: # 使组件可观测(响应状态变化更新)
 
 react-native:
     ActiveIndicator:
@@ -100,6 +110,25 @@ expo-status-bar:
 ```
 
 
+### 组件路由
+
+
+
+### 组件通信
+
+
+### 状态管理
+
+#### mobx
+```js
+
+```
+
+
+基础集成；
+- 响应组件
+- 状态
+- 修改状态的方法
 
 
 
