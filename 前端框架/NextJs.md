@@ -51,11 +51,14 @@ next:
 :
     /public:
     /src:
-        /app:
+        /app: # 前端路由页面
+            /xxx:
             favicon.ico:
             globals.css:
-            layout.tsx:
-            page.tsx:
+            layout.tsx: # 主布局页面
+            page.tsx: # 入口页面
+        /pages:
+            /api:
     .eslintrc:
     next-env.d.ts:
     next.config.js:
@@ -81,11 +84,11 @@ next:
         cookies():
         headers():
     link:
-        Link:
+        Link: # 页面跳转组件
             href:
             replace:
     navigation:
-        redirect(): 重定向
+        redirect(): # 重定向
         userPathname():
         useRouter():
             :

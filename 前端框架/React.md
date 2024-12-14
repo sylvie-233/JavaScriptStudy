@@ -127,6 +127,32 @@ react-native:
 
 expo-status-bar:
     StatusBar:
+
+@react-navigation/native:
+    NavigationContainer:
+    useNavigation():
+        navigate():
+@react-navigation/native-stack:
+    createNativeStackNavigator():
+        Navigator:
+        Screen:
+            component:
+            name:
+            navigation: # 自动注入
+                navigate(): # 路由切换
+            options:
+                headerStyle:
+                title:
+            route:
+                params:
+@react-navigation/bottom-tabs:
+    createBottomTabNavigator:
+        Navigator:
+        Screen:
+@react-navigation/drawer:
+    createDrawerNavigator():
+        Navigator:
+        Screen:
 ```
 
 
@@ -198,6 +224,9 @@ expo:
 
 
 ### 组件路由
+
+
+NavigationContainer -> Navigator -> Screen(可嵌套Navigator)
 
 
 
