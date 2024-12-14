@@ -70,9 +70,18 @@ react-native:
             window:
                 height:
                 width:
+    FlatList: # 列表渲染
+        data:
+        ItemSeparatorComponent:
+        ListEmptyComponent:
+        ListFooterComponent:
+        ListHeaderComponent:
+        keyExtractor:
+        renderItem:
     Image: # 图像
         source:
     ImageBackground:
+    KeyboardAvoidingView:
     Modal: # 模态组件
         animationType:
             fade:
@@ -93,6 +102,13 @@ react-native:
         onPressOut:
     SafeAreaView:
     ScrollView: # 滚动视图
+    SectionList:
+        renderItem:
+        renderSectionHeader:
+        sections:
+    Switch:
+        onValueChange:
+        value:
     StatusBar: # 状态栏
         backgroundColor:
         barStyle:
@@ -101,6 +117,10 @@ react-native:
         create():
     Text:
         style:
+    TextInput:
+        multlineText:
+        onChange:
+        value:
     View:
         style:
     useWindowDimensions():
@@ -170,11 +190,8 @@ expo:
 ### 组件渲染
 
 
-
-
-
-
-条件渲染、列表渲染
+- 条件渲染：if
+- 列表渲染：map、FlatList
 
 
 ### 组件通信

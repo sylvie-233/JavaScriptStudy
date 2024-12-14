@@ -102,7 +102,7 @@ next:
                 pathname:
                 searchParams:
             url:
-        NextResponse:.
+        NextResponse:
             cookies:
             headers:
             next():
@@ -200,6 +200,9 @@ route.ts的路由规则和page.tsx的规则一样
 中间件Middleware
 
 #### Data Fetching
+
+
+
 
 
 #### Middleware
