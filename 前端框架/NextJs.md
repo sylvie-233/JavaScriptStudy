@@ -53,9 +53,12 @@ next:
     /src:
         /app: # 前端路由页面
             /xxx:
+            default.tsx: # 默认插槽页面
+            error.tsx:
             favicon.ico:
             globals.css:
             layout.tsx: # 主布局页面
+            loading.tsx:
             page.tsx: # 入口页面
         /pages:
             /api:
@@ -83,20 +86,23 @@ next:
     headers:
         cookies():
         headers():
+    image:
+        Image:
     link:
         Link: # 页面跳转组件
             href:
             replace:
     navigation:
+        notFound():
         redirect(): # 重定向
         userPathname():
         useRouter():
             :
-                back():
-                forward():
-                push():
-                refresh():
-                replace():
+            back():
+            forward():
+            push():
+            refresh():
+            replace(): 
     server:
         NextRequest:
             cookies:
@@ -122,6 +128,7 @@ next:
     NextConfig:
 
 React:
+    FormEvent:
     ReactNode:
     Suspense:
         fallback:
@@ -138,6 +145,9 @@ React:
 - `_id`：私有文件夹
 - `@id`：layout插槽文件夹
 - `(.)id`/`(..)id`/`(...)id`: 路由拦截文件夹
+
+
+path params 通过函数参数传递进来
 
 
 
