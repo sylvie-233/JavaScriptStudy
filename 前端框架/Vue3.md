@@ -38,23 +38,23 @@ vue:
         config:
             globalProperties:
         component():
-        directive(): 自定义指令
-        mount(): 挂载
-        use(): 使用中间件
+        directive(): # 自定义指令
+        mount(): # 挂载
+        use(): # 使用中间件
     RefImpl:
         value: 代理数据
-    computed(): 计算属性
-    createApp(): 创建应用
-    customRef(): 自定义ref（传入回调函数，返回对象重写get、set，），(get调用track, set调用trigger)
+    computed(): # 计算属性
+    createApp(): # 创建应用
+    customRef(): # 自定义ref（传入回调函数，返回对象重写get、set，），(get调用track, set调用trigger)
     defineEmits():
-    defineExpose(): 组件ref导出定义
-    defineProps(): 定义组件属性
+    defineExpose(): # 组件ref导出定义
+    defineProps(): # 定义组件属性
     inject:
     markRaw(): 标记不会变成响应式对象
     provide:
-    reactive(): 响应式数据
-    readonly(): 响应式转只读数据
-    ref(): 响应式数据
+    reactive(): # 响应式数据
+    readonly(): # 响应式转只读数据
+    ref(): # 响应式数据
     shallowReactive(): 浅层reactive响应式
     shallowReadonly():
     shallowRef(): 浅层ref响应式
@@ -62,7 +62,7 @@ vue:
     toRef():
     toRefs():
     watch():
-    watchEffect(): 监视变化
+    watchEffect(): # 监视变化
 
 vue-router:
     RouterLink:
@@ -81,9 +81,9 @@ pinia:
     createPinia():
     defineStore():
         $state:
-        $patch(): 修改state
-        $reset(): 重置state
-        $subscribe(): 订阅（变化监听）
+        $patch(): # 修改state
+        $reset(): # 重置state
+        $subscribe(): # 订阅（变化监听）
     mapState():
     storeToRefs():
 ```
