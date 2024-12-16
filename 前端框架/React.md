@@ -70,9 +70,18 @@ react-native:
             window:
                 height:
                 width:
+    FlatList: # 列表渲染
+        data:
+        ItemSeparatorComponent:
+        ListEmptyComponent:
+        ListFooterComponent:
+        ListHeaderComponent:
+        keyExtractor:
+        renderItem:
     Image: # 图像
         source:
     ImageBackground:
+    KeyboardAvoidingView:
     Modal: # 模态组件
         animationType:
             fade:
@@ -93,6 +102,13 @@ react-native:
         onPressOut:
     SafeAreaView:
     ScrollView: # 滚动视图
+    SectionList:
+        renderItem:
+        renderSectionHeader:
+        sections:
+    Switch:
+        onValueChange:
+        value:
     StatusBar: # 状态栏
         backgroundColor:
         barStyle:
@@ -101,12 +117,42 @@ react-native:
         create():
     Text:
         style:
+    TextInput:
+        multlineText:
+        onChange:
+        value:
     View:
         style:
     useWindowDimensions():
 
 expo-status-bar:
     StatusBar:
+
+@react-navigation/native:
+    NavigationContainer:
+    useNavigation():
+        navigate():
+@react-navigation/native-stack:
+    createNativeStackNavigator():
+        Navigator:
+        Screen:
+            component:
+            name:
+            navigation: # 自动注入
+                navigate(): # 路由切换
+            options:
+                headerStyle:
+                title:
+            route:
+                params:
+@react-navigation/bottom-tabs:
+    createBottomTabNavigator:
+        Navigator:
+        Screen:
+@react-navigation/drawer:
+    createDrawerNavigator():
+        Navigator:
+        Screen:
 ```
 
 
@@ -170,17 +216,17 @@ expo:
 ### 组件渲染
 
 
-
-
-
-
-条件渲染、列表渲染
+- 条件渲染：if
+- 列表渲染：map、FlatList
 
 
 ### 组件通信
 
 
 ### 组件路由
+
+
+NavigationContainer -> Navigator -> Screen(可嵌套Navigator)
 
 
 

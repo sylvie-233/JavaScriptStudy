@@ -51,11 +51,17 @@ next:
 :
     /public:
     /src:
-        /app:
+        /app: # 前端路由页面
+            /xxx:
+            default.tsx: # 默认插槽页面
+            error.tsx:
             favicon.ico:
             globals.css:
-            layout.tsx:
-            page.tsx:
+            layout.tsx: # 主布局页面
+            loading.tsx:
+            page.tsx: # 入口页面
+        /pages:
+            /api:
     .eslintrc:
     next-env.d.ts:
     next.config.js:
@@ -80,20 +86,23 @@ next:
     headers:
         cookies():
         headers():
+    image:
+        Image:
     link:
-        Link:
+        Link: # 页面跳转组件
             href:
             replace:
     navigation:
-        redirect(): 重定向
+        notFound():
+        redirect(): # 重定向
         userPathname():
         useRouter():
             :
-                back():
-                forward():
-                push():
-                refresh():
-                replace():
+            back():
+            forward():
+            push():
+            refresh():
+            replace(): 
     server:
         NextRequest:
             cookies:
@@ -102,7 +111,7 @@ next:
                 pathname:
                 searchParams:
             url:
-        NextResponse:.
+        NextResponse:
             cookies:
             headers:
             next():
@@ -119,6 +128,7 @@ next:
     NextConfig:
 
 React:
+    FormEvent:
     ReactNode:
     Suspense:
         fallback:
@@ -135,6 +145,9 @@ React:
 - `_id`：私有文件夹
 - `@id`：layout插槽文件夹
 - `(.)id`/`(..)id`/`(...)id`: 路由拦截文件夹
+
+
+path params 通过函数参数传递进来
 
 
 
@@ -200,6 +213,9 @@ route.ts的路由规则和page.tsx的规则一样
 中间件Middleware
 
 #### Data Fetching
+
+
+
 
 
 #### Middleware
