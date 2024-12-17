@@ -9,6 +9,9 @@
 
 vue-cli基于webpack脚手架、vue3建议使用vite构建
 
+data、methods、props、computed、watch、hooks、components、event/emit、slot
+
+
 ### 项目结构
 ```yaml
 目录结构:
@@ -42,23 +45,23 @@ vue:
         mount(): # 挂载
         use(): # 使用中间件
     RefImpl:
-        value: 代理数据
+        value: # 代理数据
     computed(): # 计算属性
     createApp(): # 创建应用
     customRef(): # 自定义ref（传入回调函数，返回对象重写get、set，），(get调用track, set调用trigger)
-    defineEmits():
+    defineEmits(): # 自定义事件
     defineExpose(): # 组件ref导出定义
     defineProps(): # 定义组件属性
     inject:
-    markRaw(): 标记不会变成响应式对象
+    markRaw(): # 标记不会变成响应式对象
     provide:
     reactive(): # 响应式数据
     readonly(): # 响应式转只读数据
     ref(): # 响应式数据
-    shallowReactive(): 浅层reactive响应式
+    shallowReactive(): # 浅层reactive响应式
     shallowReadonly():
-    shallowRef(): 浅层ref响应式
-    toRaw(): 响应式数据转原始对象
+    shallowRef(): # 浅层ref响应式
+    toRaw(): # 响应式数据转原始对象
     toRef():
     toRefs():
     watch():
@@ -68,6 +71,10 @@ vue-router:
     RouterLink:
     RouterView:
     createRouter():
+        history: # 路由模式
+        routes: # 路由表
+            path:
+            component:
     creatWebHashHistory():
     createWebHistory():
     useRoute():
@@ -93,6 +100,42 @@ setup函数可以返回一个渲染函数，setup相对于Vue2中的生命周期
 v-model双向绑定
 
 computed计算属性：给响应式数据提供了一个处理过程
+
+
+
+### 模板语法
+```yaml
+:
+    {{}}:
+    v-bind:
+    v-for:
+    v-html:
+    v-if ... v-else-if ... v-else ...: 
+    v-model: # props#modelValue、$emit("update:model-value")
+    v-on: # $event
+    v-show:
+    v-slot:
+```
+
+v-on、v-bind可实现动态参数绑定：`v-bind:[attr]`
+
+v-for可遍历对象属性
+
+class样式绑定、style样式绑定
+
+
+
+#### 页面插槽
+
+<slot>定义插槽、<template>插入插槽
+
+slot可以反向传值给template
+
+
+#### 自定义指令
+
+
+
 
 ### 生命周期
 - setup():
