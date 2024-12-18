@@ -1,5 +1,7 @@
 # React
 
+`react项目实战：P21`
+
 
 ## 基础介绍
 
@@ -14,31 +16,75 @@ react-scripts:
 ## 核心内容
 ```yaml
 react:
+    ReactNode:
+    StrictMode:
     createContext(): # 上下文通信
         Provider:
             value:
     useContext(): # 使用上下文
     useEffect():
+    useRef(): # ref引用DOM
+        current:
     useState():
 
 react-dom:
+    client:
+        ReactDOM:
+            createRoot():
+                reander():
     render():
 
 react-router-dom:
     BrowserRouter:
+        basename:
     Link:
         to:
+    Navigate:
     NavLink:
         activeClassName:
         to:
+    Outlet: # router-view，子路由显示入口
     Redirect:
         to:
     Route:
+        element:
         exact:
+        loader:
         path:
+    RouterProvider: # 总route显示
+        router:
+    Routes:
     Switch:
+    createBrowserRouter():
+        _options:
+            basename:
+        path:
+        element:
+        children:
+    createRoutesFromElements():
     useLocation(): # 路由导航信息
         pathname:
+    useNavigate()
+
+
+redux:
+@reduxjs/toolkit: # 定义store
+    configureStore():
+        reducer:
+    createSlice(): # reducer：data、action
+        name:
+        initialState:
+        reducers:
+        ---
+        actions:
+        reducer:
+react-redux: # 使用store
+    Provider:
+        store:
+    useDispatch(): # 获取store方法
+    useSelector(): # 获取store状态
+
+
 
 mobx:
     @action: # 定义响应式数据操作方法
@@ -158,12 +204,26 @@ expo-status-bar:
 
 ### 组件路由
 
+React Router
+
+```yaml
+<BrowserRouter>:
+    <Routes>:
+        <Route>:
+```
 
 
 ### 组件通信
 
 
 ### 状态管理
+
+
+#### redux
+
+reducer、
+
+
 
 #### mobx
 ```js

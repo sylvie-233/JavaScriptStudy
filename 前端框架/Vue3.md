@@ -75,6 +75,7 @@ vue-router:
         routes: # 路由表
             path:
             component:
+            children:
     creatWebHashHistory():
     createWebHistory():
     useRoute():
@@ -82,6 +83,9 @@ vue-router:
         query:
     useRouter():
         push():
+            path:
+            name:
+            query:
         replace():
 
 pinia:
@@ -91,8 +95,11 @@ pinia:
         $patch(): # 修改state
         $reset(): # 重置state
         $subscribe(): # 订阅（变化监听）
+        state:
+        actions:
+        getters:
     mapState():
-    storeToRefs():
+    storeToRefs(): # 转换为vue的ref变量
 ```
 
 setup函数可以返回一个渲染函数，setup相对于Vue2中的生命周期是最早的
