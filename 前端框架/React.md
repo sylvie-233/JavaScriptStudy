@@ -64,7 +64,7 @@ react-router-dom:
     createRoutesFromElements():
     useLocation(): # 路由导航信息
         pathname:
-    useNavigate()
+    useNavigate():
 
 
 redux:
