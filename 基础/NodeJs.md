@@ -63,10 +63,14 @@ nodejs包配置文件
 
 
 
-### nvm
+#### nvm
 ```yaml
 nvm:
-
+    alias:
+    install:
+    list:
+        avaliable:
+    use:
 ```
 
 nodejs版本管理器

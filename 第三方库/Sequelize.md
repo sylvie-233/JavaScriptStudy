@@ -13,6 +13,8 @@ nodejs orm框架
 sequelize:
     db:
         migrate:
+        seed: # 运行seed文件
+    init: # 初始化项目（/config、/migrations、/models、/seeders）
     model:
         generate:
             --attributes:
@@ -52,7 +54,12 @@ sequelize:
                     defaultValue:
                     primaryKey:
                     type:
-                    validate:
+                    validate: # 字段校验
+                        len:
+                        notEmpty:
+                        notNull:
+                            args:
+                            msg:
                 _options:
                     freezeTableName: # 禁止表名加复数
                     modelName:
@@ -63,10 +70,18 @@ sequelize:
                 force:
                 match:
         create(): # 创建
+        destroy(): # 删除
         findAll():
+        findAndCountAll():
+        findByPk():
         findOne():
+            limit:
+            offset:
+            order:
             where():
-    Op:
+        update():
+    Op: # 字段操作
+        like:
     Sequelize:
         _options:
             define:

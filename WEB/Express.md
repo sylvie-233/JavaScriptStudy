@@ -1,10 +1,19 @@
 # express
 
-``
+`2024Node.js项目实战：P23`
 
 
 
 ## 基础介绍
+
+
+一个project可以有多个router
+
+
+
+
+
+
 
 ### express-generator
 ```yaml
@@ -12,6 +21,7 @@ express:
     -h:
     --css:
     --ejs:
+    --no-view:
     --view:
 ```
 
@@ -76,7 +86,7 @@ express:
         clearCookie():
         download():
         end():
-        json():
+        json(): # 返回json数据
         jsonp():
         location():
         redirect(): # 重定向
@@ -90,7 +100,7 @@ express:
         _options:
             mergeParams:
         delete():
-        get():
+        get(): # http get请求
         param(): # 自定义path param处理
         post():
         put():
