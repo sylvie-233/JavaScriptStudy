@@ -1,6 +1,6 @@
 # NestJs
 
-`https://docs.nestjs.com/providers`
+`https://docs.nestjs.com/modules`
 
 nodejs 服务端框架
 
@@ -20,7 +20,7 @@ module -> imports(导入其它模块)
        -> controllers(控制器)
        -> providers   -> services(服务实现)
 
-一个项目project 可以有多个 模块module
+一个项目project 可以有多个 模块module，模块module之间可以相互依赖嵌套
 
 
 
@@ -78,6 +78,7 @@ nest:
             provider:
             useClass: # Guard
     @Next:
+    @Optional:
     @Param: # path param
     @Patch:
     @Post: # post request
@@ -162,13 +163,16 @@ express: # nestjs内置集成http库
 
 ### Provider
 
-依赖注入对象
+依赖注入对象、@Injectable、
 
 
 
 
 
 ### Module
+
+
+模块、一个项目可以拆分成多个模块（根据路由、功能）
 
 
 ### Middleware
