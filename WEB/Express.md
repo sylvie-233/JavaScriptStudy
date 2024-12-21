@@ -1,6 +1,6 @@
 # express
 
-`2024Node.js项目实战：P23`
+`2024Node.js项目实战：P32`
 
 
 
@@ -113,7 +113,16 @@ express:
     urlencoded(): # urlencoded 请求中间件
 
 cookie-parser:
-
+cors:
+body-parser:
+express-validator: 
+    body():
+        isLength():
+        withMessage():
+    validationResult():
+        _errors:
+            array():
+            isEmpty():
 multer:
     _options:
         limits:
@@ -123,9 +132,7 @@ multer:
         filename: # (req, file, cb)
     array():
     single():
-
 pug:
-
 ```
 
 
@@ -150,6 +157,12 @@ pug:
 - 异常处理
 - 内置中间件
 - 第三方中间件
+
+
+
+#### data validation
+
+
 
 
 #### File Upload
@@ -177,5 +190,25 @@ multer库
 
 
 
+### Log
+
+
+
+#### morgan
+
+
+### ORM
+
+
+#### sequelize
+
+
+#### mongoose
+
+
+### Test
+
 
 ### Third-party
+
+#### Mail Sender
