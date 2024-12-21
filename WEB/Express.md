@@ -51,6 +51,7 @@ express:
         put():
         route():
         set():
+            view:
             view engine: # 模板引擎
             views: # 模板视图文件夹
         use():
@@ -171,6 +172,8 @@ multer库
 模板引擎
 
 `art-template`
+
+#### art-template
 
 
 
