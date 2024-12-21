@@ -75,13 +75,15 @@ sequelize:
         findAndCountAll():
         findByPk():
         findOne():
+            attributes:
             limit:
             offset:
             order:
-            where():
+            where(): # 条件构造
         update():
     Op: # 字段操作
         like:
+        or:
     Sequelize:
         _options:
             define:
@@ -110,6 +112,8 @@ sequelize:
                 indexes:
                 timestamps: # 自动修改字段时间戳
                 updatedAt:
+        fn():
+        query(): # 执行原生SQL
         sync(): # 数据库迁移（创建表）
 
 sequelize-cli:
