@@ -1,12 +1,15 @@
 # Next.js
 
 >
->
+>`Next.js官方文档：https://nextjs.org/docs/app/getting-started/layouts-and-pages`
 >
 
 ## 基础介绍
 
 React服务端实现
+
+
+`page.tsx`、`route.tsx`
 
 
 核心功能：
@@ -23,11 +26,16 @@ React服务端实现
 - 路由页面：`page.tsx`
 - 布局页面：`layout.tsx`
 - 模板页面：`template.tsx`
+- 默认页面：`default.tsx`
 - 404页面：`not-found.tsx`
 - 加载页面：`loading.tsx`
 - 异常处理：`error.tsx`
 - API Handler：`route.tsx`
 - 中间件：`middleware.ts`
+
+
+路径别名：根目录`@/xxx`
+
 
 
 ### next
@@ -52,16 +60,20 @@ next:
     /public:
     /src:
         /app: # 前端路由页面
+            /_xxx: # 私有文件夹
             /xxx:
+            /api:
+                route.tsx:
             default.tsx: # 默认插槽页面
             error.tsx:
             favicon.ico:
             globals.css:
             layout.tsx: # 主布局页面
+                children:
             loading.tsx:
             page.tsx: # 入口页面
-        /pages:
-            /api:
+        /components:
+        /lib:
     .eslintrc:
     next-env.d.ts:
     next.config.js:
@@ -141,7 +153,7 @@ React:
 
 - `[id]`：
 - `[...id]`：多级匹配
-- `(id)`：排除名称
+- `(id)`：排除名称、路由分组（文件夹名不包含在路由内）
 - `_id`：私有文件夹
 - `@id`：layout插槽文件夹
 - `(.)id`/`(..)id`/`(...)id`: 路由拦截文件夹
@@ -173,6 +185,15 @@ layout插槽：`default.tsx`插槽默认页面
 服务端组件不能使用state
 
 客户端渲染组件的子级也是客户端渲染组件，尽量在叶子节点的组件上使用客户端组件
+
+
+组件渲染顺序
+- layout.js
+- template.js
+- error.js (React error boundary)
+- loading.js (React suspense boundary)
+- not-found.js (React error boundary)
+- page.js or nested layout.js
 
 
 
