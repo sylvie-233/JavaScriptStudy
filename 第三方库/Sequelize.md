@@ -70,16 +70,26 @@ sequelize:
                 force:
                 match:
         create(): # 创建
+        decrement():
         destroy(): # 删除
         findAll():
         findAndCountAll():
+            count:
+            rows:
         findByPk():
         findOne():
             attributes:
+                exclude:
+            include: # 关联查询
+                as:
+                attribute:
+                include: # include嵌套
+                model:
             limit:
             offset:
             order:
             where(): # 条件构造
+        increment():
         update():
     Op: # 字段操作
         like:

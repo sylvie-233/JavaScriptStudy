@@ -9,4 +9,9 @@ jwt
 ```yaml
 jsonwebtoken:
     sign(): # 签发jwt
+        payload:
+        secretOrPrivateKey:
+        options:
+            expiresIn:
+    verify(): # 验证jwt
 ```
