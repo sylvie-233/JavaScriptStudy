@@ -1,6 +1,6 @@
 # express
 
-`2024Node.js项目实战：P49`
+``
 
 
 
@@ -125,13 +125,17 @@ express-validator:
             isEmpty():
 multer:
     _options:
+        fileFilter:
         limits:
+            fileSize:
         storage:
+            config:
+            destination:
     diskStorage: # 磁盘存储
         destination: # (req, file, cb)
         filename: # (req, file, cb)
     array():
-    single():
+    single(): # 单文件上传中间件
 pug:
 ```
 

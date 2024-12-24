@@ -5,6 +5,9 @@
 
 代码检查工具，可用来统一代码风格
 
+
+
+
 eslint可配置的信息主要分为3类：
 - env：js运行的环境
 - globals: 执行代码需要访问的全局变量
@@ -22,32 +25,91 @@ eslint:
 
 ```
 
-### .eslintrc.js
+
+
+
+
+
+#### eslint.config.js
 ```yaml
-:
-    env: 代码环境
-        es6:
-        node:
-    extends: 配置继承
-    parser:
-        "babel-eslint|"
-    parserOptions:
-        sourceType:
-    plugins: eslint插件
-    rulse: 检查规则
-        block-spacing:
-            "always"
-        linebreak-style:
-            "error|unix"
-        no-console:
-        quotes:
-            "single"
-        semi:
-            "always"
-        
+
 ```
 
 
 
+#### .eslintignore
+```yaml
+
+```
+
+
+
+#### .eslintrc
+```yaml
+:
+    env: # 代码环境
+        es6:
+        node:
+    extends: # 配置继承
+    overrides: # 重写配置
+    parser: # "babel-eslint|"
+    parserOptions:
+        sourceType:
+    plugins: # eslint插件
+    rules: # 检查规则
+        block-spacing: # "always"
+        linebreak-style: # "error|unix"
+        no-console:
+        quotes: # "single"
+        semi: # "always"
+        
+```
+
+
+### prettier
+```yaml
+prettier:
+
+```
+
+
+代码格式化工具
+
+可在`package.json`中添加`prettier`字段
+
+
+
+
+
+#### .prettierrc
+```yaml
+.prettierrc:
+    printWidth:
+    quotes:
+    semi:
+    semicolons:
+    singleQuote:
+    tabs:
+    tabWidth:
+```
+
+
+
+#### .prettierignore
+```yaml
+```
+
+
+
+
 ## 核心内容
+```yaml
+prettier:
+    format():
+```
+
+
+
+
+## Prettier
 

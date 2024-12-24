@@ -1,7 +1,7 @@
 # Next.js
 
 >
->`Next.js官方文档：https://nextjs.org/docs/app/getting-started/layouts-and-pages`
+>`Next.js官方文档：https://nextjs.org/docs/app/getting-started/images-and-fonts`
 >
 
 ## 基础介绍
@@ -69,7 +69,7 @@ next:
             favicon.ico:
             globals.css:
             layout.tsx: # 主布局页面
-                children:
+                children: # 子组件渲染
             loading.tsx:
             page.tsx: # 入口页面
         /components:
@@ -108,7 +108,7 @@ next:
         notFound():
         redirect(): # 重定向
         userPathname():
-        useRouter():
+        useRouter(): # 路由器（路由跳转）
             :
             back():
             forward():
