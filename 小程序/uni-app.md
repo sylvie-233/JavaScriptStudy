@@ -6,6 +6,9 @@
 使用Vue语法开发多端程序
 
 
+多page -> component
+
+
 
 
 ### 目录结构
@@ -64,8 +67,22 @@
 
 ## 核心内容
 ```yaml
+vue2:
+    data:
+    methods:
+    onLoad():
+
+vue3:
+    
 uni:
+    getStorageSync():
+    getSystemInfoSync():
+        model:
+        screenHeight:
+        screenWidth:
     hideLoading():
+    navigateTo():
+    setStorageSync():
     showLoading():
     showToast():
         duration:
@@ -78,10 +95,13 @@ uni:
 ### 内置组件
 ```yaml
 内置组件:
+    <block>: # 空白标签
     <image>:
         src:
     <navigator>:
         url:
+    <scroll-view>:
+        scroll-top:
     <swiper>:
         autoplay:
         circular:
@@ -101,6 +121,10 @@ uni:
 使用Vue模板语法
 
 
+### 页面路由
+
+`uni.navagateTo()`
+
 
 ### 状态管理
 
@@ -113,9 +137,9 @@ Vuex
 ### Page
 ```yaml
 Page:
-   data: # 数据定义
-   methods: # 方法定义
-   onLoad():
+    data: # 数据定义
+    methods: # 方法定义
+    onLoad():
 ```
 
 
@@ -130,6 +154,16 @@ Page:
 
 
 ### Component
+```yaml
+Component:
+    computed:
+    data:
+    method:
+    props:
+        default:
+        type:
+    $emit():
+```
 
 
 

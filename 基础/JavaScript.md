@@ -17,6 +17,8 @@
             has():
             keys():
             values():
+    Array:
+        from():
     Object:
         create():
         defineProperty():
@@ -32,6 +34,7 @@
         ownKeys():
         preventExtensions():
         setPrototypeOf():
+    Set:
 ```
 
 
