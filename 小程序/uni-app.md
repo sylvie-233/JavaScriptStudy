@@ -17,6 +17,7 @@
     /components:
     /pages:
     /static:
+    /store:
     App.vue:
     main.js:
     manifest.json:
@@ -50,6 +51,7 @@
     subPackages: # 分包
         pages:
         root:
+        style:
     tabBar:
         list:
             iconPath:
@@ -73,6 +75,18 @@ vue2:
     onLoad():
 
 vue3:
+
+
+vuex:
+    Store:
+        modules:
+            getters:
+            mutations:
+            namespaced:
+            state:
+    mapGetters():
+    mapMutations():
+    mapState():
     
 uni:
     getStorageSync():
@@ -82,7 +96,9 @@ uni:
         screenWidth:
     hideLoading():
     navigateTo():
+    previewImage():
     setStorageSync():
+    setTabBarBadge():
     showLoading():
     showToast():
         duration:
@@ -139,7 +155,9 @@ Vuex
 Page:
     data: # 数据定义
     methods: # 方法定义
+    mixins:
     onLoad():
+    onReachBottom():
 ```
 
 
@@ -158,10 +176,13 @@ Page:
 Component:
     computed:
     data:
+    filters:
     method:
+    mixins:
     props:
         default:
         type:
+    watch:
     $emit():
 ```
 
