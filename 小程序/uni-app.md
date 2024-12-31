@@ -92,6 +92,7 @@ vuex:
     mapState():
     
 uni:
+    chooseAddress():
     getStorageSync():
     getSystemInfoSync():
         model:
@@ -99,10 +100,12 @@ uni:
         screenWidth:
     hideLoading():
     navigateTo():
+    openSetting():
     previewImage():
     setStorageSync():
     setTabBarBadge():
     showLoading():
+    showModal():
     showToast():
         duration:
         icon:

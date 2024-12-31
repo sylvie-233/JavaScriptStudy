@@ -1,9 +1,9 @@
 # TypeScript
 
 >
->`# TODO 2022 TypeScript 从入门到精通完全指南 P50`
+>``
 >
->`# TODO TYPESCRIPT编程.pdf p72`
+>``
 >
 
 
@@ -144,11 +144,7 @@ Type Aliase类型别名：通过`type`关键字定义类型别名
 
 
 
-#### Module
 
-
-
-#### Namespace
 
 
 
@@ -156,6 +152,12 @@ Type Aliase类型别名：通过`type`关键字定义类型别名
 
 #### 泛型
 
+
+### Module
+
+
+
+#### Namespace
 
 
 
