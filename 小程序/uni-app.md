@@ -15,9 +15,12 @@
 ```yaml
 目录结构:
     /components:
+    /mixins:
+    /node_modules:
     /pages:
     /static:
     /store:
+    /subpkg:
     App.vue:
     main.js:
     manifest.json:
@@ -116,6 +119,7 @@ uni:
         src:
     <navigator>:
         url:
+    <radio>:
     <scroll-view>:
         scroll-top:
     <swiper>:
@@ -153,11 +157,13 @@ Vuex
 ### Page
 ```yaml
 Page:
+    computed:
     data: # 数据定义
     methods: # 方法定义
     mixins:
     onLoad():
     onReachBottom():
+    $emit(): # 触发自定义事件
 ```
 
 
