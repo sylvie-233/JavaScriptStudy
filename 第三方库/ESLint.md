@@ -51,6 +51,11 @@ eslint:
         es6:
         node:
     extends: # 配置继承
+        eslint:
+            recommended:
+        next:
+        next/core-web-vitals:
+    globals: # 全局声明（无需import）
     overrides: # 重写配置
     parser: # "babel-eslint|"
     parserOptions:
@@ -60,6 +65,7 @@ eslint:
         block-spacing: # "always"
         linebreak-style: # "error|unix"
         no-console:
+        no-unused-vars:
         quotes: # "single"
         semi: # "always"
         
@@ -69,7 +75,7 @@ eslint:
 ### prettier
 ```yaml
 prettier:
-
+    --write:
 ```
 
 
@@ -92,6 +98,8 @@ prettier:
     tabs:
     tabWidth:
 ```
+
+prettier格式化配置文件（vscode插件）
 
 
 

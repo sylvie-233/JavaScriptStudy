@@ -49,6 +49,12 @@ next:
 ```
 
 
+#### create-next-app
+```yaml
+create-next-app: # next脚手架
+    --typescript:
+```
+
 
 
 
