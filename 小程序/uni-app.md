@@ -99,6 +99,7 @@ uni:
         screenHeight:
         screenWidth:
     hideLoading():
+    login():
     navigateTo():
     openSetting():
     previewImage():
