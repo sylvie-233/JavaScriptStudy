@@ -1,7 +1,9 @@
 # Next.js
 
 >
->`Next.js官方文档：https://nextjs.org/docs/app/getting-started/images-and-fonts`
+>`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating`
+>
+>`Next.js 终极课程 2024 年版：P19`
 >
 
 ## 基础介绍
@@ -10,6 +12,9 @@ React服务端实现
 
 
 `page.tsx`、`route.tsx`
+
+- SSG: 静态站点生成
+- ISR: 增量静态生成
 
 
 核心功能：
@@ -37,6 +42,8 @@ React服务端实现
 路径别名：根目录`@/xxx`
 
 
+自动图象、字体优化
+
 
 ### next
 
@@ -63,23 +70,41 @@ create-next-app: # next脚手架
 
 ```yaml
 :
-    /public:
+    /public: # 静态资源目录
     /src:
         /app: # 前端路由页面
-            /_xxx: # 私有文件夹
             /xxx:
+            /(xxx): # 路由分组
+            /_xxx: # 私有文件夹
             /api:
+                /xxx:
                 route.tsx:
+                    Response:
+                        json:
+                    GET():
             default.tsx: # 默认插槽页面
-            error.tsx:
+            error.tsx: # 异常页面
+                error:
+                reset():
             favicon.ico:
-            globals.css:
+            globals.css: # 全局CSS
             layout.tsx: # 主布局页面
+                metadata:
+                ---
                 children: # 子组件渲染
-            loading.tsx:
+            loading.tsx: # 加载页面
             page.tsx: # 入口页面
+                dynamic: # 动态页面配置
+                revalidate: # 页面重新验证刷新时间
+                ---
+                params: # 页面参数
+                fetch(): # 异步获取数据
         /components:
         /lib:
+        middleware.tsx: # 中间件定义
+            config:
+                matcher: # 中间件匹配器
+            middleware():
     .eslintrc:
     next-env.d.ts:
     next.config.js:
@@ -89,11 +114,6 @@ create-next-app: # next脚手架
     tsconfig.json:
 ```
 
-
-
-
-
-
 ## 核心内容
 
 ```yaml
@@ -102,10 +122,12 @@ next:
         google:
             Inter:
     headers:
-        cookies():
+        cookies(): # 请求头中的Cookie
         headers():
     image:
-        Image:
+        Image: # 图片组件
+            alt:
+            src:
     link:
         Link: # 页面跳转组件
             href:
@@ -115,12 +137,13 @@ next:
         redirect(): # 重定向
         userPathname():
         useRouter(): # 路由器（路由跳转）
-            :
+            ---
             back():
             forward():
             push():
             refresh():
             replace(): 
+        useServerInsertedHTML():
     server:
         NextRequest:
             cookies:
@@ -133,23 +156,32 @@ next:
             cookies:
             headers:
             next():
-            redirect():
+            redirect(): # 重定向
             rewrite():
     Headers:
     Request:
         json():
     Response:
         json():
-    Metadata:
+    Metadata: # 页面源信息
         title:
         description:
     NextConfig:
-
+        compiler:
+            styledComponents:
+        images:
+            remotePatterns:
+        sassOptions:
+            additionalData:
+react-dom:
+    useFormStatus():
+        pending:
 React:
     FormEvent:
-    ReactNode:
+    ReactNode: # jsx组件
     Suspense:
         fallback:
+    use():
     useState():
 
 ```
@@ -204,7 +236,14 @@ layout插槽：`default.tsx`插槽默认页面
 
 
 
-#### 内置组件
+#### Inner Component
+```yaml
+内置组件:
+    Image:
+    Link:
+        href:
+    Suspense:
+```
 
 
 METADATA动态生成
@@ -214,7 +253,9 @@ Link链接
 Suspense占位组件：可实现延迟加载
 
 
+#### Styling
 
+支持`.module.css`模块CSS、全局CSS
 
 
 
@@ -238,6 +279,12 @@ page.tsx与route.ts存在冲突，优先显示route.tsx
 route.ts的路由规则和page.tsx的规则一样
 
 中间件Middleware
+
+form表单的action可直接绑定API处理函数
+
+
+
+
 
 #### Data Fetching
 
@@ -263,7 +310,20 @@ export const config = {
 #### Caching
 
 
-#### Testing
+#### Authentication
+
+
+
+### Comfiguring
+
+#### Optimizing
+
+
+
+### Testing
+
+
+### Deploy
 
 
 

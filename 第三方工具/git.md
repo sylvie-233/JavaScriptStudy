@@ -15,11 +15,18 @@ git:
         -m: # 备注信息
     config:
         --global: 
+    diff:
+    init: # 仓库初始化
+    log:
     merge: # 分支合并
     push: # 推送
         -u: # 远程推送
+    reflog:
     remote: # 远程仓库管理
         add: # 添加远程仓库
+        show:
+    reset:
+    revert:
     stash:  
     status: # 仓库状态
 ```
