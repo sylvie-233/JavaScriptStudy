@@ -29,18 +29,17 @@ model: # 模型定义
         DateTime:
         Int:
         String:
-    @:
-        autoincrement():
-        env(): # 环境变量
-        default(): # 默认值
-        id():
-        now():
-        relation(): # 模型关联（只需在其中一个模型中定义即可）
-            fields: # 本身关联字段
-            references: # 外表关联字段（外表主键）
-        unique(): # 唯一约束
-        updatedAt():
-        uuid():
+            @autoincrement():
+            @env(): # 环境变量
+            @default(): # 默认值
+            @id():
+            @now():
+            @relation(): # 模型关联（只需在其中一个模型中定义即可）
+                fields: # 本身关联字段
+                references: # 外表关联字段（外表主键）
+            @unique(): # 唯一约束
+            @updatedAt():
+            @uuzzid():
 
 ```
 
