@@ -1,22 +1,23 @@
 # NodeJs
 
 `尚硅谷Node.js零基础视频教程: P55`
+`小满Node.js：P7`
 
 ## 基础介绍
 
 ![NodeJs运行机制](../assets/NodeJs运行机制.png)
 
 - %NODE_PATH%：nodejs主目录
-- %NODE_PATH%/node_cache
-- %NODE_PATH%/node_global
-- %NODE_PATH%/node_modules:
+- %NODE_PATH%/node_cache：
+- %NODE_PATH%/node_global：
+- %NODE_PATH%/node_modules：
 
 
 
 ### node
 ```yaml
 node:
-    -v: 版本
+    -v: # 版本信息
     --env-file:
     --test:
 ```
@@ -24,45 +25,80 @@ node:
 nodejs命令行工具
 
 
-### npm
-```yaml
-npm:
-    -v: # 版本
-    config:
-        edit:
-        get:
-        list:
-        set:
-            cache:
-            prefix:
-            registry:
-    init: # 初始化项目
-        -y:
-    install: # 安装
-        -g: # 全局安装
-        --no-save:
-        --registry: # 仓库
-    uninstall:
-```
-
-nodejs包管理器
-
-
-
 
 #### package.json
 ```yaml
 package.json:
-    
+    author:
+    description:
+    dependencies: # 项目依赖
+    devDependencies: # 开发依赖
+    license:
+    main: # 入口文件
+    module:
+    peerDependencies: # 对等依赖
+    name: # 包名
+    repository:
+        type:
+            git:
+        url:
+    scripts: # 运行脚本
+        pos_:
+        pre_:
+        clean:
+        dev:
+        start:
+        test:
+    version:
 ```
 
 nodejs包配置文件
 
 
+### npm
+```yaml
+npm:
+    -v: # 版本
+    add: # 添加本地路径映射（包）
+    config:
+        edit:
+        get:
+            registry:
+        list: # 查看所有配置项
+        set:
+            cache: # 缓存路径
+            prefix: # 全局软件下载路径
+            registry:
+    homepage:
+    init: # 初始化项目
+        -y:
+    install: # 安装第三方包
+        -D:
+        -g: # 全局安装
+        --no-save:
+        --registry: # 仓库
+        --save: # 包依赖
+        --save-dev: # 开发依赖
+    list:
+        -g:
+    publish: # 发布包
+    run: # 运行脚本
+    uninstall: # 卸载第三方包
+```
+
+nodejs包管理器
+
+需要手动安装
+
+
+
+
+#### .npmrc
+
+局部npm配置文件
+
+
 #### npx
-
-
-
 #### nvm
 ```yaml
 nvm:
@@ -70,6 +106,7 @@ nvm:
     install:
     list:
         avaliable:
+    uninstall:
     use:
 ```
 
