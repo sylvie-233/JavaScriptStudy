@@ -103,6 +103,7 @@ uni:
     navigateTo():
     openSetting():
     previewImage():
+    requestPayment():
     setStorageSync():
     setTabBarBadge():
     showLoading():
