@@ -1,7 +1,7 @@
 # NodeJs
 
 `尚硅谷Node.js零基础视频教程: P55`
-`小满Node.js：P16`
+`小满Node.js：P20`
 
 ## 基础介绍
 
@@ -202,7 +202,7 @@ node:
     assert:
         assert():
     buffer:
-    child_process: # 子进程
+    child_process: # 子进程(执行子命令)
         exec(): # 执行命令行
         execFile(): # 执行文件
         execSync():
@@ -218,10 +218,12 @@ node:
     domain:
     events: # 事件
         EventEmitter:
-            emit(): 触发事件
+            emit(): # 触发事件
             listeners():
-            on(): 监听事件
+            off():
+            on(): # 监听事件
             once(): 
+            setMaxListeners():
     fs: # 文件操作
         promises:
         ReadStream: # 读入流
@@ -384,7 +386,11 @@ node:
         Url:
         parse(): # 解析url
     util: # 工具包
+        type:
+        callbackify():
+        format(): # 格式化字符串
         inspect():
+        promisify(): # 回调函数转promise函数
     zlib: # 压缩包
         createGzip():
         
