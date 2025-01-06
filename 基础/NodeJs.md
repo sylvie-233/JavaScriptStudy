@@ -1,7 +1,7 @@
 # NodeJs
 
 `尚硅谷Node.js零基础视频教程: P55`
-`小满Node.js：P7`
+`小满Node.js：P16`
 
 ## 基础介绍
 
@@ -90,6 +90,8 @@ nodejs包管理器
 
 需要手动安装
 
+npm私服
+
 
 
 
@@ -122,9 +124,9 @@ node:
         __dirname: # 目录名
         __filename: # 文件名
         console: # 控制台对象
-            log:
-        global: # 全局对象
-        globalThis:
+            log():
+        global: # 全局对象（windows）
+        globalThis: # 兼容浏览器的全局对象
         module: # 模块对象
             children:
             exports: # 模块导出对象
@@ -135,17 +137,19 @@ node:
             path:
             paths:
         process: # 进程对象
-            argv:
+            argv: # 进程运行参数
             channel:
             env: # 环境变量
             stderr:
             stdin: # 标准输入
             stdout: # 标准输出
+            cwd(): # 进程运行目录
             exit(): # 进程结束
             memoryUsage():  # 内存使用情况
             nextTick():
             on(): # 监听进程信号signal
             once():
+                exit:
                 SIGINT:
                 SIGTERM:
                 uncaughtException:
@@ -168,6 +172,8 @@ node:
         JSON:
             parse():
             stringify(): # json字符串序列化
+        Math:
+            PI:
         Number:
         Object: # 基类对象
             assign(): # 对象赋值
@@ -189,6 +195,7 @@ node:
             pathname:
             searchParams:
         clearInterval(): # 清除定时器
+        fetch():
         require(): # 导入函数
         setInterval(): # 间隔定时器
         setTimeout(): # 定时器
@@ -196,6 +203,14 @@ node:
         assert():
     buffer:
     child_process: # 子进程
+        exec(): # 执行命令行
+        execFile(): # 执行文件
+        execSync():
+        fork(): # 运行js模块（返回js进程）
+            send():
+        spawn():
+        spawnSync():
+            cwd:
     cluster:
     crypto: # 加密包
     dgram:
@@ -290,18 +305,47 @@ node:
             write():
         createServer():
     os: # 操作系统
+        arch():
+        cpus():
+            model:
+            speed:
+            times:
+        homedir(): # 用户主目录
+        networkInterfaces(): # 网络信息
+        platform():
+        release():
+        type():
+        version():
     path: # 路径操作
+        posix:
+        win32:
         sep:
-        basename:
-        extname():
-        dirname():
-        join():
-        parse():
+        basename(): # 基础文件名
+        extname(): # 文件扩展名
+        dirname(): # 目录名
+        format(): # 合成路径 
+        join(): # 路径拼接
+        parse(): # 解析路径
             base:
+            dir:
+            ext:
             name:
             root:
-        resolve(): # 路径合并
-    process: # 进程对象
+        resolve(): # 路径解析（返回绝对路径）
+    process: # 进程对象（全局）
+        arch:
+        argv: # 进程参数
+        env: # 环境变量
+            NODE_ENV:
+        pid:
+        platform:
+        cwd(): # 进程运行路径
+        exit():
+        kill():
+        memoryUsage():
+        on(): # 监听进程事件
+            exit:
+            message():
     querystring:
     readline:
         Interface:
@@ -345,6 +389,15 @@ node:
         createGzip():
         
 ```
+
+
+### 模块
+
+CommonJs、Module
+
+require()支持引入json
+
+
 
 ### 异步模块
 
