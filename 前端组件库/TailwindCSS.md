@@ -3,6 +3,12 @@
 ## 基础介绍
 
 
+
+`@layer`、`@apply`：自定义样式
+
+
+
+
 ```css
 @tailwind base;
 @tailwind components;
@@ -56,12 +62,6 @@ tailwindcss:
 ```
 
 
-### Layout
-
-```yaml
-:
-
-```
 
 ### Layout
 

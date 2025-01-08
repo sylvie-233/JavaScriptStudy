@@ -3,7 +3,9 @@
 >
 >`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating`
 >
->`Next.js 终极课程 2024 年版：P19`
+>`Next.js 终极课程 2024 年版：P41`
+>
+>`Next.JS极简教程：P7`
 >
 
 ## 基础介绍
@@ -12,6 +14,15 @@ React服务端实现
 
 
 `page.tsx`、`route.tsx`
+
+
+- page：显示的页面Page
+- route: 后端控制器Controller
+- action：后端服务方法Service
+
+
+
+
 
 - SSG: 静态站点生成
 - ISR: 增量静态生成
@@ -135,14 +146,15 @@ next:
     navigation:
         notFound():
         redirect(): # 重定向
-        userPathname():
-        useRouter(): # 路由器（路由跳转）
+        userPathname(): # 获取url path
+        useRouter(): # 路由器（路由跳转，客户端）
             ---
             back():
             forward():
             push():
             refresh():
             replace(): 
+        useSearchParams():
         useServerInsertedHTML():
     server:
         NextRequest:
@@ -184,6 +196,24 @@ React:
     use():
     useState():
 
+next-auth:
+    NextAuth:
+        adapter: # 集成数据库
+        providers: # 集成OAuth第三方 
+        ---
+        auth():
+        handlers():
+        signIn():
+        signOut():
+    Session:
+next-safe-action: # next api 自调用
+    createSafeActionClient():
+    useAction():
+        onSuccess():
+        ---
+        status:
+        execute():
+react-hook-form:
 ```
 
 
@@ -288,6 +318,10 @@ form表单的action可直接绑定API处理函数
 
 #### Data Fetching
 
+fetct()
+
+ORM
+
 
 
 
@@ -311,6 +345,9 @@ export const config = {
 
 
 #### Authentication
+
+
+`next-auth`
 
 
 
