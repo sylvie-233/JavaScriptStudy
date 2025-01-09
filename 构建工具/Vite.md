@@ -1,7 +1,9 @@
 # Vite
 
 
-``
+`Vite世界指南：P1`
+
+`Vite官方中文文档：https://vitejs.cn/vite3-cn/`
 
 
 
