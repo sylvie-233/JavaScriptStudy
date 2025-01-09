@@ -1,7 +1,9 @@
 # NodeJs
 
+`Nodejs官方文档：https://nodejs.org/en/learn/getting-started/introduction-to-nodejs`
+
 `尚硅谷Node.js零基础视频教程: P55`
-`小满Node.js：P20`
+`小满Node.js：P23`
 
 ## 基础介绍
 
@@ -201,7 +203,15 @@ node:
         setTimeout(): # 定时器
     assert:
         assert():
+        deepEqual():
+        deepStrictEqual():
+        doesNotMatch():
+        doesNotReject():
+        doesNotThrow():
+        ok():
     buffer:
+        isUtf8():
+        transcode():
     child_process: # 子进程(执行子命令)
         exec(): # 执行命令行
         execFile(): # 执行文件
@@ -213,7 +223,27 @@ node:
             cwd:
     cluster:
     crypto: # 加密包
-    dgram:
+        Cipher:
+            final():
+            update():
+        Decipher:
+            final():
+            update():
+        Hash:
+            copy():
+            digest():
+            update(): 
+        createCipheriv():
+        createDecipheriv():
+        createHash():
+        generateKeyPairSync():
+        hash():
+        privateDecrypt(): # 私钥解密
+        publicEncrypt(): # 公钥加密 
+        randomBytes():
+    dgram: # UDP
+        Socket:
+        createSocket():
     dns:
     domain:
     events: # 事件
@@ -234,34 +264,44 @@ node:
             pipe(): # 管道传输
         WriteStream: # 写出流
             end():
+            on():
+                finish:
             write():
         appendFile(): # 追加内容
         close():
         createReadStream(): # 创建读取流
         createWriteStream():
         existsSync(): # 文件存在
+        link():
+            
         mkdir(): # 创建文件夹
-            _options:
-                recursive: # 递归创建
+            recursive: # 递归创建
         open():
         readdir(): # 读取目录
         readFile(): # 读取文件
+            encoding:
+                utf-8:
+            flag:
+                r:
         readFileSync(): # 读取文件（同步）
         rename(): # 文件重命名
         rm():
         rmdir():
             _options:
                 recursive:
+        rmSync():
+            recursive:
         stat(): # 文件信息
             atime:
             ctime:
             isDirectory():
             isFile():
+        symlink():
         unlink(): # 删除文件
+        watch(): # 监听文件变化
         writeFile(): # 写入文件
-            _options:
-                flag:
-                    a: # 追加
+            flag:
+                a: # 追加
         writeFileSync(): # 写入文件(同步)
     http:
         Request:
@@ -289,6 +329,7 @@ node:
         parentPort:
             PostMessage():
     net:
+        BlockList:
         Server: # 服务
             listen():
             on():
@@ -305,7 +346,11 @@ node:
                 _data:
                 _error:
             write():
+        SocketAddress:
+        connect():
+        createConnection():
         createServer():
+        isIP():
     os: # 操作系统
         arch():
         cpus():
@@ -348,7 +393,11 @@ node:
         on(): # 监听进程事件
             exit:
             message():
-    querystring:
+    querystring: # url query解析
+        decode():
+        encode():
+        parse():
+        stringify():
     readline:
         Interface:
             close():
