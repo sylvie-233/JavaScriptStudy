@@ -1,6 +1,6 @@
 # NestJs
 
-`Nest.js官方文档：https://docs.nestjs.com/pipes`
+`Nest.js官方文档：https://docs.nestjs.com/fundamentals/custom-providers`
 
 nodejs 服务端框架
 
@@ -15,7 +15,7 @@ nodejs 服务端框架
 
 
 
-
+全局->
 module -> imports(导入其它模块)
        -> controllers(控制器)
        -> providers   -> services(服务实现)
@@ -80,6 +80,8 @@ nest:
             provide: # 自定义注册（不使用@Injectable）
                 APP_FILTER:
                 APP_GUARD:
+                APP_INTERCEPTOR:
+                APP_PIPE:
             useClass: # 
     @Next:
     @Optional:
@@ -96,16 +98,25 @@ nest:
     @Session:
     @UseFilters: # 使用异常处理过滤器
     @UseGuards: # 使用请求守卫
-    @UseInterceptors:
-    @UsePipes: # 使用数据管道
-    ArgumentMetadata:
+    @UseInterceptors: # 使用拦截器（AOP）
+    @UsePipes: # 使用数据管道(数据验证、数据转换)
+    ArgumentMetadata: # 方法参数元数据
+        data:
+        metatype:
+        type:
+            body:
+            custom:
+            param:
+            query:
     ArgumentsHost:
         switchToHttp():
             getResponse():
             getRequest():
-    CanActivate: # 请求拦截
+    BadRequestException:
+    CallHandler():
+    CanActivate: # 请求守卫（）
         canActivate():
-            context:
+            context: # 执行上下文
     ConsoleLogger:
     DynamicModule: # 动态配置模块(forRoot)
     ExceptionFilter: # 异常处理过滤器基类
@@ -114,6 +125,8 @@ nest:
             host:
     ExecutionContext: # 路由守卫执行上下文
         getHandler(): # 获取处理函数
+        switchToHttp():
+            getRequest():
     HttpException: # HTTP异常基类
         getStatus():
     HttpStatus: # HTTP状态码
@@ -124,7 +137,9 @@ nest:
         setGlobalPrefix():
         use(): # 注册全局中间件
         useGlobalFilters(): # 全局异常处理过滤器
-        useGlobalPipes(): # 全局数据管道
+        useGlobalGuards(): # 全局请求守卫注册
+        useGlobalInterceptors(): # 全局拦截器注册
+        useGlobalPipes(): # 全局数据管道注册
         useLogger():
     MiddlewareConsumer:
         apply(): # 应用中间件
@@ -141,6 +156,7 @@ nest:
     NotFindException:
     OnModuleInit:
     ParseIntPipe:
+        errorHttpStatusCode:
     PipeTransform: # Pipe管道基类
         transform():
             value:
@@ -148,6 +164,9 @@ nest:
     RequestMethod:
         GET:
     ValidationPipe:
+        validateCustomDecorators:
+    applyDecorators(): # 复合装饰器
+    createParamDecorator(): # 创建参数装饰器
 
 @nestjs/core:
     APP_GUARD:
@@ -155,9 +174,9 @@ nest:
     NestFactoroy:
         create(): # 创建应用实例(根据Module)
             logger:
-    Reflector:
-        createDecorator():
-        get():
+    Reflector: # 反射工具
+        createDecorator(): # 自定义装饰器
+        get(): # 获取装饰器中的值
 
 @nestjs/mapped-types:
     PartialType():
@@ -190,7 +209,7 @@ nest:
         $connect:
 
 class-transformer: # 数据转换
-    plainToInstance():
+    plainToInstance(): # 根据数据和元信息转换为校验对象
 class-validator: # 数据验证(DTO)
     @IsEmail:
     @IsEnum:
@@ -198,7 +217,6 @@ class-validator: # 数据验证(DTO)
     @IsNotEmpty:
     @IsString:
     validate(): # 数据校验
-
 express: # nestjs内置集成http库
     NextFunction: # next函数
     Request: # 请求对象
@@ -206,6 +224,14 @@ express: # nestjs内置集成http库
         json():
         send():
         status():
+rxjx:
+    operators:
+        catchError():
+        map():
+        of():
+        timeout():
+    Observable:
+    throwError():
 zod: # 数据验证
     z:
         infer(): # 创建数据验证类型(Dto)
@@ -214,6 +240,7 @@ zod: # 数据验证
             require():
         string():
     ZodSchema:
+        parse(): # 数据验证（失败抛出异常）
 ```
 
 
@@ -256,6 +283,29 @@ export class LoggerMiddleware implements NestMiddleware {
 
 
 ### Exception Filter
+```ts
+
+import { ExceptionFilter, Catch, ArgumentsHost, HttpException } from '@nestjs/common';
+import { Request, Response } from 'express';
+
+@Catch(HttpException)
+export class HttpExceptionFilter implements ExceptionFilter {
+  catch(exception: HttpException, host: ArgumentsHost) {
+    const ctx = host.switchToHttp();
+    const response = ctx.getResponse<Response>();
+    const request = ctx.getRequest<Request>();
+    const status = exception.getStatus();
+
+    response
+      .status(status)
+      .json({
+        statusCode: status,
+        timestamp: new Date().toISOString(),
+        path: request.url,
+      });
+  }
+}
+```
 
 异常过滤链
 
@@ -265,24 +315,93 @@ export class LoggerMiddleware implements NestMiddleware {
 
 
 ### Pipe
+```ts
+@Get(':id')
+async findOne(@Param('id', ParseIntPipe) id: number) {
+  return this.catsService.findOne(id);
+}
 
+```
 数据处理通道，类似中间件
 
+
+在方法上使用数据验证、数据Pipe：`@UsePipes()`
+在方法参数上使用数据转换Pipe：`@Param()`、`@Query()`、`@Body()`
+
 数据转换、数据验证
+
+内置Pipe：
+- ValidationPipe
+- ParseIntPipe
+- DefaultValuePipe
+- ParseFilePipe
+
+使用`zod`：定义式数据验证
+使用`class-validator`：声明式装饰器数据验证
+
+
+
+#### 自定义Pipe
+```ts
+import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';
+
+@Injectable()
+export class ValidationPipe implements PipeTransform {
+  transform(value: any, metadata: ArgumentMetadata) {
+    // 方法内进行数据验证、数据转换
+    return value;
+  }
+}
+```
+
 
 
 
 ### Guard
-
+```ts
+@Injectable()
+export class RolesGuard implements CanActivate {
+  canActivate(
+    context: ExecutionContext,
+  ): boolean | Promise<boolean> | Observable<boolean> {
+    return true;
+  }
+}
+```
 请求守卫（拦截）
+
+Guard在所有Middleware之后执行、在所有Interceptor之前执行
 
 
 ### Interceptors
+```ts
 
-拦截器、类似中间件
+import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
+@Injectable()
+export class LoggingInterceptor implements NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    console.log('Before...');
+
+    const now = Date.now();
+    return next
+      .handle()
+      .pipe(
+        tap(() => console.log(`After... ${Date.now() - now}ms`)),
+      );
+  }
+}
+```
+
+拦截器、类似中间件，主要用于实现AOP功能
 
 ### Custom Decorator
+
+自定义装饰器
+
+通常和Pipe结合一块使用
 
 
 
