@@ -1,6 +1,6 @@
 # JavaScript
 
-`尚硅谷Web前端ES6教程: P6`
+`尚硅谷Web前端ES6教程: P53`
 
 
 
@@ -22,12 +22,25 @@
             keys():
             values():
     Array:
+        concat():
+        filter():
         from():
+        includes():
+    Function:
+        arguments:
+    Map:
+        size:
+        clear():
+        delete():
+        get():
+        set():
     Object:
+        assign():
         create():
         defineProperty():
         entries():
         getPrototypeOf():
+        is():
         keys():
         setPrototypeOf():
         values():
@@ -39,9 +52,40 @@
         preventExtensions():
         setPrototypeOf():
     Set:
+        add():
+        clear():
+        delete():
+        has():
+    Symbol: # 符号key（常用于魔术方法key）
+        hasInstance:
+        isConcatSpreadable:
+        iterator:
+        for():
+    XMLHttpRequest:
+        onreadystatechange:
+        readyState:
+        response:
+        status:
+        open():
+        send():
 ```
 
 ### 数据类型
+```yaml
+DataType:
+    Array:
+    Function:
+        arguments:
+    Number:
+    String:
+    Symbol:
+```
+
+
+#### String
+
+模板字符串
+
 
 
 
@@ -56,12 +100,27 @@
 ```
 
 
+### 函数
+
+箭头函数
+
+#### 生成器
+
+iterator
+
+
+
 ### 面向对象
+
+class
 
 
 
 
 ### 模块
+
+
+export、import
 
 
 
