@@ -1,6 +1,6 @@
 # JavaScript
 
-`尚硅谷Web前端ES6教程: P53`
+``
 
 
 
@@ -24,6 +24,7 @@
     Array:
         concat():
         filter():
+        flat(): 
         from():
         includes():
     Function:
@@ -37,8 +38,18 @@
     Object:
         assign():
         create():
+            configurable:
+            enumerable:
+            value:
+            writable:
         defineProperty():
         entries():
+        fromEntries():
+        getOwnPropertyDescriptors():
+            configurable:
+            enumerable:
+            value:
+            writable:
         getPrototypeOf():
         is():
         keys():
