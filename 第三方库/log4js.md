@@ -14,11 +14,14 @@ log4js:
         debug():
         info():
         warn():
-    configure():
+    configure(): # 配置
         appenders: # 定义日志追加器
             _xxx:
                 filename:
+                layout:
+                    type:
                 type:
+                    file:
         categories: # 日志器分类
             default:
                 appenders:

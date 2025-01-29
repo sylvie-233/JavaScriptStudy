@@ -3,7 +3,7 @@
 `Nodejs官方文档：https://nodejs.org/en/learn/getting-started/introduction-to-nodejs`
 
 `尚硅谷Node.js零基础视频教程: P55`
-`小满Node.js：P23`
+`小满Node.js：P39`
 
 ## 基础介绍
 
@@ -81,6 +81,7 @@ npm:
         --registry: # 仓库
         --save: # 包依赖
         --save-dev: # 开发依赖
+    link:
     list:
         -g:
     publish: # 发布包
@@ -192,6 +193,7 @@ node:
             get():    
             set():
         String:
+            repeat():
             split():
         URL:
             pathname:
@@ -307,10 +309,10 @@ node:
         Request:
             headers:
             httpVersion:
-            method:
+            method: # 请求方法
             pathname:
-            query:
-            url:
+            query: # query param
+            url: # request url
             on():
                 data:
                 end:
@@ -320,6 +322,7 @@ node:
             end():
             setHeader(): # 设置响应头
             write(): # 响应体
+            writeHead():
         Server: # http服务
             listen():
         createServer(): # 创建http服务
@@ -371,7 +374,7 @@ node:
         extname(): # 文件扩展名
         dirname(): # 目录名
         format(): # 合成路径 
-        join(): # 路径拼接
+        join(): # 路径合并
         parse(): # 解析路径
             base:
             dir:
@@ -433,6 +436,7 @@ node:
     tty:
     url:
         Url:
+            pathname:
         parse(): # 解析url
     util: # 工具包
         type:
@@ -441,8 +445,12 @@ node:
         inspect():
         promisify(): # 回调函数转promise函数
     zlib: # 压缩包
+        createDeflate():
+        createGunzip():
         createGzip():
-        
+        createInflate():
+        deflateSync():
+        gzipSync():
 ```
 
 
@@ -454,7 +462,7 @@ require()支持引入json
 
 
 
-### 异步模块
+### 异步
 
 ![Nodejs异步模块](../assets/Nodejs异步模块.png)
 
@@ -470,8 +478,9 @@ promise、async
 <br />
 
 
+### 运行机制
 
-### 事件循环
+#### 事件循环
 
 事件循环：
 ![NodeJS事件循环](../assets/NodeJS事件循环.png)
