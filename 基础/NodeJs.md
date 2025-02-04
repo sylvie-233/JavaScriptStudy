@@ -21,7 +21,9 @@
 node:
     -v: # 版本信息
     --env-file:
+    --experimental-strip-types:
     --test:
+    --watch:
 ```
 
 nodejs命令行工具
@@ -160,6 +162,11 @@ node:
         Array:
             forEach():
             push():
+        Blob:
+            text():
+        BroadcastChannel:
+            onmessage:
+            postMessage():
         Buffer: # 二进制对象（大小固定）
             length: # 长度
             alloc(): # 直接分配内存创建Buffer
@@ -327,10 +334,6 @@ node:
             listen():
         createServer(): # 创建http服务
     https:
-    worker_threads: # 工作线程
-        workerData:
-        parentPort:
-            PostMessage():
     net:
         BlockList:
         Server: # 服务
@@ -414,6 +417,15 @@ node:
             input:
             output:
     stream:
+        web:
+            ReadableStream:
+                start():
+                    close():
+                    enqueue():
+            TransformStream:
+                transform():
+            WritableStream:
+                write():
         pipeline:
         Readable:
             on():
@@ -444,6 +456,17 @@ node:
         format(): # 格式化字符串
         inspect():
         promisify(): # 回调函数转promise函数
+    worker_threads: # 工作线程
+        workerData:
+        parentPort:
+            PostMessage():
+    ws:
+        Websocket:
+            on():
+                close:
+                message:
+                open:
+            send():
     zlib: # 压缩包
         createDeflate():
         createGunzip():
@@ -452,6 +475,30 @@ node:
         deflateSync():
         gzipSync():
 ```
+
+
+### 数据类型
+```yaml
+DataTypes:
+    Array:
+    BigInt:
+    Boolean:
+    Function:
+    Null:
+    Number: # 数值
+    Object:
+    String:
+    Symbol:
+    Undefined:
+```
+
+
+
+### 控制流程
+
+
+
+### 面向对象
 
 
 ### 模块
