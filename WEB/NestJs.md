@@ -1,6 +1,6 @@
 # NestJs
 
-`Nest.js官方文档：https://docs.nestjs.com/fundamentals/custom-providers`
+`Nest.js官方文档：https://docs.nestjs.com/fundamentals/dynamic-modules`
 
 nodejs 服务端框架
 
@@ -77,12 +77,18 @@ nest:
         exports: # 导出provider、module
         imports:
         providers:
+            inject: # 工厂函数参数注入
+                optional:
+                token:
             provide: # 自定义注册（不使用@Injectable）
                 APP_FILTER:
                 APP_GUARD:
                 APP_INTERCEPTOR:
                 APP_PIPE:
-            useClass: # 
+            useClass: # 使用类
+            useExisting: # 创建已有注入的别名
+            useFactory: # 使用工厂函数
+            useValue: # 使用常量对象
     @Next:
     @Optional:
     @Param: # path param
@@ -250,6 +256,10 @@ zod: # 数据验证
 ### Provider
 
 依赖注入对象、@Injectable、
+
+控制反转、构造方法注入
+
+Factory providers工厂注入
 
 
 
