@@ -97,6 +97,48 @@ mobx:
 mobx-react:
     @observer: # 使组件可观测(响应状态变化更新)
 
+```
+
+
+### 组件路由
+
+React Router
+
+```yaml
+<BrowserRouter>:
+    <Routes>:
+        <Route>:
+```
+
+
+### 组件通信
+
+
+### 状态管理
+
+
+#### redux
+
+reducer、
+
+
+
+#### mobx
+```js
+
+```
+
+
+基础集成；
+- 响应组件
+- 状态
+- 修改状态的方法
+
+
+
+
+## React Native
+```yaml
 react-native:
     ActiveIndicator:
         animating:
@@ -200,46 +242,6 @@ expo-status-bar:
         Navigator:
         Screen:
 ```
-
-
-### 组件路由
-
-React Router
-
-```yaml
-<BrowserRouter>:
-    <Routes>:
-        <Route>:
-```
-
-
-### 组件通信
-
-
-### 状态管理
-
-
-#### redux
-
-reducer、
-
-
-
-#### mobx
-```js
-
-```
-
-
-基础集成；
-- 响应组件
-- 状态
-- 修改状态的方法
-
-
-
-
-## React Native
 
 ### 目录结构
 ```yaml
