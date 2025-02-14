@@ -35,6 +35,9 @@ prisma:
     format: # 格式化schema文件
     generate: # 生成客户端代码（node_modules/.prisma/client）
         --schema: # 指定schema文件
+    init:
+        --datasource-provider:
+            mysql:
     migrate: # 数据库迁移(生成迁移文件)
         --name:
         dev: # 开发数据库迁移（更新数据库、迁移sql、客户端代码）
@@ -102,6 +105,7 @@ model: # 模型定义
                     connect:
                     create: # 关联模型数据创建
                 include: # 包含关联模型
+                    _model:
                 orderBy:
                 select: # 字段投影
                 skip: # 分页skip
