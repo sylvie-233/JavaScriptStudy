@@ -8,7 +8,9 @@ jwt
 ## 核心内容
 ```yaml
 jsonwebtoken:
-    sign(): # 签发jwt
+    Secret:
+    SignOptions:
+    sign(): # 签发jwt（生成token）
         payload:
         secretOrPrivateKey:
         options:

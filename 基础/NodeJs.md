@@ -3,7 +3,7 @@
 `Nodejs官方文档：https://nodejs.org/en/learn/getting-started/introduction-to-nodejs`
 
 `尚硅谷Node.js零基础视频教程: P55`
-`小满Node.js：P43`
+`小满Node.js：P55`
 
 ## 基础介绍
 
@@ -337,11 +337,11 @@ node:
     net:
         BlockList:
         Server: # 服务
-            listen():
+            listen(): # 监听端口
             on():
-                _connection:
-                _data:
-                _error:
+                connection:
+                data:
+                error:
             
         Socket:
             setEncoding:
@@ -349,13 +349,16 @@ node:
             destroy():
             end():
             on():
-                _data:
-                _error:
-            write():
+                data: # 接收消息
+                error:
+            write(): # 发送消息
         SocketAddress:
         connect():
-        createConnection():
-        createServer():
+        createConnection(): # 创建socket客户端
+            host:
+            port:
+        createServer(): # 创建socket服务端
+            socket:
         isIP():
     os: # 操作系统
         arch():

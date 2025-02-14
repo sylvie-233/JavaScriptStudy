@@ -1,7 +1,7 @@
 # Dart
 
 `Dart官方文档：https://dart.dev/docs`
-`拉钩教育Dart教程：P13`
+`拉钩教育Dart教程：P21`
 
 ## 基础介绍
 
@@ -23,18 +23,39 @@ dart:
 ### pub
 ```yaml
 pub:
-
+    get:
 ```
 
 dart包管理工具
+
+
+#### pubspec.yaml
+```yaml
+pubspec.yaml:
+    environment:
+        sdk:
+    dependencies: # 依赖包
+    name:
+```
+
+dart包配置文件
 
 
 ## 核心内容
 ```yaml
 dart:
     async:
+        Future:
+            catchError():
+            then():
+        Stream:
+    cli:
     collection:
     convert:
+        JsonDecoder:
+        JsonEncoder:
+        jsonDecoder():
+        jsonEncoder():
     core: # 内置模块
         BigInt:
         Comparable:
@@ -62,9 +83,17 @@ dart:
             map(): # 元素转换
             remove(): # 删除元素
             removeAt(): # 删除元素
+            toSet():
             where():
                 toList():
         Map:
+            keys:
+            values:
+            containsKey():
+            containsValue():
+            putIfAbsent():
+            remove():
+            removeWhere():
         MapEntry:
         Match:
         Null:
@@ -74,9 +103,22 @@ dart:
         RegExp:
         Runes:
         Set:
+            first:
+            last:
+            add(): # 添加元素
+            addAll():
+            clear():
+            difference(): # 差集
+            intersection(): # 交集
+            remove():
+            toList():
+            union(): # 并集
         Stream:
         String: # 字符串
+            length:
+            runes:
             contains():
+            fromCharCodes():
             hasMatch():
             indexOf():
             isEmpty():
@@ -91,6 +133,7 @@ dart:
         bool: # 布尔（不存在隐式类型转换）
         double: # 浮点数
             toInt():
+        dynamic: # 动态类型
         int: # 整数
         num: # 数字类型
             compareTo(): # 数字比较
@@ -107,6 +150,9 @@ dart:
     math:
     typed_data:
 package:
+    http:
+        http.dart:
+            post():
     web:
 ```
 
@@ -114,13 +160,15 @@ package:
 ### 数据类型
 ```yaml
 DataTypes:
+    Runes: # 32位字符对象
     String:
+    Symbol: # 标识符
     bool:
     dynamic: # 动态类型
     int:
 ```
 
-`var`：声明并初始化变量、动态数据类型
+`var`：声明并初始化变量、自动类型推断
 `dynamic`：声明动态类型
 `const`：声明常量
 `final`：声明不可变量
@@ -140,6 +188,8 @@ String str = "a" + "b";
 
 支持单引号、双引号、三引号（多行字符串）
 
+默认UTF-16编码
+
 
 #### List
 ```dart
@@ -153,16 +203,45 @@ List list = <int>[]
 支持扩展预算符：`...`（解构）
 
 
+#### Set
+```dart
+// set声明
+Set set = {};
+```
+
+
+
+#### Map
+```dart
+// Map声明
+Map map = {k: v};
+```
+
+
+#### Symbol
+```dart
+// Symbol定义
+Symbol symbol = #abc;
+```
+
+标识符
+
 
 ### 控制流程
 ```yaml
 Control Flow:
+    ..: # 对象级联操作运算符
+    ?? / ??=: # 空类型判断
+    ~/: # 整除（向下取整）
     const: # 常量
     dynamic: # 动态变量
-    var: # 动态变量
+    is / is!: # 类型判断
+    var: # 自动类型推断
     for ...:
     for ... in ...: # 迭代遍历
+    try ... catch ... finally ...: # 异常处理
 ```
+
 
 #### 注释
 ```dart
@@ -173,6 +252,7 @@ Control Flow:
 /// 文档注释
 ```
 
+#### 异常处理
 
 
 ### 函数
@@ -181,26 +261,54 @@ Control Flow:
 int add(int a, int b) {
     return a + b;
 }
+
+// 匿名函数定义
+var add = (int a, int b) {
+    return a + b;
+};
+
+// 可选参数
+int myfunc(int a, [int b]) {
+    ...
+}
 ```
+
+类似Java的函数声明
 
 `void main()`：入口函数
 
-无参函数调用可以不带括号
+函数可嵌套定义、闭包
+
+箭头函数、匿名函数、立即执行函数
+
+必填参数、可选参数、命名参数、函数参数
 
 
-#### 闭包
+#### lambda
 ```dart
 // 闭包函数定义
 bool isOdd(n) => n % 2 == 1;
 ```
 
+箭头函数
+
 
 #### 异步函数
 ```dart
+Future myfunc() async {
+    var x = await xxx();
+    return x;
+}
 ```
+
+Future实现异步函数：async函数返回Future、await用于等待Future
 
 
 ### 面向对象
+```dart
+```
+
+`new`：类实例化
 
 
 

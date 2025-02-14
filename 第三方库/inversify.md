@@ -12,6 +12,7 @@ inversify:
         bind():
             to():
             toFactory(): # 模型工厂
+        get():
 reflect-metadata:
 inversify-express-utils:
     InversifyExpressServer:
