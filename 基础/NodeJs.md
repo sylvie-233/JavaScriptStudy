@@ -3,7 +3,7 @@
 `Nodejs官方文档：https://nodejs.org/en/learn/getting-started/introduction-to-nodejs`
 
 `尚硅谷Node.js零基础视频教程: P55`
-`小满Node.js：P55`
+`小满Node.js：P71`
 
 ## 基础介绍
 
@@ -227,7 +227,15 @@ node:
         execSync():
         fork(): # 运行js模块（返回js进程）
             send():
-        spawn():
+        spawn(): # 启动子进程（返回进程对象）
+            stderr:
+                on():
+                    data:
+            stdout:
+                on():
+                    data:
+            on():
+                close:
         spawnSync():
             cwd:
     cluster:
@@ -536,3 +544,22 @@ promise、async
 ![NodeJS事件循环](../assets/NodeJS事件循环.png)
 
 
+
+## node-gyp
+```yaml
+node-gyp:
+    configure:
+```
+
+使用C++编写nodejs扩展：`.node`，动态库
+
+`NAPI`、`NODE_API_MODULE()`
+
+### binding.gyp
+```yaml
+binding.gyp:
+    targets:
+        include_dirs:
+        source:
+        target_name:
+```

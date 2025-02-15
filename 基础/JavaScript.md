@@ -12,6 +12,7 @@
 ```yaml
 :
     windows:
+        File:   
         FormData:
             append():
             delete():
@@ -21,6 +22,10 @@
             has():
             keys():
             values():
+        document:
+            querySelector(): # css选择器
+        alert():
+        prompt():
     Array:
         concat():
         filter():
@@ -111,35 +116,7 @@ DataType:
 ```
 
 
-### 函数
-
-箭头函数
-
-#### 生成器
-
-iterator
-
-
-
-### 面向对象
-
-class
-
-
-
-
-### 模块
-
-
-export、import
-
-
-
-### 测试
-
-
-
-### 文档注释
+#### 文档注释
 ```yaml
 文档注释:
     @author: 
@@ -206,6 +183,36 @@ export、import
  */
 ```
 
+
+### 函数
+
+箭头函数
+
+#### 生成器
+
+iterator
+
+
+
+### 面向对象
+
+class
+
+
+
+
+### 模块
+
+
+export、import
+
+
+
+### 测试
+
+
+
+
 ### SourceMap
 ```yaml
 :
@@ -221,7 +228,11 @@ export、import
 
 
 
-## 扩展
+## BOM
+
+
+
+## DOM
 
 
 
