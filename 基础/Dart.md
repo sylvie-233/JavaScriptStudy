@@ -1,7 +1,7 @@
 # Dart
 
 `Dart官方文档：https://dart.dev/docs`
-`拉钩教育Dart教程：P21`
+`拉钩教育Dart教程：P31`
 
 ## 基础介绍
 
@@ -16,17 +16,40 @@ Dart万物皆对象，引用传递
 ### dart
 ```yaml
 dart:
-
+    -h:
+    -v: # 版本
+    analyze:
+    compile:
+    create: # 创建dart项目
+    devtools:
+    doc:
+    fix: 
+    format: # 代码格式化
+    info: # dart环境信息
+    pub: # dart包管理工具
+        -h:
+        -v:
+        add:
+        bump:
+        cache:
+        deps:
+        downgrade:
+        get:
+        global:
+        login:
+        logout:
+        outdated:
+        publish:
+        remove:
+        token:
+        unpack:
+        upgrade:
+        workspace:
+    run: # 运行dart程序
+    test: # 测试
 ```
 
 
-### pub
-```yaml
-pub:
-    get:
-```
-
-dart包管理工具
 
 
 #### pubspec.yaml
@@ -306,10 +329,62 @@ Future实现异步函数：async函数返回Future、await用于等待Future
 
 ### 面向对象
 ```dart
+class Person {
+    // 属性定义
+    String name = "233";
+    // 默认构造函数
+    Person() {}
+    // 命名构造函数
+    Person.empty() {}
+    // 常量构造函数
+    const Person() {}
+    // 工厂构造函数
+    factory Person() {}
+    // 方法定义
+    void myfunc() {}
+}
 ```
 
 `new`：类实例化
 
+`this`：自身实例引用
+
+`static`: 静态属性、静态方法
+
+构造函数：
+- 默认构造函数
+- 普通构造函数
+- 命名构造函数
+- 常量构造函数（final字段、不能有函数体、新建常量对象使用const、不使用new）
+- 工厂构造函数（无法实例化、默认拦截普通构造函数）
+
+访问修饰符：默认共有、下划线`_`开头表示私有
+
+getter/setter：方法前面加 get、set关键字
+
+初始化列表：和C++一样
+
+
+
+#### 抽象类
+
+
+#### 接口
+
+
+#### 混入
+
+mixin
+
+#### 泛型
+
+
+#### 元数据
+
+@注解
+- @override：重写
+- @required：必填参数
+- @deprecated：过期
 
 
 ### 模块

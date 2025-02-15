@@ -17,43 +17,7 @@ Flutter SDK中包含了Dart SDK
 - PUB_HOSTED_URL:
 - FLUTTER_STORAGE_BASE_URL:
 
-### flutter
-```yaml
-flutter:
-    -h:
-    --version:
-    channel: # 版本管理
-        beta:
-    create: # 创建项目
-    doctor: # 环境检测
-    emulators: # 所有模拟器
-        --create:
-        --launch:
-    run: # 运行项目
-        R: # 热重载
-        c:
-        d:
-        h:
-        q:
-        r:
-    upgrade:
-```
 
-
-### adb
-```yaml
-adb:
-```
-
-Android 调试工具
-
-
-
-### 项目结构
-```yaml
-project:
-
-```
 
 
 ### 安装目录
@@ -81,6 +45,36 @@ flutter:
     /engine:
     /examples:
     /packages:
+```
+
+
+### 项目结构
+```yaml
+project:
+
+```
+
+
+### flutter
+```yaml
+flutter:
+    -h:
+    --version:
+    channel: # 版本管理
+        beta:
+    create: # 创建项目
+    doctor: # 环境检测
+    emulators: # 所有模拟器
+        --create:
+        --launch:
+    run: # 运行项目
+        R: # 热重载
+        c:
+        d:
+        h:
+        q:
+        r:
+    upgrade:
 ```
 
 
