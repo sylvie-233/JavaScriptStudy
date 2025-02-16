@@ -3,7 +3,7 @@
 `Nodejs官方文档：https://nodejs.org/en/learn/getting-started/introduction-to-nodejs`
 
 `尚硅谷Node.js零基础视频教程: P55`
-`小满Node.js：P72`
+``
 
 ## 基础介绍
 
@@ -238,7 +238,9 @@ node:
                 close:
         spawnSync():
             cwd:
-    cluster:
+    cluster: # 集群（多核系统中创建多个nodejs进程）
+        isPrimary:
+        fork(): # 创建子进程
     crypto: # 加密包
         Cipher:
             final():
@@ -538,8 +540,16 @@ promise、async
 
 ### 事件循环
 
+libuv库
+
 事件循环：
+![事件循环](../assets/事件循环.png)
 ![NodeJS事件循环](../assets/NodeJS事件循环.png)
+
+回调函数执行顺序问题
+
+宏任务、微任务
+微任务：`process.nextTick()`、`Promise`
 
 
 
