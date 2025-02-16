@@ -3,7 +3,7 @@
 `Nodejs官方文档：https://nodejs.org/en/learn/getting-started/introduction-to-nodejs`
 
 `尚硅谷Node.js零基础视频教程: P55`
-`小满Node.js：P71`
+`小满Node.js：P72`
 
 ## 基础介绍
 
@@ -536,9 +536,7 @@ promise、async
 <br />
 
 
-### 运行机制
-
-#### 事件循环
+### 事件循环
 
 事件循环：
 ![NodeJS事件循环](../assets/NodeJS事件循环.png)
