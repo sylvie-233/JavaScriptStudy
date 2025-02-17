@@ -1,8 +1,9 @@
 # NodeJs
 
 `Nodejs官方文档：https://nodejs.org/en/learn/getting-started/introduction-to-nodejs`
+`npm包官网：https://www.npmjs.com/`
 
-`尚硅谷Node.js零基础视频教程: P55`
+`尚硅谷Node.js零基础视频教程: P96`
 ``
 
 ## 基础介绍
@@ -46,7 +47,7 @@ package.json:
         type:
             git:
         url:
-    scripts: # 运行脚本
+    scripts: # 自定义运行脚本
         pos_:
         pre_:
         clean:
@@ -72,23 +73,30 @@ npm:
         set:
             cache: # 缓存路径
             prefix: # 全局软件下载路径
-            registry:
+            registry: # 镜像仓库url
     homepage:
     init: # 初始化项目
         -y:
     install: # 安装第三方包
-        -D:
         -g: # 全局安装
+        -D: # 开发依赖
+        -S: # 项目依赖
         --no-save:
-        --registry: # 仓库
+        --registry: # 指定下载镜像仓库
         --save: # 包依赖
         --save-dev: # 开发依赖
     link:
-    list:
+    list: # 列出已安装包
         -g:
+    login: # 登录npmjs官网
     publish: # 发布包
+    remove: # 删除包
+    root: # 查看项目node_modules路径
+        -g: # 全局node_modules路径
     run: # 运行脚本
+    search: # 搜索包
     uninstall: # 卸载第三方包
+    unpublish:
 ```
 
 nodejs包管理器
@@ -102,19 +110,25 @@ npm私服
 
 #### .npmrc
 
-局部npm配置文件
+配置文件：
+- `安装目录/node_modules/npm/npmrc`：安装配置文件
+- `~/.npmrc`：用户配置文件
+- `.npmrc`：项目配置文件
+
+npm配置文件
 
 
 #### npx
 #### nvm
 ```yaml
 nvm:
-    alias:
+    alias: # 版本别名
     install:
+        latest:
     list:
         avaliable:
     uninstall:
-    use:
+    use: # 使用版本
 ```
 
 nodejs版本管理器
@@ -133,6 +147,8 @@ node:
         global: # 全局对象（windows）
         globalThis: # 兼容浏览器的全局对象
         module: # 模块对象
+            arguments: # module底层执行包裹函数 function(exports, require, module, __filename, __dirname)
+                callee:
             children:
             exports: # 模块导出对象
             filename:
@@ -162,6 +178,7 @@ node:
         Array:
             forEach():
             push():
+            sort(): # 排序（可传入比较函数实现自定义排序）
         Blob:
             text():
         BroadcastChannel:
@@ -179,11 +196,23 @@ node:
         Date: # 日期
             now():
         Error: # 错误对象
+            cause: # 错误原因
+            code: # 错误码
+            message: # 错误信息
+            stack: # 错误函数栈
         JSON:
             parse():
             stringify(): # json字符串序列化
-        Math:
+        Math: # 数学运算
+            E:
             PI:
+            abs():
+            max():
+            min():
+            pow():
+            random():
+            round():
+            sqrt():
         Number:
         Object: # 基类对象
             assign(): # 对象赋值
@@ -201,12 +230,14 @@ node:
             set():
         String:
             repeat():
+            slice(): # 字符串截取
             split():
-        URL:
-            pathname:
+        URL: # url对象
+            pathname: # url 路径
             searchParams:
+        URLSearchParams: # 
         clearInterval(): # 清除定时器
-        fetch():
+        fetch(): # ajax请求 promise风格
         require(): # 导入函数
         setInterval(): # 间隔定时器
         setTimeout(): # 定时器
@@ -239,7 +270,7 @@ node:
         spawnSync():
             cwd:
     cluster: # 集群（多核系统中创建多个nodejs进程）
-        isPrimary:
+        isPrimary: # 主进程判断
         fork(): # 创建子进程
     crypto: # 加密包
         Cipher:
@@ -265,6 +296,10 @@ node:
         createSocket():
     dns:
     domain:
+    errors: # 错误/异常
+        Error: # 异常基类
+        SyntaxError: # 语法错误
+        SystemError:
     events: # 事件
         EventEmitter:
             emit(): # 触发事件
@@ -323,26 +358,32 @@ node:
                 a: # 追加
         writeFileSync(): # 写入文件(同步)
     http:
-        Request:
+        Request: # http 请求
             headers:
             httpVersion:
             method: # 请求方法
             pathname:
             query: # query param
-            url: # request url
+            url: # request url 请求url
             on():
                 data:
                 end:
-        Response:
+        Response: # 响应
             statusCode: # 响应状态码
             statusMessage:
-            end():
+            end(): # 结束响应
             setHeader(): # 设置响应头
             write(): # 响应体
             writeHead():
         Server: # http服务
             listen():
+            on():
+                request:
         createServer(): # 创建http服务
+            options: # 服务配置
+            requestListener: # 处理回调函数
+                req:
+                res:
     https:
     net:
         BlockList:
@@ -460,8 +501,6 @@ node:
     tls:
     tty:
     url:
-        Url:
-            pathname:
         parse(): # 解析url
     util: # 工具包
         type:
@@ -496,10 +535,13 @@ DataTypes:
     Array:
     BigInt:
     Boolean:
+    Error:
     Function:
+    Map:
     Null:
     Number: # 数值
     Object:
+    Set:
     String:
     Symbol:
     Undefined:
@@ -508,17 +550,56 @@ DataTypes:
 
 
 ### 控制流程
+```yaml
+Control Flow:
+    if ... else if ... else ...:
+```
 
+#### 异常处理
+```javascript
+// 捕获异常
+try {
+    ...
+} catch (e) {
+    ...
+} finallly {
+    ...
+}
+
+// 抛出异常
+thorw new Error("xxx")
+```
 
 
 ### 面向对象
+```javascirpt
+
+```
 
 
 ### 模块
+```javascript
+// 导入模块
+const xxx = require("xxx")
 
-CommonJs、Module
+// 导出模块
+module.exports = {
+    xxxx
+}
+exp
+```
 
-require()支持引入json
+CommonJs、ES Module
+
+防止命名冲突、高复用性、高维护性
+
+require() 导入缓存、只会执行一次
+
+require()支持引入`js`、`json`、`.node`扩展
+js文件优先级高
+require()中的相对路径是相对文件本身、不会受到工作目录影响
+
+require()导入文件夹、会导入文件夹下的package.json中main属性指向的文件，否则导入index.js文件
 
 
 
