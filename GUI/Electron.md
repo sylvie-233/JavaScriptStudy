@@ -1,5 +1,7 @@
 # Electron
 
+`electron官方文档：https://www.electronjs.org/docs/latest/`
+
 ## 基础介绍
 
 
@@ -61,8 +63,8 @@ electron-forge:
 
 #### forge.config.js
 
-```javascript
-module.export = {
+```yaml:
+:
     buildIdentifier:
     hooks:
     makers: [
@@ -81,7 +83,6 @@ module.export = {
     plugins:
     publishers:
     rebuildConfig:
-}
 ```
 
 

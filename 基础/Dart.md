@@ -1,7 +1,8 @@
 # Dart
 
 `Dart官方文档：https://dart.dev/docs`
-`拉钩教育Dart教程：P35`
+`Dart生态库：https://pub.dev/`
+``
 
 ## 基础介绍
 
@@ -34,7 +35,7 @@ dart:
         cache:
         deps:
         downgrade:
-        get:
+        get: # 下载第三方库
         global:
         login:
         logout:
@@ -55,10 +56,13 @@ dart:
 #### pubspec.yaml
 ```yaml
 pubspec.yaml:
-    environment:
+    environment: # 项目环境要求
         sdk:
     dependencies: # 依赖包
-    name:
+    dev_dependencies:
+    flutter:
+        uses-material-design:
+    name: # 项目名
 ```
 
 dart包配置文件
@@ -79,12 +83,27 @@ dart:
         JsonEncoder:
         jsonDecoder():
         jsonEncoder():
-    core: # 内置模块
+    core: # 内置模块（默认导入）
         BigInt:
         Comparable:
         DateTime:
+            millisecondsSinceEpoch: # 毫秒
+            month:
+            add():
+            difference():
+                inDays:
+                inHours:
+            isAfter():
+            isAtSameMomentAs():
+            isBefore():
             now():
+            parse():
+            utc():
+        Duration: # 时间间隔
+            hour:
         Enum:
+            index: # 枚举索引
+            values: # 所有枚举值
         Function:
         List: # 列表
             length: # 列表长度
@@ -145,6 +164,7 @@ dart:
             hasMatch():
             indexOf():
             isEmpty():
+            padLeft(): # 左边填充
             replaceAll():
             split(): # 字符串分隔
             trim(): # 空白符去除
@@ -169,8 +189,11 @@ dart:
     developer:
     ffi:
     io:
-    isolate:
-    math:
+    isolate: # 并发库
+    math: # 数学库
+        pi:
+        max():
+        min():
     typed_data:
 package:
     http:
@@ -183,6 +206,7 @@ package:
 ### 数据类型
 ```yaml
 DataTypes:
+    Enum:
     Runes: # 32位字符对象
     String:
     Symbol: # 标识符
@@ -201,7 +225,7 @@ DataTypes:
 
 
 
-#### 字符串
+#### String
 ```dart
 // 模板字符串
 String str = "$xxx";
@@ -213,6 +237,11 @@ String str = "a" + "b";
 支持单引号、双引号、三引号（多行字符串）
 
 默认UTF-16编码
+
+#### Enum
+```dart
+
+```
 
 
 #### List
@@ -309,6 +338,8 @@ int myfunc(int a, [int b]) {
 
 必填参数、可选参数、命名参数、函数参数
 
+不指定参数类型，默认dynamic
+
 
 #### lambda
 ```dart
@@ -331,6 +362,12 @@ Future实现异步函数：async函数返回Future、await用于等待Future
 
 
 #### 泛型
+```dart
+// 定义泛型函数
+T getData<T>(T value) {
+    return value;
+}
+```
 
 
 
@@ -416,8 +453,22 @@ mixin
 
 #### 泛型
 ```dart
+// 定义泛型类
+class Person<T> {
+    T value;
+    void setValue(T v) {
+        this.value = v;
+    }
+}
 
+// 泛型限定
+class Person<T extends OtherClass> {}
 ```
+
+默认泛型Object
+
+
+
 
 
 #### 元数据
@@ -429,9 +480,52 @@ mixin
 
 
 ### 模块
+```dart
+// 部分引入
+import "xxx" show xxx;
+import "xxx" hide xxx;
+
+// 延迟引入
+import "xxx" deferred as xxx;
+xxx.loadLibrary(); # 执行模块加载
+```
+
+- 自定义库："xxx/xxx.dart"
+- Dart SDK核心库："dart:xxx"
+- 第三方库："package:xxx/xxx.dart"
+
+每个dart文件默认都是一个库
 
 `import`：模块导入
+`library`：模块定义
 
+`as`：定义库别名
+`show`、`hide`：模块部分引入
+
+下划线`_`开头，表示库内私有
+
+
+主库、从库（用于分文件实现库）
+`library`、`part`：建立主库、引入从库（主库设置）
+`part of`：和主库建立联系（从库设置）
+用于在主库中默认导入从库
 
 
 ### 并发
+
+
+
+
+## 第三方库
+
+![dart第三方库目录结构](../assets/dart第三方库目录结构.png)
+
+
+### http
+```yaml
+httt/http.dart:
+
+```
+
+网络请求库
+
