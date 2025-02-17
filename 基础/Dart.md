@@ -1,11 +1,11 @@
 # Dart
 
 `Dart官方文档：https://dart.dev/docs`
-`拉钩教育Dart教程：P31`
+`拉钩教育Dart教程：P35`
 
 ## 基础介绍
 
-谷歌开发的、类型安全、面向对象的编程语言`.dart`
+谷歌开发的、类型安全、面向对象的编程语言`.dart`（类似C++、Java、Python结合）
 
 Flutter SDK包含Dart SDK
 
@@ -189,6 +189,7 @@ DataTypes:
     bool:
     dynamic: # 动态类型
     int:
+    num:
 ```
 
 `var`：声明并初始化变量、自动类型推断
@@ -277,6 +278,8 @@ Control Flow:
 
 #### 异常处理
 
+`throw`：抛出异常
+
 
 ### 函数
 ```dart
@@ -327,6 +330,11 @@ Future myfunc() async {
 Future实现异步函数：async函数返回Future、await用于等待Future
 
 
+#### 泛型
+
+
+
+
 ### 面向对象
 ```dart
 class Person {
@@ -345,11 +353,18 @@ class Person {
 }
 ```
 
+Object为所有类的父类
+
 `new`：类实例化
 
 `this`：自身实例引用
+`super`：父类实例引用
 
 `static`: 静态属性、静态方法
+
+`extends`：继承
+`implements`：实现
+`with`：混入
 
 构造函数：
 - 默认构造函数
@@ -358,7 +373,7 @@ class Person {
 - 常量构造函数（final字段、不能有函数体、新建常量对象使用const、不使用new）
 - 工厂构造函数（无法实例化、默认拦截普通构造函数）
 
-访问修饰符：默认共有、下划线`_`开头表示私有
+访问修饰符：默认共有、下划线`_`开头表示私有(包内还是可见)
 
 getter/setter：方法前面加 get、set关键字
 
@@ -366,17 +381,43 @@ getter/setter：方法前面加 get、set关键字
 
 
 
-#### 抽象类
+#### 抽象类/接口
+```dart
+// 声明抽象类/接口
+abstract class Person {
+    void info();
+}
+```
 
+extends、implements
 
-#### 接口
+抽象类无法实例化
+
+一个类可实现多个接口
+
+实现接口必须实现接口的属性、方法
 
 
 #### 混入
+```dart
+mixin Action {
+    String name = "xxx";
+    void getName() {}
+}
+```
 
 mixin
 
+混入类只能继承自Object
+不能有构造函数
+后引入的混入覆盖前面的同名属性、方法
+
+
+
 #### 泛型
+```dart
+
+```
 
 
 #### 元数据
@@ -388,6 +429,8 @@ mixin
 
 
 ### 模块
+
+`import`：模块导入
 
 
 
