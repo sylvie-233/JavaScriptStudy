@@ -41,6 +41,7 @@ $:
         appendTo():
         attr(): # DOM 属性
         before(): # DOM 插入所选元素前面
+        bind(): # 事件 （可同时绑定多个事件）
         children(): # 遍历 子元素
         click(): # 事件 点击
         clone():
