@@ -1,6 +1,6 @@
 # JavaScript
 
-``
+`Javascript官方文档：https://developer.mozilla.org/en-US/`
 
 
 
@@ -8,10 +8,23 @@
 
 
 
+DOM对象继承关系：
+Object -> EventTarget -> Node -> Element -> HTMLXxxElment
+
+
+
 ## 核心内容
 ```yaml
 :
     windows:
+        Element:
+            classList: # css类属性列表
+                add():
+                contains():
+                remove():
+                replace():
+                toggle():
+        EventTarget:
         File:   
         FormData:
             append():
@@ -22,9 +35,26 @@
             has():
             keys():
             values():
+        History:
+        HTMLButtonElement:
+        HTMLCollection:
+        HTMLDivElement:
+        HTMLDocument:
+        HTMLElement:
+            dataset: # 自定义属性data-*列表
+        HTMLFormElement:
+        HTMLInputElement:
+        HTMLScriptElement:
+        ImageData:
+        Location:
+        Navigator:
+        Node:
         document:
+            getElementById(): # 返回Element对象
             querySelector(): # css选择器
+        globalThis:
         alert():
+        eval():
         prompt():
     Array:
         concat():
@@ -32,14 +62,23 @@
         flat(): 
         from():
         includes():
+    AsyncFunction:
+    Atomics:
+    BigInt:
+    Boolean:
+    Date:
+    Float32Array:
     Function:
         arguments:
+    JSON:
     Map:
         size:
         clear():
         delete():
         get():
         set():
+    Math:
+    NaN:
     Object:
         assign():
         create():
@@ -60,6 +99,7 @@
         keys():
         setPrototypeOf():
         values():
+    Promise:
     Proxy:
     Reflect:
         apply():
@@ -67,11 +107,13 @@
         ownKeys():
         preventExtensions():
         setPrototypeOf():
+    RegExp:
     Set:
         add():
         clear():
         delete():
         has():
+    String:
     Symbol: # 符号key（常用于魔术方法key）
         hasInstance:
         isConcatSpreadable:
@@ -213,7 +255,7 @@ export、import
 
 
 
-### SourceMap
+#### SourceMap
 ```yaml
 :
     mappings:
@@ -230,9 +272,12 @@ export、import
 
 ## BOM
 
+浏览器操作对象
 
 
 ## DOM
+
+HTML文档操作对象
 
 
 

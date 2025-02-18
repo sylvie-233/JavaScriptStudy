@@ -8,7 +8,7 @@
 
 
 
-
+引入tailwindcss
 ```css
 @tailwind base;
 @tailwind components;
@@ -50,7 +50,6 @@ module.exports = {
 
 
 ## 核心内容
-
 ```yaml
 tailwindcss:
     Config:
@@ -58,6 +57,8 @@ tailwindcss:
         theme:
             extend:
         plugins:
+
+utility-class:
 
 ```
 
@@ -205,3 +206,6 @@ tailwindcss:
    cursor-pointer: 
    scroll-auto:
 ```
+
+
+## Components
