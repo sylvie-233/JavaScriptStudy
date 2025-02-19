@@ -100,11 +100,17 @@ $:
         val(): # DOM 表单value值
         width(): # DOM 元素宽度
     ajax(): # ajax异步请求
-        url:
-        data:
+        contentType:
+        data: # 请求体
+        dataType: # 预期服务响应数据类型
+            json:
+        type: # 请求方法
+        url: # 请求url
+        error():
         success():
             res:
     get():
+    getJSON():
     post():
 ```
 

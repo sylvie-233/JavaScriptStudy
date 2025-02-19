@@ -3,12 +3,13 @@
 >
 >`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating`
 >
->`Next.js 终极课程 2024 年版：P41`
 >
 >
+>``
 >
 
 ## 基础介绍
+
 
 React服务端实现
 
@@ -49,6 +50,8 @@ React服务端实现
 - API Handler：`route.tsx`
 - 中间件：`middleware.ts`
 
+![Next组件结构](../assets/Next组件结构.png)
+
 
 路径别名：根目录`@/xxx`
 
@@ -73,19 +76,25 @@ create-next-app: # next脚手架
     --typescript:
 ```
 
+next脚手架
 
 
 
 
 ### 项目结构
-
 ```yaml
-:
+项目结构:
+    /.next:
+        /cache:
+        /server:
+        /static:
+        /types:
+        package.json:
     /public: # 静态资源目录
     /src:
         /app: # 前端路由页面
             /xxx:
-            /(xxx): # 路由分组
+            /(xxx): # 路由分组 无实际url
             /_xxx: # 私有文件夹
             /api:
                 /xxx:
@@ -96,19 +105,22 @@ create-next-app: # next脚手架
             default.tsx: # 默认插槽页面
             error.tsx: # 异常页面
                 error:
+                    message:
                 reset():
             favicon.ico:
             globals.css: # 全局CSS
             layout.tsx: # 主布局页面
-                metadata:
+                metadata: # 页面元信息
                 ---
                 children: # 子组件渲染
             loading.tsx: # 加载页面
             page.tsx: # 入口页面
                 dynamic: # 动态页面配置
                 revalidate: # 页面重新验证刷新时间
+                generateMetadata(): # 动态生成页面元信息
                 ---
                 params: # 页面参数
+                searchParams:
                 fetch(): # 异步获取数据
         /components:
         /lib:
@@ -144,10 +156,10 @@ next:
             href:
             replace:
     navigation:
-        notFound():
-        redirect(): # 重定向
-        userPathname(): # 获取url path
-        useRouter(): # 路由器（路由跳转，客户端）
+        notFound(): # 跳转到404页面
+        redirect(): # 重定向响应
+        userPathname(): # 获取url path（仅客户端组件）
+        useRouter(): # 路由器、路由跳转（仅客户端组件）
             ---
             back():
             forward():
@@ -176,25 +188,29 @@ next:
     Response:
         json():
     Metadata: # 页面源信息
-        title:
-        description:
-    NextConfig:
+        title: # 页面标题
+            absolute:
+            default:
+            template: # 多级metadata嵌套模板字符串
+        description: # 页面描述
+    NextConfig: # next项目配置
         compiler:
             styledComponents:
         images:
             remotePatterns:
         sassOptions:
             additionalData:
-react-dom:
-    useFormStatus():
-        pending:
-React:
+react: # React全局对象
     FormEvent:
     ReactNode: # jsx组件
     Suspense:
         fallback:
-    use():
+    startTransition():
+    use(): # 使用异步参数
     useState():
+react-dom:
+    useFormStatus():
+        pending:
 
 
 
@@ -221,8 +237,8 @@ react-hook-form:
 
 ### Routing
 
-- `[id]`：
-- `[...id]`：多级匹配
+- `[id]`：动态路由匹配
+- `[...id]`：多级匹配、匹配所有
 - `(id)`：排除名称、路由分组（文件夹名不包含在路由内）
 - `_id`：私有文件夹
 - `@id`：layout插槽文件夹
@@ -244,9 +260,33 @@ layout插槽：`default.tsx`插槽默认页面
 路由拦截：
 
 
+#### Dynamic Route
+
+
+
+
+
+
+
+#### Private Route
+
+
+#### Route Group
+
+#### 404
+
+
+#### Loading
+
+
+#### Error Handling
+
+error.tsx必须是客户端组件
 
 
 ### Rendering
+
+默认服务端组件
 
 `use client`使用客户端组件
 
@@ -285,9 +325,23 @@ Link链接
 Suspense占位组件：可实现延迟加载
 
 
+#### Layout
+
+实现内部React-Router效果
+
+layout.tsx可嵌套
+
+
+#### Template
+
+
+
+
 #### Styling
 
 支持`.module.css`模块CSS、全局CSS
+
+
 
 
 
