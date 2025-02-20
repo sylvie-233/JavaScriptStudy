@@ -2,7 +2,6 @@
 
 `Nest.js官方文档：https://docs.nestjs.com/fundamentals/dynamic-modules`
 
-nodejs 服务端框架
 
 ## 基础介绍
 
@@ -13,6 +12,8 @@ nodejs 服务端框架
 - `@nestjs/platform-express`
 - `@nestjs/platform-fastify`
 
+
+nodejs 服务端框架
 
 
 全局->
@@ -385,7 +386,6 @@ Guard在所有Middleware之后执行、在所有Interceptor之前执行
 
 ### Interceptors
 ```ts
-
 import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -417,3 +417,22 @@ export class LoggingInterceptor implements NestInterceptor {
 
 ## 项目实战
 
+### ORM
+
+#### Prisma
+
+
+### Templatie Engine
+
+#### EJS
+
+
+
+### Data Validation
+
+
+#### Zod
+
+
+
+ 
