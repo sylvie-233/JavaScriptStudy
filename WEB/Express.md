@@ -66,7 +66,7 @@ express:
         app:
         baseUrl:
         body: # 请求体
-        cookies:
+        cookies: # 所有cookie
         err:
         file:
         files:
@@ -81,6 +81,8 @@ express:
         params: # path params路径参数
         path:
         query: # query查询参数
+        session: # session会话
+            destroy():
         url: # 请求url
         xhr:
         get(): # 请求头
@@ -90,7 +92,7 @@ express:
     Response: # 响应
         attachment(): # 附件下载
         cookie():
-        clearCookie():
+        clearCookie(): # 删除cookie
         download(): # 下载响应 Content-Dispositino: attachment;filename
         end(): # 结束响应
         json(): # 返回json数据
@@ -122,6 +124,15 @@ cors:
 body-parser:
 ejs:
     render(): # 渲染模板
+express-session: # session
+    ():
+        cookie:
+            httpOnly:
+            maxAge:
+        name:
+        resave:
+        secret:
+        store():
 express-validator: 
     body():
         isLength():
