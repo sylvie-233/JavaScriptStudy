@@ -21,7 +21,7 @@
 ```yaml
 node:
     -v: # 版本信息
-    --env-file:
+    --env-file: # 指定加载.env文件
     --experimental-strip-types:
     --test:
     --watch:
