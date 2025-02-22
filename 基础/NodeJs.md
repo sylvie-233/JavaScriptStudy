@@ -138,7 +138,7 @@ nodejs版本管理器
 
 ## 核心内容
 ```yaml
-node:
+node: # 共计44个模块
     _builtin:
         __dirname: # 目录名
         __filename: # 文件名
@@ -241,7 +241,7 @@ node:
         require(): # 导入函数
         setInterval(): # 间隔定时器
         setTimeout(): # 定时器
-    assert:
+    assert: # 测试断言
         assert():
         deepEqual():
         deepStrictEqual():
@@ -249,7 +249,8 @@ node:
         doesNotReject():
         doesNotThrow():
         ok():
-    buffer:
+    async_hooks:
+    buffer: # Buffer操作
         isUtf8():
         transcode():
     child_process: # 子进程(执行子命令)
@@ -272,6 +273,7 @@ node:
     cluster: # 集群（多核系统中创建多个nodejs进程）
         isPrimary: # 主进程判断
         fork(): # 创建子进程
+    console: # 控制台输出
     crypto: # 加密包
         Cipher:
             final():
@@ -294,6 +296,7 @@ node:
     dgram: # UDP
         Socket:
         createSocket():
+    diagnostics_channel:
     dns:
     domain:
     errors: # 错误/异常
@@ -309,7 +312,7 @@ node:
             once(): 
             setMaxListeners():
     fs: # 文件操作
-        promises:
+        promises: # 异步文件操作
         ReadStream: # 读入流
             on():
                 _close:
@@ -384,7 +387,10 @@ node:
             requestListener: # 处理回调函数
                 req:
                 res:
+    http2:
     https:
+    inspector:
+    module:
     net:
         BlockList:
         Server: # 服务
@@ -439,6 +445,7 @@ node:
             name:
             root:
         resolve(): # 路径解析（返回绝对路径）
+    perf_hooks:
     process: # 进程对象（全局）
         arch:
         argv: # 进程参数
@@ -453,6 +460,7 @@ node:
         on(): # 监听进程事件
             exit:
             message():
+    punycode:
     querystring: # url query解析
         decode():
         encode():
@@ -470,6 +478,9 @@ node:
         createInterface():
             input:
             output:
+    repl:
+    sea:
+    sqlite:
     stream:
         web:
             ReadableStream:
@@ -499,6 +510,7 @@ node:
         it():
     timers:
     tls:
+    trace_events:
     tty:
     url:
         parse(): # 解析url
@@ -508,6 +520,9 @@ node:
         format(): # 格式化字符串
         inspect():
         promisify(): # 回调函数转promise函数
+    v8:
+    vm:
+    wasi:
     worker_threads: # 工作线程
         workerData:
         parentPort:

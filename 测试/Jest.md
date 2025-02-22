@@ -1,5 +1,7 @@
 # Jest
 
+`jest官方文档：https://jestjs.io/docs/getting-started`
+
 ## 基础介绍
 
 
@@ -20,7 +22,7 @@ jest:
 ## 核心内容
 ```yaml
 jest:
-    _globals: # @jest/globals
+    globals: # @jest/globals
         jest:
         afterAll():
         afterEach():
