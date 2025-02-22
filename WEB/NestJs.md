@@ -1,6 +1,7 @@
 # NestJs
 
-`Nest.js官方文档：https://docs.nestjs.com/fundamentals/dynamic-modules`
+`Nest.js官方文档：https://docs.nestjs.com/`
+`Nestjs 全家桶系列：P13`
 
 
 ## 基础介绍
@@ -13,7 +14,7 @@
 - `@nestjs/platform-fastify`
 
 
-nodejs 服务端框架
+nodejs 服务端框架、支持依赖注入
 
 
 全局->
@@ -44,15 +45,20 @@ project:
 ### nest
 ```yaml
 nest:
-    build:
-    g: # 生成代码文件
+    --help:
+    add: # a
+    build: # 打包
+    generate: # g 生成代码文件
         controller: # 控制器
         module: # 模块
         resource:
         service: # CRUD resource router
-    new: # 新建项目
-    start:
+    info: # i
+    new: # n 新建项目
+    start: # 运行项目
+        --debug:
         --watch:
+    update: # u
 ```
 
 
@@ -100,13 +106,21 @@ nest:
         url:
         statusCode:
     @Req: # 请求对象
+        --- # req请求对象实例
+        body:
+        params:
+        query:
     @Res: # 响应对象
         passthrough:
+        --- # res响应对象实例
+        send(): # 发生响应内容
+        type(): # 响应类型
     @Session:
     @UseFilters: # 使用异常处理过滤器
     @UseGuards: # 使用请求守卫
     @UseInterceptors: # 使用拦截器（AOP）
     @UsePipes: # 使用数据管道(数据验证、数据转换)
+    @Version: # api版本控制
     ArgumentMetadata: # 方法参数元数据
         data:
         metatype:
@@ -231,6 +245,13 @@ express: # nestjs内置集成http库
         json():
         send():
         status():
+express-session: # 使用session中间件
+    ():
+        cookie:
+            maxAge:
+        name: # cookie名
+        rolling:
+        secret:
 rxjx:
     operators:
         catchError():
@@ -254,6 +275,9 @@ zod: # 数据验证
 ### Controller
 
 
+控制器、视图处理函数
+
+
 ### Provider
 
 依赖注入对象、@Injectable、
@@ -269,13 +293,12 @@ Factory providers工厂注入
 ### Module
 
 
-模块、一个项目可以拆分成多个模块（根据路由、功能）
+模块、子工程、一个项目可以拆分成多个模块（根据路由、功能）
 
 动态模块、forRoot静态方法动态生成模块信息(module、providers、exports)
 
 
 ### Middleware
-
 ```ts
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
@@ -289,6 +312,7 @@ export class LoggerMiddleware implements NestMiddleware {
 }
 ```
 
+中间件
 支持Express的函数式中间件（不支持依赖注入功能）
 
 
@@ -318,7 +342,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 }
 ```
 
-异常过滤链
+异常处理、异常过滤链
 
 自定义异常继承HttpException 
 
@@ -333,13 +357,17 @@ async findOne(@Param('id', ParseIntPipe) id: number) {
 }
 
 ```
+
+
+数据转换、数据验证
 数据处理通道，类似中间件
+
 
 
 在方法上使用数据验证、数据Pipe：`@UsePipes()`
 在方法参数上使用数据转换Pipe：`@Param()`、`@Query()`、`@Body()`
 
-数据转换、数据验证
+
 
 内置Pipe：
 - ValidationPipe
@@ -379,6 +407,8 @@ export class RolesGuard implements CanActivate {
   }
 }
 ```
+
+
 请求守卫（拦截）
 
 Guard在所有Middleware之后执行、在所有Interceptor之前执行
@@ -407,6 +437,9 @@ export class LoggingInterceptor implements NestInterceptor {
 
 拦截器、类似中间件，主要用于实现AOP功能
 
+
+
+
 ### Custom Decorator
 
 自定义装饰器
@@ -425,6 +458,14 @@ export class LoggingInterceptor implements NestInterceptor {
 ### Templatie Engine
 
 #### EJS
+
+
+
+### Common Middlewares
+
+#### express-session
+
+session支持中间件
 
 
 

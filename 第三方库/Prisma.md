@@ -1,6 +1,6 @@
 # Prisma
 
-`Prisma官方文档：https://www.prisma.io/docs/orm/prisma-schema/data-model/models#defining-an-id-field`
+`Prisma官方文档：https://www.prisma.io/docs/orm/overview/introduction`
 
 
 ## 基础介绍

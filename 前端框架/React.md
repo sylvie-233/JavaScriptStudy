@@ -1,35 +1,108 @@
 # React
 
-``
+`react官方文档：https://react.dev/learn`
+`React入门到实战：P60`
 
 
 ## 基础介绍
 
 
+
+Javascript 前端UI框架
+
+基于JSX（声明式UI）语法、组件化
+
+
+核心库：
+- react
+- react-dom
+- react-scripts
+
+
+
+`create-react-app`：react项目脚手架
+
+`{ xxx }`：JSX模板语法（支持js表达式）
+组件必须有一个根节点
+
+可利用表达式实现：条件渲染（三元运算符、&&）、列表渲染（map()）
+
+组件样式clasName：行内样式、类名样式、module css、
+
+组件事件绑定：`onXxx`
+
+
+### 项目结构
+```yaml
+项目结构:
+    /public:
+        favicon.ico:
+        index.html: # 项目主页面
+        robots.txt: 
+    /src:
+        App.js: # 项目主应用
+        App.css:
+        index.js: # 项目入口文件
+        index.css:
+    package.json:
+```
+
+
 ### react-scripts
 ```yaml
 react-scripts:
-
+    build: # 项目打包
+    eject:
+    start: # 开发运行
+    test:
 ```
+
+React打包命令
+
+
+
 
 
 ## 核心内容
 ```yaml
-react:
+react: # react核心包
+    Component: # 组件基类
     ReactNode:
-    StrictMode:
-    createContext(): # 上下文通信
-        Provider:
+    StrictMode: # 严格模式
+    act():
+    cache():
+    createContext(): # 创建上下文
+        Consumer: # 上下文消费者组件
+        Provider: # 上下文提供者组件
             value:
+    createElement(): # 创建DOM元素 (name, attrs, children)
+    createRef(): # 原始DOM引用
+        current:
+    lazy():
+    memo():
+    startTransition():
+    use():
+    useActionState():
+    useCallback():
     useContext(): # 使用上下文
+    useDebugValue():
+    useDeferredValue():
     useEffect():
+    useId():
+    useImperativeHandle():
+    useInsertionEffect():
+    useLayoutEffect():
+    useMemo():
+    useOptimistic():
+    useReducer():
     useRef(): # ref引用DOM
         current:
     useState():
-
+    useSyncExternalStore():
+    useTransition():
 react-dom:
     client:
-        ReactDOM:
+        ReactDOM: # React Dom 操作工具类（创建、渲染）
             createRoot():
                 reander():
     render():
@@ -65,11 +138,19 @@ react-router-dom:
     useLocation(): # 路由导航信息
         pathname:
     useNavigate():
+mobx:
+    @action: # 定义响应式数据操作方法
+        bound:
+    @computed: # 定义计算属性
+        observe():
+    @observable: # 定义响应式数据
+    makeObservable():
+mobx-react:
+    @observer: # 使组件可观测(响应状态变化更新)
 
 
 redux:
-@reduxjs/toolkit: # 定义store
-    configureStore():
+    configureStore(): # 定义store
         reducer:
     createSlice(): # reducer：data、action
         name:
@@ -83,27 +164,135 @@ react-redux: # 使用store
         store:
     useDispatch(): # 获取store方法
     useSelector(): # 获取store状态
-
-
-
-mobx:
-    @action: # 定义响应式数据操作方法
-        bound:
-    @computed: # 定义计算属性
-        observe():
-    @observable: # 定义响应式数据
-    makeObservable():
-
-mobx-react:
-    @observer: # 使组件可观测(响应状态变化更新)
-
 ```
 
 
+### 内置组件
+
+- <Fragment>：`<>`空节点
+- <Profiler>
+- <StrictMode>
+- <Suspense>
+
+
+#### 自定义组件
+```jsx
+// 自定义类组件
+class MyComp extends React.Component {
+    // 初始化状态，this.setState()修改状态
+    state = { 
+        name: "xxx"
+    }
+    render() {
+        return <div>Sylvie233</div>
+    }
+}
+```
+
+
+函数组件、类组件
+
+受控组件、非受控组件
+
+
+
+
+##### 事件绑定
+```yaml
+事件绑定:
+    onChange:
+    onClick:
+        nativeEvent:
+        target:
+        type:
+        preventDefault():
+```
+
+
+##### 组件Props
+```yaml
+props:
+    children:
+```
+
+
+props类型限定：`Xxx.propTypes`
+props默认值：`Xxx.defaultProps`
+（static静态属性）
+
+
+##### 生命周期
+```yaml
+挂载阶段:
+    constructor():
+    render():
+    componentDidMount():
+更新阶段:
+    render():
+    componentDidUpdate():
+销毁阶段:
+    componentWillUnmount():
+```
+
+![React类组件生命周期](../assets/React类组件生命周期.png)
+
+
+
+### Hook
+```yaml
+```
+
+
+
+#### useState
+
+创建状态属性
+
+
+
+#### useEffect
+
+实现生命周期、属性监听
+
+
+
+#### useRef
+
+原始DOM引用
+
+
+
+
+
+### 组件通信
+
+
+#### Props
+
+属性传递、子传父通过传递方法实现
+兄弟组件通信、状态提升
+
+
+#### Context
+```jsx
+// 创建上下文
+const {Provider, Consumer} = createContext():
+
+// 提供者提供数据
+<Provider value="xxx">
+
+    {/* 消费者消费数据 */}
+    <Consumer>
+        {value => xxx}
+    </Consumer>
+<Provider>
+```
+
+可实现多级传递
+
+
+
 ### 组件路由
-
-React Router
-
 ```yaml
 <BrowserRouter>:
     <Routes>:
@@ -111,17 +300,13 @@ React Router
 ```
 
 
-### 组件通信
+React Router
+
+
+
 
 
 ### 状态管理
-
-
-#### redux
-
-reducer、
-
-
 
 #### mobx
 ```js
@@ -133,6 +318,13 @@ reducer、
 - 响应组件
 - 状态
 - 修改状态的方法
+
+
+
+#### redux
+
+reducer、
+
 
 
 
@@ -266,23 +458,29 @@ expo:
     start:
 ```
 
-
-
-### StyleSheet
-
-
-
-### 自定义组件
-
-
-### 组件渲染
-
+### 内置组件
 
 - 条件渲染：if
 - 列表渲染：map、FlatList
 
+#### 自定义组件
+
+
+
+
+
+
+### 组件样式
+
+
+
+
+
 
 ### 组件通信
+
+
+
 
 
 ### 组件路由

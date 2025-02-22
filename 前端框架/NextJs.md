@@ -1,7 +1,7 @@
 # Next.js
 
 >
->`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/routing/linking-and-navigating`
+>`Next.js官方文档：https://nextjs.org/docs`
 >
 >
 >

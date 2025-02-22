@@ -172,6 +172,41 @@ Control Flow:
 #### Decorators
 
 
+##### ClassDecorator
+```ts
+const mydec: ClassDecorator = (target) => {
+    ...
+    target.prototype...
+} 
+```
+
+类装饰器、传入类构造函数
+
+
+
+##### PropertyDecorator
+
+属性装饰器：`(target, propertyKey)`
+
+
+
+##### MethodDecorator
+```yaml
+MethodDecorator:
+    target:
+    propertyKey:
+    descriptor:
+        value: # 方法本身
+```
+
+方法装饰器：`(target, propertyKey, descriptor)`
+
+传入原型对象、方法名、方法描述符
+
+
+##### ParameterDecorator
+
+方法参数装饰器：`(target, propertyKey, parameterIndex)`
 
 
 
