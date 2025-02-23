@@ -1,7 +1,7 @@
 # React
 
 `react官方文档：https://react.dev/learn`
-`React入门到实战：P60`
+`React入门到实战：P107`
 
 
 ## 基础介绍
@@ -107,13 +107,14 @@ react-dom:
                 reander():
     render():
 
-react-router-dom:
-    BrowserRouter:
+react-router-dom: # v6
+    BrowserRouter: # 浏览器路由
         basename:
-    Link:
+    HashRouter: # 哈希路由
+    Link: # 路由跳转组件
         to:
     Navigate:
-    NavLink:
+    NavLink: # 带样式的路由跳转组件
         activeClassName:
         to:
     Outlet: # router-view，子路由显示入口
@@ -122,31 +123,41 @@ react-router-dom:
     Route:
         element:
         exact:
+        index: # 默认路由
         loader:
         path:
     RouterProvider: # 总route显示
         router:
     Routes:
     Switch:
-    createBrowserRouter():
+    createBrowserRouter(): # 创建浏览器路由
         _options:
             basename:
-        path:
+        children: # 嵌套组件
         element:
-        children:
+        loader:
+        path:
     createRoutesFromElements():
     useLocation(): # 路由导航信息
         pathname:
     useNavigate():
+        ():
+            replace:
+    useParams():
+    useSearchParams():
 mobx:
     @action: # 定义响应式数据操作方法
         bound:
     @computed: # 定义计算属性
         observe():
     @observable: # 定义响应式数据
-    makeObservable():
+    computed: # 标注计算属性
+    makeAutoObservable(): # 使类实例对象中的所有属性变成 响应式
+    makeObservable(): # 
 mobx-react:
     @observer: # 使组件可观测(响应状态变化更新)
+mobx-react-lite:
+    observer():
 
 
 redux:
@@ -245,15 +256,32 @@ props默认值：`Xxx.defaultProps`
 
 
 #### useState
+```jsx
+const [data, setData] = useState(() => xxx)
+```
 
-创建状态属性
+创建状态属性：属性值、修改属性的方法
 
+只能在函数最外层使用
 
 
 #### useEffect
-
+```jsx
+function App(props) {
+    useEffect(() => {
+        ...
+        return () => { /* 执行清理操作 */ }
+    }, [
+        xxx,
+        () => xxx.xxx
+    ])
+}
+```
 实现生命周期、属性监听
 
+提供副作用处理
+
+默认每次组件渲染都会执行、初始化时会执行一次
 
 
 #### useRef
@@ -261,6 +289,15 @@ props默认值：`Xxx.defaultProps`
 原始DOM引用
 
 
+#### useContext
+
+Context上下文值消费
+
+
+
+#### Custom Hook
+
+自定义钩子函数
 
 
 
@@ -293,31 +330,156 @@ const {Provider, Consumer} = createContext():
 
 
 ### 组件路由
-```yaml
-<BrowserRouter>:
-    <Routes>:
-        <Route>:
-```
+```jsx
+// 1. 创建router
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <div>Hello world!</div>,
+  },
+]);
 
+// 2. App中注入Router
+<React.StrictMode>
+    <RouterProvider router={router}>
+        ...
+    </RouterProvider>
+</React.StrictMode>
+
+
+// 3. <Outlet>组件显示子路由
+<Outlet />
+```
 
 React Router
 
+- 声明式创建Router
+- Provider注入Router
+- Outlet显示内嵌路由视图
 
+
+- `<Link>`
+- `<BrowserRouter>`
+- `<Routes>`
+- `<Switch>`
+- `<Route>`
+- `<Outlet>`
+
+
+
+
+#### 路由声明
+
+- 基于配置：createBrowserRouter()
+- 基于定义：<BrowserRouter> （旧版语法）
+
+
+
+基于定义的路由声明：
+```jsx
+function App() {
+    return (
+        <BrowserRouter>
+            <Link />
+
+            <Routes>
+                <Route path element />
+                <Route path element>  {/* 嵌套路由的显示：<Outlet /> */}
+                    <Route path element />
+                </Route>
+            </Routes>
+        </BrowserRouter>
+    )
+}
+```
+
+
+
+
+#### 嵌套路由
+
+`<Outlet />`：控制嵌套路由组件的显示
+
+
+#### 编程式路由
+
+
+##### useLocation
+
+##### useNavigate
+
+##### useParams
+
+##### useSearchParams
 
 
 
 ### 状态管理
 
 #### mobx
-```js
+```jsx
+import { makeAutoObservable, computed } from "mobx"
+import { observer } from "mobx-react-lite"
 
+// 1. 定义仓库
+class Timer {
+    secondsPassed = 0
+    constructor() {
+        makeAutoObservable(this, {
+            // 计算属性
+            myage: computed
+        })
+    }
+    // 定义计算属性方法
+    get myage() {
+        return ths.secondsPassed + 1
+    }
+    increaseTimer() {
+        this.secondsPassed += 1
+    }
+}
+
+// 2. 实例化仓库
+const myTimer = new Timer()
+
+// 3. mobx包装自定义组件
+const TimerView = observer(({ timer }) => <span>Seconds passed: {timer.secondsPassed}</span>)
+
+// 4. 仓库对象实例 传入 实例化对象（props、context、直接导入）
+ReactDOM.render(<TimerView timer={myTimer} />, document.body)
+
+// 5. 调用仓库方法修改状态
+setInterval(() => {
+    myTimer.increaseTimer()
+}, 1000)
 ```
 
+observer() 包裹组件
 
-基础集成；
-- 响应组件
-- 状态
-- 修改状态的方法
+
+
+
+
+
+
+
+
+#### zustand
+```jsx
+import { create } from 'zustand'
+
+// 1. 创建仓库
+const useStore = create((set) => ({
+  bears: 0,
+  increasePopulation: () => set((state) => ({ bears: state.bears + 1 })),
+  removeAllBears: () => set({ bears: 0 }),
+  updateBears: (newBears) => set({ bears: newBears }),
+}))
+
+// 2. 使用仓库
+const bears = useStore((state) => state.bears)
+const increasePopulation = useStore((state) => state.increasePopulation)
+```
 
 
 
