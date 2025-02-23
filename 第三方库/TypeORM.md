@@ -1,5 +1,6 @@
 # TypeORM
 
+`typeorm官方文档：https://typeorm.io/`
 
 ## 基础介绍
 
@@ -16,6 +17,12 @@ typeorm:
 ## 核心内容
 ```yaml
 typeorm:
+    @Entiry:
+    @ManyToMany: 多对多联表
+    @ManyToOne: 多对一联表
+    @OneToOne: 一对一联表
+    @OneToMany: 一对多联表
+    @PrimaryGeneratedColumn:
     BaseEntity:
     Column:
     DataSource:
@@ -39,13 +46,19 @@ typeorm:
             findOneBy():
             remove():
             save():
-        
-    Entiry:
-    ManyToMany: 多对多联表
-    ManyToOne: 多对一联表
-    OneToOne: 一对一联表
-    OneToMany: 一对多联表
-    PrimaryGeneratedColumn:
+    Repository: # Dao操作
+        count():
+        delete():
+        find():
+            order:
+            skip:
+            take:
+            where:
+        findOne():
+        save():
+        transaction():
+        update():
+    Like():
 ```
 
 ### DataSource

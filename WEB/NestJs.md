@@ -1,7 +1,7 @@
 # NestJs
 
 `Nest.js官方文档：https://docs.nestjs.com/`
-`Nestjs 全家桶系列：P13`
+``
 
 
 ## 基础介绍
@@ -15,6 +15,8 @@
 
 
 nodejs 服务端框架、支持依赖注入
+
+Middleware、Interceptor、Guard三个组件功能相似
 
 
 全局->
@@ -113,9 +115,11 @@ nest:
     @Res: # 响应对象
         passthrough:
         --- # res响应对象实例
+        download(): # 响应下载内容
         send(): # 发生响应内容
         type(): # 响应类型
     @Session:
+    @SetMetadata: # 设置元信息（常配合Guard使用）
     @UseFilters: # 使用异常处理过滤器
     @UseGuards: # 使用请求守卫
     @UseInterceptors: # 使用拦截器（AOP）
@@ -123,7 +127,7 @@ nest:
     @Version: # api版本控制
     ArgumentMetadata: # 方法参数元数据
         data:
-        metatype:
+        metatype: # 元类信息
         type:
             body:
             custom:
@@ -162,6 +166,7 @@ nest:
         useGlobalInterceptors(): # 全局拦截器注册
         useGlobalPipes(): # 全局数据管道注册
         useLogger():
+        useStaticAssets(): # 静态目录挂载
     MiddlewareConsumer:
         apply(): # 应用中间件
         exclude(): # 排除应用中间件的路由
@@ -186,7 +191,8 @@ nest:
         GET:
     ValidationPipe:
         validateCustomDecorators:
-    applyDecorators(): # 复合装饰器
+    applyDecorators(): # 复合装饰器（组合多个装饰器）
+    createDecorator(): # 创建装饰器
     createParamDecorator(): # 创建参数装饰器
 
 @nestjs/core:
@@ -195,12 +201,26 @@ nest:
     NestFactoroy:
         create(): # 创建应用实例(根据Module)
             logger:
-    Reflector: # 反射工具
+    Reflector: # 反射工具（获取元信息）
         createDecorator(): # 自定义装饰器
         get(): # 获取装饰器中的值
 
 @nestjs/mapped-types:
     PartialType():
+
+@nestjs/platform-express:
+    MulterModule:
+        register():
+
+@nestjs/swagger:
+    @ApiBearerAuth:
+    @ApiOperation:
+    @ApiParam:
+    @ApiQuery:
+    @ApiResponse:
+    @ApiTags:
+    DocumentBuilder:
+    SwaggerModule:
 
 @nestjs/testing:
     Test:
@@ -214,6 +234,19 @@ nest:
         forRoot():
             limit:
             ttl:
+@nestjs/typeorm:
+    @InjectRepository: # 注入dao
+    TypeOrmModule:
+        forFeature():
+        forRoot():
+            database:
+            entities:
+            host:
+            password:
+            port:
+            synchronize:
+            type:
+            username:
 
 @prisma/client: # orm
     Prisma:
@@ -358,9 +391,10 @@ async findOne(@Param('id', ParseIntPipe) id: number) {
 
 ```
 
-
 数据转换、数据验证
 数据处理通道，类似中间件
+内置ValidationPipe可实现大部分数据校验了
+常配合`class-validator`、`class-transform`两个库使用自定义Pipe
 
 
 
@@ -380,7 +414,7 @@ async findOne(@Param('id', ParseIntPipe) id: number) {
 
 
 
-#### 自定义Pipe
+#### Custom Pipe
 ```ts
 import { PipeTransform, Injectable, ArgumentMetadata } from '@nestjs/common';
 
@@ -427,7 +461,7 @@ export class LoggingInterceptor implements NestInterceptor {
 
     const now = Date.now();
     return next
-      .handle()
+      .handle() // 处理函数调用
       .pipe(
         tap(() => console.log(`After... ${Date.now() - now}ms`)),
       );
@@ -435,8 +469,12 @@ export class LoggingInterceptor implements NestInterceptor {
 }
 ```
 
-拦截器、类似中间件，主要用于实现AOP功能
 
+拦截器、类似中间件，主要用于实现AOP功能
+- 在函数执行之前/之后绑定额外的逻辑
+- 转换从函数返回的结果
+- 转换从函数抛出的异常
+- 扩展基本函数行为
 
 
 
@@ -455,6 +493,9 @@ export class LoggingInterceptor implements NestInterceptor {
 #### Prisma
 
 
+#### TypeORM
+
+
 ### Templatie Engine
 
 #### EJS
@@ -467,6 +508,10 @@ export class LoggingInterceptor implements NestInterceptor {
 
 session支持中间件
 
+
+#### multer
+
+文件上传
 
 
 ### Data Validation
