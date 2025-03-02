@@ -3,7 +3,7 @@
 >
 >``
 >
->``
+>`小满TypeScript教程：P1`
 >
 
 ## 基础介绍
@@ -218,11 +218,15 @@ MethodDecorator:
 #### Generics
 
 
+
+
 ### Module
 
 
 
 #### Namespace
+
+命名空间
 
 
 
