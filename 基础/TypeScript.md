@@ -3,7 +3,7 @@
 >
 >``
 >
->`小满TypeScript教程：P1`
+>`小满TypeScript教程：P7`
 >
 
 ## 基础介绍
@@ -16,12 +16,14 @@ tsc:
     -m: # 指定模块版本信息
     -p: # 指定配置文件
     -v: # 版本
-    -w:  #监听文件
+    -w:  # 监听文件
     --declaraion: # 生成声明文件
     --help:
     --init: # 初始化项目，生成配置文件tsconfig.json
     --watch:
 ```
+
+typescript编译命令
 
 
 #### tsconfig.json
@@ -61,11 +63,14 @@ TypeScript:
         push():
         reduce():
     Error: # 异常
+    IArguments: # 函数arguments对象
     Object: # 对象
+    ReadonlyArray: # 只读数组
     Tuple: # 元组（固定元素的数组）
     any: # 任意类型
     boolean: # 布尔
     enum: # 枚举
+    never: # 所有类型子类
     number: # 数字
     object: # 对象
     string: # 字符串
@@ -80,28 +85,56 @@ DOM:
 ### 数据类型
 ```yaml
 DataTypes:
-    any:
-    bigint: # 字面量以n结尾
-    boolean:
-    number: 
-    string:
-    undefined:
-    void: # 空类型
     Array:
     Function:
+    Infinity: # 无穷大
+    NaN: # 非数字类型
+    Object: # 顶层基类
+    any: # 顶层类型
+    bigint: # 字面量以n结尾
+    boolean:
+    interface:
+    never: # 所有类型子类
+    null:
+    number: 
+    object: # 非原始类型
+    string:
+    undefined:
+    unknown: # 顶层类型
+    void: # 空类型
 
 Utility Types: # 工具类型
-
+    Awaited: # Awaited<T>	获取 Promise<T> 解析后的类型
+    ConstructorParameters: # ConstructorParameters<T>	获取构造函数的参数类型
+    Exclude: # Exclude<T, U>	从 T 中排除 U 类型，用于联合类型
+    Extract: # Extract<T, U>	从 T 中提取 U 类型，用于联合类型
+    InstanceType: # InstanceType<T>	获取构造函数返回的实例类型
+    NonNullable: # NonNullable<T>	移除 null 和 undefined
+    Omit: # Omit<T, K>	从 T 中移除 K 这些属性，用于对象属性
+    OmitThisParameter: # OmitThisParameter<T>	移除函数的 this 参数
+    Parameters: # Parameters<T>	获取函数参数的类型
+    Partial: # Partial<T>	将类型的所有属性变为可选
+    Pick: # Pick<T, K>	从 T 中选择 K 这些属性，用于对象属性
+    Readonly: # Readonly<T>	将类型的所有属性变为只读
+    Record: # Record<K, T>	创建一个以 K 为键、T 为值的对象类型
+    Required: # Required<T>	将类型的所有属性变为必填
+    ReturnType: # ReturnType<T>	获取函数返回值的类型
+    ThisParameterType: # ThisParameterType<T>	获取函数的 this 类型
 ```
+
+
+支持可空类型`?:`、只读属性`readonly`
+ts能进行自动类型推断
+enum枚举
+interface、type自定义数据类型
+
+
+
 
 ![Ts类型层次结构](../assets/Ts类型层次结构.png)
 
-ts能进行自动类型推断
-
-enum枚举
 
 
-interface、type自定义数据类型
 
 
 Union联合类型: `(type1 | type2 | ...)`，联合类型一般和typeof结合使用，用来判断具体的类型
@@ -123,6 +156,10 @@ Type Aliase类型别名：通过`type`关键字定义类型别名
 
 
 #### Array
+```typescript
+// 直接声明
+let arr1: number[] = [1, 2, 3];
+```
 
 动态数组
 
@@ -130,6 +167,13 @@ Type Aliase类型别名：通过`type`关键字定义类型别名
 
 
 #### Tuple
+```typescript
+// 元组声明
+let tuple: [string, number] = ["Alice", 25];
+```
+
+元组
+固定长度的数组
 
 
 
@@ -141,19 +185,40 @@ Type Aliase类型别名：通过`type`关键字定义类型别名
 
 
 
+#### Enum
+
+枚举
+
+
+
 #### Utility Types
 
 
 ### 控制流程
 ```yaml
 Control Flow:
+    ?:: # 可空类型
+    const: # 常量
+    infer: # 类型推断
     instanceof: # 实例判断（关键字）
+    let: # 局部变量
     keyof: # 获取键（关键字）
+    readonly: # 只读属性
     typeof: # 获取变量类型（关键字）
 ```
 
 
 #### 异常处理
+
+
+
+### 函数
+
+
+Function
+
+支持默认参数、可选参数、变长参数
+可进行函数重载、声明可有多个，实现只能有一个
 
 
 
@@ -163,10 +228,21 @@ Control Flow:
 #### Class
 
 
+成员函数第一个参数可为`this`，用于自身实例的引用
+
+
 
 #### Interface
 
+严格类型定义
 
+重名接口声明，属性复合
+接口继承`extends`
+
+##### 索引签名
+
+
+##### 函数签名
 
 
 #### Decorators
