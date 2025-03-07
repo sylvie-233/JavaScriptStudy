@@ -3,7 +3,7 @@
 >
 >``
 >
->`小满TypeScript教程：P7`
+>`小满TypeScript教程：P10`
 >
 
 ## 基础介绍
@@ -59,14 +59,6 @@ tsconfig.json:
 ## 核心内容
 ```yaml
 TypeScript:
-    Array: # 数组
-        push():
-        reduce():
-    Error: # 异常
-    IArguments: # 函数arguments对象
-    Object: # 对象
-    ReadonlyArray: # 只读数组
-    Tuple: # 元组（固定元素的数组）
     any: # 任意类型
     boolean: # 布尔
     enum: # 枚举
@@ -78,18 +70,43 @@ TypeScript:
     symbol:
     unknown: # 更为严格的any
     void:
+    Array: # 数组
+        fill(): # 填充
+        push():
+        reduce():
+    Number:
+    Date:
+    Error: # 异常
+    IArguments: # 函数arguments对象
+    Object: # 对象
+    ReadonlyArray: # 只读数组
+    RegExp:
+    Promise:
+    Tuple: # 元组（固定元素的数组）
+
+BOM:
+    Location:
+    Storage:
+    XMLHttpRequest:
+
 DOM:
+    Element:
+    HTMLCanvasElement:
+        height:
+        width:
+        getContext(): # 获取上下文类型
+            fillStyle:
+            fillRect():
+            fillText():
+    HTMLDivElement:
     HTMLInputElement:
+    NodeList:
+    NodeListOf:
 ```
 
 ### 数据类型
 ```yaml
 DataTypes:
-    Array:
-    Function:
-    Infinity: # 无穷大
-    NaN: # 非数字类型
-    Object: # 顶层基类
     any: # 顶层类型
     bigint: # 字面量以n结尾
     boolean:
@@ -102,6 +119,11 @@ DataTypes:
     undefined:
     unknown: # 顶层类型
     void: # 空类型
+    Array:
+    Function:
+    Infinity: # 无穷大
+    NaN: # 非数字类型
+    Object: # 顶层基类
 
 Utility Types: # 工具类型
     Awaited: # Awaited<T>	获取 Promise<T> 解析后的类型
@@ -123,10 +145,14 @@ Utility Types: # 工具类型
 ```
 
 
+5中特殊类型：
+
+
 支持可空类型`?:`、只读属性`readonly`
 ts能进行自动类型推断
 enum枚举
 interface、type自定义数据类型
+支持联合数据类型、交叉数据类型(合并)
 
 
 
@@ -194,10 +220,25 @@ let tuple: [string, number] = ["Alice", 25];
 #### Utility Types
 
 
+
 ### 控制流程
 ```yaml
 Control Flow:
     ?:: # 可空类型
+    as: # 类型断言
+    class: # 类定义
+        constructor: # 构造方法定义
+        extends: # 继承
+        get:
+        implements: # 接口实现
+        private: # 私有
+        protectd: # 保护属性，类及其子类可见
+        public: # 公开属性
+        readonly: # 只读属性
+        set:
+        static: # 静态
+        super: # 父类实例引用
+        this: # 自身实例引用
     const: # 常量
     infer: # 类型推断
     instanceof: # 实例判断（关键字）
@@ -208,7 +249,9 @@ Control Flow:
 ```
 
 
-#### 异常处理
+#### Exception Handler
+
+异常处理
 
 
 
@@ -225,10 +268,14 @@ Function
 
 ### 面向对象
 
-#### Class
-
-
 成员函数第一个参数可为`this`，用于自身实例的引用
+
+
+
+
+#### Abstract Class
+
+抽象类
 
 
 
@@ -296,7 +343,7 @@ MethodDecorator:
 
 
 
-### Module
+### 模块
 
 
 
@@ -306,7 +353,7 @@ MethodDecorator:
 
 
 
-### Declaration
+### 声明文件
 ```typescript
 declare module "模块名称" {
     export let obj : {}
