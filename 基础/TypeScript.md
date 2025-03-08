@@ -160,21 +160,13 @@ interface、type自定义数据类型
 ![Ts类型层次结构](../assets/Ts类型层次结构.png)
 
 
-
-
-
-Union联合类型: `(type1 | type2 | ...)`，联合类型一般和typeof结合使用，用来判断具体的类型
-
-Literal字面量类型，literal类型在做参数限定的时候很有用（限定只能取哪些字面量），常配合联合类型使用
-
-Type Aliase类型别名：通过`type`关键字定义类型别名
-
 - 所有类型是`any`的子类型
 - `unknown`与any一样，但unknown不能直接使用，需要typeof判断类型后使用
 - `never`是所有类型的子类型
 （any|unknown类似全集，never类似空集）
 
 
+Type Aliase类型别名：通过`type`关键字定义类型别名
 变量限定：`var`、`const`、`let`
 
 
