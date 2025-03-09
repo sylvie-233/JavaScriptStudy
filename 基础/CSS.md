@@ -1,6 +1,6 @@
 # CSS
 
-`向军大叔CSS3教程：P88`
+`向军大叔CSS3教程：P152`
 
 ## 基础介绍
 
@@ -22,6 +22,9 @@ CSS3:
         content: # 伪元素内容
     cacl(): # 属性值计算
     attr(): # 元素属性值获取
+    align-items: # 弹性侧轴排列
+        stretch:
+    align-self: # 自身弹性侧轴排列
     background:
         no-repeat:
         linear-gradient(): # 线性渐变
@@ -48,7 +51,7 @@ CSS3:
     border-radius: # 边框圆角
     border-spacing: # 边框间距
     border-style: # 边框样式
-    bottom:
+    bottom: # 定位底部位置
     box-shadow: # 盒子阴影
         rgba():
     box-sizing: # 盒子模型
@@ -62,7 +65,11 @@ CSS3:
     color: # 文字颜色
         rgb():
         rgba():
+    column-gap: # 栅格列间距
     display: # 显示模式
+        flex:
+        grid:
+        inline-flex:
         none:
         table: # 表格
         table-cap: # 表格标题
@@ -76,6 +83,14 @@ CSS3:
     filter: # 滤镜
         grayscale():
     fit-object:
+    flex: # 弹性占比
+    flex-basis: # 弹性基础尺寸
+    flex-direction: # 弹性排列方向，默认水平
+        column:
+    flex-flow:
+    flex-grow: # 弹性增长比例
+    flex-shrink: # 弹性缩小比例
+    flex-wrap: # 弹性换行 
     float: # 元素浮动
         left:
     font:
@@ -85,7 +100,27 @@ CSS3:
     font-variant: # 字体转换
         small-caps:
     font-weight: # 字体宽度
+    grid-area: # 栅格区域定位
+    grid-auto-flow: # 栅格流动方向
+        dense: # 自动填充
+    grid-column:
+    grid-column-start: # 栅格列定位开始
+    grid-column-end: # 栅格列定位结束
+    grid-row:
+    grid-row-start: # 栅格行定位开始
+        span: # 相对偏移数
+    grid-row-end: # 栅格行定位结束
+    grid-template-areas: # 栅格区域设置，支持.占位
+    grid-template-rows: # 栅格行设置
+        fr: # 占比分配
+        repeat():
+            auto-fill:
+            minmax():
+    grid-template-columns: # # 栅格列设置
+        repeat():
     height: # 元素高度
+    justify-content: # 弹性主轴对齐方式
+    left: # 定位左侧位置
     letter-spacing: # 字符间距
     list-style: # 列表样式
     list-style-image: # 列表样式图片
@@ -99,6 +134,7 @@ CSS3:
     object-fit:
         cover:
     opacity: # 透明度
+    order: # 弹性模型顺序
     outline: # 轮廓线
     outline-color: 
     outline-style: # 轮廓线风格
@@ -106,9 +142,12 @@ CSS3:
         hidden:
         scroll:
     padding: # 内边距
-    position: # 位置
+    place-content: # justify-content、align-items
+    position: # 定位
         absolute:
         relative:
+    right: # 定位右侧位置
+    row-gap: # 栅格行间距
     shape-outside: # 环绕距离控制
         padding-box:
     text-align: # 文本对齐
@@ -120,6 +159,7 @@ CSS3:
     text-shadow: # 文本阴影
     text-transform: # 文本转换
         uppercase:
+    top: # 定位顶部位置
     transform: # 变换
         perspective(): # 透视
         rotateX(): # X旋转
@@ -141,6 +181,7 @@ CSS3:
     word-spacing: # 单词间距
     writing-mode: # 排版模式
         vertical-lr:
+    z-index:
 ```
 
 
@@ -232,22 +273,50 @@ CSS变量
 
 #### Position
 
+相对定位偏移占原空间、绝对定位偏移不占原空间
+绝对定位依赖最近的相对定位（没有就相对页面根元素）
+
+定位
+- 相对定位
+- 绝对定位
+- 固定定位：相对根元素
+- 粘性定位
+
+
+z-index: 数值越大越在上面（动态调整实现切换效果）
+
+
 
 #### Flex
+
+弹性布局
 
 
 
 #### Grid
 
+栅格布局
+
+基于栅格线、栅格区域名称定位
+和flex弹性布局公用一套排版方案：`justify-content`、`align-items`
+
+
+可对栅格线自定义命名
+![CSS栅格布局命名](../assets/CSS栅格布局命名.png)
 
 
 
-#### Gradients
-
-渐变
 
 
 ### Animation
+
+动画
+
+
+
+#### Transition
+
+过渡
 
 
 ### 3D transforms
@@ -265,6 +334,10 @@ CSS变量
 ### Filter
 
 滤镜
+
+#### Gradients
+
+渐变
 
 
 ### SVG
