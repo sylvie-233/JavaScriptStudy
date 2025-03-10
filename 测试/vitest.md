@@ -9,6 +9,24 @@ js、ts测试框架，vite同作者
 
 测试文件`.test.ts、.spec.ts`、测试套件`describe()`、测试用例`it()、test()`、断言`expect()`、模拟`mock()`
 
+对于路径别名、tsconfig.json、vitest.config.ts中都要配置和包含
+
+
+vscode中调试vitest：launch.json
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug Vitest",
+            "runtimeExecutable": "vitest",
+            "console": "integratedTerminal",
+          }
+    ]
+}
+```
 
 
 ### vitest
@@ -29,7 +47,10 @@ vitest: # 默认监听
 ```yaml
 vitest.config.ts:
     test:
-
+        alias: # 路径别名
+        environment: # 测试环境配置
+        globals: # 使用全局测试方法
+        include: # 测试文件包含
 ```
 
 
@@ -42,12 +63,12 @@ vitest:
         mergeConfig(): # 合并配置文件
     assert:
         equal():       
-    describe():
+    describe(): # 测试模块分组
         concurrent():
-    expect(): # 值判断
+    expect(): # 测试断言
         toBe(): # 相等判断
         toMatchSnapshot():
-    it():
+    it(): # 测试用例
         concurrent(): # 并发运行测试
     test(): # 测试用例
 ```

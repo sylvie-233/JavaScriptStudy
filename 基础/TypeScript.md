@@ -3,10 +3,14 @@
 >
 >``
 >
->`小满TypeScript教程：P10`
->
 
 ## 基础介绍
+
+
+
+调试typescript先执行tsc编译且开启sourceMap
+
+
 
 ### tsc
 ```yaml
@@ -16,22 +20,40 @@ tsc:
     -m: # 指定模块版本信息
     -p: # 指定配置文件
     -v: # 版本
-    -w:  # 监听文件
+    -w: # 监听文件
+    --build:
+    --clean:
     --declaraion: # 生成声明文件
+    --excludeFiles: # 排除编译文件
     --help:
     --init: # 初始化项目，生成配置文件tsconfig.json
-    --watch:
+    --module: # 指定生成的js模块系统
+    --outDir: # 指定js编译输出目录
+    --sourceMap: # 生成.map调试文件
+    --strict: # 严格模式
+    --target: # 指定编译的es版本
+    --watch: # 开启监视模式
 ```
 
 typescript编译命令
+
+#### ts-node
+```yaml
+ts-node:
+
+```
+
+支持直接运行typescript的node
 
 
 #### tsconfig.json
 ```yaml
 tsconfig.json:
-    compilerOptions: 
+    compilerOptions: # 编译选项
         allowJs: # 编译js文件
-        declaration: # 编译生成声明文件
+        declaration: # 编译生成.d.ts声明文件
+        emitDecoratorMetadata:
+        experimentalDecorators:
         lib: # 使用的内置库
             DOM:
             ES2015:
@@ -42,14 +64,15 @@ tsconfig.json:
         noUnusedLocals: # 未使用的局部变量
         outDir: # 输出目录
         rootDir: # 源码目录
-        sourceMap: # 生成SourceMap文件
+        skipLibCheck: # 跳过库文件的类型检查
+        sourceMap: # 生成SourceMap调试映射文件，调试时开启
         strict: # 严格模式
         strictNullChecks: # 空类型检查
         target: # 编译的JS目标版本
             :es5:
     exclude: # 排除编译文件
     fils: # 包含编译文件
-    include: # 包含编译文件
+    include: # 指定编译文件
 ```
 
 
@@ -74,15 +97,37 @@ TypeScript:
         fill(): # 填充
         push():
         reduce():
+    Map:
+        get():
+        set():
+    Math:
     Number:
     Date:
     Error: # 异常
     IArguments: # 函数arguments对象
     Object: # 对象
-    ReadonlyArray: # 只读数组
-    RegExp:
+        getOwnPropertyNames():
+        getOwnPropertySymbols():
+        keys():
     Promise:
+    Proxy:
+    ReadonlyArray: # 只读数组
+    Reflect: # 反射
+        ownKeys():
+    RegExp:
+    Set: # 集合
+        add():
+        clear():
+        delete():
+        has():
+    Symbol: # 唯一符号
+        iterator: # 迭代器
+        for():
     Tuple: # 元组（固定元素的数组）
+    WeakMap:
+    WeakSet:
+    fetch():
+    import():
 
 BOM:
     Location:
@@ -116,6 +161,7 @@ DataTypes:
     number: 
     object: # 非原始类型
     string:
+    symbol: # 唯一符号
     undefined:
     unknown: # 顶层类型
     void: # 空类型
@@ -124,6 +170,7 @@ DataTypes:
     Infinity: # 无穷大
     NaN: # 非数字类型
     Object: # 顶层基类
+    Symbol:
 
 Utility Types: # 工具类型
     Awaited: # Awaited<T>	获取 Promise<T> 解析后的类型
@@ -152,7 +199,7 @@ Utility Types: # 工具类型
 ts能进行自动类型推断
 enum枚举
 interface、type自定义数据类型
-支持联合数据类型、交叉数据类型(合并)
+支持联合数据类型|、交叉数据类型&(合并)
 
 
 
@@ -181,7 +228,7 @@ let arr1: number[] = [1, 2, 3];
 
 动态数组
 
-`...`扩展运算符
+`...`扩展运算符（底层基于iterator迭代器实现）
 
 
 #### Tuple
@@ -206,7 +253,9 @@ let tuple: [string, number] = ["Alice", 25];
 #### Enum
 
 枚举
+const常量枚举
 
+可通过索引获取key
 
 
 #### Utility Types
@@ -232,12 +281,27 @@ Control Flow:
         super: # 父类实例引用
         this: # 自身实例引用
     const: # 常量
-    infer: # 类型推断
+    declare: # 声明文件
+        class:
+        const:
+        enum:
+        function:
+        global: # 扩展全局作用域
+        interface:
+        let:
+        module: # 声明模块
+        namespace:
+        type: # 声明类型别名
+        var:
+    enum: # 枚举
+    infer: # 泛型参数推导（常配合extends使用）
     instanceof: # 实例判断（关键字）
     let: # 局部变量
     keyof: # 获取键（关键字）
     readonly: # 只读属性
+    type: # 定义类型别名
     typeof: # 获取变量类型（关键字）
+    for ... of ...: # 迭代器遍历
 ```
 
 
@@ -255,12 +319,36 @@ Function
 支持默认参数、可选参数、变长参数
 可进行函数重载、声明可有多个，实现只能有一个
 
+支持类型守卫
+
+
+
+#### Generator
+
+生成器
+
+
+#### Generics
+
+泛型
+
+泛型约束：`<T extends K>`
+可利用`keyof`进行遍历
 
 
 
 ### 面向对象
 
+实例、函数(构造函数)、原型对象、原型链`__proto__`、null
+实例和构造函数都指向原型对象、原型对象默认只有一个constructor指向构造函数
+![JavaScript原型链](../assets/JavaScript原型链.png)
+
+
 成员函数第一个参数可为`this`，用于自身实例的引用
+
+`constructor`：定义构造方法
+`this`：自身实例引用
+`super`：父类实例引用
 
 
 
@@ -278,10 +366,10 @@ Function
 重名接口声明，属性复合
 接口继承`extends`
 
-##### 索引签名
+##### Index Signature
 
 
-##### 函数签名
+##### Function Signature
 
 
 #### Decorators
@@ -322,6 +410,7 @@ MethodDecorator:
 ##### ParameterDecorator
 
 方法参数装饰器：`(target, propertyKey, parameterIndex)`
+方法原型对象，方法名，参数索引 
 
 
 
@@ -362,7 +451,14 @@ declare global {} // 用于在全局作用域中声明
 - namespace: 定义命名空间
 - import/export: 模块导入导出
 
-`/// <reference path="..." />`：引入声明文件依赖@types
 `.d.ts`：类型声明文件，为现有的javascript库提供类型注解
+`/// <reference path="..." />`：引入声明文件依赖@types
+
+声明文件放置位置：
+- node_modules/@types
+- tsconfig.json中的typeRoots、include、files
+- 和原文件放置在一起
+- 手动import引入
+- /// <reference path="..." /> 三斜杠指令手动引入声明文件
 
 

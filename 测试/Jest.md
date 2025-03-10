@@ -7,6 +7,9 @@
 
 javascript测试库
 
+`ts-jest`：支持typescript测试
+
+
 测试文件`.test.js`、测试套件`describe()`、测试用例`it()、test()`、断言`expect()`、模拟`mock()`
 
 `.test.js`测试文件
@@ -15,7 +18,20 @@ javascript测试库
 ### Jest
 ```yaml
 jest:
+    --coverage:
     --watch: # 监听文件变化
+```
+
+
+#### jest.config.js
+```yaml
+jest.config.js:
+    globals:
+    preset: # 环境预设
+        ts-jest:
+    testEnvironment: # 测试环境
+        node:
+    transform: # 文件转换，Jest默认只支持js，支持ts（'^.+\\.ts$': 'ts-jest'）
 ```
 
 
@@ -24,13 +40,14 @@ jest:
 jest:
     globals: # @jest/globals
         jest:
+            mock():
         afterAll():
         afterEach():
         beforeAll():
         beforeEach():
-        describe():
+        describe(): # 测试模块
             each():
-        expect():
+        expect(): # 测试断言、测试值传递
             not:
             rejects:
             resolves:
@@ -48,9 +65,10 @@ jest:
             toHaveBeenCalledWith():
             toMatch():
             toStrictEqual():
-        test():
+        test(): # 测试函数
             each():
     Config:
         automock:
     fn():
+        mockResolvedValueOnce():
 ```
