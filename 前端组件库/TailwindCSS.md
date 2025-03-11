@@ -38,9 +38,14 @@
 ### tailwindcss
 ```yaml
 tailwindcss:
-    --watch: 监听（实时编译）
-    init: 初始化
+    -i: # 输入文件（先根据配置文件进行扫描）
+    -o: # 输出文件
+    --watch: # 监听、实时编译
+    init: # 生成配置文件
 ```
+
+
+tailwindcss扫描编译器
 
 
 
@@ -49,8 +54,10 @@ tailwindcss:
 #### tailwind.config.js
 ```yaml
 tailwind.config.js:
-    content:
-    plugins:
+    content: # 扫描使用tailwindcss的文件
+    dartMode:
+    plugins: # 插件
+    presets:
     theme:
         extend:
 ```
@@ -66,13 +73,6 @@ tailwind.config.js:
 ## 核心内容
 ```yaml
 tailwindcss:
-    Config:
-        content:
-        theme:
-            extend:
-        plugins:
-
-utility-class:
     variants: # 前缀条件状态查询
         @lg:
         @md: # 容器宽度条件 @container标注容器
@@ -117,12 +117,47 @@ utility-class:
         selection: # ::selection
         sm:
     @container: # 标注容器
+    bg:
+        blue: # 背景颜色
+            700:
+    block:
+    columns:
+    duration:
+    flex:
+        col:
+    font:
+    gap:
+    h:
+        screen:
+    hidden:
+    items:
+        center:
+    ml:
+    mx:
+        auto:
+    p:
+        5: # 内边距
+    px:
+    py:
+    outline:
+        none:
+    rounded: # 圆角
+        full:
+    scale:
+    text:
+        4xl: # 字体大小
+        center: # 文本居中
+        while: # 白色
+    translate:
+        x:
+    underline:
+    w:
+        1/2: # 一半宽度
 ```
 
 
 
 ### Layout
-
 ```yaml
 :
     absolute:
@@ -150,7 +185,6 @@ utility-class:
 ```
 
 ### Flexbox & Grid
-
 ```yaml
 :
     flex-1:
@@ -161,7 +195,6 @@ utility-class:
 ```
 
 ### Spacing
-
 ```yaml
 :
     m-0:
@@ -176,7 +209,6 @@ utility-class:
 ```
 
 ### Sizing
-
 ```yaml
 :
     h-44:
@@ -186,7 +218,6 @@ utility-class:
 ```
 
 ### Typography
-
 ```yaml
 :
     align-top:
@@ -202,7 +233,6 @@ utility-class:
 
 
 ### Backgrounds
-
 ```yaml
 :
     bg-black:
@@ -212,7 +242,6 @@ utility-class:
 ```
 
 ### Borders
-
 ```yaml
 :
     border:
@@ -220,7 +249,6 @@ utility-class:
 ```
 
 ### Effects
-
 ```yaml
 :
     opacity-0:
@@ -229,35 +257,30 @@ utility-class:
 ```
 
 ### Filters
-
 ```yaml
 :
     blue:
 ```
 
 ### Tables
-
 ```yaml
 :
     border-collapse:
 ```
 
 ### Transitions & Animation
-
 ```yaml
 :
     transition:
 ```
 
 ### Transforms
-
 ```yaml
 :
     scale-0:
 ```
 
 ### Interactivity
-
 ```yaml
 :
    cursor-pointer: 
@@ -396,4 +419,4 @@ TailwinCSS@指令
 
 
 
-## Components
+### Components

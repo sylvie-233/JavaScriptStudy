@@ -7,7 +7,14 @@
 ### pnpm
 ```yaml
 pnpm:
-
+    add:
+    env:
+    exec:
+    init:
+    patch:
+    store:
+        path:
+        status:
 ```
 
 

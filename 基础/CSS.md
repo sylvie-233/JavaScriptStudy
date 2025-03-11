@@ -1,6 +1,6 @@
 # CSS
 
-`向军大叔CSS3教程：P152`
+`向军大叔CSS3教程：P194`
 
 ## 基础介绍
 
@@ -25,6 +25,7 @@ CSS3:
     align-items: # 弹性侧轴排列
         stretch:
     align-self: # 自身弹性侧轴排列
+    backface-visibility:
     background:
         no-repeat:
         linear-gradient(): # 线性渐变
@@ -81,6 +82,7 @@ CSS3:
     empty-cells: # 空表格单元格处理
         hide:
     filter: # 滤镜
+        blur():
         grayscale():
     fit-object:
     flex: # 弹性占比
@@ -162,13 +164,21 @@ CSS3:
     top: # 定位顶部位置
     transform: # 变换
         perspective(): # 透视
+        rotate(): # X旋转
+        rotate3d(): # X旋转
         rotateX(): # X旋转
         scale(): # 缩放
+        scale3d(): # 缩放
         skewX(): # 斜切
+        translate():
+        translate3d():
         translateY(): # Y平移
     transform-origin: # 变换锚点
         bottom:
+    transform-style: # 变换样式
+        preserve-3d:
     transition: # 过渡
+        s:
     vertical-align: # 内容垂直对齐
     visibility: # 元素可见性
         hidden:
@@ -319,7 +329,10 @@ z-index: 数值越大越在上面（动态调整实现切换效果）
 过渡
 
 
-### 3D transforms
+### transforms
+
+
+#### 3D
 
 
 ### Media Query
