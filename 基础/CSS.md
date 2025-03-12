@@ -1,6 +1,6 @@
 # CSS
 
-`向军大叔CSS3教程：P194`
+`向军大叔CSS3教程：P219`
 
 ## 基础介绍
 
@@ -15,6 +15,9 @@ CSS3:
             url():
     @import: # 导入css文件
         url(): 
+    @keyframe: # 定义帧动画
+        from:
+        to:
     @media: # 媒体查询 
     :hover:
     ::after:
@@ -25,6 +28,13 @@ CSS3:
     align-items: # 弹性侧轴排列
         stretch:
     align-self: # 自身弹性侧轴排列
+    animation-delay: # 帧动画延迟
+    animation-duration: # 帧动画持续时间
+    animation-fill-mode: # 帧动画应用模式
+        forwards: # 保持结束状态
+    animation-iteration-count: # 动画执行次数
+        infinite:
+    animation-name: # 使用帧动画
     backface-visibility:
     background:
         no-repeat:
@@ -179,6 +189,14 @@ CSS3:
         preserve-3d:
     transition: # 过渡
         s:
+    transition-duration: # 过渡时间控制
+    transition-delay: # 过渡时间延时
+    transition-property: # 过渡属性控制
+    transition-timing-function: # 过渡函数
+        ease:
+        linear:
+        cubic-bezier():
+        steps():
     vertical-align: # 内容垂直对齐
     visibility: # 元素可见性
         hidden:
@@ -331,8 +349,13 @@ z-index: 数值越大越在上面（动态调整实现切换效果）
 
 ### transforms
 
+变换
+
 
 #### 3D
+
+3D变换
+
 
 
 ### Media Query
