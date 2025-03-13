@@ -1,6 +1,6 @@
 # CSS
 
-`向军大叔CSS3教程：P219`
+`向军大叔CSS3教程：P239`
 
 ## 基础介绍
 
@@ -28,12 +28,21 @@ CSS3:
     align-items: # 弹性侧轴排列
         stretch:
     align-self: # 自身弹性侧轴排列
+    animation: # 帧动画
     animation-delay: # 帧动画延迟
+    animation-direction: # 帧动画方向
+        alternate:
     animation-duration: # 帧动画持续时间
     animation-fill-mode: # 帧动画应用模式
         forwards: # 保持结束状态
     animation-iteration-count: # 动画执行次数
         infinite:
+    animation-play-state: # 动画执行状态
+        paused:
+    animation-timing-function: # 动画执行动作函数
+        ease:
+        ease-in:
+        steps():
     animation-name: # 使用帧动画
     backface-visibility:
     background:
