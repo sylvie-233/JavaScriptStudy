@@ -1,6 +1,6 @@
 # CSS
 
-`向军大叔CSS3教程：P239`
+``
 
 ## 基础介绍
 
@@ -13,12 +13,20 @@ CSS3:
         src: # 字体文件
             format():
             url():
-    @import: # 导入css文件
+    @import: # 导入css文件，导入时也支持媒体查询
         url(): 
     @keyframe: # 定义帧动画
         from:
         to:
     @media: # 媒体查询 
+        ,: # 布尔 ||
+        and: # 布尔 &&
+            max-width:
+            orientation: # 方向
+                landscape:
+        not: # 布尔 !
+        only:
+        screen: # 媒体 屏幕
     :hover:
     ::after:
     ::before:
@@ -375,6 +383,10 @@ z-index: 数值越大越在上面（动态调整实现切换效果）
 ```
 
 媒体查询
+- <style media>
+- @import
+- @meida
+
 
 ### Filter
 
