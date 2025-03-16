@@ -3,7 +3,7 @@
 
 `Vite世界指南：P1`
 `Vite官方中文文档：https://vitejs.cn/vite3-cn/`
-`Vite.js快速入门到精通：P27`
+`Vite.js快速入门到精通：P29`
 
 
 
