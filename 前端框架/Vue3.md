@@ -46,9 +46,12 @@ vue:
         use(): # 使用中间件
     RefImpl:
         value: # 代理数据
+    VNodeTypes:
     computed(): # 计算属性
     createApp(): # 创建应用
+    createVNode(): # 创建虚拟节点
     customRef(): # 自定义ref（传入回调函数，返回对象重写get、set，），(get调用track, set调用trigger)
+    defineComponent():
     defineEmits(): # 自定义事件
     defineExpose(): # 组件ref导出定义
     defineProps(): # 定义组件属性

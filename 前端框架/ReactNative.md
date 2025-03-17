@@ -1,6 +1,6 @@
 # ReactNative
 
-`react native入门到实战：P5`
+`react native入门到实战：P7`
 
 ## 基础介绍
 
@@ -137,6 +137,8 @@ react-native:
             onPress:
             text:
     Animated: # 动画组件
+    AppRegistry:
+        registerComponent(): # 主页面组件注册
     Button: # 按钮组件
         title:
         onPress:
@@ -192,15 +194,15 @@ react-native:
         backgroundColor:
         barStyle:
         hidden:
-    StyleSheet:
+    StyleSheet: # css样式
         create():
-    Text:
+    Text: # <p>
         style:
     TextInput:
         multlineText:
         onChange:
         value:
-    View:
+    View: # <div>
         style:
     useWindowDimensions():
 
@@ -242,6 +244,7 @@ react-native:
 
 ### 组件
 ```yaml
+内置组件:
 
 ```
 
@@ -271,6 +274,10 @@ Event:
 ##### StyleSheet
 
 样式组件，不能直接使用CSS
+组件样式不具有继承性、可传递多个对象
+
+
+
 
 
 #### 自定义组件

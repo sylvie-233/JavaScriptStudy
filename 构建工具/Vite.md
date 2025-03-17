@@ -3,7 +3,7 @@
 
 `Vite世界指南：P1`
 `Vite官方中文文档：https://vitejs.cn/vite3-cn/`
-`Vite.js快速入门到精通：P29`
+`Vite.js快速入门到精通：P48`
 
 
 
@@ -121,12 +121,28 @@ postcss.config.js:
 ```yaml
 import.meta:
     hot: # 热更新
+        data:
+            cache:
         accept():
             newModule:
+        decline():
+        dispose():
+        invalidate():
     glob(): # 多文件匹配
     globEager():
 
 vite:
+    Plugin:
+        enforce:
+        name:
+        buildStart():
+        config():
+        configResolved():
+        configureServer():
+        handleHotUpdate():
+        load():
+        resolveId():
+        transformIndexHtml():
     createServer():
         server:
             middlewareMode:
@@ -148,4 +164,7 @@ vite-plugin-vue2:
 
 ### 插件
 
-
+生命周期：
+1. pre:
+2. normal:
+3. post:
