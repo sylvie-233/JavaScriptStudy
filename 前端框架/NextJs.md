@@ -1,17 +1,17 @@
 # Next.js
 
 >
->`Next.js官方文档：https://nextjs.org/docs`
->
->
->
+>`Next.js官方文档：https://nextjs.org/docs/app`
 >``
 >
 
 ## 基础介绍
 
-
 React服务端实现
+- SSG: 静态站点生成
+- ISR: 增量静态生成
+- SSR: 服务端渲染
+- API: api接口
 
 
 `page.tsx`、`route.tsx`
@@ -22,11 +22,6 @@ React服务端实现
 - action：后端服务方法Service
 
 
-
-
-
-- SSG: 静态站点生成
-- ISR: 增量静态生成
 
 
 核心功能：
@@ -58,29 +53,6 @@ React服务端实现
 
 自动图象、字体优化
 
-
-### next
-
-```yaml
-next:
-    build:
-    dev:
-    lint:
-    start:
-```
-
-
-#### create-next-app
-```yaml
-create-next-app: # next脚手架
-    --typescript:
-```
-
-next脚手架
-
-
-
-
 ### 项目结构
 ```yaml
 项目结构:
@@ -89,7 +61,9 @@ next脚手架
         /server:
         /static:
         /types:
+        build-manifest.json:
         package.json:
+        trace:
     /public: # 静态资源目录
     /src:
         /app: # 前端路由页面
@@ -118,6 +92,24 @@ next脚手架
                 dynamic: # 动态页面配置
                 revalidate: # 页面重新验证刷新时间
                 generateMetadata(): # 动态生成页面元信息
+                getInitialProps(): # 
+                getServerSideProps(): # SSR服务渲染页面 props
+                    context:
+                        params:
+                        query:
+                        req:
+                        res:
+                            setHeader():
+                        resolvedUrl:
+                    ---
+                getStaticPaths(): # 静态页面渲染组件 path params
+                    ---
+                    fallback:
+                    paths:
+                getStaticProps(): # 静态页面渲染组件 props
+                    ---
+                    props:
+                    revalidate:
                 ---
                 params: # 页面参数
                 searchParams:
@@ -137,13 +129,50 @@ next脚手架
     tsconfig.json:
 ```
 
-## 核心内容
+
+### next
 
 ```yaml
 next:
+    build: # 构建
+    dev: # 开发
+    export: # 静态页面生成
+    lint:
+    start: # 生产运行
+```
+
+
+#### create-next-app
+```yaml
+create-next-app: # next脚手架
+    --typescript:
+```
+
+next脚手架
+
+
+#### next.config.js
+```yaml
+next.config.js:
+
+```
+
+next项目配置
+
+
+
+## 核心内容
+```yaml
+next:
+    document: # nextjs页面结构组件
+        Html:
+        Head:
+        Main:
     font:
         google:
             Inter:
+    head:
+        Head: # Head组件，可用于设置metadata元信息
     headers:
         cookies(): # 请求头中的Cookie
         headers():
@@ -161,6 +190,8 @@ next:
         userPathname(): # 获取url path（仅客户端组件）
         useRouter(): # 路由器、路由跳转（仅客户端组件）
             ---
+            isFallback:
+            query: # Query参数
             back():
             forward():
             push():
@@ -168,6 +199,8 @@ next:
             replace(): 
         useSearchParams():
         useServerInsertedHTML():
+    router:
+        useRouter():
     server:
         NextRequest:
             cookies:
@@ -182,6 +215,7 @@ next:
             next():
             redirect(): # 重定向
             rewrite():
+    AppProps:
     Headers:
     Request:
         json():
@@ -193,6 +227,12 @@ next:
             default:
             template: # 多级metadata嵌套模板字符串
         description: # 页面描述
+    NextApiRequest:
+        method:
+        query:
+    NextApiResponse:
+        json():
+        status():
     NextConfig: # next项目配置
         compiler:
             styledComponents:
@@ -201,10 +241,14 @@ next:
         sassOptions:
             additionalData:
 react: # React全局对象
+    FC: # 函数式组件
     FormEvent:
+    PropsWithChildren:
+    ReactElement:
     ReactNode: # jsx组件
     Suspense:
         fallback:
+    memo():
     startTransition():
     use(): # 使用异步参数
     useState():
@@ -231,7 +275,23 @@ next-safe-action: # next api 自调用
         ---
         status:
         execute():
+@tanstack:
+    react-query:
+        QueryClient:
+        QueryClientProvider:
+            client:
+        useQuery():
+            queryFn:
+            queryKey:
+    react-query-devtools:
+        ReactQueryDevtools:
+react-content-loader:
 react-hook-form:
+zustand:
+    middleware:
+        devtools():
+        persist():
+    create():
 ```
 
 
@@ -417,6 +477,8 @@ export const config = {
 
 
 ### Deploy
+
+#### Vercel
 
 
 
