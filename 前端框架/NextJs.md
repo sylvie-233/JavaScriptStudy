@@ -70,26 +70,32 @@ React服务端实现
             /xxx:
             /(xxx): # 路由分组 无实际url
             /_xxx: # 私有文件夹
+            /(..)xxx: # 路由拦截
+            /@xxx: # 并行命名路由、插槽路由
+                default.tsx: # 默认插槽页面
             /api:
                 /xxx:
                 route.tsx:
-                    Response:
-                        json:
+                    dynamic:
+                    fetchCache:
+                    revalidate: 
                     GET():
             default.tsx: # 默认插槽页面
             error.tsx: # 异常页面
                 error:
                     message:
                 reset():
-            favicon.ico:
+            favicon.ico: # 网站icon
             globals.css: # 全局CSS
             layout.tsx: # 主布局页面
                 metadata: # 页面元信息
                 ---
                 children: # 子组件渲染
             loading.tsx: # 加载页面
+            not-found.tsx: # 缺省页面
             page.tsx: # 入口页面
                 dynamic: # 动态页面配置
+                metadata: # 页面元数据
                 revalidate: # 页面重新验证刷新时间
                 generateMetadata(): # 动态生成页面元信息
                 getInitialProps(): # 
@@ -154,7 +160,12 @@ next脚手架
 #### next.config.js
 ```yaml
 next.config.js:
-
+    images:
+        remotePatterns:
+            hostname:
+            pathname:
+            port:
+    reactStrictMode:
 ```
 
 next项目配置
@@ -171,6 +182,8 @@ next:
     font:
         google:
             Inter:
+        local:
+            localFont: # 本地字体加载
     head:
         Head: # Head组件，可用于设置metadata元信息
     headers:
@@ -180,6 +193,7 @@ next:
         Image: # 图片组件
             alt:
             src:
+        StaticImageData:
     link:
         Link: # 页面跳转组件
             href:
@@ -202,26 +216,27 @@ next:
     router:
         useRouter():
     server:
-        NextRequest:
+        NextRequest: # api请求
             cookies:
             headers:
             nextUrl:
                 pathname:
                 searchParams:
             url:
-        NextResponse:
+        NextResponse: # api响应
             cookies:
             headers:
+            json():
             next():
             redirect(): # 重定向
-            rewrite():
+            rewrite(): # 重写、请求转发
     AppProps:
     Headers:
     Request:
         json():
     Response:
         json():
-    Metadata: # 页面源信息
+    Metadata: # 页面元信息
         title: # 页面标题
             absolute:
             default:
@@ -268,6 +283,7 @@ next-auth:
         signIn():
         signOut():
     Session:
+next-connect: # 中间件串联
 next-safe-action: # next api 自调用
     createSafeActionClient():
     useAction():
@@ -387,14 +403,15 @@ Suspense占位组件：可实现延迟加载
 
 #### Layout
 
-实现内部React-Router效果
-
+实现内部React-Router效果、路由切换时会保存状态
 layout.tsx可嵌套
 
 
 #### Template
 
+效果和Layout一样
 
+路由切换时，Layout会保存状态，而Template不会
 
 
 #### Styling

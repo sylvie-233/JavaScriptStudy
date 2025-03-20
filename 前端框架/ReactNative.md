@@ -6,13 +6,31 @@
 
 React移动端解决方案
 
-
+`create-expo-app`expo项目脚手架
 
 ### 目录结构
 ```yaml
 expo项目:
-
+    /app:
+    /assets:
+    /components:
+    /constants:
+    /hooks:
+    /node_modules:
+    /scripts:
+    app.json:
+    babel.config.js:
+    metro.config.js:
+    package.json:
+    tailwind.config.js:
+    tsconfig.json:
 ```
+
+
+
+
+
+
 
 #### app.json
 ```yaml
@@ -57,6 +75,11 @@ app.json:
 #### app.config.js
 
 app.json的js配置版本
+
+
+#### metro.config.js
+
+
 
 
 #### eas.json
@@ -124,7 +147,27 @@ eas:
 
 ## 核心内容
 ```yaml
+expo:
+    metro-config:
+        getDefaultConfig():
 expo-constants:
+expo-font:
+expo-router:
+    Link:
+    Slot: # layout子组件插槽
+    Stack: # 路由视图容器
+        Screen: # 视图页面定义
+            name:
+            options: 
+    router:
+    useRouter():
+        params:
+        pathname:
+        query:
+        back():
+        push():
+expo-splash-screen:
+    SplashScreen:
 expo-status-bar:
     StatusBar:
 
@@ -205,7 +248,6 @@ react-native:
     View: # <div>
         style:
     useWindowDimensions():
-
 @react-navigation
     bottom-tabs:
         createBottomTabNavigator():
@@ -215,8 +257,12 @@ react-native:
         createDrawerNavigator():
             Navigator:
             Screen:
+    material-top-tabs:
     native:
+        DartTheme:
+        DefaultTheme:
         NavigationContainer:
+        ThemeProvider:
         useNavigation(): # 编程式导航
             navigate():
     native-stack:
@@ -367,3 +413,18 @@ NavigationContainer -> Navigator -> Screen(可嵌套Navigator)
 
 
 #### NativeModules
+
+
+
+## Expo
+
+
+### Router
+```yaml
+Component: # 视图组件配置
+    navigationOptions:
+```
+
+基于文件目录结构的路由，类似nextjs的路由管理
+支持动态路由、_layout布局
+
