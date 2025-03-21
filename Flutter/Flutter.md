@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-`Flutter移动应用：P11`
+`Flutter移动应用：P33`
 
 
 ## 基础介绍
@@ -99,27 +99,86 @@ flutter:
 
 ## 核心内容
 ```yaml
+dart:
+    ui:
+        ColorFilter:
+        FontWeight:
+        TextDecoration:
 flutter:
     animation:
     cupertinto:
     foundation:
+        debugPrint():
     gestures:
     material: # 组件库
-    painting:
+        AppBar:
+            bottom:
+        BottomNavigationBar:
+        CircleAvatar:
+        Colors:
+        DefaultTabController:
+        Drawer:
+        DrawerHeader:
+        IconButton:
+        Icons:
+        ListTile:
+        MaterialApp: # 核心组件
+            home:
+            theme:
+        Scaffold: # 脚手架组件
+            appBar:
+            body:
+            bottomNavigationBar:
+            drawer:
+            endDrawer:
+        Tab:
+        TabBarView:
+        ThemeData:
+        UserAccountsDrawerHeader:
+    painting: # 样式库
+        BoxDecoration:
+        BoxFit:
+        DecorationImage:
+        EdgeInsets:
+        NetworkImage:
+        TextStyle:
     physics:
     rendering:
     scheduler:
     semantics:
     services:
     widgets: # 控件库
+        BottomNavigationBarItem:
         BuildContext:
+        Center: # 居中
+        Column: # 垂直排列
+        Container: # 容器
+        Icon: # 图标
+        Image: # 图片
+        ListView: # 列表视图
+            build():
+                itemBuilder:
+                itemCount:
+        Navigator: # 路由器
+            pop():
+        SizedBox:
+        State: # 状态 
+            build():
         StatefulWidget: # 有状态组件基类
+            createState():
+            setState():
         StatelessWidget: # 无状态组件基类
+            build():
+        Text: # 文本
+        Widget: # 控件基类
+        runApp(): # 主程序运行
 ```
 
 
 ### 组件
 
 
+### StatefulWidget
 
+自定义状态组件
 
