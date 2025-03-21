@@ -40,6 +40,7 @@
 tailwindcss:
     -i: # 输入文件（先根据配置文件进行扫描）
     -o: # 输出文件
+    --minify:
     --watch: # 监听、实时编译
     init: # 生成配置文件
 ```
@@ -55,11 +56,17 @@ tailwindcss扫描编译器
 ```yaml
 tailwind.config.js:
     content: # 扫描使用tailwindcss的文件
-    dartMode:
+    dartMode: # 黑暗模式
     plugins: # 插件
     presets:
-    theme:
-        extend:
+    theme: # 主题
+        extend: # 自定义样式扩展
+            borderRadius:
+            color:
+            spacing:
+        screens:
+            sm:
+            xs:
 ```
 
 
@@ -289,6 +296,16 @@ tailwindcss:
 
 
 ## 核心概念
+```yaml
+tailwindcss/plugin:
+    plugin():
+        addBase(): # 添加基础css类
+        addComponents(): # 添加组件类
+        addUtilities(): # 添加工具类
+        addVariant(): # 添加变体
+        theme(): # 获取theme配置
+```
+
 
 ### CSS Directive
 
@@ -342,7 +359,6 @@ TailwinCSS@指令
 
 #### @layer
 
-
 过时指令、用于在特定功能模块自定义属性
 
 
@@ -393,6 +409,45 @@ TailwinCSS@指令
 
 样式状态支持父类查询group、同类查询peer
 
+#### Group
+```jsx
+<div class="group p-4 border">
+  <p class="group-hover:text-red-500">鼠标悬停时，我会变红！</p>
+</div>
+
+/**
+ * group 放在父元素（div）。
+ * group-hover:text-red-500 让 子元素 在 父元素 hover 时 变红。
+ */
+```
+
+group允许父元素的状态（如hover、focus）影响子元素的样式
+- group-active:
+- group-focus:
+- group-hover:
+
+
+#### Peer
+```jsx
+<input type="checkbox" id="toggle" class="peer hidden">
+<label for="toggle" class="peer-checked:bg-green-500 p-2">点击我</label>
+```
+
+兄弟元素状态
+
+#### Has
+
+
+#### Data
+```jsx
+<button data-state="active" class="data-[state=active]:bg-green-500 p-4">
+  状态按钮
+</button>
+```
+
+利用HTML data-*属性，Tailwind提供`data-[...]`选择器
+
+
 
 #### Custom Breakpoints
 ```css
@@ -413,10 +468,38 @@ TailwinCSS@指令
 
 
 
+### Plugin
+
+自定义插件Plugin
+
+#### addBase
+
+自定义基础样式
 
 
+#### addComponents
 
+添加组件
 
+#### addUtilities
 
+添加工具类
 
-### Components
+#### addVariant
+```jsx
+// 应用插件
+module.exports = {
+  plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant("disabled", "&:disabled");
+    }),
+  ],
+};
+
+// 使用变体
+<button class="disabled:bg-gray-400" disabled>
+  禁用按钮
+</button>
+```
+添加变体
+
