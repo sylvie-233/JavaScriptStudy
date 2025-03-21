@@ -1,6 +1,6 @@
 # ReactNative
 
-`react native入门到实战：P7`
+`react native入门到实战：P21`
 
 ## 基础介绍
 
@@ -147,45 +147,25 @@ eas:
 
 ## 核心内容
 ```yaml
-expo:
-    metro-config:
-        getDefaultConfig():
-expo-constants:
-expo-font:
-expo-router:
-    Link:
-    Slot: # layout子组件插槽
-    Stack: # 路由视图容器
-        Screen: # 视图页面定义
-            name:
-            options: 
-    router:
-    useRouter():
-        params:
-        pathname:
-        query:
-        back():
-        push():
-expo-splash-screen:
-    SplashScreen:
-expo-status-bar:
-    StatusBar:
-
+react:
+    Component: # 类组件
 react-native:
-    ActiveIndicator:
+    ActiveIndicator: # 加载指示器
         animating:
+        color:
         size:
     Alert: # 提示框
-        alert():
-            onPress:
+        alert(): # 可设置多个item
+            onPress: # 点击事件
+            style:
             text:
-    Animated: # 动画组件
+    Animated: # 动画
     AppRegistry:
         registerComponent(): # 主页面组件注册
-    Button: # 按钮组件
+    Button: # 按钮
         title:
         onPress:
-    Dimensions: # 动态尺寸
+    Dimensions: # 动态尺寸、媒体查询 
         addEventListener():
             change:
         get():
@@ -193,15 +173,21 @@ react-native:
             window:
                 height:
                 width:
-    FlatList: # 列表渲染
-        data:
+    FlatList: # 高性能列表、列表渲染
+        data: # 数据列表
+        horizontal: # 水平方向
+        initialNumberToRender:
+        initialScrollIndex:
         ItemSeparatorComponent:
         ListEmptyComponent:
         ListFooterComponent:
         ListHeaderComponent:
-        keyExtractor:
-        renderItem:
-    Image: # 图像
+        numColumns:
+        keyExtractor: # key生成
+        onEndReached:
+        onRefresh:
+        renderItem: # 渲染函数
+    Image: # 图片
         source:
     ImageBackground:
     KeyboardAvoidingView:
@@ -214,8 +200,8 @@ react-native:
             pageSheet:
         visible:
     NativeModules:
-    Platform: # 平台查询
-        OS:
+    Platform: # 平台，媒体查询
+        OS: # 操作系统
         select():
             android:
             ios:
@@ -224,29 +210,48 @@ react-native:
         onPress:
         onPressIn:
         onPressOut:
-    SafeAreaView:
+    SafeAreaView: # 安全界面视图
     ScrollView: # 滚动视图
-    SectionList:
-        renderItem:
+        contentContainerStyle:
+        horizontal:
+    SectionList: # 分组列表、支持下拉刷新、上拉加载
+        ItemSeparatorComponent:
+        keyExtractor:
+        ListEmptyComponent:
+        ListHeaderComponent:
+        onEndReached:
+        onEndReachedThreshold:
+        onRefresh:
+        renderItem: # 渲染函数
         renderSectionHeader:
-        sections:
-    Switch:
+        sections: # 列表数据
+    Switch: # 开关按钮
         onValueChange:
+        trackColor: # 背景色
+        thumbColor: # 前景色
         value:
     StatusBar: # 状态栏
-        backgroundColor:
-        barStyle:
-        hidden:
+        backgroundColor: # 背景色
+        barStyle: # 预设样式
+        hidden: # 隐藏状态条
     StyleSheet: # css样式
         create():
     Text: # <p>
         style:
-    TextInput:
-        multlineText:
-        onChange:
+    TextInput: # 输入框
+        keyboardType:
+        multline: # 多行输入框
+        numberOfLines:
+        onChangeText: # 输入文本事件
+        placeholder:
+        secureTextEntry:
         value:
+    TouchalbeHighlight:
+    TouchalbeOpacity:
+    TouchalbeWithoutFeedback:
     View: # <div>
         style:
+    alert():
     useWindowDimensions():
 @react-navigation
     bottom-tabs:
@@ -289,10 +294,11 @@ react-native:
 
 
 ### 组件
-```yaml
-内置组件:
 
-```
+
+
+- 函数式组件
+- 类组件
 
 - 条件渲染：if
 - 列表渲染：map、FlatList
@@ -301,7 +307,7 @@ react-native:
 #### 事件机制
 ```yaml
 Event:
-    onPress:
+    onPress: # 点击事件
 ```
 
 #### 生命周期
@@ -323,10 +329,8 @@ Event:
 组件样式不具有继承性、可传递多个对象
 
 
+##### Animated
 
-
-
-#### 自定义组件
 
 
 
@@ -417,9 +421,70 @@ NavigationContainer -> Navigator -> Screen(可嵌套Navigator)
 
 
 ## Expo
+```yaml
+expo:
+    metro-config:
+        getDefaultConfig():
+expo-av:
+expo-background-fetch:
+expo-camera:
+expo-constants:
+expo-contacts:
+expo-device:
+expo-file-system: # 文件访问
+expo-font:
+expo-gl:
+expo-google-maps:
+expo-image-picker:
+expo-linking:
+expo-location:
+expo-media-library:
+expo-notifications:
+expo-permissions:
+expo-router: # 基于文件结构的约定式路由
+    Link:
+    Slot: # layout子组件插槽
+    Stack: # 路由视图容器
+        Screen: # 视图页面定义
+            name:
+            options: 
+    router:
+    useRouter():
+        params:
+        pathname:
+        query:
+        back():
+        push():
+expo-secure-store:
+expo-sensors:
+expo-sharing:
+expo-sms:
+expo-splash-screen:
+    SplashScreen:
+expo-sqlite: # sqlite数据库访问
+expo-status-bar:
+    StatusBar:
+expo-task-manager:
+```
+
+### expo-av
+
+音频播放
 
 
-### Router
+### expo-camera
+
+相机访问
+
+### expo-notifications
+
+消息通知
+
+### expo-permissions
+
+动态权限
+
+### expo-router
 ```yaml
 Component: # 视图组件配置
     navigationOptions:
