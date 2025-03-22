@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-`Flutter移动应用：P144`
+``
 
 
 ## 基础介绍
@@ -87,6 +87,7 @@ flutter:
         beta:
     create: # 创建项目
     doctor: # 环境检测
+    driver:
     emulator:
         --launch:
     emulators: # 所有模拟器
@@ -112,24 +113,48 @@ dart:
         TextAlign:
         TextDecoration:
 flutter:
-    animation:
+    animation: # 动画库
+        Animation:
+        AnimationController: # 动画控制器
+            duration:
+            addListener():
+            addStatusListener():
+            forward(): # 执行
+            reverse():
+        AnimationStatus:
+        ColorTween:
+        Tween:
     cupertinto:
     foundation:
         debugPrint():
     gestures:
     material: # 组件库
+        ActionChip: # 徽章
+            onPress:
         AlertDialog: # 警告 弹出框
         AppBar:
             bottom:
         BottomAppBar: # 底部滑动窗口
         BottomNavigationBar: # 底部导航条
         ButtonBar: # 按钮组
+        Card: # 卡片
         Checkbox: # 复选框
             onChanged:
         CheckboxListTile: # 复选框 标签
-        CircleAvatar:
+        Chip: # 徽章
+            label:
+        ChoiceChip: # 徽章
+        CircleAvatar: # 圆形头像
         Colors:
+        DataCell: # 数据单元格
+        DataColumn: # 数据列
+        DataRow: # 数据行
+            cells:
+        DataTable: # 数据表
+        DataTableSource: # 数据表 数据源
+            getRow():
         DefaultTabController:
+        Divider: # 分隔线
         Drawer:
         DrawerHeader:
         ElevatedButton: # 阴影 按钮
@@ -139,6 +164,7 @@ flutter:
             isExpanded:
         ExpansionPanelList: # 收缩面板列表
             expansionCallback:
+        FilterChip: # 徽章
         FloatingActionButton: # 浮动按钮
         IconButton:
         Icons:
@@ -150,6 +176,9 @@ flutter:
             icon:
             labelText:
         ListTile: # 列表项
+            leading:
+            subtitle:
+            title:
         Material: # Material样式
         MaterialApp: # 核心组件，携带路由
             home:
@@ -160,6 +189,7 @@ flutter:
             theme:
         MaterialPageRoute: # 路由页面
         OutlinedButton: # 边框 按钮
+        PaginatedDataTable: # 分页 数据表
         PopupMenuButton: # 弹出菜单 按钮
             itemBuilder:
             onSelected:
@@ -184,6 +214,16 @@ flutter:
             onChanged:
         SnackBar: # 底部消息提示
         SnackBarAction:
+        Step: # 具体步骤
+            content:
+            isActive:
+            subtitle:
+            title:
+        Stepper: # 步骤
+            onStepCancel:
+            onStepContinue:
+            onStepTapped:
+            steps:
         Switch: # 开关按钮
         SwitchListTile:
         Tab:
@@ -233,6 +273,7 @@ flutter:
     services:
     widgets: # 控件库
         Align:
+        AnimatedWidget:
         AspectRatio: # 宽高比
         BottomNavigationBarItem:
         BuildContext:
@@ -249,6 +290,7 @@ flutter:
         FormState: # 表单状态
             save(): # 触发 保存
             validate(): # 触发 校验
+        FutureBuilder: # Suspense
         GlobalKey: # 全局key
             currentState:
         GridView: # 网格视图
@@ -256,6 +298,7 @@ flutter:
         Icon: # 图标
         IconData: # 图标数据
         Image: # 图片
+        InheritedWidget: # Provider状态继承 控件基类
         ListView: # 列表视图
             build():
                 itemBuilder:
@@ -290,6 +333,7 @@ flutter:
             setState():
         StatelessWidget: # 无状态组件基类
             build():
+        StreamBuilder: # 流式 构造器
         Text: # 文本
         TextEditingController:
             addListener():
@@ -317,6 +361,7 @@ flutter:
 #### StatefulWidget
 
 自定义状态组件
+分2步创建、和Vue2的data()方法要求返回一个新对象是同一个原理
 
 
 
@@ -324,6 +369,23 @@ flutter:
 
 
 Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到全局的样式，也能在特定的局部区域中应用不同的主题。Theme向下传递
+
+
+#### Animation
+
+##### AnimationController
+##### AnimationStatus
+
+
+### 组件通信
+
+
+#### Prop
+
+构造函数参数传递
+
+
+#### Provider
 
 
 
