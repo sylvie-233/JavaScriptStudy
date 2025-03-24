@@ -1,7 +1,7 @@
 # Next.js
 
 >
->`Next.js官方文档：https://nextjs.org/docs/app`
+>`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/routing/parallel-routes`
 >``
 >
 
@@ -21,6 +21,12 @@ React服务端实现
 - route: 后端控制器Controller
 - action：后端服务方法Service
 
+
+
+核心依赖：
+- `next`
+- `react`
+- `react-dom`
 
 
 
@@ -70,7 +76,10 @@ React服务端实现
             /xxx:
             /(xxx): # 路由分组 无实际url
             /_xxx: # 私有文件夹
-            /(..)xxx: # 路由拦截
+            /(..)xxx: # 路由拦截，上一级
+            /[xxx]: # 动态路由
+            /[...xxx]: # 动态匹配所有路由
+            /[[...xxx]]: # 可选动态匹配所有路由
             /@xxx: # 并行命名路由、插槽路由
                 default.tsx: # 默认插槽页面
             /api:
@@ -86,6 +95,7 @@ React服务端实现
                     message:
                 reset():
             favicon.ico: # 网站icon
+            global-error.tsx:
             globals.css: # 全局CSS
             layout.tsx: # 主布局页面
                 metadata: # 页面元信息
@@ -96,8 +106,13 @@ React服务端实现
             page.tsx: # 入口页面
                 dynamic: # 动态页面配置
                 metadata: # 页面元数据
+                    description:
+                    title:
                 revalidate: # 页面重新验证刷新时间
+                generateImageMetadata():
                 generateMetadata(): # 动态生成页面元信息
+                generateSitemaps():
+                generateStaticParams(): # 生成静态path param参数
                 getInitialProps(): # 
                 getServerSideProps(): # SSR服务渲染页面 props
                     context:
@@ -107,7 +122,7 @@ React服务端实现
                         res:
                             setHeader():
                         resolvedUrl:
-                    ---
+                generateViewport():
                 getStaticPaths(): # 静态页面渲染组件 path params
                     ---
                     fallback:
@@ -120,8 +135,10 @@ React服务端实现
                 params: # 页面参数
                 searchParams:
                 fetch(): # 异步获取数据
+            template.tsx:
         /components:
         /lib:
+        instrumentation.ts: # OpenTelemetry指标监控
         middleware.tsx: # 中间件定义
             config:
                 matcher: # 中间件匹配器
@@ -155,17 +172,25 @@ create-next-app: # next脚手架
 ```
 
 next脚手架
-
+`npx create-next-app@latest`
 
 #### next.config.js
 ```yaml
 next.config.js:
+    compiler:
+        styledComponents:
     images:
         remotePatterns:
             hostname:
             pathname:
             port:
     reactStrictMode:
+    redirects: # 请求重定向
+        destination:
+        permanent:
+        source:
+    sassOptions:
+        additionalData:
 ```
 
 next项目配置
@@ -175,31 +200,42 @@ next项目配置
 ## 核心内容
 ```yaml
 next:
+    cache: # 缓存
+        revalidatePath(): # 刷新指定路径的缓存
+        revalidateTag():
     document: # nextjs页面结构组件
         Html:
         Head:
         Main:
-    font:
+    font: # 字体
         google:
+            Geist:
             Inter:
+            Geist:
         local:
             localFont: # 本地字体加载
+                src:
+                    path:
+                    style:
+                    weight: 
     head:
         Head: # Head组件，可用于设置metadata元信息
-    headers:
+    headers: # 请求头
         cookies(): # 请求头中的Cookie
+        draftMode():
         headers():
-    image:
+    image: # 图片
         Image: # 图片组件
             alt:
             src:
         StaticImageData:
-    link:
+    link: # 链接
         Link: # 页面跳转组件
             href:
             replace:
-    navigation:
+    navigation: # 导航
         notFound(): # 跳转到404页面
+        permanentRedirect(): # 永久重定向
         redirect(): # 重定向响应
         userPathname(): # 获取url path（仅客户端组件）
         useRouter(): # 路由器、路由跳转（仅客户端组件）
@@ -208,28 +244,36 @@ next:
             query: # Query参数
             back():
             forward():
-            push():
+            prefetch(): # 预加载
+            push(): # 页面跳转，栈上推送
             refresh():
             replace(): 
         useSearchParams():
         useServerInsertedHTML():
+    og:
+        ImageResponse:
     router:
         useRouter():
-    server:
+    script:
+        Script:
+    server: # 服务端
         NextRequest: # api请求
             cookies:
             headers:
             nextUrl:
                 pathname:
                 searchParams:
-            url:
+            url: # 请求url
         NextResponse: # api响应
             cookies:
             headers:
             json():
-            next():
+            next(): # 中间件 放行
             redirect(): # 重定向
             rewrite(): # 重写、请求转发
+        after(): # 组件渲染完成 后置钩子
+        connection(): # 阻塞等待连接
+        userAgent():
     AppProps:
     Headers:
     Request:
@@ -265,7 +309,8 @@ react: # React全局对象
         fallback:
     memo():
     startTransition():
-    use(): # 使用异步参数
+    use(): # 使用异步Promise参数
+    useActionState(): # 表单提交状态
     useState():
 react-dom:
     useFormStatus():
@@ -339,25 +384,47 @@ layout插槽：`default.tsx`插槽默认页面
 #### Dynamic Route
 
 
-
+动态路由
 
 
 
 
 #### Private Route
 
+私有文件夹
+
+
+
+
+#### Parallel Route
+
+并行路由
+
 
 #### Route Group
 
-#### 404
+路由组
 
 
 #### Loading
 
+Streaming异步加载组件`<Suspence>`
+
+
 
 #### Error Handling
 
+错误边界组件`<ErrorBoundary>`
 error.tsx必须是客户端组件
+- error
+- reset()
+
+
+通过prop中接收异常信息和重试函数
+
+#### 404
+
+not-found缺省路由
 
 
 ### Rendering
@@ -384,21 +451,19 @@ error.tsx必须是客户端组件
 
 
 
-#### Inner Component
-```yaml
-内置组件:
-    Image:
-    Link:
-        href:
-    Suspense:
-```
+#### Component
 
 
-METADATA动态生成
 
 Link链接
-
 Suspense占位组件：可实现延迟加载
+
+
+
+
+##### Form
+
+表单提交常配合`useActionState()`使用
 
 
 #### Layout
@@ -419,8 +484,18 @@ layout.tsx可嵌套
 支持`.module.css`模块CSS、全局CSS
 
 
+#### Directive 
 
+组件渲染指令
+- `'use server'`
+- `'use client'`
+- `'use cache'`
 
+#### Function
+
+内置动态渲染辅助函数：
+- `generateMetadata()`
+- `generateStaticParams()`
 
 
 ### API Handler
@@ -469,10 +544,14 @@ export function middleware(req: NextRequest) {
 
 // 中间件配置
 export const config = {
-    matcher: "/xxx"
+    matcher: "/xxx" // 中间件匹配器
 }
 
 ```
+
+中间件在redirects in next.config.js配置重定向执行之后，组件渲染之前执行
+
+
 
 #### Caching
 
