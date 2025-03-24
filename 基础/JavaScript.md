@@ -88,7 +88,7 @@ Object -> EventTarget -> Node -> Element -> HTMLXxxElment
             writable:
         defineProperty():
         entries():
-        fromEntries():
+        fromEntries(): # 由键值对创建对象
         getOwnPropertyDescriptors():
             configurable:
             enumerable:

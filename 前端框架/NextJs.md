@@ -180,6 +180,7 @@ next.config.js:
     compiler:
         styledComponents:
     images:
+        domains:
         remotePatterns:
             hostname:
             pathname:
@@ -273,7 +274,7 @@ next:
             rewrite(): # 重写、请求转发
         after(): # 组件渲染完成 后置钩子
         connection(): # 阻塞等待连接
-        userAgent():
+        userAgent(): # 获取浏览器代理UA
     AppProps:
     Headers:
     Request:
@@ -300,6 +301,7 @@ next:
         sassOptions:
             additionalData:
 react: # React全局对象
+    CSSProperties: # css样式属性
     FC: # 函数式组件
     FormEvent:
     PropsWithChildren:
@@ -311,7 +313,9 @@ react: # React全局对象
     startTransition():
     use(): # 使用异步Promise参数
     useActionState(): # 表单提交状态
-    useState():
+    useCallback():
+    useRef(): # DOM引用
+    useState(): # 状态
 react-dom:
     useFormStatus():
         pending:

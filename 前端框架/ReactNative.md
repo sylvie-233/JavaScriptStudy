@@ -247,14 +247,14 @@ react-native:
         secureTextEntry:
         value:
     TouchalbeHighlight:
-    TouchalbeOpacity:
+    TouchalbeOpacity: # 点击透明
     TouchalbeWithoutFeedback:
     View: # <div>
         style:
     alert():
     useWindowDimensions():
 @react-navigation
-    bottom-tabs:
+    bottom-tabs: # 底部选项卡组件
         createBottomTabNavigator():
             Navigator:
             Screen:
@@ -266,15 +266,15 @@ react-native:
     native:
         DartTheme:
         DefaultTheme:
-        NavigationContainer:
+        NavigationContainer: # 路由视图容器
         ThemeProvider:
         useNavigation(): # 编程式导航
             navigate():
-    native-stack:
+    native-stack: # 堆叠Stack屏幕
         createNativeStackNavigator():
-            Navigator:
-            Screen:
-                component:
+            Navigator: # 路由器
+            Screen: # 屏幕视图
+                component: # 组件
                 name:
                 navigation: # 自动注入
                     navigate(): # 路由切换
@@ -407,9 +407,15 @@ const App = () => (
 
 #### Navigator
 
-##### Screen
-
 NavigationContainer -> Navigator -> Screen(可嵌套Navigator)
+- StackNavigator: 堆叠Stack
+- TabNavigator: 选项卡Tab
+
+常使用StackNavigator嵌套TabNavigator
+
+
+
+#### Screen
 
 
 
@@ -441,20 +447,33 @@ expo-location:
 expo-media-library:
 expo-notifications:
 expo-permissions:
-expo-router: # 基于文件结构的约定式路由
-    Link:
+expo-router: # 基于文件结构的约定式路由，还是需要显式声明Screen
+    Link: # 链接
+        asChild:
+        replace:
     Slot: # layout子组件插槽
-    Stack: # 路由视图容器
+    Stack: # 堆叠路由视图容器，Switch
         Screen: # 视图页面定义
-            name:
+            name: # 根据文件索引到指定组件
             options: 
-    router:
+    Tabs: # 底部选项组
+        Screen:
+            name: # 根据文件索引到指定组件
+            options: 
+                title: # 标题
+        tabBar:
+    useFocusEffect():
+    useGlobalSearchParams():
+    useSearchParams():
+    useNavigation():
     useRouter():
         params:
         pathname:
         query:
         back():
         push():
+        setParams():
+    useSegments():
 expo-secure-store:
 expo-sensors:
 expo-sharing:
@@ -463,18 +482,53 @@ expo-splash-screen:
     SplashScreen:
 expo-sqlite: # sqlite数据库访问
 expo-status-bar:
-    StatusBar:
+    StatusBar: # 底部状态栏
 expo-task-manager:
 ```
+
+
+### 项目结构
+```yaml
+项目结构:
+    /.expo:
+    /app:
+        /(tabs): # 底部选项卡
+            _layout.tsx:
+            xxx.tsx:
+        _layout.tsx: # Stack Screen堆叠显式
+        +html.tsx:
+        +not-found.tsx:
+    /assets:
+    /components:
+    /constants:
+    /hooks:
+    /node_modules:
+    /scripts:
+    app.json:
+    babel.config.js:
+    expo-env.d.ts:
+    package.json:
+    tsconfig.json:
+```
+
+
+
 
 ### expo-av
 
 音频播放
 
+### expo-constants
+
 
 ### expo-camera
 
 相机访问
+
+### expo-font
+
+
+### expo-linking
 
 ### expo-notifications
 
@@ -485,11 +539,16 @@ expo-task-manager:
 动态权限
 
 ### expo-router
-```yaml
-Component: # 视图组件配置
-    navigationOptions:
-```
 
-基于文件目录结构的路由，类似nextjs的路由管理
+基于文件目录结构的路由，类似nextjs的路由管理、需要显式声明
 支持动态路由、_layout布局
 
+
+### expo-splash-screen
+
+
+### expo-system-ui
+
+
+
+### expo-web-browser

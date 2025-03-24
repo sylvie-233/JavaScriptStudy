@@ -107,6 +107,21 @@ react-dom:
                 reander():
     render():
 
+@react-router/dev:
+    routes:
+        RouteConfig:
+        index(): # 首页路由页面
+        layout(): # 布局文件
+        prefix(): # 路由前缀
+        route(): # 路由页面，支持route()嵌套
+react-router:
+    Form:
+    Links:
+    Meta:
+    Outlet:
+    Scripts:
+    isRouteErrorResponse():
+    redirect():
 react-router-dom: # v6
     BrowserRouter: # 浏览器路由
         basename:
@@ -159,7 +174,36 @@ mobx-react:
 mobx-react-lite:
     observer():
 
-
+react-query:
+@tanstack/react-query:
+    QueryClient: # 查询客户端
+        invalidateQueries():
+            queryKey:
+    QueryClientProvider: # 查询客户端 提供器
+        client:
+    useMutation():
+        mutationFn:
+        ---
+        isPending:
+        mutate:
+            xxx(): # 自定义函数
+    useQuery(): # 缓存数据、自动重试
+        enable:
+        gcTime:
+        queryFn:
+        queryKey:
+        retry:
+        staleTime: # 缓存时间
+        ---
+        data:
+        error:
+        isError:
+        isFetching:
+        isLoading:
+        isRefetching:
+        refetch(): # 刷新数据
+@tanstack/react-query-devtools:
+    ReactQueryDevtools:
 redux:
     configureStore(): # 定义store
         reducer:
