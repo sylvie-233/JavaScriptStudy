@@ -15,7 +15,7 @@ Object -> EventTarget -> Node -> Element -> HTMLXxxElment
 
 ## 核心内容
 ```yaml
-:
+javascript:
     windows:
         Element:
             classList: # css类属性列表
@@ -37,6 +37,27 @@ Object -> EventTarget -> Node -> Element -> HTMLXxxElment
             values():
         History:
         HTMLButtonElement:
+        HTMLCanvasELement:
+            getContext():
+                webgl:
+                    COLOR_BUFFER_BIT:
+                    attachShader():
+                    bindBuffer():
+                    bufferData():
+                    clearColor():
+                    compileShader():
+                    createBuffer():
+                    createProgram():
+                    createShader():
+                    drawArrays():
+                    enableVertexAttribArray():
+                    getAttribLocation():
+                    getShaderInfoLog():
+                    getShaderParameter():
+                    linkProgram():
+                    shaderSource():
+                    useProgram():
+                    vertexAttribPointer():
         HTMLCollection:
         HTMLDivElement:
         HTMLDocument:
@@ -49,6 +70,9 @@ Object -> EventTarget -> Node -> Element -> HTMLXxxElment
         Location:
         Navigator:
         Node:
+        WebAssembly: # WASM
+            instantiate(): # 实例化模块
+                exports:
         document:
             getElementById(): # 返回Element对象
             querySelector(): # css选择器
@@ -280,5 +304,163 @@ export、import
 HTML文档操作对象
 
 
+### Canvas
 
+
+
+## Web Components
+```jsx
+class CustomGreeting extends HTMLElement {
+    constructor() {
+        super();
+        
+        // 创建影子 DOM
+        const shadow = this.attachShadow({mode: 'open'});
+
+        // 创建模板内容
+        const template = document.createElement('template');
+        template.innerHTML = `
+            <style>
+            p {
+                color: blue;
+                font-size: 20px;
+            }
+            </style>
+            <p>Hello, <span></span>!</p>
+        `;
+
+        // 将模板内容克隆并添加到影子 DOM
+        shadow.appendChild(template.content.cloneNode(true));
+
+        // 获取 name 属性并设置文本内容
+        const span = shadow.querySelector('span');
+        span.textContent = this.getAttribute('name') || 'Guest';
+    }
+}
+
+// 注册自定义元素
+customElements.define('custom-greeting', CustomGreeting);
+
+// 使用自定义 Web Component
+<custom-greeting name="World"></custom-greeting>
+```
+
+
+
+
+## WebGL
+```js
+const canvas = document.getElementById('webglCanvas');
+const gl = canvas.getContext('webgl');
+
+if (!gl) {
+    alert('WebGL not supported');
+}
+
+// 清除背景色
+gl.clearColor(0.0, 0.0, 0.0, 1.0);
+gl.clear(gl.COLOR_BUFFER_BIT);
+
+// 定义顶点数据
+const vertices = new Float32Array([
+    -0.5, -0.5,  // 左下角
+    0.5, -0.5,   // 右下角
+    0.5, 0.5,    // 右上角
+    -0.5, 0.5    // 左上角
+]);
+
+// 创建缓冲区并加载顶点数据
+const vertexBuffer = gl.createBuffer();
+gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+
+// 顶点着色器（负责将顶点坐标映射到屏幕空间）
+const vertexShaderSource = `
+    attribute vec2 a_position;
+    void main() {
+    gl_Position = vec4(a_position, 0.0, 1.0);
+    }
+`;
+
+// 片段着色器（设置像素颜色）
+const fragmentShaderSource = `
+    void main() {
+    gl_FragColor = vec4(0.0, 1.0, 0.0, 1.0); // 绿色
+    }
+`;
+
+// 创建并编译着色器
+function createShader(type, source) {
+    const shader = gl.createShader(type);
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    console.error('Shader compile error:', gl.getShaderInfoLog(shader));
+    }
+    return shader;
+}
+
+const vertexShader = createShader(gl.VERTEX_SHADER, vertexShaderSource);
+const fragmentShader = createShader(gl.FRAGMENT_SHADER, fragmentShaderSource);
+
+// 创建程序并链接着色器
+const shaderProgram = gl.createProgram();
+gl.attachShader(shaderProgram, vertexShader);
+gl.attachShader(shaderProgram, fragmentShader);
+gl.linkProgram(shaderProgram);
+
+if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+    console.error('Program link error:', gl.getProgramInfoLog(shaderProgram));
+}
+
+gl.useProgram(shaderProgram);
+
+// 获取顶点着色器中的 a_position 属性位置
+const positionLocation = gl.getAttribLocation(shaderProgram, 'a_position');
+gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+gl.enableVertexAttribArray(positionLocation);
+
+// 绘制矩形
+gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
+```
+
+
+基于过程式编程的渲染引擎
+
+
+
+
+### Vertices
+
+顶点数据
+
+
+### Buffer
+
+缓冲区
+
+
+### Shader
+
+着色器
+
+#### VertexShader
+
+顶点着色器
+
+
+#### FragmentShader
+
+片段着色器
+
+### Program
+
+渲染程序、可多个用于不同地方
+组织数据、着色器
+
+
+
+## WebAssembly
+
+`.wasm`
 

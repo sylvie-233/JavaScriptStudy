@@ -1,7 +1,7 @@
 # Next.js
 
 >
->`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/routing/parallel-routes`
+>`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/routing/middleware`
 >``
 >
 
@@ -85,9 +85,12 @@ React服务端实现
             /api:
                 /xxx:
                 route.tsx:
-                    dynamic:
+                    dynamic: # 可配置动态缓存
+                    dynamicParams:
                     fetchCache:
-                    revalidate: 
+                    preferredRegion:
+                    revalidate: # 缓存有效时间
+                    runtime:
                     GET():
             default.tsx: # 默认插槽页面
             error.tsx: # 异常页面
@@ -223,6 +226,7 @@ next:
         Head: # Head组件，可用于设置metadata元信息
     headers: # 请求头
         cookies(): # 请求头中的Cookie
+            get():
         draftMode():
         headers():
     image: # 图片
@@ -250,6 +254,7 @@ next:
             refresh():
             replace(): 
         useSearchParams():
+        useSelectedLayoutSegment(): # 在layout中获取当前动态渲染的子页面
         useServerInsertedHTML():
     og:
         ImageResponse:
@@ -258,12 +263,12 @@ next:
     script:
         Script:
     server: # 服务端
-        NextRequest: # api请求
-            cookies:
+        NextRequest: # api请求，自带请求信息，不需要手动导入函数
+            cookies: # Cookie
             headers:
             nextUrl:
                 pathname:
-                searchParams:
+                searchParams: # quey param参数
             url: # 请求url
         NextResponse: # api响应
             cookies:
@@ -272,13 +277,16 @@ next:
             next(): # 中间件 放行
             redirect(): # 重定向
             rewrite(): # 重写、请求转发
+            write(): # 流式写入
         after(): # 组件渲染完成 后置钩子
         connection(): # 阻塞等待连接
         userAgent(): # 获取浏览器代理UA
     AppProps:
     Headers:
     Request:
-        json():
+        formData(): # form 表单
+        json(): # json请求体
+        text():
     Response:
         json():
     Metadata: # 页面元信息
@@ -403,6 +411,7 @@ layout插槽：`default.tsx`插槽默认页面
 #### Parallel Route
 
 并行路由
+常用于modal模态框
 
 
 #### Route Group
