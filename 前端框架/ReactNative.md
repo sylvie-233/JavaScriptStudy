@@ -1,6 +1,6 @@
 # ReactNative
 
-`react native入门到实战：P21`
+`react native入门到实战：P31`
 
 ## 基础介绍
 
@@ -104,6 +104,18 @@ eas.json:
 
 eas服务配置
 
+### react-native
+```yaml
+react-native:
+    init:
+    link:
+    run-android:
+    run-ios:
+    start:
+        --reset-cache:
+```
+
+旧react-native命令工具
 
 
 ### expo
@@ -160,6 +172,18 @@ react-native:
             style:
             text:
     Animated: # 动画
+        timing():
+            options:
+                duration:
+                toValue:
+                useNativaDriver:
+            start(): # 开始动画
+        Image:
+        Text:
+        Value: # 动画属性值
+            setValue():
+        View:
+        ScrollView:
     AppRegistry:
         registerComponent(): # 主页面组件注册
     Button: # 按钮
@@ -285,6 +309,58 @@ react-native:
                     params:
     stack:
         createStackNavigator():
+@react-native-async-storage: # 异步存储
+    async-storage:
+        AsyncStorage:
+            clear():
+            getItem():
+            removeItem():
+            setItem():
+@react-native-community:
+    geolocation:
+        Geolocation:
+            getCurrentPosition():
+                options:
+                    timeout:
+@react-native-picker: # 下拉框
+    picker:
+        Picker:
+            mode:
+                dialog:
+                dropdown:
+            onValueChange:
+            selectedValue:
+            Item:
+                label:
+                value:
+react-native-camera: # 摄像头
+    FaceDetector:
+    RNCamera:
+        Constants:
+            FlashMode:
+                on:
+        flashMode:
+        type:
+        takePictureAsync():
+react-native-image-picker: # 相册
+    ImagePicker:
+        showImagePicker():
+            options:
+                customButtons:
+                storageOptions:
+                title:
+            response:
+                didCancel:
+                uri:
+react-native-swiper: # 轮播图
+    Swiper:
+        showButtons:
+react-native-webview: # WebView
+    WebView:
+        source:
+            html:
+            uri:
+        style:
 ```
 
 
@@ -331,8 +407,8 @@ Event:
 
 ##### Animated
 
-
-
+Animated中Text、View、ScrollView、Image可直接使用动画
+动画播放依赖：动画函数(timing)、动画属性值(Value)
 
 
 
