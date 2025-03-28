@@ -17,83 +17,157 @@ Object -> EventTarget -> Node -> Element -> HTMLXxxElment
 ```yaml
 javascript:
     windows:
-        Element:
-            classList: # css类属性列表
-                add():
-                contains():
-                remove():
-                replace():
-                toggle():
-        EventTarget:
-        File:   
-        FormData:
-            append():
-            delete():
-            entries():
-            get():
-            getAll():
-            has():
-            keys():
-            values():
-        History:
-        HTMLButtonElement:
-        HTMLCanvasELement:
-            getContext():
-                webgl:
-                    COLOR_BUFFER_BIT:
-                    attachShader():
-                    bindBuffer():
-                    bufferData():
-                    clearColor():
-                    compileShader():
-                    createBuffer():
-                    createProgram():
-                    createShader():
-                    drawArrays():
-                    enableVertexAttribArray():
-                    getAttribLocation():
-                    getShaderInfoLog():
-                    getShaderParameter():
-                    linkProgram():
-                    shaderSource():
-                    useProgram():
-                    vertexAttribPointer():
-        HTMLCollection:
-        HTMLDivElement:
-        HTMLDocument:
-        HTMLElement:
-            dataset: # 自定义属性data-*列表
-        HTMLFormElement:
-        HTMLInputElement:
-        HTMLScriptElement:
-        ImageData:
-        Location:
-        Navigator:
-        Node:
-        WebAssembly: # WASM
-            instantiate(): # 实例化模块
-                exports:
         document:
             getElementById(): # 返回Element对象
             querySelector(): # css选择器
         globalThis:
         alert():
         eval():
+        fetch():
+        getComputedStyle(): # 获取css样式
+        getSelection():
         prompt():
-    Array:
+    Array: # 数组
         concat():
         filter():
         flat(): 
         from():
         includes():
+    ArrayBuffer:
     AsyncFunction:
     Atomics:
+    Audio:
     BigInt:
+    Blob:
+        stream():
     Boolean:
     Date:
+    Element: # HTML、xml基类元素，继承自node
+        children:
+        classList: # css类属性列表
+            add():
+            contains():
+            remove():
+            replace():
+            toggle():
+        getAttribute():
+        removeAttribute():
+        setAttribute():
+    Error:
+    Event: # 事件
+        target:
+        preventDefault():
+        stopPropagation():
+    EventTarget: # 事件对象 基类 
+        addEventListener():
+        dispatchEvent():
+        removeEventListener():
+    File: # 文件 
+        name:
     Float32Array:
+    FormData:
+        append():
+        delete():
+        entries():
+        get():
+        getAll():
+        has():
+        keys():
+        values():
     Function:
-        arguments:
+        arguments: # 参数列表
+    Generator:
+    History: # 浏览器历史
+    HTMLAnchorElement: # <a>
+        href: # url
+        target: # 跳转类型
+            _blank:
+            _self:
+    HTMLAudioElement: # <audio>
+    HTMLButtonElement: # <button>
+    HTMLCanvasELement: # <canvas>
+        height:
+        width:
+        getContext():
+            webgl:
+                COLOR_BUFFER_BIT:
+                attachShader():
+                bindBuffer():
+                bufferData():
+                clearColor():
+                compileShader():
+                createBuffer():
+                createProgram():
+                createShader():
+                drawArrays():
+                enableVertexAttribArray():
+                getAttribLocation():
+                getShaderInfoLog():
+                getShaderParameter():
+                linkProgram():
+                shaderSource():
+                useProgram():
+                vertexAttribPointer():
+        toBlob():
+    HTMLCollection: # Element集合
+    HTMLDivElement: # <div>
+    HTMLDocument: # html 文档
+    HTMLElement: # 继承自Element
+        classList:
+        className:
+        dataset: # 自定义属性data-*列表
+        draggable: # 可拖拽
+        id:
+        innerHTML:
+        isContentEditable: # 内容可编辑
+        outerHTML:
+        style:
+        tagName:
+        blur():
+        click():
+        focus():
+    HTMLFormElement: # <form>表单
+        action:
+        autocomplete:
+        elements:
+        enctype:
+        method:
+        checkValidity():
+        reset():
+        submit(): # 手动提交
+    HTMLImageElement: # <img>
+        alt:
+        src:
+    HTMLInputElement: # <input>
+        files:
+        form:
+        required:
+    HTMLLabelElement: # <label>
+        htmlFor:
+    HTMLMediaElement: # html 媒体元素基类
+        autoplay:
+        controls:
+        duration:
+        preload:
+        load():
+        pause():
+        play():
+    HTMLScriptElement: # <script>
+    HTMLSelectElement: # <select>
+        multiple:
+        add():
+        item():
+        remove():
+        showPicker():
+    HTMLTableElement: # <table>
+        createCaption():
+        createTBody():
+        createTFoot():
+        createTHead():
+        insertRow():
+    HTMLVideoElement: # <video>
+    ImageData:
+    Location: # 跳转和地址信息
     JSON:
     Map:
         size:
@@ -103,33 +177,96 @@ javascript:
         set():
     Math:
     NaN:
-    Object:
-        assign():
-        create():
+    Navigator: # 浏览器信息对象
+    Node: # 节点基类
+        ATTRIBUTE_NODE:
+        CDATA_SECTION_NODE:
+        COMMENT_NODE:
+        ELEMENT_NODE:
+        TEXT_NODE:
+        childNodes:
+        firstChild:
+        lastChild:
+        nextSibling:
+        nodeName:
+        nodeType:
+        parentNode:
+        previousSibling:
+        appendChild():
+        cloneNode():
+        hasChildNodes():
+        removeChild():
+    NodeList: # Node集合
+    Object: # 顶级基类
+        assign(): # 对象浅拷贝
+        create(): # 用指定原型创建新对象，(proto, [propertiesObject])
             configurable:
             enumerable:
             value:
             writable:
-        defineProperty():
-        entries():
+        defineProperty(): # 定义属性
+        defineProperties(): # 批量定义多个属性
+        entries(): # k-v键值对
+        freeze(): # 冻结对象，使其属性不可修改、不可添加、不可删除
         fromEntries(): # 由键值对创建对象
-        getOwnPropertyDescriptors():
-            configurable:
-            enumerable:
-            value:
-            writable:
-        getPrototypeOf():
-        is():
-        keys():
-        setPrototypeOf():
-        values():
-    Promise:
-    Proxy:
+        getOwnPropertyDescriptors(): # 获取属性描述符
+            configurable: # 可添加、删除
+            enumerable: # 可枚举
+            value: # 属性值
+            writable: # 可修改
+        getOwnPropertyNames(): # 获取对象的所有自身属性（包括不可枚举的）
+        getOwnPropertySymbols():
+        getPrototypeOf(): # 获取原型对象
+        hasOwn(): # 属性存在判断
+        is(): # 判断对象严格相等
+        isExtensible(): # 检查对象是否可以扩展（添加新属性）
+        isSealed(): # 检查对象是否被密封（无法添加/删除属性，但可修改现有属性）
+        isFrozen(): # 检查对象是否被冻结（属性不能修改、添加、删除）
+        keys(): # 可枚举属性名
+        preventExtensions(): # 禁止新增属性，但可以修改和删除已有属性
+        seal(): # 不可添加/删除属性，但可以修改已有属性
+        setPrototypeOf(): # 设置原型对象
+        values(): # 可枚举属性值
+    Promise: # 异步Future Promise
+        all():
+        allSettled():
+        any():
+        catch():
+        finally():
+        race(): # 第一个完成的 Promise 决定最终结果
+        reject():
+        resolve():
+        then():
+    Proxy: # 对象拦截，13种
+        apply(): # 函数自调用拦截，(target, thisArg, argsList)
+        construct(): # (target, args, newTarget)
+        defineProperty(): # (target, prop, descriptor)
+        deleteProperty(): # (target, prop)
+        get(): # getter，(target, prop, receiver)
+        getOwnPropertyDescriptor(): # (target, prop)
+        getPrototypeOf(): # (target)
+        isExtensible(): # (target)
+        ownKeys(): # (target)
+        preventExtensions(): # (target)
+        set(): # setter，(target, prop, value, receiver)
+        setPrototypeOf(): # (target, prototype)
+        has(): # (target, prop)
+    Range:
+    ReadableStream: # 可读流
+        getReader():
+        pipeTo():
     Reflect:
         apply():
+        construct():
+        deleteProperty():
+        get():
+        getOwnPropertyDescriptor():
+        getPrototypeOf():
         has():
+        isExtensible(): 
         ownKeys():
         preventExtensions():
+        set():
         setPrototypeOf():
     RegExp:
     Set:
@@ -137,30 +274,71 @@ javascript:
         clear():
         delete():
         has():
-    String:
+    String: # 字符串
     Symbol: # 符号key（常用于魔术方法key）
         hasInstance:
         isConcatSpreadable:
         iterator:
         for():
+    URL: # 
+    Video:
+    WeakMap:
+    WeakRef:
+    WeakSet:
+    WebAssembly: # WASM
+        instantiate(): # 实例化模块
+            exports:
+    WebSocket: # websocket
+        readyState:
+        addEventListener():
+            close:
+            error:
+            message:
+            open:
+        send():
+    Worker: # 子js线程
+        addEventListener():
+            message:
+        postMessage():
+        terminate():
     XMLHttpRequest:
         onreadystatechange:
         readyState:
         response:
         status:
         open():
-        send():
+        send():   
 ```
 
-### 数据类型
+### Data Types
 ```yaml
 DataType:
     Array:
+    ArrayBuffer:
+    Atomics:
+    Bigint:
+    Boolean:
+    Date:
+    Error:
+    Float32Array:
     Function:
         arguments:
+    Map:
+    Math:
+    NaN:
     Number:
+    Objet:
+    Proxy:
+    Reflect:
+    RegExp:
+    Set:
     String:
     Symbol:
+    Uint32Array:
+    Uint8Array:
+    WeakMap:
+    WeakRef:
+    WeakSet:
 ```
 
 
@@ -170,21 +348,41 @@ DataType:
 
 
 
+#### Array
+
+数组
+
+
+#### Promise
+
+异步Future
+
+Promise状态：
+- pending（进行中）—— 初始状态，既未 resolve 也未 reject
+- fulfilled（已成功）—— resolve(value) 被调用，表示操作成功
+- rejected（已失败）—— reject(error) 被调用，表示操作失败
 
 
 
-### 控制流程
+### Control Flow
 ```yaml
-:
+Control Flow:
     const: # 常量定义（块级）
+    delete:
+    function*: # 生成器函数
+    in: # 元素、属性存在判断
+    import:
+        meta:
     let: # 局部变量定义（块级）
+    yield:
     var: # 全局变量定义 （声明提升）
+    for ... of ...:
 ```
 
 
-#### 文档注释
+#### Doc Comment
 ```yaml
-文档注释:
+Doc Comment:
     @author: 
         author-name:
         <contact-way>: 联系方式
@@ -250,31 +448,31 @@ DataType:
 ```
 
 
-### 函数
+### Function
 
 箭头函数
 
-#### 生成器
+#### Generator
 
 iterator
 
 
 
-### 面向对象
+### Class
 
 class
 
 
 
 
-### 模块
+### Module
 
 
 export、import
 
 
 
-### 测试
+### Test
 
 
 
@@ -283,8 +481,8 @@ export、import
 ```yaml
 :
     mappings:
-    names: 记录字面量的数组
-    sources: 记录源文件的数组
+    names: # 记录字面量的数组
+    sources: # 记录源文件的数组
     sourcesContent:
     version:
 ```

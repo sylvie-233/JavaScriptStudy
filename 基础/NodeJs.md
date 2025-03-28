@@ -589,6 +589,11 @@ thorw new Error("xxx")
 ```
 
 
+### 函数
+
+
+
+
 ### 面向对象
 ```javascirpt
 
@@ -640,15 +645,65 @@ promise、async
 ### 事件循环
 
 libuv库
+Node.js 采用 libuv 事件驱动模型，其事件循环包含 6 个阶段：
+1. timers（定时器阶段）：执行 setTimeout 和 setInterval 回调。
+2. I/O callbacks（I/O 事件阶段）：执行一些系统操作的回调。
+3. idle, prepare（内部调用）：仅用于 libuv 内部。
+4. poll（轮询阶段）：处理 I/O 事件，若无事件则阻塞。
+5. check（检查阶段）：执行 setImmediate 任务。
+6. close callbacks（关闭回调）：执行 socket.on('close', ...) 等回调。
+
+在 Node.js 中，微任务（Microtask）在 当前阶段执行完后立即执行：
+- Promise.then
+- process.nextTick（优先级更高）
+
+
+
+事件循环执行顺序：同步 -> 微任务 -> 宏任务 -> 微任务
+1. 同步代码
+2. process.nextTick
+3. 微任务（Promise.then）
+4. 进入事件循环，按照阶段执行任务
+5. 完成一个阶段后，再次执行 process.nextTick 和微任务
+
 
 事件循环：
 ![事件循环](../assets/事件循环.png)
 ![NodeJS事件循环](../assets/NodeJS事件循环.png)
 
-回调函数执行顺序问题
-
 宏任务、微任务
 微任务：`process.nextTick()`、`Promise`
+
+
+
+Node.js 事件循环分为以下几个主要阶段：
+1. 定时器阶段（Timers）：处理 setTimeout() 和 setInterval() 的回调
+2. 待定回调阶段（Pending Callbacks）：执行某些系统操作（如 TCP 错误）的回调
+3. 闲置/准备阶段（Idle, Prepare）：仅供内部使用
+4. 轮询阶段（Poll）：
+    - 检索新的 I/O 事件
+    - 执行 I/O 相关的回调（除了关闭回调、定时器调度的回调和 setImmediate()）
+    - 适当时节点会在此阻塞
+5. 检查阶段（Check）：执行 setImmediate() 的回调
+6. 关闭回调阶段（Close Callbacks）：执行关闭事件的回调（如 socket.on('close', ...)）
+
+微任务队列
+除了上述主要阶段，Node.js 还有两个微任务队列：
+- nextTick 队列：通过 process.nextTick() 添加
+- Promise 队列：处理 Promise 的 resolve/reject
+
+微任务会在事件循环的各个阶段之间执行，且 nextTick 队列的优先级高于 Promise 队列。
+
+
+
+
+
+
+
+
+
+
+
 
 
 

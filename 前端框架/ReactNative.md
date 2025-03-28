@@ -1,12 +1,27 @@
 # ReactNative
 
-`react native入门到实战：P31`
+``
 
 ## 基础介绍
 
 React移动端解决方案
 
 `create-expo-app`expo项目脚手架
+
+
+Native -> Bridge -> JS
+![ReactNative线程模型](../assets/ReactNative线程模型.png)
+![ReactNative线程模型启动流程](../assets/ReactNative线程模型启动流程.png)
+
+![新版ReactNative线程模型](../assets/新版ReactNative线程模型.png)
+
+![新版ReactNative线程模型启动流程](../assets/新版ReactNative线程模型启动流程.png)
+
+
+
+
+
+
 
 ### 目录结构
 ```yaml
@@ -161,6 +176,7 @@ eas:
 ```yaml
 react:
     Component: # 类组件
+    useState():
 react-native:
     ActiveIndicator: # 加载指示器
         animating:
@@ -213,7 +229,7 @@ react-native:
         renderItem: # 渲染函数
     Image: # 图片
         source:
-    ImageBackground:
+    ImageBackground: # 图片背景
     KeyboardAvoidingView:
     Modal: # 模态组件
         animationType:
@@ -277,32 +293,53 @@ react-native:
         style:
     alert():
     useWindowDimensions():
-@react-navigation
-    bottom-tabs: # 底部选项卡组件
+@react-navigation:
+    bottom-tabs: # 底部选项卡导航
         createBottomTabNavigator():
             Navigator:
+                screenOptions: # 屏幕设置
+                    route:
+                    tabBarIcon: # 底部选项卡图标
+                tabBarOptions:  
+                    activeTintColor:
             Screen:
-    drawer:
+                component:
+                name:
+    drawer: # 抽屉导航
         createDrawerNavigator():
             Navigator:
             Screen:
-    material-top-tabs:
-    native:
+    material-top-tabs: # 顶部选项卡导航
+        createMaterialTopTabNavigator(): 
+            Navigator:
+            Screen:
+    native: # 核心
         DartTheme:
         DefaultTheme:
         NavigationContainer: # 路由视图容器
         ThemeProvider:
         useNavigation(): # 编程式导航
+            getParent(): # 获取父级导航器
             navigate():
-    native-stack: # 堆叠Stack屏幕
+            openDrawer():
+            toggleDrawer():
+    native-stack: # 核心， 堆叠Stack屏幕
         createNativeStackNavigator():
             Navigator: # 路由器
+                headerMode:
+                initialRouteName: # 初始路由
+                screenOptions:
             Screen: # 屏幕视图
                 component: # 组件
+                    _navigation: # Screen组件 默认props接收navigation路由器
+                        navigate():
+                    _route: #
+                        params: # 路由参数
                 name:
                 navigation: # 自动注入
                     navigate(): # 路由切换
                 options:
+                    headerLeft:
                     headerStyle:
                     title:
                 route:
@@ -333,6 +370,10 @@ react-native:
             Item:
                 label:
                 value:
+react-native-animatable: # 动画
+    Animatable:
+        View:
+            animation:
 react-native-camera: # 摄像头
     FaceDetector:
     RNCamera:
@@ -342,6 +383,7 @@ react-native-camera: # 摄像头
         flashMode:
         type:
         takePictureAsync():
+react-native-gesture-handler:
 react-native-image-picker: # 相册
     ImagePicker:
         showImagePicker():
@@ -352,9 +394,17 @@ react-native-image-picker: # 相册
             response:
                 didCancel:
                 uri:
+react-native-linear-gradient: # 线性渐变
+    LinearGradient:
+        colors:
+        end:
+        start:
 react-native-swiper: # 轮播图
     Swiper:
         showButtons:
+react-native-vector-icons: # 矢量图标
+    IonIcons:
+        name:
 react-native-webview: # WebView
     WebView:
         source:
@@ -446,6 +496,9 @@ Animated中Text、View、ScrollView、Image可直接使用动画
 
 #### Redux
 
+Store -> Reducer -> Action
+
+
 
 
 #### Mobx
@@ -475,6 +528,13 @@ const App = () => (
   </NavigationContainer>
 );
 ```
+
+
+
+Navigator嵌套实现嵌套路由
+每个navigator保存自己的navigate历史
+
+
 
 
 #### NavigationContainer

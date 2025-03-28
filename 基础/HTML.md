@@ -20,7 +20,12 @@
     <h1>:
     <head>:
         <meta>:
-            charset:
+            charset: # 字符编码
+            name:
+                viewport:
+                    initial-scale:
+                    width:
+            content:
         <title>:
         <link>:
             rel: # 链接文件类型
