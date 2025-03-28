@@ -1,7 +1,18 @@
 # Webpack
 
+`Webpack 5教程：P12`
 
 ## 基础介绍
+
+
+核心概念：
+- Entry入口
+- Output出口
+- Loader加载器
+- Plugin插件
+- Mode模式
+- Module模块
+- Dependency Graph依赖图
 
 
 默认只对js文件打包
@@ -15,18 +26,18 @@
 ### webpack
 ```yaml
 webpack:
+    -o:
+    --config:
+    --mode:
+    --output-path:
     serve: # 启动开发服务器
-        --mode:
-
-webpack-cli:
-
 ```
 
 
 #### webpack.config.js
 ```yaml
 webpack.config.js:
-    entry: # 入口文件（默认index.js）
+    entry: # 入口文件（默认src/index.js）
     devServer: # 开发服务器
         compress: # 压缩
         contentBase: # 静态内容目录
@@ -61,18 +72,28 @@ webpack.config.js:
         filename: # 输出文件名
         path:
     plugins: # 插件
-        HtmlWebpackPlugin:
+        HtmlWebpackPlugin: # 生成HTML文件，并在HTML中加载所有打包资源，可设置Context上下文变量，在模板中传递，ejs语法，htmlWebpackPlugin.options.xxx 
+            filename:
+            minify:
             template: # html模板
+            title:
+        MiniCssExtractPlugin: # 抽离css到单独的文件
+            filename: # [name]、
+            loader:
+        StyleLintPlugin: # CSS代码格式校验
+            files:
 ```
 
 
 
 ## 核心内容
+```yaml
 
+```
 
 ### Loader
 ```yaml
-this:
+Loader:
     loader:
     module:
     resource:
@@ -85,7 +106,15 @@ this:
     emitWarning():
 ```
 
-#### Custom Loader
+处理非js的加载
+loader执行从右往左
+
+
+
+
+
+
+#### custom loader
 ```jsx
 module.exports = function (source) {
   // `source` 是加载的文件内容（原始内容）
@@ -101,16 +130,23 @@ module.exports = function (source) {
 
 #### css-loader
 
-css加载器
+css加载器，css转换为js
+
 
 #### style-loader
 
-将css插入到DOM中
+将css插入到DOM中（`<style>`）
 
 
 #### less-loader
 
 将less编译成css文件
+
+
+#### postcss-loader
+
+css转换，添加前缀
+依赖autoprefixer插件、postcss.config.js配置
 
 
 
@@ -151,7 +187,7 @@ compiler: # webpack实例
     watch():
 ```
 
-#### Custom Plugin
+#### custom plugin
 ```js
 class MyCustomPlugin {
   constructor(options) {
@@ -181,13 +217,53 @@ Plugin在Webpack的生命周期中执行特定的操作，可以访问 Webpack�
 
 
 
-#### HtmlWebpackPlugin
+#### html-webpack-plugin
 
-生成HTML文件
+生成HTML文件，并在HTML中加载所有打包资源
+内嵌ejs模板，支持模板变量
 
+
+#### mini-css-extract-plugin
+
+抽离css到单独的文件
+
+
+#### optimize-css-assets-webpack-plugin
+
+
+CSS压缩
+
+
+
+#### stylelint-webpack-plugin
+
+css代码格式校验
 
 
 
 ### Dev Server
 
+
+
+
+
+### Mode
+
+模式，区分开发环境
+- development
+- production
+- none
+
+
+
+
+### Module
+
+一切皆模块
+
+
+
+### Dependency Graph
+
+依赖图
 
