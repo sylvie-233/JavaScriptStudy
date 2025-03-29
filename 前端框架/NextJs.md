@@ -1,7 +1,7 @@
 # Next.js
 
 >
->`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/routing/middleware`
+>`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration`
 >``
 >
 
@@ -145,6 +145,12 @@ React服务端实现
         middleware.tsx: # 中间件定义
             config:
                 matcher: # 中间件匹配器
+                    source:
+                    has:
+                    missing:
+                        type:
+                        key:
+                        value:
             middleware():
     .eslintrc:
     next-env.d.ts:
@@ -206,7 +212,8 @@ next项目配置
 next:
     cache: # 缓存
         revalidatePath(): # 刷新指定路径的缓存
-        revalidateTag():
+        revalidateTag(): # 刷新指定标签的缓存
+        unstable_cache():
     document: # nextjs页面结构组件
         Html:
         Head:
@@ -226,7 +233,9 @@ next:
         Head: # Head组件，可用于设置metadata元信息
     headers: # 请求头
         cookies(): # 请求头中的Cookie
+            delete():
             get():
+            set():
         draftMode():
         headers():
     image: # 图片
@@ -263,16 +272,25 @@ next:
     script:
         Script:
     server: # 服务端
+        NextFetchEvent:
+            waitUntil():
         NextRequest: # api请求，自带请求信息，不需要手动导入函数
             cookies: # Cookie
-            headers:
+                delete():
+                get():
+                getAll():
+                has():
+                set():
+            headers: # 请求头
+                get():
             nextUrl:
                 pathname:
                 searchParams: # quey param参数
             url: # 请求url
         NextResponse: # api响应
             cookies:
-            headers:
+            headers: # 响应头
+                set():
             json():
             next(): # 中间件 放行
             redirect(): # 重定向
@@ -308,6 +326,10 @@ next:
             remotePatterns:
         sassOptions:
             additionalData:
+    fetch(): # 
+        options:
+            cache: # 请求缓存
+                force-cache:
 react: # React全局对象
     CSSProperties: # css样式属性
     FC: # 函数式组件
@@ -317,15 +339,20 @@ react: # React全局对象
     ReactNode: # jsx组件
     Suspense:
         fallback:
+    cache():
     memo():
     startTransition():
     use(): # 使用异步Promise参数
     useActionState(): # 表单提交状态
+        formAction:
+        pending:
+        state:
     useCallback():
+    useOptimistic(): # 更新显示优化
     useRef(): # DOM引用
     useState(): # 状态
 react-dom:
-    useFormStatus():
+    useFormStatus(): # 获取当前表单状态
         pending:
 
 
@@ -476,7 +503,11 @@ Suspense占位组件：可实现延迟加载
 
 ##### Form
 
+form表单action可使用服务端的action函数
 表单提交常配合`useActionState()`使用
+
+
+
 
 
 #### Layout
@@ -504,7 +535,7 @@ layout.tsx可嵌套
 - `'use client'`
 - `'use cache'`
 
-#### Function
+#### Inner Props
 
 内置动态渲染辅助函数：
 - `generateMetadata()`

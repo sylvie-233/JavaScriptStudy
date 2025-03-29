@@ -133,8 +133,9 @@ javascript:
         enctype:
         method:
         checkValidity():
+        requestSubmit(): # 模拟提交
         reset():
-        submit(): # 手动提交
+        submit(): # 手动直接提交
     HTMLImageElement: # <img>
         alt:
         src:
@@ -479,14 +480,16 @@ export、import
 
 #### SourceMap
 ```yaml
-:
-    mappings:
+.map:
+    file: # 构建文件名称
+    mappings: # 源码映射关系
     names: # 记录字面量的数组
     sources: # 记录源文件的数组
-    sourcesContent:
-    version:
+    sourcesContent: # 源码内容
+    version: # source map 版本
 ```
 
+源文件 -> map文件 -> 构建文件
 
 
 

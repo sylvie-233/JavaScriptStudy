@@ -1,15 +1,22 @@
 # Vue3
 
 >
-> 
+> `Vue3官方文档：`
 >
 
 
 ## 基础介绍
 
 vue-cli基于webpack脚手架、vue3建议使用vite构建
-
-data、methods、props、computed、watch、hooks、components、event/emit、slot
+- data
+- methods
+- props
+- computed
+- watch
+- hooks
+- components
+- event/emit
+- slot
 
 
 ### 项目结构

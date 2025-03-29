@@ -364,7 +364,7 @@ z-index: 数值越大越在上面（动态调整实现切换效果）
 过渡
 
 
-### transforms
+### Transforms
 
 变换
 
@@ -439,3 +439,42 @@ z-index: 数值越大越在上面（动态调整实现切换效果）
             L: # 绘制直线
             q: # 贝塞尔曲线
 ```
+
+### Font
+```css
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('/fonts/MyCustomFont-Regular.woff2') format('woff2'),
+       url('/fonts/MyCustomFont-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+```
+
+字体
+
+
+### Layer
+```css
+/* 声明layer层，从左到右层优先级下降 */
+@layer reset, theme, components, utilities;
+
+/* 层内定义样式 */
+@layer theme {
+  .button {
+    background: gray;
+    color: white;
+  }
+}
+
+@layer components {
+  .button {
+    background: blue;
+  }
+}
+```
+
+CSS 层（CSS Layers）是一种 新的 CSS 规则，用于 控制不同 CSS 规则的优先级，从而解决样式覆盖问题。
+
+同级css属性可以不按声明顺序，按照自定义的layer层顺序
