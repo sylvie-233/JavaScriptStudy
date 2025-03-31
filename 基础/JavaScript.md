@@ -16,16 +16,55 @@ Object -> EventTarget -> Node -> Element -> HTMLXxxElment
 ## 核心内容
 ```yaml
 javascript:
-    windows:
+    window:
+        caches:
+        cookieStore:
+        customElements:
         document:
+            addEventListener(): # 
+            dispatchEvent(): # DOM分发事件
             getElementById(): # 返回Element对象
             querySelector(): # css选择器
         globalThis:
+        history:
+        indexedDB: # Database -> ObjectStore -> Index，操作必须在Transaction事务中
+            open():
+                onerror():
+                onsuccess():
+                onupgradeneeded():
+                    event.target.result: # db对象
+                        createObjectStore(): # 创建store
+                            add():
+                            createIndex(): # 创建索引
+                                getAll():
+                            delete():
+                            get():
+                            index():
+                            put():
+                        transaction(): # 开启事务
+                            objectStore(): # 获取store
+        innerHeight:
+        innerWidth:
+        localStorage:
+        location:
+        menubar:
+        navigator:
+            clipboard:
+            serviceWorker:
+        opener:
+        outerHeight:
+        outerWidth:
+        screen:
+        scrollX:
+        scrollY:
+        sessionStorage:
         alert():
         eval():
         fetch():
         getComputedStyle(): # 获取css样式
         getSelection():
+        parseInt():
+        parseFloat():
         prompt():
     Array: # 数组
         concat():
@@ -38,9 +77,15 @@ javascript:
     Atomics:
     Audio:
     BigInt:
-    Blob:
-        stream():
+    Blob: # Binary Large Object 二进制数据
+        size:
+        type:
+        arrayBuffer(): # 获取字节缓冲区
+        bytes(): # 获取字节数组，Uint8Array
+        stream(): # 获取可读流，ReadableStream
+        text(): # 获取字符串
     Boolean:
+    CustomEvent: # 自定义事件
     Date:
     Element: # HTML、xml基类元素，继承自node
         children:
@@ -64,6 +109,10 @@ javascript:
         removeEventListener():
     File: # 文件 
         name:
+    FileReader: # 文件读取
+        readAsArrayBuffer():
+        readAsDataURL():
+        readAsText():
     Float32Array:
     FormData:
         append():
@@ -281,7 +330,12 @@ javascript:
         isConcatSpreadable:
         iterator:
         for():
+    Uint8Array:
     URL: # 
+        createObjectURL(): # 创建临时可访问url，Blob，File，临时数据
+        parse():
+        revokeObjectURL(): # 释放 URL
+        toString():
     Video:
     WeakMap:
     WeakRef:
@@ -297,11 +351,13 @@ javascript:
             message:
             open:
         send():
-    Worker: # 子js线程
+    Worker: # 子js线程，操作类似socket
         addEventListener():
             message:
-        postMessage():
-        terminate():
+        onerror():
+        onmessage(): # 接收消息
+        postMessage(): # 传递消息
+        terminate(): # 结束
     XMLHttpRequest:
         onreadystatechange:
         readyState:

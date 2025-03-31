@@ -8,9 +8,8 @@
 入口文件：`main.js`
 
 
-
-
-
+app -> window -> process
+ipcMain -> contextBridge(preload) -> ipcRenderer
 
 
 ### electron
@@ -101,77 +100,64 @@ electron程序更新
 
 
 ## 核心内容
-
 ```yaml
 electron:
-    main:
-        app:
-            on(): 
-                activate:
-                window-all-closed:
-            quit(): # 应用退出
-            whenReady():
-        BrowserWindow: 
-            height:
-            webContents:
-                openDevTools():
-                send(): # 主进程向渲染进程通信
-            webPreferences:
-                contextIsolation:
-                nodeIntegration:
-                preload: # 窗口预加载脚本（Bridge）
-            width:
-            close():
-            getAllWindows(): # 获取所有窗口
-            loadFile():
-            loadUrl():
-            maximize():
-            on():
-                close:
-                hide:
-                ready-to-show:
-            setMenu(): # 设置菜单栏
-        globalShortcut: # 全局快捷键
-            register():
-        ipcMain:
-            handle():
-            on():
-        Menu: # 菜单
-            click:
-            label:
-            submenu:
-                role:
-                type:
-                    separator:
-            popup():
-            setApplicationMenu(): # 设置窗口主菜单
+    BaseWindow: # 窗口
+        contentView:
+            addChildView():
+    BrowserWindow: # 浏览器窗口
+        loadFile():
+        loadURL():
+    Menu: # 菜单    
+    MessageChannelMain:
+    MessagePortMain:
+    Notification:
+    WebContentsView: # 内容视图
+        webContents:
+            loadURL():
+        setBounds():
+    app:
+        on():
+            window-all-closed:
+        whenReady():
+    autoUpdater:
+    clipboard: # 剪切板
+        writeText():
+    contentTracing:
+        startRecording():
+        stopRecording():
+    contextBridge:
+        exposeInMainWorld():
+    crashReporter:
+        start():
+    desktopCapturer: # 屏幕截图
+    dialog: # 弹框
+        showOpenDialog():
+    globalShortcut: # 快捷键
+        register():
+    inAppPurchase:
+    ipcMain: # 主进程
+        handle():
+        on():
+    ipcRenderer:
+    nativeImage:
+    nativeTheme:
     net:
         request():
-    renderer:
-        contextBridge:
-            exposeInMainWorld(): # 定义全局变量（window 可在renderer进程中使用）
-        ipcRenderer:
-            invoke():
-            once():
-            removeListener():
-            send():
-            sendSync():
-    dialog:
-        showMessageBox():
-    shell:
-        openExternal():
+    netLog:
+    parentPort:
+    process:
+    safeStorage:
+    session:
+        defaultSession:
+        setDisplayMediaRequestHandler():
+    webUtils:
 
 electron-updater:
     autoupdater:
         autoDownload:
         checkForUpdates(): # 检查更新
     AppUpdater:
-
-window: # 渲染进程全局对象
-    document: # DOM
-    localStorage:
-    sessionStorage:
-        setItem():
 ```
 
 

@@ -299,6 +299,7 @@ Control Flow:
     let: # 局部变量
     keyof: # 获取键（关键字）
     readonly: # 只读属性
+    satisfies: # 类型断言
     type: # 定义类型别名
     typeof: # 获取变量类型（关键字）
     for ... of ...: # 迭代器遍历

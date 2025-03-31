@@ -10,24 +10,10 @@ Vue.js SSR
 
 基于文件的路由
 
-### nuxt
-```yaml
-nuxt:
-    build:
-    dev:
-    generate:
-    prepare:
-    preview:
-```
-
-#### nuxi
-```yaml
-nuxi:
-    init: 初始化项目
-```
 
 
-### 目录结构
+
+### 项目结构
 ```yaml
 NuxtJs:
     /.nuxt:
@@ -40,13 +26,13 @@ NuxtJs:
         tsconfig.json:
         tsconfig.server.json:
     /.output:
-    /assets: 资源文件
-    /components: 自定义组件
-    /layouts: 页面布局
+    /assets: # 资源文件
+    /components: # 自定义组件
+    /layouts: # 页面布局
         default.vue: 
-    /pages: 页面路由
+    /pages: # 页面路由
         index.vue:
-    /public: 静态访问资源
+    /public: # 静态访问资源
         favicon.ico:
         robots.txt:
     /server:
@@ -61,7 +47,7 @@ NuxtJs:
 #### nuxt.config.ts
 ```yaml
 NuxtConfig:
-    $production: 生产环境配置
+    $production: # 生产环境配置
     app:
         head:
             link:
@@ -70,8 +56,8 @@ NuxtConfig:
     hooks:
     nitro:
     postcss:
-    runtimeConfig: 服务端可读属性
-        public: 客户端可读属性
+    runtimeConfig: # 服务端可读属性
+        public: # 客户端可读属性
     vite:
     vue:
     webpack:
@@ -82,7 +68,21 @@ NuxtConfig:
 
 ```
 
+### nuxt
+```yaml
+nuxt:
+    build:
+    dev:
+    generate:
+    prepare:
+    preview:
+```
 
+#### nuxi
+```yaml
+nuxi:
+    init: # 初始化项目
+```
 
 
 
@@ -90,8 +90,8 @@ NuxtConfig:
 ## 核心内容
 ```yaml
 nuxt:
-    NuxtPage: pages页面显示
+    NuxtPage: # pages页面显示
     useAppConfig():
     useHead():
-    useRuntimeConfig(): 读取配置属性
+    useRuntimeConfig(): # 读取配置属性
 ```
