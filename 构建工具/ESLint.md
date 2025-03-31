@@ -25,18 +25,6 @@ eslint:
 
 ```
 
-
-
-
-
-
-#### eslint.config.js
-```yaml
-
-```
-
-
-
 #### .eslintignore
 ```yaml
 
@@ -119,5 +107,5 @@ prettier:
 
 
 
-## Prettier
+### Prettier
 
