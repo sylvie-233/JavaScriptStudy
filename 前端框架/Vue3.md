@@ -1,11 +1,15 @@
 # Vue3
 
 >
-> `Vue3官方文档：`
+> `Vue3官方文档：https://cn.vuejs.org/guide/quick-start.html`
 >
 
 
 ## 基础介绍
+
+
+支持选项式API（对象）、组合式API（函数）两种风格
+
 
 vue-cli基于webpack脚手架、vue3建议使用vite构建
 - data
@@ -41,7 +45,6 @@ vue-cli基于webpack脚手架、vue3建议使用vite构建
 
 
 ## 核心内容
-
 ```yaml
 vue:
     App:
@@ -55,19 +58,21 @@ vue:
         value: # 代理数据
     VNodeTypes:
     computed(): # 计算属性
-    createApp(): # 创建应用
+    createApp(): # 创建应用App
     createVNode(): # 创建虚拟节点
     customRef(): # 自定义ref（传入回调函数，返回对象重写get、set，），(get调用track, set调用trigger)
     defineComponent():
     defineEmits(): # 自定义事件
     defineExpose(): # 组件ref导出定义
     defineProps(): # 定义组件属性
-    inject:
+    inject():
     markRaw(): # 标记不会变成响应式对象
-    provide:
+    onMounted(): # DOM挂载时，生命周期钩子
+    provide():
     reactive(): # 响应式数据
     readonly(): # 响应式转只读数据
-    ref(): # 响应式数据
+    ref(): # 基础响应式数据，也可用于引用DOM
+        value: # js中需通过修改value来实现响应式
     shallowReactive(): # 浅层reactive响应式
     shallowReadonly():
     shallowRef(): # 浅层ref响应式
@@ -122,7 +127,7 @@ computed计算属性：给响应式数据提供了一个处理过程
 
 ### 模板语法
 ```yaml
-:
+Template:
     {{}}:
     v-bind:
     v-for:
@@ -132,6 +137,9 @@ computed计算属性：给响应式数据提供了一个处理过程
     v-on: # $event
     v-show:
     v-slot:
+
+Component:
+
 ```
 
 v-on、v-bind可实现动态参数绑定：`v-bind:[attr]`
@@ -141,43 +149,40 @@ v-for可遍历对象属性
 class样式绑定、style样式绑定
 
 
+#### 内置组件
+
+##### Teleport
+```html
+<Teleport on="css选择器">
+    传送内容
+</Teleport>
+```
+
+传送组件
+
+
+
+
+
+##### Suspense
+```html
+<Suspense>
+    <template v-slot:default>
+        延迟显示内容
+    </template>
+    <template v-slot:fallback>
+        兜底显示内容
+    </template>
+</Suspense>
+```
+
+延时组件
+
+
+
+
 
 #### 页面插槽
-
-<slot>定义插槽、<template>插入插槽
-
-slot可以反向传值给template
-
-
-#### 自定义指令
-
-
-
-
-### 生命周期
-- setup():
-- onBeforeMount():
-- onMounted():
-- onBeforeUpdate():
-- onUpdated():
-- onBeforeUnmount():
-- onUnmounted():
-
-
-
-### 组件通信
-
-- props属性传递
-- 自定义事件event
-- 事件总线bus
-- v-model:
-- $attr:
-- $refs/$parent:
-
-
-
-### 页面插槽
-
 ```HTML
 
 <slot>默认内容</slot>
@@ -198,40 +203,25 @@ slot可以反向传值给template
 
 
 `<slot>`定义插槽、`<template>`插入插槽
-
-
-
-
-### 内置组件
-
-#### Teleport
-```html
-<Teleport on="css选择器">
-    传送内容
-</Teleport>
-```
-
-传送组件
+slot可以反向传值给template
 
 
 
 
 
-#### Suspense
-```html
-<Suspense>
-    <template v-slot:default>
-        延迟显示内容
-    </template>
-    <template v-slot:fallback>
-        兜底显示内容
-    </template>
-</Suspense>
-```
-
-延时组件
 
 
+#### 生命周期
+- setup():
+- onBeforeMount():
+- onMounted():
+- onBeforeUpdate():
+- onUpdated():
+- onBeforeUnmount():
+- onUnmounted():
+
+
+#### 自定义指令
 
 
 ### HOOKS
@@ -241,8 +231,31 @@ slot可以反向传值给template
 
 
 
-### 页面路由
+### 组件通信
 
+- props属性传递
+- 自定义事件event
+- 事件总线bus
+- v-model:
+- $attr:
+- $refs/$parent:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### 页面路由
 ```yaml
 router-link:
     active-class:
@@ -294,7 +307,6 @@ const store = defineStore("storeId", {
 
 
 
-## 项目实战
 
 
 

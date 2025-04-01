@@ -21,11 +21,14 @@
     <head>:
         <meta>:
             charset: # 字符编码
+            content:
+            http-equiv:
+                refresh: # 刷新页面
+                    url:
             name:
-                viewport:
+                viewport: # 视口
                     initial-scale:
                     width:
-            content:
         <title>:
         <link>:
             rel: # 链接文件类型

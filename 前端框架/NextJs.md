@@ -1,7 +1,7 @@
 # Next.js
 
 >
->`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/data-fetching/incremental-static-regeneration`
+>`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/caching`
 >``
 >
 
@@ -14,12 +14,13 @@ React服务端实现
 - API: api接口
 
 
-`page.tsx`、`route.tsx`
-
-
+`page.tsx`、`route.tsx`、`action.ts`
 - page：显示的页面Page
 - route: 后端控制器Controller
 - action：后端服务方法Service
+
+页面组件默认服务端渲染
+
 
 
 
@@ -108,14 +109,15 @@ React服务端实现
             not-found.tsx: # 缺省页面
             page.tsx: # 入口页面
                 dynamic: # 动态页面配置
+                dynamicParams: # 允许访问 generateStaticParams 以外的动态路径。未在 generateStaticParams 中定义的路径会 fallback 到服务器端渲染（SSR）
                 metadata: # 页面元数据
                     description:
                     title:
-                revalidate: # 页面重新验证刷新时间
+                revalidate: # 页面重新验证，缓存刷新时间
                 generateImageMetadata():
                 generateMetadata(): # 动态生成页面元信息
                 generateSitemaps():
-                generateStaticParams(): # 生成静态path param参数
+                generateStaticParams(): # 生成静态path param参数，用于静态页面生成，通过params参数传递给组件
                 getInitialProps(): # 
                 getServerSideProps(): # SSR服务渲染页面 props
                     context:
@@ -194,6 +196,9 @@ next.config.js:
             hostname:
             pathname:
             port:
+    logging: # 日志
+        fetches:
+            fullUrl:
     reactStrictMode:
     redirects: # 请求重定向
         destination:
@@ -212,8 +217,10 @@ next项目配置
 next:
     cache: # 缓存
         revalidatePath(): # 刷新指定路径的缓存
-        revalidateTag(): # 刷新指定标签的缓存
-        unstable_cache():
+        revalidateTag(): # 刷新指定标签的缓存，tag在fetch请求时动态设置
+        unstable_cache(): # 用于封装缓存其它请求，比如ORM
+            revalidate:
+            tags:
     document: # nextjs页面结构组件
         Html:
         Head:
@@ -229,6 +236,8 @@ next:
                     path:
                     style:
                     weight: 
+    form:
+        Form:
     head:
         Head: # Head组件，可用于设置metadata元信息
     headers: # 请求头
@@ -326,10 +335,11 @@ next:
             remotePatterns:
         sassOptions:
             additionalData:
-    fetch(): # 
-        options:
+    fetch(): # next重写fetch请求
+        next:
             cache: # 请求缓存
                 force-cache:
+            tags:
 react: # React全局对象
     CSSProperties: # css样式属性
     FC: # 函数式组件
@@ -422,39 +432,34 @@ layout插槽：`default.tsx`插槽默认页面
 
 #### Dynamic Route
 
-
-动态路由
-
-
+动态路由，`[id]`
 
 
 #### Private Route
 
-私有文件夹
-
-
+私有文件夹，`_id`
 
 
 #### Parallel Route
 
-并行路由
+并行路由，`@id`
 常用于modal模态框
 
 
 #### Route Group
 
-路由组
+路由组，`(id)`
 
 
 #### Loading
 
-Streaming异步加载组件`<Suspence>`
+Streaming异步加载组件`<Suspence>`，`loading.tsx`
 
 
 
 #### Error Handling
 
-错误边界组件`<ErrorBoundary>`
+错误边界组件`<ErrorBoundary>`，`error.tsx`
 error.tsx必须是客户端组件
 - error
 - reset()
@@ -464,7 +469,7 @@ error.tsx必须是客户端组件
 
 #### 404
 
-not-found缺省路由
+not-found缺省路由，`not-found.tsx`
 
 
 ### Rendering
@@ -492,11 +497,12 @@ not-found缺省路由
 
 
 #### Component
-
-
-
-Link链接
-Suspense占位组件：可实现延迟加载
+- Font字体
+- Form表单
+- Image图像
+- Link链接
+- Script脚本
+- Suspense占位组件：可实现延迟加载
 
 
 
@@ -519,7 +525,6 @@ layout.tsx可嵌套
 #### Template
 
 效果和Layout一样
-
 路由切换时，Layout会保存状态，而Template不会
 
 
@@ -535,11 +540,25 @@ layout.tsx可嵌套
 - `'use client'`
 - `'use cache'`
 
-#### Inner Props
+#### SSR
+
 
 内置动态渲染辅助函数：
 - `generateMetadata()`
 - `generateStaticParams()`
+
+
+
+#### ISR
+
+增量静态构建，依赖nodejs运行时（静态导出单页面时不支持）
+可在控制台查看当前请求是否命中ISR，
+
+
+#### SSG
+
+
+静态内容生成
 
 
 ### API Handler
@@ -570,16 +589,11 @@ form表单的action可直接绑定API处理函数
 
 #### Data Fetching
 
-fetct()
-
-ORM
-
-
+fetct()、ORM
 
 
 
 #### Middleware
-
 ```javascript
 // 中间件处理函数
 export function middleware(req: NextRequest) {
@@ -593,11 +607,14 @@ export const config = {
 
 ```
 
+默认只能配置一个中间件
 中间件在redirects in next.config.js配置重定向执行之后，组件渲染之前执行
 
 
 
 #### Caching
+
+缓存
 
 
 #### Authentication
@@ -607,16 +624,19 @@ export const config = {
 
 
 
-### Comfiguring
+### Configuring
 
-#### Optimizing
-
+配置优化
 
 
 ### Testing
 
+测试
+
 
 ### Deploy
+
+项目发布
 
 #### Vercel
 

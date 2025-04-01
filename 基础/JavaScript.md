@@ -20,13 +20,22 @@ javascript:
         caches:
         cookieStore:
         customElements:
-        document:
+        document: # 页面根文档
             addEventListener(): # 
             dispatchEvent(): # DOM分发事件
-            getElementById(): # 返回Element对象
+            createElement(): # 创建元素Element
+            getElementById(): # 返回HtmlElement对象
+            getElementsByClassName(): # 返回HtmlElement对象
             querySelector(): # css选择器
+            querySelectorAll(): # css选择器，返回所有
+        forms: # 获取所有表单
         globalThis:
-        history:
+        history: # 历史记录
+            length:
+            back():
+            forward():
+            go():
+            pushState():
         indexedDB: # Database -> ObjectStore -> Index，操作必须在Transaction事务中
             open():
                 onerror():
@@ -46,7 +55,13 @@ javascript:
         innerHeight:
         innerWidth:
         localStorage:
-        location:
+        location: # 当前url信息
+            href: # 修改url，实现跳转
+            search:
+            assign(): # 修改href，跳转url
+            reload(): # 刷新页面
+            replace():
+            toString():
         menubar:
         navigator:
             clipboard:
@@ -58,14 +73,20 @@ javascript:
         scrollX:
         scrollY:
         sessionStorage:
-        alert():
-        eval():
-        fetch():
+        addEventListener():
+            popState: # 页面回退事件
+        alert(): # 界面弹框
+        close(): # 关闭窗口
+        eval(): # 执行文本js代码
+        fetch(): # ajax请求
         getComputedStyle(): # 获取css样式
         getSelection():
+        import(): # 动态导入模块
+        open(): # 打开新窗口
         parseInt():
         parseFloat():
         prompt():
+        scroll(): # 窗口滚动
     Array: # 数组
         concat():
         filter():
@@ -87,6 +108,7 @@ javascript:
     Boolean:
     CustomEvent: # 自定义事件
     Date:
+    Document: # 页面文档 DOM
     Element: # HTML、xml基类元素，继承自node
         children:
         classList: # css类属性列表
@@ -95,14 +117,14 @@ javascript:
             remove():
             replace():
             toggle():
-        getAttribute():
-        removeAttribute():
-        setAttribute():
+        getAttribute(): # 获取属性
+        removeAttribute(): # 移除属性
+        setAttribute(): # 修改属性
     Error:
     Event: # 事件
         target:
-        preventDefault():
-        stopPropagation():
+        preventDefault(): # 组织默认行为
+        stopPropagation(): # 停止冒泡
     EventTarget: # 事件对象 基类 
         addEventListener():
         dispatchEvent():
@@ -114,7 +136,7 @@ javascript:
         readAsDataURL():
         readAsText():
     Float32Array:
-    FormData:
+    FormData: # form表单数据
         append():
         delete():
         entries():
@@ -162,18 +184,21 @@ javascript:
     HTMLDivElement: # <div>
     HTMLDocument: # html 文档
     HTMLElement: # 继承自Element
-        classList:
+        classList: # class列表
+            add():
+            remove():
+            toggle():
         className:
         dataset: # 自定义属性data-*列表
         draggable: # 可拖拽
         id:
-        innerHTML:
+        innerHTML: # 内部html
         isContentEditable: # 内容可编辑
         outerHTML:
         style:
         tagName:
         blur():
-        click():
+        click(): # 点击触发
         focus():
     HTMLFormElement: # <form>表单
         action:
@@ -192,6 +217,11 @@ javascript:
         files:
         form:
         required:
+        validationMessage:
+        validity:
+        checkValidity(): # 手动校验
+        reportValidity(): # 显示错误信息
+        setCustomValidity(): # 自定义错误校验消息，设置当前状态为异常状态，为空则清除异常，用于实现自定义校验
     HTMLLabelElement: # <label>
         htmlFor:
     HTMLMediaElement: # html 媒体元素基类
@@ -219,13 +249,22 @@ javascript:
     ImageData:
     Location: # 跳转和地址信息
     JSON:
-    Map:
+        parse():
+        stringify():
+    Map: # 哈希表
         size:
         clear():
         delete():
         get():
         set():
     Math:
+        trunc(): # 移除小数
+    MessageChannel: # 进程间通信（IPC）
+        port1:
+        port2:
+    MessagePort: # 进程间通信端口
+        onmessage():
+        postMessage():
     NaN:
     Navigator: # 浏览器信息对象
     Node: # 节点基类
@@ -240,12 +279,12 @@ javascript:
         nextSibling:
         nodeName:
         nodeType:
-        parentNode:
+        parentNode: 
         previousSibling:
-        appendChild():
+        appendChild(): # 添加子节点，末尾
         cloneNode():
         hasChildNodes():
-        removeChild():
+        removeChild(): # 移除子节点
     NodeList: # Node集合
     Object: # 顶级基类
         assign(): # 对象浅拷贝
@@ -267,6 +306,7 @@ javascript:
         getOwnPropertyNames(): # 获取对象的所有自身属性（包括不可枚举的）
         getOwnPropertySymbols():
         getPrototypeOf(): # 获取原型对象
+        groupBy():
         hasOwn(): # 属性存在判断
         is(): # 判断对象严格相等
         isExtensible(): # 检查对象是否可以扩展（添加新属性）
@@ -287,6 +327,7 @@ javascript:
         reject():
         resolve():
         then():
+        withResolvers():
     Proxy: # 对象拦截，13种
         apply(): # 函数自调用拦截，(target, thisArg, argsList)
         construct(): # (target, args, newTarget)
@@ -324,6 +365,8 @@ javascript:
         clear():
         delete():
         has():
+    SharedWorker: # 共享Worker
+        port:
     String: # 字符串
     Symbol: # 符号key（常用于魔术方法key）
         hasInstance:
@@ -331,11 +374,29 @@ javascript:
         iterator:
         for():
     Uint8Array:
-    URL: # 
+    URL: # url
+        hash:
+        host:
+        hostname:
+        href:
+        origin:
+        pathname:
+        port:
+        protocol:
+        search:
+        searchParam:
         createObjectURL(): # 创建临时可访问url，Blob，File，临时数据
-        parse():
+        parse(): # 解析url，获取对象
         revokeObjectURL(): # 释放 URL
         toString():
+    URLSearchParams: # url query参数
+        append():
+        get():
+        getAll():
+        keys():
+        set():
+        toString():
+        values():
     Video:
     WeakMap:
     WeakRef:
@@ -410,14 +471,27 @@ DataType:
 数组
 
 
-#### Promise
 
-异步Future
 
-Promise状态：
-- pending（进行中）—— 初始状态，既未 resolve 也未 reject
-- fulfilled（已成功）—— resolve(value) 被调用，表示操作成功
-- rejected（已失败）—— reject(error) 被调用，表示操作失败
+
+#### Tuple
+
+
+元组
+
+
+#### Set
+
+
+
+
+#### Map
+
+
+#### Record
+
+记录
+
 
 
 
@@ -434,42 +508,46 @@ Control Flow:
     yield:
     var: # 全局变量定义 （声明提升）
     for ... of ...:
+    for await ... of ...: # 异步迭代
 ```
 
 
 #### Doc Comment
 ```yaml
 Doc Comment:
+    @async:
     @author: 
         author-name:
-        <contact-way>: 联系方式
-    @class: 类
-    @constructor: 构造方法
-    @date: 日期
-    @deprecated: 过时
+        <contact-way>: # 联系方式
+    @class: # 类
+    @constructor: # 构造方法
+    @date: # 日期
+    @deprecated: # 过时
         comments:
-    @example: 样例（一般写在最后一行）
-    @extends: 继承
-    @inheritdoc: 继承重写
-    @license: 许可证
+    @example: # 样例（一般写在最后一行）
+    @extends: # 继承
+    @inheritdoc: # 继承重写
+    @license: # 许可证
         license-info:
-    @returns: 返回类型
+    @returns: # 返回类型
         {type}:
         comments:
-    @param: 标注参数
+    @param: # 标注参数，@param {number} width  矩形的宽度
         {type}:
         param-name:
         comments:
-    @private: 私有成员
-    @property: 对象属性定义
-    @protected: 保护成员
-    @public: 公共成员
-    @readonly: 只读
-    @throws: 异常抛出定义（一般写在return后面）
+    @private: # 私有成员
+    @property: # 对象属性定义， @property {string} name  姓名
+    @protected: # 保护成员
+    @public: # 公共成员
+    @readonly: # 只读
+    @returns: # @returns {Promise<Object>} 返回用户数据
+    @template: # 泛型定义，@template T
+    @throws: # 异常抛出定义（一般写在return后面）
         {type}:
         comments:
-    @type: 变量类型
-    @typedef: 对象定义
+    @type: #  变量类型。 /** @type {string} */
+    @typedef: # 对象定义 @typedef {Object} Person
 ```
 
 第一行写描述信息，文档注释只能用`/** */`标注，单行注释`//`无用
@@ -514,10 +592,14 @@ Doc Comment:
 iterator
 
 
+#### Async
+
+异步函数
+
 
 ### Class
 
-class
+class面向对象
 
 
 
@@ -526,6 +608,29 @@ class
 
 
 export、import
+
+
+### Concurrent
+
+#### Promise
+
+异步Future
+
+Promise状态：
+- pending（进行中）—— 初始状态，既未 resolve 也未 reject
+- fulfilled（已成功）—— resolve(value) 被调用，表示操作成功
+- rejected（已失败）—— reject(error) 被调用，表示操作失败
+
+
+
+#### Worker
+
+Worker子线程
+
+
+##### MessageChannel
+
+进程间消息通信，进程间通信（IPC）机
 
 
 
