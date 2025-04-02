@@ -20,11 +20,32 @@
 ### node
 ```yaml
 node:
+    -c: # 仅检查 JS 语法，不执行
+    -e: # 直接执行JavaScript代码
+    -h:
+    -p: # 直接执行 JavaScript 代码并打印输出
+    -r: # 预加载模块
     -v: # 版本信息
+    --check: # 仅检查 JS 语法，不执行
+    --cpu-prof: # 启用 CPU 性能分析
+    --enable-source-maps: # 启用 .map 文件支持（用于 TypeScript）
     --env-file: # 指定加载.env文件
+    --experimental-loader: # 指定实验性 ESM loader
     --experimental-strip-types:
+    --experimental-repl-await:
+    --expose-gc: # 允许手动调用 global.gc() 进行垃圾回收
+    --heap-prof: # 启用堆内存分析
+    --inspect: # 以调试模式启动，监听 9229 端口
+    --inspect-brk: # 以调试模式启动，并在第一行暂停
+    --inspect-port: # 指定调试端口（默认 9229）
+    --interactive: # 进入交互模式（默认 node 直接运行即可）
+    --loader: # 用于加载 ESM 的自定义 loader（如 ts-node/esm）
+    --max-old-space-size: # 设置V8的最大内存（单位 MB）
+    --no-warnings: # 禁用所有警告
+    --print: # 执行代码并打印结果
+    --require: # 在启动时预加载某个模块
     --test:
-    --watch:
+    --watch: # 文件监听
 ```
 
 nodejs命令行工具
@@ -34,16 +55,19 @@ nodejs命令行工具
 #### package.json
 ```yaml
 package.json:
-    author:
-    description:
+    author: # 作者，
+    description: # 项目的描述信息
     dependencies: # 项目依赖
     devDependencies: # 开发依赖
-    license:
+    engines: # 版本兼容性，限制
+    homepage: # 主页
+    license: # 开源协议
     main: # 入口文件
-    module:
+    module: # 模块系统
+    optionalDependencies: # 可选依赖
     peerDependencies: # 对等依赖
     name: # 包名
-    repository:
+    repository: # 代码仓库地址
         type:
             git:
         url:
@@ -54,7 +78,7 @@ package.json:
         dev:
         start:
         test:
-    version:
+    version: # 包 版本号
 ```
 
 nodejs包配置文件
@@ -65,17 +89,24 @@ nodejs包配置文件
 npm:
     -v: # 版本
     add: # 添加本地路径映射（包）
-    config:
+    cache: # 缓存
+        clean: # 清理缓存
+    config: # 配置
         edit:
+        delete:
         get:
             registry:
         list: # 查看所有配置项
         set:
+            --global:
             cache: # 缓存路径
             prefix: # 全局软件下载路径
             registry: # 镜像仓库url
+    create: # 远程执行 创建脚本，npx create-*
+    help:
     homepage:
-    init: # 初始化项目
+    info: # 查看包信息
+    init: # 初始化项目，package.json
         -y:
     install: # 安装第三方包
         -g: # 全局安装
@@ -89,6 +120,7 @@ npm:
     list: # 列出已安装包
         -g:
     login: # 登录npmjs官网
+    outdated:
     publish: # 发布包
     remove: # 删除包
     root: # 查看项目node_modules路径
@@ -97,28 +129,41 @@ npm:
     search: # 搜索包
     uninstall: # 卸载第三方包
     unpublish:
+    update: # 更新包
 ```
 
 nodejs包管理器
-
 需要手动安装
-
 npm私服
 
 
 
 
 #### .npmrc
+```yaml
+.npmrc:
+    _authToken: # 设置 npm 注册表的认证令牌
+    cache:
+    https-proxy:
+    package-lock:
+    prefix: # 指定全局包的安装目录
+    proxy:
+    registry:
+    user-agent:
+```
 
-配置文件：
+配置文件：全局、用户级、项目级
 - `安装目录/node_modules/npm/npmrc`：安装配置文件
 - `~/.npmrc`：用户配置文件
 - `.npmrc`：项目配置文件
 
-npm配置文件
+npm配置文件，k-v键值对文件
 
 
 #### npx
+
+nodejs包内执行工具
+
 #### nvm
 ```yaml
 nvm:
@@ -134,6 +179,23 @@ nvm:
 nodejs版本管理器
 
 
+
+
+### tsx
+```yaml
+tsx:
+    --env-file:
+    --inspect: # 调试模式启动
+    --loader:
+    --no-cache:
+    --require:
+    --tsconfig:
+    --watch:
+    --version:
+```
+
+运行TypeScript的Node.js运行时工具
+支持ES模块
 
 
 ## 核心内容
@@ -177,6 +239,7 @@ node: # 共计44个模块
                 unhandledRejection:
         Array:
             forEach():
+            pop():
             push():
             sort(): # 排序（可传入比较函数实现自定义排序）
         Blob:

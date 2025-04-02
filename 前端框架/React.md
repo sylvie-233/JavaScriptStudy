@@ -1,7 +1,7 @@
 # React
 
 `react官方文档：https://react.dev/learn`
-``
+`React 核心技术实践：P15`
 
 
 ## 基础介绍
@@ -58,7 +58,7 @@ react-scripts:
 ```
 
 React打包命令
-
+react默认脚手架打包是带上map文件的
 
 
 
@@ -67,23 +67,31 @@ React打包命令
 ```yaml
 react: # react核心包
     Component: # 组件基类
-    ReactNode:
-    StrictMode: # 严格模式
+        state:
+        render():
+        setState():
+    Element: # React元素
+    FC: # 函数组件
+    ReactNode: # 任何可以被渲染的内容，包括字符串、数字、React 元素、数组或 fragment，常用于children
+    StrictMode: # 严格模式，
+    Suspense: # 异步加载组件
+        fallback:
     act():
     cache():
-    createContext(): # 创建上下文
+    cloneElement(): # 元素复制，(element, props, ...children)，常用于扩展原有元素
+    createContext(): # 创建Context
         Consumer: # 上下文消费者组件
         Provider: # 上下文提供者组件
             value:
     createElement(): # 创建DOM元素 (name, attrs, children)
     createRef(): # 原始DOM引用
         current:
-    lazy():
+    lazy(): # 动态导入组件，配合import()、Suspense使用
     memo():
     startTransition():
     use():
     useActionState():
-    useCallback():
+    useCallback(): # 函数版计算属性，缓存函数的创建，根据依赖项绝对是否重新创建函数
     useContext(): # 使用上下文
     useDebugValue():
     useDeferredValue():
@@ -92,9 +100,9 @@ react: # react核心包
     useImperativeHandle():
     useInsertionEffect():
     useLayoutEffect():
-    useMemo():
+    useMemo(): # 计算属性，缓存计算结果
     useOptimistic():
-    useReducer():
+    useReducer(): # state仓库，用于管理多状态，(reducer, initialState)
     useRef(): # ref引用DOM
         current:
     useState():
@@ -124,27 +132,27 @@ react-router:
     isRouteErrorResponse():
     redirect():
 react-router-dom: # v6
-    BrowserRouter: # 浏览器路由
+    BrowserRouter: # 浏览器路由器，不带#
         basename:
-    HashRouter: # 哈希路由
-    Link: # 路由跳转组件
+    HashRouter: # 哈希路由器，带#
+    Link: # 连接，路由跳转组件
         to:
     Navigate:
     NavLink: # 带样式的路由跳转组件
         activeClassName:
         to:
-    Outlet: # router-view，子路由显示入口
+    Outlet: # router-view，子路显示视图
     Redirect:
         to:
-    Route:
-        element:
-        exact:
+    Route: # 路由
+        element: # 组件
+        exact: # 精确匹配
         index: # 默认路由
         loader:
-        path:
+        path: # 路径
     RouterProvider: # 总route显示
         router:
-    Routes:
+    Routes: # 路由组，路由显示视图
     Switch:
     createBrowserRouter(): # 创建浏览器路由
         _options:
@@ -156,11 +164,12 @@ react-router-dom: # v6
     createRoutesFromElements():
     useLocation(): # 路由导航信息
         pathname:
-    useNavigate():
-        ():
-            replace:
-    useParams():
-    useSearchParams():
+        state: # 路由传参
+    useNavigate(): # 导航器
+        replace:
+        state: # 路由传参
+    useParams(): # path param 路径参数
+    useSearchParams(): # query param 查询参数
 mobx:
     @action: # 定义响应式数据操作方法
         bound:
@@ -220,20 +229,31 @@ react-redux: # 使用store
         store:
     useDispatch(): # 获取store方法
     useSelector(): # 获取store状态
+
+styled-components:
+    createGlobalStyle: # 全局样式
+    keyframes: # 动画 
+    styled: # dom元素
+        a:
+        div:
 ```
 
 
 ### 组件
 
-- <Fragment>：`<>`空节点
-- <Profiler>
-- <StrictMode>
-- <Suspense>
+- `<Fragment>`：`<>`空节点
+- `<Profiler>`
+- `<StrictMode>`
+- `<Suspense>`
 
 
 
+StrictMode：
+- 检查不安全的生命周期方法（class 组件）
+- 额外执行某些函数（如 useEffect）以帮助发现副作用
 
-
+在 React.StrictMode 下，useEffect 里的回调会执行两次（仅限开发环境），这样可以检查是否有副作用
+会警告已弃用的方法
 
 
 
@@ -332,10 +352,42 @@ function App(props) {
 }
 ```
 实现生命周期、属性监听
-
 提供副作用处理
-
 默认每次组件渲染都会执行、初始化时会执行一次
+
+在严格模式下，每次刷新都会执行两次
+
+
+#### useReducer
+```js
+// 初始状态定义
+const initialState = { data: null, loading: false, error: null };
+
+// 统一状态处理
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'FETCH_START':
+      return { ...state, loading: true };
+    case 'FETCH_SUCCESS':
+      return { ...state, loading: false, data: action.payload };
+    case 'FETCH_ERROR':
+      return { ...state, loading: false, error: action.error };
+    default:
+      return state;
+  }
+};
+
+
+// 创建reducer仓库
+const [state, dispatch] = useReducer(reducer, initialState);
+
+// 分发action，payload可用于传值
+dispatch({ type: 'FETCH_SUCCESS', payload: data });
+```
+
+简易Redux实现
+
+
 
 
 #### useRef
@@ -383,6 +435,20 @@ const {Provider, Consumer} = createContext():
 
 
 
+
+
+
+### 组件样式
+
+
+#### styled-components
+
+原生样式组件、原生dom元素 + css的封装
+支持元素嵌套、类less语法
+支持混入、继承属性
+
+
+
 ### 组件路由
 ```jsx
 // 1. 创建router
@@ -420,17 +486,13 @@ React Router
 - `<Outlet>`
 
 
+- 基于定义：<BrowserRouter> （旧版语法）
+- 基于配置：createBrowserRouter()
 
 
 #### 路由声明
-
-- 基于配置：createBrowserRouter()
-- 基于定义：<BrowserRouter> （旧版语法）
-
-
-
-基于定义的路由声明：
 ```jsx
+// 基于定义的路由声明：
 function App() {
     return (
         <BrowserRouter>
@@ -539,7 +601,7 @@ const increasePopulation = useStore((state) => state.increasePopulation)
 
 #### redux
 
-reducer、
+store、reducer、action
 
 
 

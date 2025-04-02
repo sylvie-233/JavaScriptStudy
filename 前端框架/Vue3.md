@@ -1,7 +1,7 @@
 # Vue3
 
 >
-> `Vue3官方文档：https://cn.vuejs.org/guide/quick-start.html`
+> `Vue3官方文档：https://cn.vuejs.org/guide/essentials/conditional.html`
 >
 
 
@@ -21,6 +21,11 @@ vue-cli基于webpack脚手架、vue3建议使用vite构建
 - components
 - event/emit
 - slot
+
+
+
+当根组件没有设置template选项时，Vue将自动使用容器的innerHTML作为模板
+createApp()可创建多次，一个页面可共存多个app对象
 
 
 ### 项目结构
@@ -48,28 +53,44 @@ vue-cli基于webpack脚手架、vue3建议使用vite构建
 ```yaml
 vue:
     App:
-        config:
-            globalProperties:
-        component():
+        config: # 应用配置
+            errorHandler: # (err) 组件异常处理
+            globalProperties: # 全局属性配置
+        component(): # 组件注册
         directive(): # 自定义指令
-        mount(): # 挂载
+        mount(): # 挂载，可接收DOM对象或字符串
         use(): # 使用中间件
+    ComputedRef: # 计算属性ref
+    InjectionKey: # 依赖注入key
+    PropType: # 属性类型
+    Ref: # 引用类型
     RefImpl:
         value: # 代理数据
+    VNode: # 虚拟 DOM 节点
     VNodeTypes:
-    computed(): # 计算属性
-    createApp(): # 创建应用App
+    computed(): # 计算属性，返回ref对象，支持可写计算属性(setter、getter)
+    createApp(): # 创建应用App，传入一个组件创建应用对象app
     createVNode(): # 创建虚拟节点
     customRef(): # 自定义ref（传入回调函数，返回对象重写get、set，），(get调用track, set调用trigger)
-    defineComponent():
+    defineComponent(): # 自定义组件
+        $attr: # 内置属性传值
+            class:
+        emits: # 自定义事件
+        props: # 组件属性
+        template: # 组件模板
+        data(): # 组件状态
+        setup(): # 专门用于组合式 API设置
     defineEmits(): # 自定义事件
     defineExpose(): # 组件ref导出定义
     defineProps(): # 定义组件属性
+    expose():
+    h(): # dom渲染函数
     inject():
     markRaw(): # 标记不会变成响应式对象
+    nextTick(): # 等待dom刷新，用于默认异步的状态更新
     onMounted(): # DOM挂载时，生命周期钩子
     provide():
-    reactive(): # 响应式数据
+    reactive(): # 响应式数据， 返回的是一个原始对象的 Proxy
     readonly(): # 响应式转只读数据
     ref(): # 基础响应式数据，也可用于引用DOM
         value: # js中需通过修改value来实现响应式
@@ -128,15 +149,17 @@ computed计算属性：给响应式数据提供了一个处理过程
 ### 模板语法
 ```yaml
 Template:
-    {{}}:
-    v-bind:
-    v-for:
-    v-html:
-    v-if ... v-else-if ... v-else ...: 
-    v-model: # props#modelValue、$emit("update:model-value")
-    v-on: # $event
-    v-show:
-    v-slot:
+    {{}}: # 文本插值，支持js表达式
+    v-bind: # 属性绑定，支持同名简写es6、动态绑定多个值(直接绑定对象)、动态参数:[xxx]
+    v-for: # 列表渲染
+    v-html: # 原始 HTML显示
+    v-if ... v-else-if ... v-else ...: # 条件渲染
+    v-model: # props#modelValue、$emit("update:model-value")，双向绑定
+    v-on: # $event，事件绑定@
+        submit:
+            prevent:
+    v-show: # 条件渲染
+    v-slot: # 插槽
 
 Component:
 
@@ -184,7 +207,6 @@ class样式绑定、style样式绑定
 
 #### 页面插槽
 ```HTML
-
 <slot>默认内容</slot>
 
 
@@ -194,7 +216,6 @@ class样式绑定、style样式绑定
 
 <template #xxx="{prop}">插入内容</template>
 <slot name="xxx" :prop="xxx">默认内容</slot>
-
 ```
 
 - 默认插槽

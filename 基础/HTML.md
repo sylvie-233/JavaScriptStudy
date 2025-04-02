@@ -41,7 +41,14 @@
         src:
     <p>: # 段落
     <script>: # 脚本
+        nomodule:
         src:
+        type:
+            importmap: #  浏览器端 控制 ES 模块的导入路径
+                imports: # 模块路径映射
+            module:
+            scopes: # 子目录import路径映射
+
     <video>:
         src:
 ```

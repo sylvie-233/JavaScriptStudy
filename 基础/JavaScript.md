@@ -24,6 +24,14 @@ javascript:
             addEventListener(): # 
             dispatchEvent(): # DOM分发事件
             createElement(): # 创建元素Element
+                attributes: # html属性
+                class: # className
+                events: # 事件
+                id: # id
+                is: # 自定义元素的名称
+                properties: # dom属性
+                style: # css
+            createTextNode():
             getElementById(): # 返回HtmlElement对象
             getElementsByClassName(): # 返回HtmlElement对象
             querySelector(): # css选择器
@@ -88,11 +96,19 @@ javascript:
         prompt():
         scroll(): # 窗口滚动
     Array: # 数组
-        concat():
+        length():
+        concat(): # 连接
         filter():
         flat(): 
-        from():
+        forEach(): # 遍历
+        from(): # 字面量创建数组
         includes():
+        join(): # 元素字符串凭借
+        pop():
+        push():
+        shift(): # 队头删除
+        splice(): # 元素删除，替换，影响原数组
+        unshift(): # 队头添加
     ArrayBuffer:
     AsyncFunction:
     Atomics:
@@ -107,17 +123,24 @@ javascript:
         text(): # 获取字符串
     Boolean:
     CustomEvent: # 自定义事件
-    Date:
+    Date: # 日期
+        getDate():
+        getDay():
+        getFullYear():
+        getMonth():
+        getTime(): # 获取毫秒数
     Document: # 页面文档 DOM
     Element: # HTML、xml基类元素，继承自node
-        children:
+        children: # 所有子元素，HTMLCollection
         classList: # css类属性列表
             add():
             contains():
             remove():
             replace():
             toggle():
+        innerHTML:
         getAttribute(): # 获取属性
+        remove(): # 删除元素自身
         removeAttribute(): # 移除属性
         setAttribute(): # 修改属性
     Error:
@@ -181,6 +204,7 @@ javascript:
                 vertexAttribPointer():
         toBlob():
     HTMLCollection: # Element集合
+        item(): # 根据索引获取元素
     HTMLDivElement: # <div>
     HTMLDocument: # html 文档
     HTMLElement: # 继承自Element
@@ -193,6 +217,7 @@ javascript:
         draggable: # 可拖拽
         id:
         innerHTML: # 内部html
+        innerText: # 内部text
         isContentEditable: # 内容可编辑
         outerHTML:
         style:
@@ -240,11 +265,16 @@ javascript:
         remove():
         showPicker():
     HTMLTableElement: # <table>
+        rows:
         createCaption():
         createTBody():
         createTFoot():
         createTHead():
-        insertRow():
+        deleteRow(): # 删除行
+        insertRow(): # 插入一行数据
+    HTMLTableCellElement: # <td>
+    HTMLTableRowElement: # <tr>
+        insertCell():
     HTMLVideoElement: # <video>
     ImageData:
     Location: # 跳转和地址信息
@@ -258,6 +288,11 @@ javascript:
         get():
         set():
     Math:
+        abs():
+        ceil():
+        floor():
+        random():
+        round(): # 四舍五入
         trunc(): # 移除小数
     MessageChannel: # 进程间通信（IPC）
         port1:
@@ -273,18 +308,28 @@ javascript:
         COMMENT_NODE:
         ELEMENT_NODE:
         TEXT_NODE:
-        childNodes:
-        firstChild:
-        lastChild:
-        nextSibling:
-        nodeName:
-        nodeType:
-        parentNode: 
-        previousSibling:
+        childNodes: # 所有子节点
+        firstChild: # 第一个子节点
+        isConnected: # 是否与 DOM 树连接
+        lastChild: # 最后一个子节点
+        nextSibling: # 下一个 兄弟节点
+        nodeName: # 节点名称
+        nodeType: # 节点类型
+        nodeValue: # 节点值
+        ownerDocument: # 所属文档 Document
+        parentElement: # 父元素
+        parentNode: # 父节点
+        previousSibling: # 上一个 兄弟节点
+        textContent: # 文本内容
         appendChild(): # 添加子节点，末尾
-        cloneNode():
+        cloneNode(): # 复制节点
+        getRootNode():
         hasChildNodes():
+        insertBefore(): # 添加子元素，在指定元素之前
+        isSameNode():
+        normalize():
         removeChild(): # 移除子节点
+        replaceChild():
     NodeList: # Node集合
     Object: # 顶级基类
         assign(): # 对象浅拷贝
@@ -368,6 +413,12 @@ javascript:
     SharedWorker: # 共享Worker
         port:
     String: # 字符串
+        endsWith():
+        indexOf(): # 字符串查找，索引
+        split(): # 字符串分隔
+        startsWith():
+        substr():
+        substring():
     Symbol: # 符号key（常用于魔术方法key）
         hasInstance:
         isConcatSpreadable:
