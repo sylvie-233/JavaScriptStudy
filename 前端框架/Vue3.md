@@ -30,7 +30,7 @@ createApp()可创建多次，一个页面可共存多个app对象
 
 ### 项目结构
 ```yaml
-目录结构:
+项目结构:
     /public:
         favicon.ico:
     /src:
@@ -58,6 +58,14 @@ vue:
             globalProperties: # 全局属性配置
         component(): # 组件注册
         directive(): # 自定义指令
+            bindings: # 绑定对象
+                instance: # 组件实例
+                value: # 当前绑定值
+                oldValue: # 上一个绑定值
+                arg: # 参数（如 v-my-dir:foo）
+                modifiers: # 修饰符（如 v-my-dir.foo.bar）
+                dir: # 指令定义对象本身
+            el: # DOM对象
         mount(): # 挂载，可接收DOM对象或字符串
         use(): # 使用中间件
     ComputedRef: # 计算属性ref
@@ -76,9 +84,10 @@ vue:
         $attr: # 内置属性传值
             class:
         emits: # 自定义事件
+        directives: # 自定义指令
         props: # 组件属性
         template: # 组件模板
-        data(): # 组件状态
+        data(): # 组件状态，选项式
         setup(): # 专门用于组合式 API设置
     defineEmits(): # 自定义事件
     defineExpose(): # 组件ref导出定义
@@ -86,9 +95,23 @@ vue:
     expose():
     h(): # dom渲染函数
     inject():
+    isRef():
+    isReactive():
+    isReadonly():
+    isProxy():
     markRaw(): # 标记不会变成响应式对象
     nextTick(): # 等待dom刷新，用于默认异步的状态更新
+    onActivated():
+    onBeforeMount():
+    onBeforeUnmount():
+    onBeforeUpdate():
+    onDeactivated():
+    onErrorCaptured():
     onMounted(): # DOM挂载时，生命周期钩子
+    onRenderTracked():
+    onRenderTriggered():
+    onUnmounted():
+    onUpdated():
     provide():
     reactive(): # 响应式数据， 返回的是一个原始对象的 Proxy
     readonly(): # 响应式转只读数据
@@ -100,8 +123,15 @@ vue:
     toRaw(): # 响应式数据转原始对象
     toRef():
     toRefs():
+    unref():
+    useAttrs():
+    useModel():
+    useSlots():
     watch():
     watchEffect(): # 监视变化
+    watchPostEffect():
+    watchSyncEffect():
+    withDefaults():
 
 vue-router:
     RouterLink:
@@ -114,10 +144,10 @@ vue-router:
             children:
     creatWebHashHistory():
     createWebHistory():
-    useRoute():
+    useRoute(): # 获取当前路由信息
         params:
         query:
-    useRouter():
+    useRouter(): # 获取路由器
         push():
             path:
             name:
@@ -154,7 +184,7 @@ Template:
     v-for: # 列表渲染
     v-html: # 原始 HTML显示
     v-if ... v-else-if ... v-else ...: # 条件渲染
-    v-model: # props#modelValue、$emit("update:model-value")，双向绑定
+    v-model: # props.modelValue、$emit("update:modelValue")，双向绑定
     v-on: # $event，事件绑定@
         submit:
             prevent:
@@ -162,7 +192,14 @@ Template:
     v-slot: # 插槽
 
 Component:
-
+    Component: # 动态组件 
+        is:
+    Teleport: # 传送组件
+    Transition: # 动画过渡组件
+        name:
+    TransitionGroup: # 动画过渡组组件
+        name:
+        tag:
 ```
 
 v-on、v-bind可实现动态参数绑定：`v-bind:[attr]`
@@ -172,50 +209,42 @@ v-for可遍历对象属性
 class样式绑定、style样式绑定
 
 
-#### 内置组件
-
-##### Teleport
-```html
-<Teleport on="css选择器">
-    传送内容
-</Teleport>
-```
-
-传送组件
-
-
-
-
-
-##### Suspense
-```html
-<Suspense>
-    <template v-slot:default>
-        延迟显示内容
-    </template>
-    <template v-slot:fallback>
-        兜底显示内容
-    </template>
-</Suspense>
-```
-
-延时组件
-
-
-
-
 
 #### 页面插槽
-```HTML
-<slot>默认内容</slot>
+```jsx
+// 匿名插槽
+<template>
+  <div class="card">
+    <slot></slot>
+  </div>
+</template>
 
 
-<template v-slot:xxx>插入内容</template>
-<slot name="xxx">默认内容</slot>
+// 具名插槽
+<template>
+  <header><slot name="header" /></header>
+  <main><slot /></main>
+</template>
+
+// 父组件具名插入
+<template v-slot:header>
+    <h1>标题</h1>
+</template> 
 
 
-<template #xxx="{prop}">插入内容</template>
-<slot name="xxx" :prop="xxx">默认内容</slot>
+// 作用域插槽，子组件向插槽传递值，父组件可以接收这些值并使用
+// 子组件传递值
+<template>
+  <slot :user="user" />
+</template>
+
+// 父组件接收值
+<UserCard>
+  <template v-slot="{ user }">
+    <p>姓名：{{ user.name }}</p>
+    <p>年龄：{{ user.age }}</p>
+  </template>
+</UserCard>
 ```
 
 - 默认插槽
@@ -227,27 +256,151 @@ class样式绑定、style样式绑定
 slot可以反向传值给template
 
 
-
-
-
-
-
-#### 生命周期
-- setup():
-- onBeforeMount():
-- onMounted():
-- onBeforeUpdate():
-- onUpdated():
-- onBeforeUnmount():
-- onUnmounted():
-
-
 #### 自定义指令
+```jsx
+<div id="app">
+  <input v-focus />
+</div>
+
+<script>
+    const app = Vue.createApp({
+        directives: {
+            // 自定义 v-focus 指令
+            focus: {
+                mounted(el) {
+                    el.focus();
+                }
+            }
+        }
+    });
+    app.mount('#app');
+</script>
+```
+
+指令绑定生命周期：
+- created()：	指令绑定到元素上时
+- beforeMount()：	元素准备挂载到DOM之前
+- mounted()：	元素已经挂载到 DOM
+- beforeUpdate()： 更新前
+- updated()：更新后
+- beforeUnmount()：卸载前
+- unmounted()：元素已经被卸载
 
 
-### HOOKS
+### 样式绑定
 
-响应式数据、修改方法
+
+
+### 内置组件
+#### Component
+```jsx
+<component :is="currentComponent"></component>
+```
+
+动态组件，用于根据绑定的is属性动态切换组件
+
+
+#### Keep Alive
+```jsx
+<keep-alive>
+  <component :is="currentTabComponent"></component>
+</keep-alive>
+```
+
+`<keep-alive>`是一个特殊的包装组件，用于缓存动态组件实例。
+
+
+#### Suspense
+```html
+<suspense>
+    <template v-slot:default>
+        延迟显示内容
+    </template>
+    <template v-slot:fallback>
+        兜底显示内容
+    </template>
+</suspense>
+```
+
+异步加载组件
+
+
+
+#### Teleport
+```html
+<teleport to="body">
+  <div class="modal">我是弹窗</div>
+</teleport>
+```
+
+传送组件
+
+
+
+
+
+
+
+#### Transition
+```jsx
+<transition name="fade">
+  <p v-if="show">Hello</p>
+</transition>
+```
+
+为单个元素或组件添加进入 / 离开过渡效果
+
+
+#### Transition Group
+```jsx
+<transition-group name="list" tag="ul">
+  <li v-for="item in items" :key="item.id">{{ item.text }}</li>
+</transition-group>
+```
+
+用于给多个元素添加过渡效果，常用于列表的进入/离开动画
+
+
+
+
+
+
+
+
+
+
+
+### 生命周期
+
+- setup():
+    - onBeforeCreate():
+    - onCreated():
+    - onBeforeMount():
+    - onMounted():
+    - onBeforeUpdate():
+    - onUpdated():
+    - onBeforeUnmount():
+    - onUnmounted():
+    - onErrorCaptured():
+- beforeCreate():
+- created():
+- beforeMount():
+- mounted():
+- beforeUpdate():
+- updated():
+- activated():
+- deactivated():
+- beforeDestroy():
+- destroyed():
+- errorCaptured():
+
+
+
+#### setup
+
+支持组合式api的生命周期
+在所有生命周期之前执行
+
 
 
 
@@ -264,6 +417,28 @@ slot可以反向传值给template
 
 
 
+#### v-model
+```jsx
+// 自定义组件使用v-model
+<MyInput v-model="value" />
+
+// 等价于modelValue属性 + 自定义update事件
+<MyInput :modelValue="value" @update:modelValue="value = $event" />
+
+// 自定义处理v-model
+// MyInput.vue
+<template>
+  <input :value="modelValue" @input="$emit('update:modelValue', $event.target.value)" />
+</template>
+
+<script>
+export default {
+  props: ['modelValue']
+}
+</script>
+```
+
+组件value双向绑定
 
 
 
@@ -274,21 +449,98 @@ slot可以反向传值给template
 
 
 
+### HOOKS
+
+- 响应式系统 (ref/reactive etc.)
+- 侦听变化 (watch/watchEffect)  
+- 生命周期 (onMounted 等)   
+- 注入/提供 (provide/inject) 
+- 组件上下文 (attrs, slots)  
+- 其他工具 (nextTick, computed)
+
+
+
+#### watch
+```jsx
+const count = ref(0);
+
+// 使用 watch 监听 count 的变化
+watch(count, (newValue, oldValue) => {
+    console.log(`count changed from ${oldValue} to ${newValue}`);
+});
+```
+
+属性变化监听
+
+
+
+#### watchEffect
+```jsx
+const count = ref(0)
+
+watchEffect(() => {
+  // 任何响应式数据变化时都会触发
+  console.log('Count has changed:', count.value)
+})
+
+count.value++  // 当 count 变化时，watchEffect 会触发
+```
+
+
+与 watch 不同，watchEffect 不需要显式地指定需要观察的数据源，它会自动追踪你在函数中使用的响应式数据
+
+
+### 扩展机制
+
+
+#### Plugin
+```jsx
+// 自定义函数式插件
+const myPlugin = (app, options) => {
+  app.config.globalProperties.$myPlugin = options
+}
+
+// 全局注册插件
+const app = createApp(App)
+app.use(myPlugin, { name: 'My Custom Plugin' })
+app.mount('#app')
+```
+
+
+app.use()会将插件安装到Vue应用实例中。Vue会调用插件的install方法（如果插件是一个对象且实现了install方法
+
+插件会做一些全局的配置（比如添加全局组件、指令、挂载全局方法或配置等
+
+
+自定义插件支持对象式(install)、函数式插件
 
 
 ### 页面路由
-```yaml
-router-link:
-    active-class:
-    params:
-    to:
-        name:
-        path:
-        query:
+```jsx
+// router.js 路由定义
+const routes = [
+  { path: '/', component: Home },
+  { path: '/about', component: About },
+]
+
+const router = createRouter({
+  history: createWebHistory(), // 使用 HTML5 模式
+  routes
+})
 
 
-router-view:
+// main.js 注册路由
+app.use(router)
 
+// App.vue路由布局
+<template>
+  <nav>
+    <router-link to="/">首页</router-link>
+    <router-link to="/about">关于</router-link>
+  </nav>
+  <router-view /> 
+  {/* router-view可在组件内部嵌套，实现嵌套路由出口 */}
+</template>
 ```
 
 
@@ -304,23 +556,30 @@ router-view:
 
 
 #### Pinia
+```jsx
+// store.js
+import { defineStore } from 'pinia'
 
-```javascript
-import { defineStore } from "pinia"
-
-const store = defineStore("storeId", {
-    state: () => {
-        return {
-            状态值
-        }
-    },
-    getters: {
-        getter函数：计算属性（传入state）
-    },
-    actions: {
-        this引用，修改state的方法
+export const useCounterStore = defineStore('counter', {
+  state: () => ({
+    count: 0,
+    name: 'pinia'
+  }),
+  getters: {
+    doubleCount: (state) => state.count * 2
+  },
+  actions: {
+    increment() {
+      this.count++
     }
+  }
 })
+
+// main.js中注册
+app.use(pinia)
+
+// 组件中使用 store
+const counter = useCounterStore()
 ```
 
 
