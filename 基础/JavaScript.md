@@ -87,6 +87,7 @@ javascript:
         close(): # 关闭窗口
         eval(): # 执行文本js代码
         fetch(): # ajax请求
+            signal: # 中断控制
         getComputedStyle(): # 获取css样式
         getSelection():
         import(): # 动态导入模块
@@ -95,6 +96,14 @@ javascript:
         parseFloat():
         prompt():
         scroll(): # 窗口滚动
+    AbortController: # web请求中断器
+        signal:
+        about():
+    AbortSignal: # web中断信号
+        aborted:
+        reason:
+        about():
+        timeout():
     Array: # 数组
         length():
         concat(): # 连接
@@ -471,12 +480,23 @@ javascript:
         postMessage(): # 传递消息
         terminate(): # 结束
     XMLHttpRequest:
-        onreadystatechange:
-        readyState:
+        onreadystatechange: # 底层执行状态变化回调
+        readyState: # 底层执行状态
+            0:
+            1:
+            2: # 请求已发送
+            3:
+            4: # 请求已完成
         response:
-        status:
-        open():
-        send():   
+        responseText:
+        responseXML:
+        status: #
+            200:
+            404:
+        getResponseHeader():
+        open(): # 创建请求
+        send(): # 发送请求
+        setRequestHeader():
 ```
 
 ### Data Types

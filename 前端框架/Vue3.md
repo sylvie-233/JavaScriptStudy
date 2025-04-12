@@ -1,7 +1,7 @@
 # Vue3
 
 >
-> `Vue3官方文档：https://cn.vuejs.org/guide/essentials/conditional.html`
+> `https://cn.vuejs.org/guide/essentials/component-basics.html`
 >
 
 
@@ -90,7 +90,7 @@ vue:
         data(): # 组件状态，选项式
         setup(): # 专门用于组合式 API设置
     defineEmits(): # 自定义事件
-    defineExpose(): # 组件ref导出定义
+    defineExpose(): # 显式定义导出
     defineProps(): # 定义组件属性
     expose():
     h(): # dom渲染函数
@@ -112,6 +112,7 @@ vue:
     onRenderTriggered():
     onUnmounted():
     onUpdated():
+	onWatcherCleanup(): # 上一次watch清理
     provide():
     reactive(): # 响应式数据， 返回的是一个原始对象的 Proxy
     readonly(): # 响应式转只读数据
@@ -127,10 +128,17 @@ vue:
     useAttrs():
     useModel():
     useSlots():
-    watch():
-    watchEffect(): # 监视变化
-    watchPostEffect():
-    watchSyncEffect():
+	useTemplateRef(): # 原生dom引用，支持引用多个
+    watch(): # 响应式数据监听(new, old, onCleanup)，支持单值响应式数据、getter()函数、多数据源数组，返回取消监听函数
+		deep: # 深度监听
+		flush: # 值刷新执行时期
+			post:
+			sync:
+		immediate: # 初始化立即执行
+		once: # 仅执行一次
+    watchEffect(): # 监视变化(onCleanup)，自动监听回调方法中所有的响应式数据变化
+    watchPostEffect(): # 后置监视变化， 在 Vue 更新后执行
+    watchSyncEffect(): # 前置监视变化，在 VUe 更新之前执行
     withDefaults():
 
 vue-router:
@@ -181,13 +189,49 @@ computed计算属性：给响应式数据提供了一个处理过程
 Template:
     {{}}: # 文本插值，支持js表达式
     v-bind: # 属性绑定，支持同名简写es6、动态绑定多个值(直接绑定对象)、动态参数:[xxx]
-    v-for: # 列表渲染
+    v-for: # 列表渲染，可遍历对象，整数
     v-html: # 原始 HTML显示
     v-if ... v-else-if ... v-else ...: # 条件渲染
-    v-model: # props.modelValue、$emit("update:modelValue")，双向绑定
-    v-on: # $event，事件绑定@
-        submit:
-            prevent:
+    v-model: # props.modelValue、$emit("update:modelValue")，双向绑定，支持多个元素绑定到同一个数组
+		false-value:
+		true-value:
+		lazy: # input变更位change事件
+		number: # 字符串转数字
+		trim:
+		<input>:
+		<textarea>:
+		<select>:
+		<radio>:
+		<checkbox>:
+    v-on: # $event，事件绑定@，支持内联事件处理，方法事件处理
+        $event: # 内联事件处理中访问原生dom事件
+			preventDefault():
+			stopPropagation():
+		capture:
+		click: # 点击事件
+			left:
+			middle:
+			right:
+		keyup: # 按键监听
+			alt:
+			ctrl:
+			down:
+			enter:
+			esc:
+			exact:
+			delete:
+			left:
+			meta:
+			right:
+			shift:
+			space:
+			tab:
+			up:
+		once:
+		passive:
+        prevent: # 阻止默认行为
+		self: # event.target触发对象是自身时才会执行
+		stop: # 停止事件冒泡
     v-show: # 条件渲染
     v-slot: # 插槽
 
@@ -286,13 +330,20 @@ slot可以反向传值给template
 - beforeUnmount()：卸载前
 - unmounted()：元素已经被卸载
 
+#### 事件处理
 
-### 样式绑定
+v-on
+受控组件、非受控组件
+
+
+#### 样式绑定
+
+v-bind class、style
 
 
 
 ### 内置组件
-#### Component
+#### component
 ```jsx
 <component :is="currentComponent"></component>
 ```
@@ -300,7 +351,7 @@ slot可以反向传值给template
 动态组件，用于根据绑定的is属性动态切换组件
 
 
-#### Keep Alive
+#### keep-alive
 ```jsx
 <keep-alive>
   <component :is="currentTabComponent"></component>
@@ -310,7 +361,7 @@ slot可以反向传值给template
 `<keep-alive>`是一个特殊的包装组件，用于缓存动态组件实例。
 
 
-#### Suspense
+#### suspense
 ```html
 <suspense>
     <template v-slot:default>
@@ -326,7 +377,7 @@ slot可以反向传值给template
 
 
 
-#### Teleport
+#### teleport
 ```html
 <teleport to="body">
   <div class="modal">我是弹窗</div>
@@ -341,7 +392,7 @@ slot可以反向传值给template
 
 
 
-#### Transition
+#### transition
 ```jsx
 <transition name="fade">
   <p v-if="show">Hello</p>
@@ -351,7 +402,7 @@ slot可以反向传值给template
 为单个元素或组件添加进入 / 离开过渡效果
 
 
-#### Transition Group
+#### transition-group
 ```jsx
 <transition-group name="list" tag="ul">
   <li v-for="item in items" :key="item.id">{{ item.text }}</li>
@@ -415,6 +466,9 @@ slot可以反向传值给template
 - $refs/$parent:
 
 
+#### props
+
+属性传递
 
 
 #### v-model
@@ -442,6 +496,17 @@ export default {
 
 
 
+#### event
+
+defineEmits()、
+
+
+#### inject
+
+
+provide()、inject()
+
+
 
 
 
@@ -457,6 +522,13 @@ export default {
 - 注入/提供 (provide/inject) 
 - 组件上下文 (attrs, slots)  
 - 其他工具 (nextTick, computed)
+
+
+
+#### ref
+
+
+#### reacttive
 
 
 
@@ -488,6 +560,16 @@ count.value++  // 当 count 变化时，watchEffect 会触发
 
 
 与 watch 不同，watchEffect 不需要显式地指定需要观察的数据源，它会自动追踪你在函数中使用的响应式数据
+
+
+#### onMounted
+
+
+
+#### nextTick
+
+
+
 
 
 ### 扩展机制
