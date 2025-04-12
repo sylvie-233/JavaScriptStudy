@@ -11,11 +11,12 @@
 app -> window -> process
 ipcMain -> contextBridge(preload) -> ipcRenderer
 
+在preload.js中利用contextBridge暴露的方法操作ipcRenderer与main.js中的ipcMain通信
 
 ### electron
-
 ```yaml
 electron:
+
 ```
 
 ### electron-build

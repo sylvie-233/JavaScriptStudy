@@ -1,7 +1,7 @@
 # Vue3
 
 >
-> `https://cn.vuejs.org/guide/essentials/component-basics.html`
+> `https://cn.vuejs.org/guide/components/props.html`
 >
 
 
@@ -9,6 +9,7 @@
 
 
 支持选项式API（对象）、组合式API（函数）两种风格
+单文件组件 (简称 SFC)
 
 
 vue-cli基于webpack脚手架、vue3建议使用vite构建
@@ -21,6 +22,8 @@ vue-cli基于webpack脚手架、vue3建议使用vite构建
 - components
 - event/emit
 - slot
+
+![Vue生命周期钩子](../assets/Vue生命周期钩子.png)
 
 
 
@@ -69,6 +72,7 @@ vue:
         mount(): # 挂载，可接收DOM对象或字符串
         use(): # 使用中间件
     ComputedRef: # 计算属性ref
+    DefineComponent: # 组件定义类型
     InjectionKey: # 依赖注入key
     PropType: # 属性类型
     Ref: # 引用类型
@@ -83,15 +87,22 @@ vue:
     defineComponent(): # 自定义组件
         $attr: # 内置属性传值
             class:
+        $emit: # 内置信号触发
+        components: # 组件注册
         emits: # 自定义事件
         directives: # 自定义指令
         props: # 组件属性
-        template: # 组件模板
+          required:
+          type:
+        setup: # 选项式api,(props, ctx)
+          ctx:
+          props:
+        template: # 组件模板，可直接使用字符串，或引用dom元素
         data(): # 组件状态，选项式
         setup(): # 专门用于组合式 API设置
-    defineEmits(): # 自定义事件
+    defineEmits(): # 自定义事件，返回emit()触发函数
     defineExpose(): # 显式定义导出
-    defineProps(): # 定义组件属性
+    defineProps(): # 定义组件属性props
     expose():
     h(): # dom渲染函数
     inject():

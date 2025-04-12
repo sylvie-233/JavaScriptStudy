@@ -621,6 +621,8 @@ Doc Comment:
     @typedef: # 对象定义 @typedef {Object} Person
 ```
 
+使用jsdoc标准
+
 第一行写描述信息，文档注释只能用`/** */`标注，单行注释`//`无用
 
 对象类型的参数应该对每个属性写一行注释
@@ -628,7 +630,7 @@ Doc Comment:
 
 
 版权声明
-```javascript
+```js
 /**
  * @license
  * 
@@ -641,16 +643,48 @@ Doc Comment:
  * 了解更多信息，请访问:
  * https://www.apache.org/licenses/LICENSE-2.0   许可证链接
  */
-
 ```
 
-对象类型定义
-```javascript
+
+函数类型标注
+```js
 /**
- * @typedef {object} User
- * @property {string} name
- * @property {number} age
+ * 计算两个数的和
+ * @param {number} a - 第一个数字
+ * @param {number} b - 第二个数字
+ * @returns {number} 返回两个数字的和
  */
+function add(a, b) {
+  return a + b;
+}
+```
+
+
+
+
+对象类型定义
+```js
+/**
+ * @typedef {Object} Person
+ * @property {string} name - 姓名
+ * @property {number} age - 年龄
+ */
+
+/**
+ * 获取用户信息
+ * @param {Person} person - 用户对象
+ * @returns {string} 用户的简介
+ */
+function getUserInfo(person) {
+  return `${person.name} is ${person.age} years old.`;
+}
+```
+
+
+变量类型定义
+```js
+/** @type {number} */
+let count = 5;
 ```
 
 
