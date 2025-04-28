@@ -1,7 +1,7 @@
 # NestJs
 
 `Nest.js官方文档：https://docs.nestjs.com/`
-``
+`2025最新版 Nest.js 零基础入门到精通教程: P11`
 
 
 ## 基础介绍
@@ -14,9 +14,15 @@
 - `@nestjs/platform-fastify`
 
 
-nodejs 服务端框架、支持依赖注入
+Express + Decorator
 
-Middleware、Interceptor、Guard三个组件功能相似
+
+nodejs 服务端框架、支持依赖注入
+- Module:
+- Controller:
+- Provider: 注入式服务或依赖
+
+
 
 
 全局->
@@ -29,6 +35,7 @@ module -> imports(导入其它模块)
 
 
 
+Middleware、Interceptor、Guard三个组件功能相似
 
 
 ### 项目结构
@@ -61,7 +68,7 @@ nest:
     new: # n 新建项目
     start: # 运行项目
         --debug:
-        --watch:
+        --watch: # 热更新
     update: # u
 ```
 
@@ -84,10 +91,10 @@ nest:
     @Ip:
     @Injectable: # 依赖注入
     @Mudule: # 模块
-        controllers:
+        controllers: # 控制器
         exports: # 导出provider、module
-        imports:
-        providers:
+        imports: # 导入其它模块
+        providers: # 功能依赖组件
             inject: # 工厂函数参数注入
                 optional:
                 token:
@@ -135,12 +142,11 @@ nest:
             custom:
             param:
             query:
-    ArgumentsHost:
-        switchToHttp():
-            getResponse():
-            getRequest():
+    ArgumentsHost: # 上下文Context
+        switchToHttp(): # 
     BadRequestException:
-    CallHandler():
+    CallHandler:
+        handle(): # 使用rxjs Observable进行流式处理
     CanActivate: # 请求守卫（）
         canActivate():
             context: # 执行上下文
@@ -154,6 +160,9 @@ nest:
         getHandler(): # 获取处理函数
         switchToHttp():
             getRequest():
+    HttpArgumentHost: # 上下文Context
+        getResponse():
+        getRequest():
     HttpException: # HTTP异常基类
         getStatus():
     HttpStatus: # HTTP状态码
@@ -197,20 +206,37 @@ nest:
     createDecorator(): # 创建装饰器
     createParamDecorator(): # 创建参数装饰器
 
+@nestjs/config:
+    ConfigModule:
+        forRoot():
+            isGlobal:
+
 @nestjs/core:
     APP_GUARD:
     BaseExceptionFilter: # 异常捕获
-    NestFactoroy:
+    NestApplication: # nest应用
+    NestFactoroy: # 应用模块工厂
         create(): # 创建应用实例(根据Module)
             logger:
     Reflector: # 反射工具（获取元信息）
         createDecorator(): # 自定义装饰器
         get(): # 获取装饰器中的值
 
+@nestjs/jwt:        
+    JwtModule:
+        register():
+            secret:
+            signOptions:
+
 @nestjs/mapped-types:
     PartialType():
 
-@nestjs/platform-express:
+@nestjs/passport:
+    AuthGuard:
+    PassportModule:
+    PassportStrategy:
+
+@nestjs/platform-express: # 底层express框架适配器
     MulterModule:
         register():
 
@@ -221,8 +247,15 @@ nest:
     @ApiQuery:
     @ApiResponse:
     @ApiTags:
-    DocumentBuilder:
-    SwaggerModule:
+    DocumentBuilder: # 
+        addBearerAuth():
+        build():
+        setDescription():
+        setTitle():
+        setVersion():
+    SwaggerModule: # swagger模块
+        createDocument(): # 创建文档对象
+        setup(): # 启动swagger文档在指定url上面
 
 @nestjs/testing:
     Test:
@@ -272,6 +305,7 @@ class-validator: # 数据验证(DTO)
         message:
     @IsNotEmpty:
     @IsString:
+    @MinLength:
     validate(): # 数据校验
 express: # nestjs内置集成http库
     NextFunction: # next函数
@@ -287,7 +321,11 @@ express-session: # 使用session中间件
         name: # cookie名
         rolling:
         secret:
-rxjx:
+passport-jwt:
+    ExtractJwt:
+    Strategy:
+reflect-metadata: # 元编程库，提供元数据反射API，增强Reflect的Metadata功能
+rxjs:
     operators:
         catchError():
         map():
@@ -309,27 +347,34 @@ zod: # 数据验证
 
 ### Controller
 
-
 控制器、视图处理函数
+- @Controller
+    - @Get:
+    - @Post
 
 
 ### Provider
 
 依赖注入对象、@Injectable、
-
 控制反转、构造方法注入
+任何可以被注入的东西都是 Provider，比如服务（Service）、工厂（Factory）、仓库（Repository）等
+
 
 Factory providers工厂注入
 
+
+#### Service
+
+封装业务逻辑
+一般作为 Provider 提供，被 Controller 注入调用，专注处理核心逻辑
 
 
 
 
 ### Module
 
-
 模块、子工程、一个项目可以拆分成多个模块（根据路由、功能）
-
+每个模块是一个功能区域（Feature Area），可以导入其他模块，提供自己的服务（Providers）给其他模块使用
 动态模块、forRoot静态方法动态生成模块信息(module、providers、exports)
 
 
@@ -377,11 +422,26 @@ export class HttpExceptionFilter implements ExceptionFilter {
 }
 ```
 
-异常处理、异常过滤链
-
+异常处理、异常过滤链：统一管理异常响应，比如返回标准化错误信息
 自定义异常继承HttpException 
 
 
+### Guard
+```ts
+@Injectable()
+export class RolesGuard implements CanActivate {
+  canActivate(
+    context: ExecutionContext,
+  ): boolean | Promise<boolean> | Observable<boolean> {
+    return true;
+  }
+}
+```
+
+
+请求守卫（拦截）,决定某个请求是否可以继续被处理
+适合做权限控制、角色校验
+Guard在所有Middleware之后执行、在所有Interceptor之前执行
 
 
 ### Pipe
@@ -393,7 +453,7 @@ async findOne(@Param('id', ParseIntPipe) id: number) {
 
 ```
 
-数据转换、数据验证
+数据转换、数据验证：可以在进入 Controller 之前对参数做校验、转换
 数据处理通道，类似中间件
 内置ValidationPipe可实现大部分数据校验了
 常配合`class-validator`、`class-transform`两个库使用自定义Pipe
@@ -432,22 +492,6 @@ export class ValidationPipe implements PipeTransform {
 
 
 
-### Guard
-```ts
-@Injectable()
-export class RolesGuard implements CanActivate {
-  canActivate(
-    context: ExecutionContext,
-  ): boolean | Promise<boolean> | Observable<boolean> {
-    return true;
-  }
-}
-```
-
-
-请求守卫（拦截）
-
-Guard在所有Middleware之后执行、在所有Interceptor之前执行
 
 
 ### Interceptors
@@ -470,9 +514,8 @@ export class LoggingInterceptor implements NestInterceptor {
   }
 }
 ```
-
-
 拦截器、类似中间件，主要用于实现AOP功能
+在请求处理前后扩展行为，在请求处理前后扩展行为
 - 在函数执行之前/之后绑定额外的逻辑
 - 转换从函数返回的结果
 - 转换从函数抛出的异常
@@ -488,7 +531,7 @@ export class LoggingInterceptor implements NestInterceptor {
 
 
 
-## 项目实战
+## NestJS 生态
 
 ### ORM
 
@@ -523,6 +566,47 @@ session支持中间件
 
 
 
+### Document
+
+#### Swagger
+
 ### Deployment
 
 #### PM2
+
+
+
+## NestJs 原理
+
+
+1. 应用启动Application：
+依赖根模块创建应用对象NestApplication，内部初始化一个巨大的 IoC 容器
+
+2. 扫描、注册模块Module：
+Nest 会递归扫描 imports、controllers、providers。
+所有模块、控制器、服务等元数据（用装饰器 @Module、@Injectable、@Controller 收集的）都会被提取出来。
+生成模块之间的依赖图（dependency graph）
+
+3. 创建、注入Provider
+扫描到的 Provider（Service、Factory、Repository 等）：
+- 被注册到容器里。
+- 按需 实例化。
+- 遇到需要依赖注入的地方，容器负责解析依赖树，自动注入
+
+4. 绑定中间件（Middleware）
+如果在模块中定义了中间件（比如日志、鉴权中间件）：
+- Nest 调用 configure() 方法。
+- 注册 Express（默认）或 Fastify 的中间件
+
+5. 注册控制器路由（Controller）
+- 扫描每个 Controller 上的路由装饰器，比如 @Get(), @Post()。
+- 把这些路由绑定到底层的 HTTP 服务器（Express/Fastify）
+
+6. 安装管道（Pipes）、守卫（Guards）、拦截器（Interceptors）、异常过滤器（Filters）
+全局或者局部的 Pipes / Guards / Interceptors / Filters 都会在这一阶段挂载。
+这些机制会形成一套请求处理链（类似于 AOP 切面编程）：
+请求进来 → 中间件 → 守卫 → 管道 → 控制器 → 拦截器（前） → 业务逻辑 → 拦截器（后） → 返回响应
+
+7. 启动 HTTP 服务器并监听端口
+app.listen(3000) 会启动底层的 Express/Fastify。
+等待接收外部请求

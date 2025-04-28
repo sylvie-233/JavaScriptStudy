@@ -400,14 +400,18 @@ javascript:
     ReadableStream: # 可读流
         getReader():
         pipeTo():
-    Reflect:
+    Reflect: # 反射
+        @metadata(): # 定义元数据的装饰器
         apply():
         construct():
+        defineMetadata(): # 定义元数据
         deleteProperty():
         get():
+        getMetadata():
         getOwnPropertyDescriptor():
         getPrototypeOf():
         has():
+        hasMetadata():
         isExtensible(): 
         ownKeys():
         preventExtensions():
