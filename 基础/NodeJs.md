@@ -543,7 +543,6 @@ node: # 共计44个模块
             output:
     repl:
     sea:
-    sqlite:
     stream:
         web:
             ReadableStream:
@@ -763,14 +762,28 @@ Node.js 事件循环分为以下几个主要阶段：
 
 
 
+### 扩展机制
+
+
+#### v8 Inspector
+
+调试协议（V8 Inspector Protocol）是 Chrome 浏览器团队设计的一种通信协议，它允许外部工具（比如 Chrome DevTools、VS Code、WebStorm 等）与 V8 引擎（Node.js 用的 JS 引擎）进行调试通信
+- 打断点
+- 单步执行
+- 查看变量和作用域
+- 检查内存使用
+- 获取栈帧信息
+- 查看对象引用路径
+- 启动 CPU/内存分析（profiling）
+
+
+基于websocket通信
 
 
 
 
 
-
-
-## node-gyp
+#### node-gyp
 ```yaml
 node-gyp:
     configure:
@@ -780,7 +793,7 @@ node-gyp:
 
 `NAPI`、`NODE_API_MODULE()`
 
-### binding.gyp
+##### binding.gyp
 ```yaml
 binding.gyp:
     targets:
