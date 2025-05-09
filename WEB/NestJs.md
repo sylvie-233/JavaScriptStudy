@@ -1,7 +1,7 @@
 # NestJs
 
 `Nest.js官方文档：https://docs.nestjs.com/`
-`2025最新版 Nest.js 零基础入门到精通教程: P17`
+`2025最新版 Nest.js 零基础入门到精通教程: P21`
 
 
 ## 基础介绍
@@ -178,7 +178,7 @@ nest:
         useGlobalPipes(): # 全局数据管道注册
         useLogger():
         useStaticAssets(): # 静态目录挂载
-    MiddlewareConsumer:
+    MiddlewareConsumer: # 路由中间件配置
         apply(): # 应用中间件
         exclude(): # 排除应用中间件的路由
         forRoutes(): # 指定应用中间件的路由
@@ -188,7 +188,7 @@ nest:
     NestMiddleware: # 中间件
         use():
     NestModule: # 模块
-        configure():
+        configure(): # 配置路由中间件
             consumer:
     NotFindException:
     OnModuleInit:

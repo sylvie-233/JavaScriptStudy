@@ -113,7 +113,7 @@ react-dom:
     redirect(): # 重定向
 @remix-run/react:
     Form: # 表单
-        action: # url
+        action: # url，没指定默认根路径
         encType:
     Link: # 链接
         to:
