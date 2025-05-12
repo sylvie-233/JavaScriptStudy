@@ -1,7 +1,7 @@
 # NestJs
 
 `Nest.js官方文档：https://docs.nestjs.com/`
-`2025最新版 Nest.js 零基础入门到精通教程: P21`
+`2025最新版 Nest.js 零基础入门到精通教程: P34`
 
 
 ## 基础介绍
