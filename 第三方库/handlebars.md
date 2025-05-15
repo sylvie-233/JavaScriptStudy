@@ -27,10 +27,17 @@ hbs模板引擎
 ```yaml
 handlebars:
     compile(): # 编译
-    registerHelper(): # 注册函数
+        (): # 页面渲染
+    registerHelper(): # 注册辅助函数
         options:
             fn(): # 渲染函数
     registerPartial(): # 注册代码片段
+express-handlerbars: # 兼容express的模板引擎，支持默认layouts、partials
+    create():
+        engine: # 引擎
+    engine():
+        extname:
+        runtimeOptions:
 ```
 
 ### 条件渲染

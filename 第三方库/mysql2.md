@@ -9,11 +9,23 @@ mysql连接驱动
 ```yaml
 mysql2:
     promise:
-    createConnection():
+    createConnection(): # 创建连接
         database:
         host:
         password:
         user:
         --- # Connection连接对象
+        beginTransaction():
+        commit():
+        connect():
+        execute():
+            fields:
+            results:
+        query(): 
+        release():
+        rollback():
+    createPool(): # 创建连接池
+        ---
+        getConnection():
         query():
 ```

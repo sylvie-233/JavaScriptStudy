@@ -1,7 +1,7 @@
 # NestJs
 
 `Nest.js官方文档：https://docs.nestjs.com/`
-`2025最新版 Nest.js 零基础入门到精通教程: P45`
+`2025最新版 Nest.js 零基础入门到精通教程: P61`
 
 
 ## 基础介绍
@@ -116,6 +116,7 @@ nest:
     @Redirect: # 响应重定向
         url:
         statusCode:
+    @Render: # 模板渲染 
     @Req: # 请求对象
         --- # req请求对象实例
         body:
@@ -170,6 +171,8 @@ nest:
         enableCors():
         get(): # 手动获取依赖
         listen(): # 监听端口
+        set():
+        setBaseViewDir(): # 模板根目录
         setGlobalPrefix():
         use(): # 注册全局中间件
         useGlobalFilters(): # 全局异常处理过滤器
