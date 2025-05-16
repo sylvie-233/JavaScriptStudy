@@ -1,7 +1,7 @@
 # NestJs
 
 `Nest.js官方文档：https://docs.nestjs.com/`
-`2025最新版 Nest.js 零基础入门到精通教程: P61`
+``
 
 
 ## 基础介绍
@@ -151,7 +151,7 @@ nest:
     CanActivate: # 请求守卫（）
         canActivate():
             context: # 执行上下文
-    ConsoleLogger:
+    ConsoleLogger: # 控制台日志记录器
     DynamicModule: # 动态配置模块(forRoot)
     ExceptionFilter: # 异常处理过滤器基类
         catch():
@@ -179,8 +179,10 @@ nest:
         useGlobalGuards(): # 全局请求守卫注册
         useGlobalInterceptors(): # 全局拦截器注册
         useGlobalPipes(): # 全局数据管道注册
-        useLogger():
+        useLogger(): # 使用自定义日志器
         useStaticAssets(): # 静态目录挂载
+    LoggerService: # 自定义日志
+        log():
     MiddlewareConsumer: # 路由中间件配置
         apply(): # 应用中间件
         exclude(): # 排除应用中间件的路由

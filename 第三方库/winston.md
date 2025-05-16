@@ -8,8 +8,9 @@ javascript日志库
 ## 核心内容
 ```yaml
 winston:
-    format:
+    format: # 格式化器
         combine():
+        json():
         label():
         prettyPrint():
         printf():
@@ -18,26 +19,29 @@ winston:
         add(): # 添加日志器
         get(): # 获取日志器
         has():  
-    transports:
-        Console:
+    transports: # 传输器
+        Console: # 控制台
         DailyRotateFile:
-        File:
+        File: # 文件
+            filename:
         Http:
         Stream:
-    Logger:
+    Logger: # 日志器
         info():
     Transport:
         log():
     createLogger():
+        format:
+        level:
         transports:
     info():
     log():
 ```
 
 
-### 传输通道
+### Transport
 
-Transport
+
 
 
 
