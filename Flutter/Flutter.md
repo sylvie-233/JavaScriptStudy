@@ -19,7 +19,7 @@ Flutter SDK中包含了Dart SDK
 
 ### 项目结构
 ```yaml
-项目结构:
+flutter:
     /.dart_tool:
     /.idea:
     /android:

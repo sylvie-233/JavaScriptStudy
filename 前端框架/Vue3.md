@@ -2,7 +2,7 @@
 
 >
 > `https://cn.vuejs.org/guide/components/props.html`
->
+> `2025最新版 Vue3.4 核心源码解析教程: p22`
 
 
 ## 基础介绍
@@ -684,5 +684,55 @@ const counter = useCounterStore()
 
 
 
+## Vue原理
+```yaml
+vue3核心:
+	compile-core:
+	compile-dom:
+	compile-sfc: # 单文件解析
+	compile-ssr:
+	reactivity: # 响应式系统
+		ComputedRefImpl: # computed() 的实现类，具有懒惰求值、缓存能力
+		ObjectReactiveProxy: # 由 reactive() 创建的响应式代理对象，使用 Proxy 封装原始对象
+		ReactiveEffect: # 核心响应式副作用对象，表示一个响应式的“副作用函数”, effect() 返回对象
+		RefImpl: # ref() 创建的响应式对象的实现类，包装一个值，具有 .value
+		computed():
+		effect(): # 响应式刷新，副作用函数
+		proxyRefs():
+		reactive(): # 创建响应式数据，Proxy
+		ref(): # 响应式值数据
+		toRef():
+		toRefs():
+		watch():
+		watchEffect():
+	ref-transform:
+	runtime-core: # 核心渲染系统（不关联具体类型渲染）
+		createRenderer(): # 自定义渲染器
+			createElement():
+			insert():
+			setElementText():
+		createVNode():
+		h(): # 创建虚拟DOM
+	runtime-dom: # DOM渲染系统
+		nodeOps: # 原始dom操作封装
+			createElement():
+			createText():
+			insert():
+			patchProp():
+			remove():
+		VNode: # 虚拟DOM节点
+			children:
+			el: # 真实dom
+			type: # dom类型
+		render():
+	runtime-test:
+	server-renderer:
+	shared:
+	size-check:
+	template-explorer: # 调试编辑器输出的开发工具
+	vue:
+	vue-compat:
+```
 
 
+![Vue3源码架构](../assets/vue3源码架构.png)
