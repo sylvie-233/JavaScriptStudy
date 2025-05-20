@@ -2,7 +2,7 @@
 
 >
 > `https://cn.vuejs.org/guide/components/props.html`
-> `2025最新版 Vue3.4 核心源码解析教程: p36`
+> `2025最新版 Vue3.4 核心源码解析教程: p46`
 
 
 ## 基础介绍
