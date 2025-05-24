@@ -2,7 +2,7 @@
 
 >
 > `https://cn.vuejs.org/guide/components/props.html`
-> `2025最新版 Vue3.4 核心源码解析教程: p56`
+> ``
 
 
 ## 基础介绍
@@ -689,7 +689,8 @@ const counter = useCounterStore()
 vue3核心:
 	compile-core:
 	compile-dom: # HTML DOM模板 转 AST抽象语法树
-    compile():
+    compile(): # vue模板编译成VNode虚拟节点树
+    parse(): # vue模板解析为AST
 	compile-sfc: # 单文件解析
 	compile-ssr:
 	reactivity: # 响应式系统
@@ -736,4 +737,8 @@ vue3核心:
 ```
 
 
+Vue核心目标：
+Vue模板 -> AST抽象语法树 -> VNode虚拟DOM节点树（js字符串文件） -> HTML DOM页面
+
 ![Vue3源码架构](../assets/vue3源码架构.png)
+

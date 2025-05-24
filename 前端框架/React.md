@@ -610,3 +610,18 @@ store、reducer、action
 
 
 
+## React原理
+
+
+React组件渲染流程：
+```txt
+React Component (JSX) 
+   ↓ 编译（Babel）
+React.createElement(...) 
+   ↓
+Virtual DOM（VNode） 
+   ↓ Render 阶段（Reconciliation）
+Fiber 树（工作单元树） 
+   ↓ Commit 阶段（提交变更）
+DOM 真实节点（HTML 元素）
+```
