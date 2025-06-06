@@ -3,7 +3,7 @@
 >
 >`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/caching`
 >
->`Chai aur Code Next.js: P6`
+>`Chai aur Code Next.js: P10`
 
 ## 基础介绍
 
@@ -165,7 +165,6 @@ React服务端实现
 
 
 ### next
-
 ```yaml
 next:
     build: # 构建
@@ -365,18 +364,54 @@ react-dom:
     useFormStatus(): # 获取当前表单状态
         pending:
 
-
-
-next-auth:
-    NextAuth:
-        adapter: # 集成数据库
-        providers: # 集成OAuth第三方 
-        ---
-        auth():
-        handlers():
-        signIn():
-        signOut():
+next-auth: # /api/auth/[...nextauth].ts，设置认证提供者、回调函数、会话配置
+    jwt:
+        getToken(): # 触发jwt校验   
+            req:
+            ---
+    middleware: # 中间件    
+        default:
+        withAuth():
+            middleware():
+    next:
+        NextAuth: # 拦截 /auth/* 的 GET、POST的handle方法
+            adapter: # 集成数据库
+            callbacks: # 回调方法
+                jwt: # ({ token, user })，认证成功设置token信息
+                session: # ({ session, token })，认证成功设置session信息
+            pages: # 自定义页面
+                signIn: # 自定义登录页面
+            providers: # 集成自定义认证、OAuth第三方 (github)
+            session: # session配置
+                strategy:
+            ---
+            auth():
+            handlers():
+            signIn():
+            signOut():
+    providers: # 认证提供
+        credentials: # /api/auth/callback/credentials
+            CredentialsProvider: # 自定义认证
+                name:
+                credentials:
+                authorize(): # 自定义认证逻辑
+        github: # /api/auth/callback/github
+            GitHubProvider:
+                clientId:
+                clientSecret:
+    react:
+        SessionProvider:
+            basePath:
+            session:
+        getCsrfToken():
+        signIn(): # 登录认证，指定Provider处理
+        signOut(): # 
+        useSession(): # 前端使用session，触发jwt校验
+            data:
+            status:
+    DefaultSession:
     Session:
+    User:
 next-connect: # 中间件串联
 next-safe-action: # next api 自调用
     createSafeActionClient():
@@ -617,10 +652,22 @@ export const config = {
 缓存
 
 
+#### Valication
+
+
+`zod`
+
+
 #### Authentication
 
 
 `next-auth`
+
+##### NextAuth
+```yaml
+auth:
+
+```
 
 
 
