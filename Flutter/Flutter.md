@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-``
+`flutter从零到实战: P5`
 
 
 ## 基础介绍
@@ -21,13 +21,14 @@ Flutter SDK中包含了Dart SDK
 ```yaml
 flutter:
     /.dart_tool:
+        package_config.json: # 记录第三方包实际路径（本地）
     /.idea:
     /android:
     /build:
     /ios:
     /lib: # flutter主目录
         main.dart:
-    /test:
+    /test: # 测试
     .metadata:
     analyasis_options.yaml:
     xxx.iml:
@@ -42,7 +43,7 @@ flutter:
         /bin:
     /bin:
         /cache:
-            /dart-sdk:
+            /dart-sdk: # dart运行sdk
                 /bin:
                     /resources:
                     /snapshots:
@@ -132,7 +133,8 @@ flutter:
         ActionChip: # 徽章
             onPress:
         AlertDialog: # 警告 弹出框
-        AppBar:
+        AppBar: # 标题栏
+            title: # 标题
             bottom:
         BottomAppBar: # 底部滑动窗口
         BottomNavigationBar: # 底部导航条
@@ -140,6 +142,7 @@ flutter:
         Card: # 卡片
         Checkbox: # 复选框
             onChanged:
+            value:
         CheckboxListTile: # 复选框 标签
         Chip: # 徽章
             label:
@@ -180,13 +183,15 @@ flutter:
             subtitle:
             title:
         Material: # Material样式
-        MaterialApp: # 核心组件，携带路由
-            home:
+        MaterialApp: # 主应用，核心组件，携带路由
+            debugShowCheckedModeBanner:
+            home: # 应用主页
             initialRoute:
             onGenerateRoute: # 动态路由生成
             onUnknownRoute:
             routes:
-            theme:
+            theme: # 样式主题
+            title: # 标题
         MaterialPageRoute: # 路由页面
         OutlinedButton: # 边框 按钮
         PaginatedDataTable: # 分页 数据表
@@ -197,7 +202,7 @@ flutter:
         Radio: # 单选按钮
             groupValue:
         RadioListTile:
-        Scaffold: # 脚手架组件
+        Scaffold: # 脚手架组件，带底部导航，标题栏
             appBar: # 顶部导航条
             body: # 页面主体
             bottomNavigationBar: # 底部导航条
@@ -240,6 +245,7 @@ flutter:
             copyWith():
             of(): # 根据context上下文获取当前theme主题
         ThemeData: # 主题数据
+            primarySwatch:
         UserAccountsDrawerHeader:
         showDatePicker(): # 日期选择
         showDialog(): # 对话框
@@ -265,19 +271,22 @@ flutter:
         TextOverflow: # 文字溢出
         TextSpan:
         TextStyle: # 文字样式
+            color:
+            fontSize:    
     physics:
     rendering:
         MainAxisAlignment:
     scheduler:
     semantics:
     services:
-    widgets: # 控件库
+    widgets: # 控件库（默认导入）
         Align:
         AnimatedWidget:
         AspectRatio: # 宽高比
         BottomNavigationBarItem:
-        BuildContext:
-        Center: # 居中
+        BuildContext: # 控件构建上下文
+        Center: # 居中排列
+            child:
         Column: # 垂直排列
         ConstrainedBox: # 约束盒子
         Container: # 容器
@@ -314,6 +323,7 @@ flutter:
         Positioned:
         RichText: # 富文本
         Row: # 水平排列
+            mainAxisAlignment: # 主轴排列
         ScrollView: # 滚动视图
         SizedBox: # 固定大小盒子
         SliverAppBar:
@@ -324,20 +334,24 @@ flutter:
         SliverSafeArea:
         Stack:
         State: # 状态，携带生命周期
-            build():
-            didUpdateWidget():
-            dispose():
-            initState():
+            build(): # 控件渲染 钩子
+            deactivate(): # 控件失活 钩子
+            didUpdateWidget(): # 状态更新 钩子
+            dispose(): # 状态销毁 钩子
+            initState(): # 状态初始化 钩子
+            setState(): # 修改状态
         StatefulWidget: # 有状态组件基类
-            createState():
-            setState():
+            createState(): # 创建状态
         StatelessWidget: # 无状态组件基类
             build():
         StreamBuilder: # 流式 构造器
         Text: # 文本
+            style:
+            textDirection:
         TextEditingController:
             addListener():
         Widget: # 控件基类
+            createElement():
         Wrap:
         runApp(): # 主程序运行
 ```
@@ -356,6 +370,9 @@ flutter:
 通过key引用组件State，类似useRef
 
 
+#### StatelessWidget
+
+无状态组件
 
 
 #### StatefulWidget
@@ -392,6 +409,8 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 ### 组件路由
 
 MaterialApp -> Navigator(嵌套) 实现多级路由
+
+#### Navigator
 
 
 

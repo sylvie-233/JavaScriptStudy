@@ -10,8 +10,17 @@
 
 Flutter SDK包含Dart SDK
 
+
+`PUB_CACHE`: 全局缓存路径，第三方包安装
+- Windows：`C:\Users\<UserName>\AppData\Local\Pub\Cache`
+- macOS/Linux：`~/.pub-cache`
+
+
+文件结构和Java类似
 每行结束必须携带分号`;`
 Dart万物皆对象，引用传递
+支持自动类型推断，变量声明、函数返回值
+实例化对象不用写new
 
 
 ### dart
@@ -59,6 +68,7 @@ pubspec.yaml:
     environment: # 项目环境要求
         sdk:
     dependencies: # 依赖包
+    description:
     dev_dependencies:
     flutter:
         uses-material-design:
@@ -72,7 +82,7 @@ dart包配置文件
 ```yaml
 dart:
     async:
-        Future:
+        Future: # 异步Promise
             catchError():
             then():
         Stream:
@@ -84,9 +94,12 @@ dart:
         jsonDecoder():
         jsonEncoder():
     core: # 内置模块（默认导入）
+        @override: # 重写
+        @patch: # external实现
+        @required:
         BigInt:
         Comparable:
-        DateTime:
+        DateTime: # 日期时间
             millisecondsSinceEpoch: # 毫秒
             month:
             add():
@@ -101,10 +114,10 @@ dart:
             utc():
         Duration: # 时间间隔
             hour:
-        Enum:
+        Enum: # 枚举
             index: # 枚举索引
             values: # 所有枚举值
-        Function:
+        Function: # 函数
         List: # 列表
             length: # 列表长度
             reversed:
@@ -128,23 +141,28 @@ dart:
             toSet():
             where():
                 toList():
-        Map:
+        Map: # 哈希表
             keys:
             values:
             containsKey():
             containsValue():
+            from():
             putIfAbsent():
             remove():
             removeWhere():
         MapEntry:
         Match:
         Null:
-        Object:
+        Object: # 基类
+            runtimeType:
+            hashCode():
+            noSuchMethod():
+            toString():
         Pattern:
         Record:
         RegExp:
         Runes:
-        Set:
+        Set: # 集合
             first:
             last:
             add(): # 添加元素
@@ -185,19 +203,21 @@ dart:
             round(): # 四舍五入
             toString():
             toStringAsFixed():
-        print():
+        identical(): # 对象标识，判断对象是否相等
+        print(): # 控制台输出
     developer:
     ffi:
-    io:
+    io: # I/O
     isolate: # 并发库
     math: # 数学库
         pi:
         max():
         min():
+    mirrors: # 反射
     typed_data:
-package:
+package: # 第三方库
     http:
-        http.dart:
+        http:
             post():
     web:
 ```
@@ -207,13 +227,17 @@ package:
 ```yaml
 DataTypes:
     Enum:
+    Null: # 空类型
+    Object:
     Runes: # 32位字符对象
     String:
     Symbol: # 标识符
-    bool:
-    dynamic: # 动态类型
+    Type: # 类型
+    bool: # 
+    double: # 浮点数
+    dynamic: # 动态类型，ts中的any
     int:
-    num:
+    num: # int、double父类
 ```
 
 `var`：声明并初始化变量、自动类型推断
@@ -227,6 +251,12 @@ DataTypes:
 
 #### String
 ```dart
+// 多行字符串
+String str = """
+    多行字符串
+"""
+
+
 // 模板字符串
 String str = "$xxx";
 
@@ -238,10 +268,7 @@ String str = "a" + "b";
 
 默认UTF-16编码
 
-#### Enum
-```dart
 
-```
 
 
 #### List
@@ -270,6 +297,14 @@ Set set = {};
 Map map = {k: v};
 ```
 
+#### Enum
+```dart
+
+```
+
+枚举
+
+
 
 #### Symbol
 ```dart
@@ -284,10 +319,30 @@ Symbol symbol = #abc;
 ```yaml
 Control Flow:
     ..: # 对象级联操作运算符
-    ?? / ??=: # 空类型判断
+    ?:: # 三元运算符
+    ??: # 空类型合并
     ~/: # 整除（向下取整）
+    async:
+        await:
+    class: # 类
+        external: # 外部实现
+        final:
+        get: # getter
+        set: # setter
+        static: # 静态
+        super:
+        this:
+        with: # 混入mixin
     const: # 常量
     dynamic: # 动态变量
+    final: # 常量
+    import: # 导入模块 
+        as: # 别名
+        hide:
+        show:
+    part of: # 分库实现
+        export: # 导出分库
+    typedef: # 类型别名
     is / is!: # 类型判断
     var: # 自动类型推断
     for ...:
@@ -296,7 +351,7 @@ Control Flow:
 ```
 
 
-#### 注释
+#### Comment
 ```dart
 // 单行注释
 
@@ -305,7 +360,7 @@ Control Flow:
 /// 文档注释
 ```
 
-#### 异常处理
+#### Exception
 
 `throw`：抛出异常
 
@@ -340,8 +395,44 @@ int myfunc(int a, [int b]) {
 
 不指定参数类型，默认dynamic
 
+不支持函数重载
 
-#### lambda
+#### Param
+
+
+##### Optional Param
+```dart
+void myfunc([int a, int b]) {}
+
+void myfunc({int a, int b}) {}
+```
+
+可选参数
+位置可选参数、命名可选参数
+
+
+只有可选参数才支持默认值
+
+
+##### Function Param
+```dart
+void test(int add(int a, int b)) {}
+```
+
+支持传递函数签名
+
+
+#### Anonymous
+```dart
+void test(Function func) {}
+
+test(() {})
+test(() => xxx)
+```
+
+匿名函数
+
+#### Lambda
 ```dart
 // 闭包函数定义
 bool isOdd(n) => n % 2 == 1;
@@ -350,7 +441,7 @@ bool isOdd(n) => n % 2 == 1;
 箭头函数
 
 
-#### 异步函数
+#### Async
 ```dart
 Future myfunc() async {
     var x = await xxx();
@@ -361,7 +452,7 @@ Future myfunc() async {
 Future实现异步函数：async函数返回Future、await用于等待Future
 
 
-#### 泛型
+#### Generic
 ```dart
 // 定义泛型函数
 T getData<T>(T value) {
@@ -416,9 +507,28 @@ getter/setter：方法前面加 get、set关键字
 
 初始化列表：和C++一样
 
+#### Constructor
+
+支持C++风格的构造函数初始化列表
 
 
-#### 抽象类/接口
+##### Named Constructor
+
+命名构造函数
+
+
+##### Const Constructor
+
+常量构造函数
+单例实现
+
+##### Factory Constructor
+
+
+工厂构造函数
+
+
+#### Abstract
 ```dart
 // 声明抽象类/接口
 abstract class Person {
@@ -426,16 +536,17 @@ abstract class Person {
 }
 ```
 
+抽象类、接口
 extends、implements
 
-抽象类无法实例化
+抽象类无法实例化，可通过工厂构造函数完成实例化
 
 一个类可实现多个接口
 
 实现接口必须实现接口的属性、方法
 
 
-#### 混入
+#### Mixin
 ```dart
 mixin Action {
     String name = "xxx";
@@ -451,7 +562,7 @@ mixin
 
 
 
-#### 泛型
+#### Generic
 ```dart
 // 定义泛型类
 class Person<T> {
@@ -471,7 +582,9 @@ class Person<T extends OtherClass> {}
 
 
 
-#### 元数据
+#### Metadata
+
+元数据
 
 @注解
 - @override：重写
@@ -512,4 +625,11 @@ xxx.loadLibrary(); # 执行模块加载
 
 
 ### 并发
+
+
+#### Async
+
+异步
+
+##### Future
 
