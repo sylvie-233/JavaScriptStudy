@@ -513,19 +513,3 @@ xxx.loadLibrary(); # 执行模块加载
 
 ### 并发
 
-
-
-
-## 第三方库
-
-![dart第三方库目录结构](../assets/dart第三方库目录结构.png)
-
-
-### http
-```yaml
-httt/http.dart:
-
-```
-
-网络请求库
-
