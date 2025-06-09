@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-`flutter从零到实战: P5`
+`flutter从零到实战: P8`
 
 
 ## 基础介绍
@@ -15,6 +15,10 @@ Flutter SDK中包含了Dart SDK
 资源镜像：
 - PUB_HOSTED_URL:
 - FLUTTER_STORAGE_BASE_URL:
+
+
+
+![Flutter 简易声明周期](../assets/flutter简易生命周期.png)
 
 
 ### 项目结构
@@ -72,6 +76,9 @@ pubspec.yaml:
             sdk:
     description:
     dev_dependencies:
+    flutter: # flutter配置
+        assets: # 本地资源配置
+        uses-material-design:
     name:
     version:
 ```
@@ -168,7 +175,13 @@ flutter:
         ExpansionPanelList: # 收缩面板列表
             expansionCallback:
         FilterChip: # 徽章
+        FlatButton:
+            child:
+            onPressed:
+            shape: # 形状
         FloatingActionButton: # 浮动按钮
+            child:
+            onPressed:  
         IconButton:
         Icons:
         InkWell:
@@ -202,13 +215,17 @@ flutter:
         Radio: # 单选按钮
             groupValue:
         RadioListTile:
+        RasiedButton:
+            child:
+            onPressed:
         Scaffold: # 脚手架组件，带底部导航，标题栏
             appBar: # 顶部导航条
             body: # 页面主体
             bottomNavigationBar: # 底部导航条
             drawer: # 左侧抽屉
             endDrawer:
-            floatingActionButton: # 浮动按钮
+            floatingActionButton: # 右下角浮动按钮
+            floatingActionButtonLocation: # 浮动按钮位置
             of():
             showSnakeBar():
         ScaffoldState:
@@ -254,25 +271,35 @@ flutter:
         showTimePicker(): # 日期选择
     painting: # 样式库
         Alignment: # 对齐
-        AssetImage:
+        AssetImage: # 本地图片
         Border: # 边框
+            all():
+                color:
+                width:
         BorderRadius: # 边框圆角
+            circular():
         BorderSide:
         BoxDecoration: # 盒子装饰
-        BoxFit:
+            border: # 边框
+        BoxFit: # 盒子填充
+            contain:
         BoxShadow: # 盒子阴影
         BoxShape: # 盒子形状
         DecorationImage: # 装饰图片
-        EdgeInsets:
+        EdgeInsets: # 边距
+            all():    
         ImageRepeat:
-        NetworkImage:
+        NetworkImage: # 网络图片
         RadialGradient: # 径向渐变
+        RoundedReatangleBorder: # 圆角矩形
         StadiumBorder: # 椭圆边框
         TextOverflow: # 文字溢出
         TextSpan:
         TextStyle: # 文字样式
             color:
+            fontFamily:
             fontSize:    
+            fontWeight:
     physics:
     rendering:
         MainAxisAlignment:
@@ -288,8 +315,14 @@ flutter:
         Center: # 居中排列
             child:
         Column: # 垂直排列
+            children:
+            crossAxisAlignment: # 交叉轴排列
+            mainAxisAlignment: # 主轴排列
         ConstrainedBox: # 约束盒子
-        Container: # 容器
+        Container: # 容器（边框，边距）
+            decoration: # 盒子装饰
+            child:
+            padding: # 内边距
         CustomScrollView: # 自定义 滚动视图
         Divider:
         Expanded: # 填充剩余
@@ -307,6 +340,16 @@ flutter:
         Icon: # 图标
         IconData: # 图标数据
         Image: # 图片
+            alignment:
+            color:
+            colorBlendMode:
+            fit:
+            height:
+            image:
+            repeat:
+            width:
+            asset():
+            network():
         InheritedWidget: # Provider状态继承 控件基类
         ListView: # 列表视图
             build():
@@ -323,9 +366,13 @@ flutter:
         Positioned:
         RichText: # 富文本
         Row: # 水平排列
+            crossAxisAlignment: # 交叉轴排列
             mainAxisAlignment: # 主轴排列
+            mainAxisSize: 
         ScrollView: # 滚动视图
-        SizedBox: # 固定大小盒子
+        SizedBox: # 固定大小盒子（常用于做间距）
+            height:
+            width:
         SliverAppBar:
         SliverGrid: # 复杂滚动、嵌套滚动网格
             delegate: # 动态生成
@@ -334,8 +381,10 @@ flutter:
         SliverSafeArea:
         Stack:
         State: # 状态，携带生命周期
+            widget: # 有状态组件
             build(): # 控件渲染 钩子
             deactivate(): # 控件失活 钩子
+            didChangeDependencies(): # 依赖更新 钩子
             didUpdateWidget(): # 状态更新 钩子
             dispose(): # 状态销毁 钩子
             initState(): # 状态初始化 钩子
@@ -346,8 +395,13 @@ flutter:
             build():
         StreamBuilder: # 流式 构造器
         Text: # 文本
+            maxLines:
+            overflow:
             style:
+            textAlign:
             textDirection:
+            textScaleFactor:
+            rich():
         TextEditingController:
             addListener():
         Widget: # 控件基类
@@ -392,6 +446,22 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 
 ##### AnimationController
 ##### AnimationStatus
+
+
+
+#### Container
+
+
+##### Center
+##### Row
+##### Column
+
+
+
+#### ListView
+
+
+
 
 
 ### 组件通信
