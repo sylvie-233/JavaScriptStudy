@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-`flutter从零到实战: P8`
+`flutter从零到实战: P11`
 
 
 ## 基础介绍
@@ -146,6 +146,8 @@ flutter:
         BottomAppBar: # 底部滑动窗口
         BottomNavigationBar: # 底部导航条
         ButtonBar: # 按钮组
+        ButtonTheme: # 
+            minWidth:
         Card: # 卡片
         Checkbox: # 复选框
             onChanged:
@@ -188,6 +190,7 @@ flutter:
         InputBorder:
         InputDecoration: # 装饰 输入框
             border:
+            filled:
             hintText:
             icon:
             labelText:
@@ -252,6 +255,8 @@ flutter:
         TabBarView:
         TextButton: # 文本 按钮
         TextField: # 文本 输入框
+            controller:
+            decoration:
             onChanged:
             onSubmitted:
         TextFormField: # 表单 输入框
@@ -307,7 +312,8 @@ flutter:
     semantics:
     services:
     widgets: # 控件库（默认导入）
-        Align:
+        Align: # 排列
+            alignment:
         AnimatedWidget:
         AspectRatio: # 宽高比
         BottomNavigationBarItem:
@@ -319,14 +325,20 @@ flutter:
             crossAxisAlignment: # 交叉轴排列
             mainAxisAlignment: # 主轴排列
         ConstrainedBox: # 约束盒子
-        Container: # 容器（边框，边距）
+        Container: # 容器（大小，边框，边距）
             decoration: # 盒子装饰
             child:
+            margin: # 外边距
             padding: # 内边距
+            transform: # 变换
         CustomScrollView: # 自定义 滚动视图
         Divider:
         Expanded: # 填充剩余
             flex: # 填充占比
+        FadeInImage:
+            placeholder:
+        Flex: # 弹性布局
+            direction: # 方向
         Flexible:
         Form: # 表单
         FormState: # 表单状态
@@ -360,6 +372,9 @@ flutter:
             pop():
             pushNamed():
             pushReplacementNamed():
+        Padding: # 内边距
+            child:
+            padding:
         PageController: # PageView控制器 
         PageView: # 滚动页面视图
             onPageChanged:
@@ -402,7 +417,8 @@ flutter:
             textDirection:
             textScaleFactor:
             rich():
-        TextEditingController:
+        TextEditingController: # 输入框控制器
+            text:
             addListener():
         Widget: # 控件基类
             createElement():
@@ -451,8 +467,10 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 
 #### Container
 
-
+##### Align
 ##### Center
+##### Padding
+##### Flex
 ##### Row
 ##### Column
 
