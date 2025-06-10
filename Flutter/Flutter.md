@@ -333,13 +333,13 @@ flutter:
             transform: # 变换
         CustomScrollView: # 自定义 滚动视图
         Divider:
-        Expanded: # 填充剩余
+        Expanded: # 弹性填充剩余
             flex: # 填充占比
         FadeInImage:
             placeholder:
         Flex: # 弹性布局
             direction: # 方向
-        Flexible:
+        Flexible: # 弹性占比
         Form: # 表单
         FormState: # 表单状态
             save(): # 触发 保存
@@ -348,7 +348,7 @@ flutter:
         GlobalKey: # 全局key
             currentState:
         GridView: # 网格视图
-            build():
+            builder():
         Icon: # 图标
         IconData: # 图标数据
         Image: # 图片
@@ -364,7 +364,7 @@ flutter:
             network():
         InheritedWidget: # Provider状态继承 控件基类
         ListView: # 列表视图
-            build():
+            builder():
                 itemBuilder:
                 itemCount:
         Navigator: # 路由器、路由插槽
@@ -378,7 +378,7 @@ flutter:
         PageController: # PageView控制器 
         PageView: # 滚动页面视图
             onPageChanged:
-        Positioned:
+        Positioned: # 绝对定位
         RichText: # 富文本
         Row: # 水平排列
             crossAxisAlignment: # 交叉轴排列
@@ -394,7 +394,10 @@ flutter:
             gridDelegate: # 网格属性
         SliverPadding:
         SliverSafeArea:
-        Stack:
+        Stack: # 层叠排列
+            alignment:
+            children:
+            fit:
         State: # 状态，携带生命周期
             widget: # 有状态组件
             build(): # 控件渲染 钩子
@@ -465,6 +468,10 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 
 
 
+#### MediaQuery
+
+
+
 #### Container
 
 ##### Align
@@ -473,11 +480,12 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 ##### Flex
 ##### Row
 ##### Column
-
-
+##### Stack
+##### Positioned
 
 #### ListView
 
+##### GridView
 
 
 
@@ -500,7 +508,7 @@ MaterialApp -> Navigator(嵌套) 实现多级路由
 
 #### Navigator
 
-
+##### MaterialPageRoute
 
 ### 状态管理
 
@@ -548,5 +556,10 @@ class CounterScreen extends StatelessWidget {
   }
 }
 ```
+
+
+
+#### GetX
+
 
 
