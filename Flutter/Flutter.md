@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-`flutter从零到实战: P11`
+`flutter从零到实战: P13`
 
 
 ## 基础介绍
@@ -134,6 +134,7 @@ flutter:
         Tween:
     cupertinto:
     foundation:
+        computed():
         debugPrint():
     gestures:
     material: # 组件库
@@ -237,6 +238,7 @@ flutter:
         SimpleDialogOption: # 弹出框选项
         Slider: # 滑动选择
             onChanged:
+        SliverAppbar:
         SnackBar: # 底部消息提示
         SnackBarAction:
         Step: # 具体步骤
@@ -317,6 +319,7 @@ flutter:
         AnimatedWidget:
         AspectRatio: # 宽高比
         BottomNavigationBarItem:
+        BoxScrollView:
         BuildContext: # 控件构建上下文
         Center: # 居中排列
             child:
@@ -332,6 +335,7 @@ flutter:
             padding: # 内边距
             transform: # 变换
         CustomScrollView: # 自定义 滚动视图
+            slivers: # 自定义 sliver
         Divider:
         Expanded: # 弹性填充剩余
             flex: # 填充占比
@@ -348,7 +352,13 @@ flutter:
         GlobalKey: # 全局key
             currentState:
         GridView: # 网格视图
+            children:
+            gridDelegate: # 网格实现代理
             builder():
+                gridDelegate:
+                itemBuilder:    
+            count():
+            extend():
         Icon: # 图标
         IconData: # 图标数据
         Image: # 图片
@@ -364,9 +374,15 @@ flutter:
             network():
         InheritedWidget: # Provider状态继承 控件基类
         ListView: # 列表视图
-            builder():
-                itemBuilder:
-                itemCount:
+            children:
+            controller:
+            reverse:
+            scrollDirection:
+            builder(): # 可实现懒加载
+                itemBuilder: # 
+                itemCount: # 
+                itemExtent:
+            separated():
         Navigator: # 路由器、路由插槽
             of():
             pop():
@@ -384,11 +400,14 @@ flutter:
             crossAxisAlignment: # 交叉轴排列
             mainAxisAlignment: # 主轴排列
             mainAxisSize: 
+        ScrollController: # 滚动控制器
+            offset:
+            addListener():
+            animateTo():
         ScrollView: # 滚动视图
         SizedBox: # 固定大小盒子（常用于做间距）
             height:
             width:
-        SliverAppBar:
         SliverGrid: # 复杂滚动、嵌套滚动网格
             delegate: # 动态生成
             gridDelegate: # 网格属性
@@ -482,11 +501,23 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 ##### Column
 ##### Stack
 ##### Positioned
+##### SafeArea
 
-#### ListView
 
+#### ScrollView
+
+##### CustomScrollView
+##### Sliver
+- SliverList: 类似于我们之前使用过的ListView;
+- SliverFixedExtentList: 类似于SliverList只是可以设置滚动的高度；
+- SliverGrid: 类似于我们之前使用过的GridView;
+- SliverPadding: 设置Sliver的内边距，因为可能要单独给Sliveri设置内边距；
+- SliverAppBar: 添加一个AppBar,,通常用来作为CustomScrollView的HeaderView;
+- SliverSafeArea: 设置内容显示在安全区域（比如不让齐刘海挡住我们的内容）
+
+
+##### ListView
 ##### GridView
-
 
 
 
@@ -496,6 +527,16 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 #### Prop
 
 构造函数参数传递
+
+
+#### GlobalKey
+
+组件引用
+
+
+#### NotificationListener
+
+事件冒泡回调
 
 
 #### Provider

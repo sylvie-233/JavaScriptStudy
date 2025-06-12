@@ -209,6 +209,15 @@ dart:
     ffi:
     io: # I/O
     isolate: # 并发库
+        Isolate:
+            kill():
+            spawn():    
+        ReceivePort: # 接收管道
+            sendPort:
+            close():
+            listen(): # 接收消息
+        SendPort: # 发送管道
+            send(): # 发送消息
     math: # 数学库
         pi:
         max():
