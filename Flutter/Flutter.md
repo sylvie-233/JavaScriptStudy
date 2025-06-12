@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-`flutter从零到实战: P13`
+`flutter从零到实战: P14`
 
 
 ## 基础介绍
@@ -146,6 +146,7 @@ flutter:
             bottom:
         BottomAppBar: # 底部滑动窗口
         BottomNavigationBar: # 底部导航条
+            items:
         ButtonBar: # 按钮组
         ButtonTheme: # 
             minWidth:
@@ -319,10 +320,12 @@ flutter:
         AnimatedWidget:
         AspectRatio: # 宽高比
         BottomNavigationBarItem:
+
         BoxScrollView:
         BuildContext: # 控件构建上下文
         Center: # 居中排列
             child:
+        ClipRect: # 矩形裁剪
         Column: # 垂直排列
             children:
             crossAxisAlignment: # 交叉轴排列
@@ -372,6 +375,9 @@ flutter:
             width:
             asset():
             network():
+        IndexedStack:
+            children:
+            index:
         InheritedWidget: # Provider状态继承 控件基类
         ListView: # 列表视图
             children:
@@ -545,9 +551,9 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 
 ### 组件路由
 
-MaterialApp -> Navigator(嵌套) 实现多级路由
-
+#### IndexedStack
 #### Navigator
+MaterialApp -> Navigator(嵌套) 实现多级路由
 
 ##### MaterialPageRoute
 
