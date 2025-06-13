@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-`flutter从零到实战: P14`
+`flutter从零到实战: P17`
 
 
 ## 基础介绍
@@ -137,6 +137,7 @@ flutter:
         computed():
         debugPrint():
     gestures:
+        GestureDetector: # 手势    
     material: # 组件库
         ActionChip: # 徽章
             onPress:
@@ -326,6 +327,7 @@ flutter:
         Center: # 居中排列
             child:
         ClipRect: # 矩形裁剪
+        ClipRRect: # 圆角裁剪
         Column: # 垂直排列
             children:
             crossAxisAlignment: # 交叉轴排列
@@ -379,6 +381,7 @@ flutter:
             children:
             index:
         InheritedWidget: # Provider状态继承 控件基类
+        Listener: # 点击事件
         ListView: # 列表视图
             children:
             controller:
@@ -452,6 +455,34 @@ flutter:
             createElement():
         Wrap:
         runApp(): # 主程序运行
+
+provider:
+    provider:
+        ChangeNotifier: # 共享数据，getter/setter，能通知刷新  
+            notifyListeners(): # 通知刷新
+        ChangeNotifierProvider: # 共享仓库provider，依赖BuildContext
+            child:    
+            create: # 共享数据
+        Consumer: # 消费状态数据
+            builder:
+            child:
+        Consumer2: # 消费2个
+        MultiProvider: # 多状态
+            child:    
+            providers:
+        Provider:
+            of(): # 根据BuildContext获取ChangeNotifier共享数据
+        Selector:
+            builder:
+            child:
+            selector:
+            shouldRebuild:
+event_bus:
+    event_bus:
+        EventBus:
+            fire(): # 触发事件
+            on(): # 
+                listen(): # 事件监听
 ```
 
 
@@ -477,6 +508,23 @@ flutter:
 
 自定义状态组件
 分2步创建、和Vue2的data()方法要求返回一个新对象是同一个原理
+
+
+##### initState()
+
+挂载成功钩子
+
+
+##### didChangeDependencies()
+
+
+##### didUpdateWidget()
+
+##### build()
+
+##### deactivate()
+
+##### dispose()
 
 
 
@@ -508,6 +556,7 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 ##### Stack
 ##### Positioned
 ##### SafeArea
+##### FittedBox
 
 
 #### ScrollView
@@ -535,27 +584,58 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 构造函数参数传递
 
 
+#### InheritedWidget
+
+共享状态组件，实现快组件传值（不具备修改状态方法）
+依赖BuildContext获取组件状态
+
+
 #### GlobalKey
 
 组件引用
 
+
+
+#### Listener
+
+点击事件
+
+#### GestureDetector
+
+手势
 
 #### NotificationListener
 
 事件冒泡回调
 
 
-#### Provider
+
+#### EventBus
+
+
+第三方事件总线库
+
+
 
 
 
 ### 组件路由
 
 #### IndexedStack
+
+内置堆叠组件
+
 #### Navigator
 MaterialApp -> Navigator(嵌套) 实现多级路由
 
 ##### MaterialPageRoute
+
+
+
+#### GoRouter
+
+Google 官方支持的现代路由库
+
 
 ### 状态管理
 
@@ -584,7 +664,7 @@ void main() {
   );
 }
 
-// 使用状态
+// 使用状态、修改状态
 class CounterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -604,6 +684,28 @@ class CounterScreen extends StatelessWidget {
 }
 ```
 
+
+官方推荐的全局状态管理工具
+类似旧版Redux、依赖BuildContext
+
+支持Provider、Consumer、Selector获取方式
+
+
+##### Consumer
+
+Provider状态消费
+
+
+##### Selector
+
+Provider部分状态监听，精准消费
+
+
+
+##### MultiProvider
+
+
+多Provider
 
 
 #### GetX
