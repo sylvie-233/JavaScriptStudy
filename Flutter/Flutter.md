@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-`flutter从零到实战: P17`
+`flutter从零到实战: P18`
 
 
 ## 基础介绍
@@ -205,10 +205,10 @@ flutter:
         MaterialApp: # 主应用，核心组件，携带路由
             debugShowCheckedModeBanner:
             home: # 应用主页
-            initialRoute:
+            initialRoute: # 初始路由
             onGenerateRoute: # 动态路由生成
-            onUnknownRoute:
-            routes:
+            onUnknownRoute: # 缺省路由
+            routes: # 路由表
             theme: # 样式主题
             title: # 标题
         MaterialPageRoute: # 路由页面
@@ -629,7 +629,7 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 MaterialApp -> Navigator(嵌套) 实现多级路由
 
 ##### MaterialPageRoute
-
+##### ModalRoute
 
 
 #### GoRouter
