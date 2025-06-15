@@ -9,6 +9,7 @@
 
 
 调试typescript先执行tsc编译且开启sourceMap
+typescript可实现模板元编程
 
 
 
@@ -173,6 +174,13 @@ DataTypes:
     Symbol:
 
 Utility Types: # 工具类型
+    extends: # 类型约束，可用于type三元运算
+    infer: # 类型引用
+    in: # 遍历联合类型
+    keyof: # 取出key的联合类型
+        as: # 类型别名，可用于条件判断
+    typeof:
+        number:
     Awaited: # Awaited<T>	获取 Promise<T> 解析后的类型
     ConstructorParameters: # ConstructorParameters<T>	获取构造函数的参数类型
     Exclude: # Exclude<T, U>	从 T 中排除 U 类型，用于联合类型
@@ -183,7 +191,7 @@ Utility Types: # 工具类型
     OmitThisParameter: # OmitThisParameter<T>	移除函数的 this 参数
     Parameters: # Parameters<T>	获取函数参数的类型
     Partial: # Partial<T>	将类型的所有属性变为可选
-    Pick: # Pick<T, K>	从 T 中选择 K 这些属性，用于对象属性
+    Pick: # Pick<T, K>	从 T 中选择 K 这些属性，用于对象属性（K常用联合类型）
     Readonly: # Readonly<T>	将类型的所有属性变为只读
     Record: # Record<K, T>	创建一个以 K 为键、T 为值的对象类型
     Required: # Required<T>	将类型的所有属性变为必填

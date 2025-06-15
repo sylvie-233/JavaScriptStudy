@@ -198,11 +198,14 @@ react-query:
         mutate:
             xxx(): # 自定义函数
     useQuery(): # 封装数据请求函数，缓存数据、自动重试
-        enable:
+        enable: # 请求的条件
         gcTime:
+        initialData:
+        placeholderData:
         queryFn: # 请求函数
         queryKey: # 请求结果缓存key
         retry:
+        refetchInterval:
         refetchOnMount:
         refetchOnReconnect:
         refetchOnWindowFocus:
@@ -217,6 +220,10 @@ react-query:
         isRefetching:
         isState:
         refetch(): # 刷新数据
+    useQueryClient():
+        ---
+        getQueryData(): # 获取缓存数据
+        prefetchQuery(): # 预获取
 @tanstack/react-query-devtools:
     ReactQueryDevtools:
 redux:

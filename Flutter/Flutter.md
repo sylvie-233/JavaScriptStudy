@@ -125,6 +125,7 @@ flutter:
         Animation:
         AnimationController: # 动画控制器
             duration:
+            vsync:
             addListener():
             addStatusListener():
             forward(): # 执行
