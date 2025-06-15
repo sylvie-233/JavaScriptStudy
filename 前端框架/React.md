@@ -197,20 +197,25 @@ react-query:
         isPending:
         mutate:
             xxx(): # 自定义函数
-    useQuery(): # 缓存数据、自动重试
+    useQuery(): # 封装数据请求函数，缓存数据、自动重试
         enable:
         gcTime:
-        queryFn:
-        queryKey:
+        queryFn: # 请求函数
+        queryKey: # 请求结果缓存key
         retry:
-        staleTime: # 缓存时间
-        ---
-        data:
-        error:
+        refetchOnMount:
+        refetchOnReconnect:
+        refetchOnWindowFocus:
+        staleTime: # 数据缓存时间
+        --- # hook 返回值
+        data: # 函数返回数据
+        dataUpdateAt:
+        error: # 函数返回异常
         isError:
         isFetching:
-        isLoading:
+        isLoading: # 数据加载中
         isRefetching:
+        isState:
         refetch(): # 刷新数据
 @tanstack/react-query-devtools:
     ReactQueryDevtools:
