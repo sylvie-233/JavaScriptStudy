@@ -571,6 +571,14 @@ mixin
 
 
 
+#### Extension
+
+
+扩展函数、方法
+中缀表达式
+
+
+
 #### Generic
 ```dart
 // 定义泛型类

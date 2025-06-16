@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-`flutter从零到实战: P18`
+`flutter从零到实战: P21`
 
 
 ## 基础介绍
@@ -30,6 +30,11 @@ flutter:
     /android:
     /build:
     /ios:
+        /Flutter:
+        /Runner:
+        /Runner.xcodeproj:
+        /Runner.xcworkspace:
+        .gitignore:
     /lib: # flutter主目录
         main.dart:
     /test: # 测试
@@ -122,17 +127,34 @@ dart:
         TextDecoration:
 flutter:
     animation: # 动画库
+        AnimatedBuilder: # 自动监听动画值变化，重新渲染
+            animation:
+            builder:
         Animation:
+            value: # 动画状态值
         AnimationController: # 动画控制器
-            duration:
-            vsync:
-            addListener():
-            addStatusListener():
-            forward(): # 执行
-            reverse():
-        AnimationStatus:
-        ColorTween:
-        Tween:
+            duration: # 持续时间
+            isAnimating: # 正在执行动画
+            lowerBound:
+            upperBound:
+            value: # 动画状态值
+            vsync: # 同步信号
+            addListener(): # 添加动画值监听器
+            addStatusListener(): # 添加动画状态监听器
+            dispose(): # 释放动画资源
+            forward(): # 执行动画
+            reverse(): # 反转执行动画
+            stop(): # 停止动画
+        AnimationStatus: # 动画状态
+        ColorTween: # 颜色动画
+        CurvedAnimation: # 动画曲线速率
+            curve:
+            parent:
+        Tween: # 执行动画
+            begin:
+            end:
+            animate(): # 传入动画
+                ---
     cupertinto:
     foundation:
         computed():
@@ -188,6 +210,8 @@ flutter:
         FloatingActionButton: # 浮动按钮
             child:
             onPressed:  
+        Hero:
+            tag:    
         IconButton:
         Icons:
         InkWell:
@@ -204,6 +228,7 @@ flutter:
             title:
         Material: # Material样式
         MaterialApp: # 主应用，核心组件，携带路由
+            darkTheme:
             debugShowCheckedModeBanner:
             home: # 应用主页
             initialRoute: # 初始路由
@@ -213,7 +238,15 @@ flutter:
             theme: # 样式主题
             title: # 标题
         MaterialPageRoute: # 路由页面
+        MediaQuery: # 媒体查询
+            size:
+                height:
+                width:
+            of():
+        Opacity: # 透明度
         OutlinedButton: # 边框 按钮
+        PageRouteBuilder:
+            pageBuilder: # 支持自定义路由动画
         PaginatedDataTable: # 分页 数据表
         PopupMenuButton: # 弹出菜单 按钮
             itemBuilder:
@@ -268,11 +301,19 @@ flutter:
             onSaved:
             validator: # 表单 校验
         Theme: # 主题  
-            data:
-            copyWith():
+            data: # 主题数据
+            copyWith(): # 主题继承，可修改
             of(): # 根据context上下文获取当前theme主题
         ThemeData: # 主题数据
+            accentColor:
+            brightness:
+            buttonTheme:
+            canvasColor:
+            cardTheme:
+            primaryColor:
             primarySwatch:
+            textTheme:
+        Transform: # 形变
         UserAccountsDrawerHeader:
         showDatePicker(): # 日期选择
         showDialog(): # 对话框
@@ -310,12 +351,18 @@ flutter:
             fontFamily:
             fontSize:    
             fontWeight:
+        window: # 窗口实例
+            physicalSize:
+                height:
+                width:
     physics:
     rendering:
         MainAxisAlignment:
     scheduler:
     semantics:
-    services:
+    services: # 服务
+        rootBundle: # assets资源
+            loadString():
     widgets: # 控件库（默认导入）
         Align: # 排列
             alignment:
@@ -537,12 +584,40 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 
 #### Animation
 
+
+动画控制器(AnimationController) -> 动画曲线 -> 动画执行(Tween)
+
+
 ##### AnimationController
 ##### AnimationStatus
+##### Tween
+##### AnimatedWidget
+##### AnimatedBuilder
 
+
+##### FadeTransition
+##### Hero
 
 
 #### MediaQuery
+
+
+##### Opacity
+
+透明度
+
+##### Transform
+
+形变
+
+
+#### Theme
+
+
+主题
+
+
+##### ThemeData
 
 
 
@@ -601,11 +676,11 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 
 点击事件
 
-#### GestureDetector
+##### GestureDetector
 
 手势
 
-#### NotificationListener
+##### NotificationListener
 
 事件冒泡回调
 
