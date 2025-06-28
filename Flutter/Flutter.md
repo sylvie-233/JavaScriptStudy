@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-`flutter从零到实战: P24`
+``
 
 
 ## 基础介绍
@@ -100,7 +100,7 @@ flutter:
         beta:
     create: # 创建项目
     doctor: # 环境检测
-    driver:
+    driver: # 驱动
     emulator:
         --launch:
     emulators: # 所有模拟器
@@ -787,4 +787,24 @@ Provider部分状态监听，精准消费
 #### GetX
 
 
+
+
+### 原生
+
+
+#### MethodChannel
+
+
+
+## 第三方模块
+
+
+
+### Camera
+
+
+### Image Picker
+
+
+### Location
 
