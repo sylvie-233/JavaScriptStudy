@@ -90,26 +90,34 @@ settings.json:
 编辑器配置文件
 
 
+##### c_cpp_properties.json
+```yaml
+c_cpp_properties.json:
+
+```
+
+
 
 #### launch.json
 ```yaml
 launch.json:
     configuraions: # 启动配置（可多个）
         address:
-        args:
+        args: # 程序启动参数
         autoAttachChildProcesses:
         console:
-        cwd:
+        cwd: # 工作目录
         env: # 环境变量
-        environment:
-        envFile:
+        environment: # 环境变量
+        envFile: # 环境变量文件
+        externalConsole: # 额外控制台
         miDebuggerPath:
         module: # 要运行的python模块
         name:
         outFiles:
         outputCapture:
         port:
-        preLaunchTask: # 预执行任务命令
+        preLaunchTask: # 预执行Task任务命令
         program: # 启动项目入口文件
         protocol:
         python:
@@ -120,20 +128,22 @@ launch.json:
         restart:
         runtimeArgs:
         runtimeExecutable:
-        setupCommands: # 启动注释参数
+        setupCommands: # 调试启动参数
             description:
             ignoreFailures:
             text:
         skipFiles:
+        stopAtEntry: # 入口处停止
         timeout:
         trace:
         type: # 调试器类型
-            cppdbg:
+            cppdbg: # c++调试器
             pwa-node:
             python:
         url:
         webRoot:
         MIMode:
+            gdb:
     version:
 
 
@@ -161,19 +171,19 @@ tasks.json:
                 test:
         isBackground:
         label: # 任务名称
-        options:
-            cwd:
+        options: # 选项配置
+            cwd: # task工作目录
         problemMatcher:
         runInBackground: # 后台运行任务
         script:
         type:
             npm:
             process:
-            shell:
+            shell: # 命令行脚本
     version: # 版本
 ```
 
-vscode 任务执行（类似npm脚本中的script）
+vscode Task任务执行（类似npm脚本中的script）
 
 
 #### extensions.json

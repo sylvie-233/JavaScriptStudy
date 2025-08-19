@@ -5,6 +5,14 @@
 
 现代的JavaScript运行时、原生TypeScript支持、内置打包工具、内置的 HTTP 服务器
 
+
+
+- 自动加载.env文件
+
+
+
+
+
 ### 项目结构
 ```yaml
 bun:
@@ -25,19 +33,23 @@ bun:
 ### bun
 ```yaml
 bun:
-    --version:
+    --hot: # 热更新
+    --version: # 版本
     --watch: # 热重载
-    add:
+    add: # 添加依赖
+        --dev:
+        --save:
     build:
     create: # 使用模板创建项目
     init: # 初始化项目
     install:
     link:
-    unlink:
     remove:
     run: # 运行
         --hot:
     test:
+    unlink:
+    upgrade: # 升级bun
 bunx:
 ```
 
@@ -49,13 +61,22 @@ bunx:
 ## 核心内容
 ```yaml
 bun:
+    sqlite: # sqlite3
+        Database:
+            exec():
+            query():
+        Statement:
+            all():
+    test: # 测试
+        beforeEach():
+        describe(): # 分组
+        expect(): # 断言
+            toBe():
+        test(): # 测试
     Bun: # 内建模块
         build:
+        env: # 环境变量
         file():
-    test:
-        describe():
-        expect():
-        test():
     BunFile:
     serve():
         port:
