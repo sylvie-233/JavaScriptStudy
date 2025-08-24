@@ -669,6 +669,8 @@ auth:
 
 ```
 
+nextjs版SpringSecurity
+
 
 
 ### Configuring

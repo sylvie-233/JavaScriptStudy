@@ -52,37 +52,6 @@ nodejs命令行工具
 
 
 
-#### package.json
-```yaml
-package.json:
-    author: # 作者，
-    description: # 项目的描述信息
-    dependencies: # 项目依赖
-    devDependencies: # 开发依赖
-    engines: # 版本兼容性，限制
-    homepage: # 主页
-    license: # 开源协议
-    main: # 入口文件
-    module: # 模块系统
-    optionalDependencies: # 可选依赖
-    peerDependencies: # 对等依赖
-    name: # 包名
-    repository: # 代码仓库地址
-        type:
-            git:
-        url:
-    scripts: # 自定义运行脚本
-        pos_:
-        pre_:
-        clean:
-        dev:
-        start:
-        test:
-    version: # 包 版本号
-```
-
-nodejs包配置文件
-
 
 ### npm
 ```yaml
@@ -138,6 +107,37 @@ npm私服
 
 
 
+#### package.json
+```yaml
+package.json:
+    author: # 作者，
+    description: # 项目的描述信息
+    dependencies: # 项目依赖
+    devDependencies: # 开发依赖
+    engines: # 版本兼容性，限制
+    homepage: # 主页
+    license: # 开源协议
+    main: # 入口文件
+    module: # 模块系统
+    optionalDependencies: # 可选依赖
+    peerDependencies: # 对等依赖
+    name: # 包名
+    repository: # 代码仓库地址
+        type:
+            git:
+        url:
+    scripts: # 自定义运行脚本
+        pos_:
+        pre_:
+        clean:
+        dev:
+        start:
+        test:
+    version: # 包 版本号
+```
+
+nodejs包配置文件
+
 
 #### .npmrc
 ```yaml
@@ -164,7 +164,7 @@ npm配置文件，k-v键值对文件
 
 nodejs包内执行工具
 
-#### nvm
+### nvm
 ```yaml
 nvm:
     alias: # 版本别名
@@ -177,7 +177,6 @@ nvm:
 ```
 
 nodejs版本管理器
-
 
 
 
@@ -249,13 +248,19 @@ node: # 共计44个模块
             postMessage():
         Buffer: # 二进制对象（大小固定）
             length: # 长度
-            alloc(): # 直接分配内存创建Buffer
-            allocUnsafe(): # 未初始归零分配
-            concat():
-            from(): # 由String创建Buffer
-            slice():
-            toString(): # 转换为字符串
-            write(): 
+            alloc(): # 创建一个指定大小的 初始化为 0 的 Buffer，直接分配内存创建Buffer
+            allocUnsafe(): # 未初始归零分配的Buffer
+            compare(): # 比较两个Buffer对象
+            concat(): # 连接两个Buffer对象
+            copy(): # Buffer拷贝
+            fill(): # Buffer填充
+            from(): # 由可迭代对象创建Buffer
+            isBuffer(): # 
+            slice(): # Buffer 切片
+            toString(): # 转换为字符串（可指定编码）
+                base64:
+                hex:
+            write(): # 写入
         Date: # 日期
             now():
         Error: # 错误对象
@@ -263,7 +268,7 @@ node: # 共计44个模块
             code: # 错误码
             message: # 错误信息
             stack: # 错误函数栈
-        JSON:
+        JSON: # json
             parse():
             stringify(): # json字符串序列化
         Math: # 数学运算
@@ -276,7 +281,7 @@ node: # 共计44个模块
             random():
             round():
             sqrt():
-        Number:
+        Number: # 数值类型
         Object: # 基类对象
             assign(): # 对象赋值
             defineProperty():
@@ -285,13 +290,13 @@ node: # 共计44个模块
                 get():
             getPrototypeOf():
             setPrototypeOf():
-        Promise:
+        Promise: # 异步Promise
             all():
             resolve():
-        Proxy:
+        Proxy: # 代理实现
             get():    
             set():
-        String:
+        String: # 字符串
             repeat():
             slice(): # 字符串截取
             split():
@@ -313,7 +318,7 @@ node: # 共计44个模块
         doesNotThrow():
         ok():
     async_hooks:
-    buffer: # Buffer操作
+    buffer: # Buffer二进制数据操作
         isUtf8():
         transcode():
     child_process: # 子进程(执行子命令)
@@ -337,7 +342,7 @@ node: # 共计44个模块
         isPrimary: # 主进程判断
         fork(): # 创建子进程
     console: # 控制台输出
-    crypto: # 加密包
+    crypto: # 加密与解密（哈希、HMAC、AES等）
         Cipher:
             final():
             update():
@@ -366,7 +371,7 @@ node: # 共计44个模块
         Error: # 异常基类
         SyntaxError: # 语法错误
         SystemError:
-    events: # 事件
+    events: # 事件机制
         EventEmitter:
             emit(): # 触发事件
             listeners():
@@ -374,7 +379,7 @@ node: # 共计44个模块
             on(): # 监听事件
             once(): 
             setMaxListeners():
-    fs: # 文件操作
+    fs: # 文件系统操作
         promises: # 异步文件操作
         ReadStream: # 读入流
             on():
@@ -452,9 +457,23 @@ node: # 共计44个模块
                 res:
     http2:
     https:
-    inspector:
-    module:
-    net:
+    inspector: # V8 Inspector 协议模块
+        Session: # 会话
+            connect():
+            disconnect():
+            on(): # 事件监听
+                Debugger:
+                    paused:
+                HeapProfiler:
+                    addHeapSnapshotChunk:
+            post():
+                HeapProfiler:
+                    enable:
+        close():
+        open():
+        url():
+    module: # 当前模块对象（局部）
+    net: # 网络通信
         BlockList:
         Server: # 服务
             listen(): # 监听端口
@@ -462,7 +481,6 @@ node: # 共计44个模块
                 connection:
                 data:
                 error:
-            
         Socket:
             setEncoding:
             connect(): # socket连接
@@ -480,7 +498,7 @@ node: # 共计44个模块
         createServer(): # 创建socket服务端
             socket:
         isIP():
-    os: # 操作系统
+    os: # 操作系统信息
         arch():
         cpus():
             model:
@@ -509,13 +527,18 @@ node: # 共计44个模块
             root:
         resolve(): # 路径解析（返回绝对路径）
     perf_hooks:
-    process: # 进程对象（全局）
+    process: # 当前进程对象（全局）
         arch:
         argv: # 进程参数
         env: # 环境变量
             NODE_ENV:
         pid:
         platform:
+        stderr:
+        stdin: # 标准输入 
+            on():
+                data:
+        stdout: # 标准输出
         cwd(): # 进程运行路径
         exit():
         kill():
@@ -524,13 +547,13 @@ node: # 共计44个模块
             exit:
             message():
     punycode:
-    querystring: # url query解析
+    querystring: # url query参数解析
         decode():
         encode():
         parse():
         stringify():
-    readline:
-        Interface:
+    readline: # 交互式命令行输入工具
+        Interface: 
             close():
             on():
                 _close:
@@ -538,12 +561,12 @@ node: # 共计44个模块
             prompt(): # 输出提示信息
             question():
             setPrompt():
-        createInterface():
+        createInterface(): # 创建交互式命令行接口
             input:
             output:
     repl:
     sea:
-    stream:
+    stream: # 流操作（Readable、Writable、Duplex、Transform）（文件流、网络流等）
         web:
             ReadableStream:
                 start():
@@ -554,27 +577,39 @@ node: # 共计44个模块
             WritableStream:
                 write():
         pipeline:
-        Readable:
+        Duplex: # 可读可写流（双工流）
+            read():
+            write():
+            ---
+            end():
             on():
                 data:
-                end:
-                readable:
-            pipe():
-        Transform:
-            _flush():
-            _transform():
-        Writeable:    
+            write():
+        Readable: # 可读流
             on():
+                data: # 可读数据
+                end: # 结束
+                error:
+                readable:
+            pipe(): # 管道输入（可写流）
+        Transform: # 转换流
+            flush():
+            transform():
+            ---
+        Writeable: # 可写流
+            on():
+                finish: # 写入完成
+            end():
             write(): 
     string_decoder:
-    test:
+    test: # 测试
         describe():
         it():
     timers:
     tls:
     trace_events:
     tty:
-    url:
+    url: # URL解析
         parse(): # 解析url
     util: # 工具包
         type:
@@ -589,7 +624,7 @@ node: # 共计44个模块
         workerData:
         parentPort:
             PostMessage():
-    ws:
+    ws: # WebSocket
         Websocket:
             on():
                 close:
@@ -606,7 +641,7 @@ node: # 共计44个模块
 ```
 
 
-### 数据类型
+### Data Types
 ```yaml
 DataTypes:
     Array:
@@ -624,18 +659,22 @@ DataTypes:
     Undefined:
 ```
 
+#### Buffer
+
 #### String
 
 字符串
 
 
-### 控制流程
+
+
+### Control Flow
 ```yaml
 Control Flow:
     if ... else if ... else ...:
 ```
 
-#### 异常处理
+#### Exception Handler
 ```javascript
 // 捕获异常
 try {
@@ -651,18 +690,18 @@ thorw new Error("xxx")
 ```
 
 
-### 函数
+### Function
 
 
 
 
-### 面向对象
+### Class
 ```javascirpt
 
 ```
 
 
-### 模块
+### Module
 ```javascript
 // 导入模块
 const xxx = require("xxx")
@@ -671,7 +710,6 @@ const xxx = require("xxx")
 module.exports = {
     xxxx
 }
-exp
 ```
 
 CommonJs、ES Module
@@ -688,23 +726,11 @@ require()导入文件夹、会导入文件夹下的package.json中main属性指�
 
 
 
-### 异步
-
-![Nodejs异步模块](../assets/Nodejs异步模块.png)
 
 
-promise、async
-
-- 定时器
-- I/O操作
-- Node内置
 
 
-<br />
-<br />
-
-
-### 事件循环
+### EventLoop
 
 libuv库
 Node.js 采用 libuv 事件驱动模型，其事件循环包含 6 个阶段：
@@ -758,14 +784,22 @@ Node.js 事件循环分为以下几个主要阶段：
 
 
 
+#### Async
+
+![Nodejs异步模块](../assets/Nodejs异步模块.png)
+
+
+promise、async
+- 定时器
+- I/O操作
+- Node内置
 
 
 
+### Extension
 
-### 扩展机制
 
-
-#### v8 Inspector
+#### V8 Inspector
 
 调试协议（V8 Inspector Protocol）是 Chrome 浏览器团队设计的一种通信协议，它允许外部工具（比如 Chrome DevTools、VS Code、WebStorm 等）与 V8 引擎（Node.js 用的 JS 引擎）进行调试通信
 - 打断点

@@ -3,6 +3,9 @@
 ## 基础介绍
 
 ts ORM框架
+- drizzle orm
+- drizzle kit
+- drizzle studio
 
 
 ## drizzle-kit
