@@ -1,6 +1,6 @@
 # Cocos Creator
 
-`Cocos Creator零基础小白超神教程: P46`
+``
 
 ## 基础介绍
 
@@ -176,6 +176,7 @@ cc:
             RenderRoot2D:
                 Canvas: # 画布
             SafeArea: # 安全区域
+            TiledMap: # 瓦片地图
             UITransform: # 
             ViewGroup: # 视图组
                 ScrollView: # 滚动视图
@@ -206,7 +207,9 @@ cc:
             removeAllChildren():
             removeChild():
             removeFromParent():
+            runAction(): # （已被Tween代替）
             setPosition(): # 设置位置
+            stopAction():
             ---
             Scene: # 场景
             EventType: # 事件类型
@@ -221,6 +224,7 @@ cc:
     Contact2DType: # 
         BEGIN_CONTACT:
     Director:
+    ERaycast2DType:
     Event: # 事件
         EventCustom: # 自定义事件
         EventMouse: # 鼠标事件
@@ -239,18 +243,23 @@ cc:
     IPhysics2DContact:
     KeyCode: # 
     Layers: # 图层
+    RaycastResult2D: # 射线结果
+        collider:
+        normal:
+        point:
     Renderer: # 渲染
         ModelRenderer: # 模型渲染
             ParticleSystem: # 粒子系统
     System:
         PhysicsSystem2D: # 2D物理系统
-            raycast():
+            raycast(): # 射线
         View:
     SystemEvent:
     Tween: # 补间动画
     UI:
     find(): # Node节点查找（绝对路径）
     instantiate(): # 实例化预制体
+    moveTo():
     v2(): # Vec2
 ```
 
@@ -306,7 +315,9 @@ JavaScript & TypeScript 脚本
 ### Component
 
 
+#### TiledMap
 
+瓦片地图
 
 #### Lighting
 
@@ -346,10 +357,18 @@ JavaScript & TypeScript 脚本
 
 ### UI
 
+#### Canvas
+
+画布
+
 
 #### Layout
 
 布局
+
+#### Widget
+
+锚点定位
 
 
 #### ViewGroup
@@ -365,12 +384,8 @@ JavaScript & TypeScript 脚本
 
 安全区域
 
-#### Widget
 
 
-#### Canvas
-
-画布
 
 
 #### Button
