@@ -174,20 +174,11 @@ contextBridge: `preload.js`，负责编写两个进程的通信API`invoke()/hand
 
 ipcRenderer -> contextBridge -> ipcMain
 
+#### Main Process
+
+#### Render Process
 
 
-
-
-
-### Package
-
-打包
-
-
-
-#### electron-updater
-
-electron程序更新
 
 
 

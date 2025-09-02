@@ -106,6 +106,10 @@ nodejs包管理器
 npm私服
 
 
+#### npx
+
+nodejs包内执行工具
+
 
 #### package.json
 ```yaml
@@ -160,9 +164,7 @@ nodejs包配置文件
 npm配置文件，k-v键值对文件
 
 
-#### npx
 
-nodejs包内执行工具
 
 ### nvm
 ```yaml
@@ -178,6 +180,14 @@ nvm:
 
 nodejs版本管理器
 
+
+### ts-node
+```yaml
+ts-node:
+    /esm:
+```
+
+运行TypeScript的Node.js运行时工具
 
 
 ### tsx
@@ -271,6 +281,7 @@ node: # 共计44个模块
         JSON: # json
             parse():
             stringify(): # json字符串序列化
+        Map:
         Math: # 数学运算
             E:
             PI:
@@ -284,6 +295,7 @@ node: # 共计44个模块
         Number: # 数值类型
         Object: # 基类对象
             assign(): # 对象赋值
+            create(): # 原型式继承，不用构造函数，直接基于对象创建
             defineProperty():
                 configurable:
                 enumerable:
@@ -296,6 +308,8 @@ node: # 共计44个模块
         Proxy: # 代理实现
             get():    
             set():
+        Reflect: # 反射
+        Set:
         String: # 字符串
             repeat():
             slice(): # 字符串截取
@@ -304,12 +318,14 @@ node: # 共计44个模块
             pathname: # url 路径
             searchParams:
         URLSearchParams: # 
+        WebSocket: # ws
         clearInterval(): # 清除定时器
         fetch(): # ajax请求 promise风格
         require(): # 导入函数
         setInterval(): # 间隔定时器
         setTimeout(): # 定时器
     assert: # 测试断言
+        strict:
         assert():
         deepEqual():
         deepStrictEqual():
@@ -338,10 +354,11 @@ node: # 共计44个模块
                 close:
         spawnSync():
             cwd:
-    cluster: # 集群（多核系统中创建多个nodejs进程）
+    cluster: # 进程集群（多核系统中创建多个nodejs进程）
         isPrimary: # 主进程判断
         fork(): # 创建子进程
     console: # 控制台输出
+    constants: # 常量
     crypto: # 加密与解密（哈希、HMAC、AES等）
         Cipher:
             final():
@@ -365,12 +382,9 @@ node: # 共计44个模块
         Socket:
         createSocket():
     diagnostics_channel:
-    dns:
+    dns: # 域名解析
+        promises:
     domain:
-    errors: # 错误/异常
-        Error: # 异常基类
-        SyntaxError: # 语法错误
-        SystemError:
     events: # 事件机制
         EventEmitter:
             emit(): # 触发事件
@@ -428,7 +442,7 @@ node: # 共计44个模块
             flag:
                 a: # 追加
         writeFileSync(): # 写入文件(同步)
-    http:
+    http: # HTTP
         Request: # http 请求
             headers:
             httpVersion:
@@ -439,15 +453,15 @@ node: # 共计44个模块
             on():
                 data:
                 end:
-        Response: # 响应
+        Response: # http 响应
             statusCode: # 响应状态码
             statusMessage:
             end(): # 结束响应
             setHeader(): # 设置响应头
             write(): # 响应体
-            writeHead():
+            writeHead(): # 
         Server: # http服务
-            listen():
+            listen(): # 端口监听
             on():
                 request:
         createServer(): # 创建http服务
@@ -458,6 +472,7 @@ node: # 共计44个模块
     http2:
     https:
     inspector: # V8 Inspector 协议模块
+        promises:
         Session: # 会话
             connect():
             disconnect():
@@ -473,6 +488,7 @@ node: # 共计44个模块
         open():
         url():
     module: # 当前模块对象（局部）
+        builtinModules: # 内建模块
     net: # 网络通信
         BlockList:
         Server: # 服务
@@ -526,7 +542,7 @@ node: # 共计44个模块
             name:
             root:
         resolve(): # 路径解析（返回绝对路径）
-    perf_hooks:
+    perf_hooks: # 性能检测
     process: # 当前进程对象（全局）
         arch:
         argv: # 进程参数
@@ -553,6 +569,7 @@ node: # 共计44个模块
         parse():
         stringify():
     readline: # 交互式命令行输入工具
+        promises:
         Interface: 
             close():
             on():
@@ -565,8 +582,9 @@ node: # 共计44个模块
             input:
             output:
     repl:
-    sea:
     stream: # 流操作（Readable、Writable、Duplex、Transform）（文件流、网络流等）
+        consumers:
+        promises:
         web:
             ReadableStream:
                 start():
@@ -602,17 +620,20 @@ node: # 共计44个模块
             end():
             write(): 
     string_decoder:
+    sys:
     test: # 测试
         describe():
         it():
-    timers:
-    tls:
+    timers: # 定时器
+        promises:
+            setTimeout():
+    tls: # TLS/SSL 加密通信
     trace_events:
     tty:
     url: # URL解析
         parse(): # 解析url
     util: # 工具包
-        type:
+        types:
         callbackify():
         format(): # 格式化字符串
         inspect():
@@ -624,13 +645,6 @@ node: # 共计44个模块
         workerData:
         parentPort:
             PostMessage():
-    ws: # WebSocket
-        Websocket:
-            on():
-                close:
-                message:
-                open:
-            send():
     zlib: # 压缩包
         createDeflate():
         createGunzip():
@@ -644,26 +658,51 @@ node: # 共计44个模块
 ### Data Types
 ```yaml
 DataTypes:
-    Array:
-    BigInt:
+    --- # Primitive 7种原始类型
     Boolean:
-    Error:
-    Function:
-    Map:
-    Null:
     Number: # 数值
-    Object:
-    Set:
+    BigInt:
     String:
     Symbol:
     Undefined:
+    Null:
+    --- # Object 引用类型
+    Object:
+        Array:
+        Map:
+        Set:
+        WeakMap:
+        WeakSet:
+        Date:
+        RegExp:
+        Function:
+        Error:
+        --- # 特殊对象
+        Buffer:
+        Global: # 全局对象 global / globalThis
 ```
 
-#### Buffer
+#### Number
+
+#### BigInt
+
+
 
 #### String
 
 字符串
+
+#### Symbol
+
+符号
+
+
+#### Object
+
+
+#### Buffer
+
+#### Date
 
 
 
@@ -671,6 +710,9 @@ DataTypes:
 ### Control Flow
 ```yaml
 Control Flow:
+    in: # 属性存在判断
+    instanceof: # 实例判断
+    typeof: # 类型判断
     if ... else if ... else ...:
 ```
 
@@ -693,12 +735,45 @@ thorw new Error("xxx")
 ### Function
 
 
+#### Closure
+
+函数闭包
 
 
 ### Class
-```javascirpt
+```js
+class Person {
+    // 构造方法
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
 
+    // 实例方法
+    sayHello() {
+        console.log(`Hi, I'm ${this.name}, ${this.age} years old.`);
+    }
+
+    // 静态方法
+    static species() {
+        return "Homo sapiens";
+    }
+}
+
+const p2 = new Person("Bob", 25);
+p2.sayHello();               // Hi, I'm Bob, 25 years old.
+console.log(Person.species()); // Homo sapiens
 ```
+
+
+#### Extends
+
+对象继承
+
+
+#### Getter & Setter
+
+属性封装
 
 
 ### Module
@@ -726,11 +801,16 @@ require()导入文件夹、会导入文件夹下的package.json中main属性指�
 
 
 
+#### CommonJs
 
+#### Es Module
 
 
 
 ### EventLoop
+
+Process -> Thread -> EventLoop
+
 
 libuv库
 Node.js 采用 libuv 事件驱动模型，其事件循环包含 6 个阶段：
@@ -746,7 +826,6 @@ Node.js 采用 libuv 事件驱动模型，其事件循环包含 6 个阶段：
 - process.nextTick（优先级更高）
 
 
-
 事件循环执行顺序：同步 -> 微任务 -> 宏任务 -> 微任务
 1. 同步代码
 2. process.nextTick
@@ -754,14 +833,12 @@ Node.js 采用 libuv 事件驱动模型，其事件循环包含 6 个阶段：
 4. 进入事件循环，按照阶段执行任务
 5. 完成一个阶段后，再次执行 process.nextTick 和微任务
 
-
 事件循环：
 ![事件循环](../assets/事件循环.png)
 ![NodeJS事件循环](../assets/NodeJS事件循环.png)
 
 宏任务、微任务
 微任务：`process.nextTick()`、`Promise`
-
 
 
 Node.js 事件循环分为以下几个主要阶段：
@@ -788,7 +865,6 @@ Node.js 事件循环分为以下几个主要阶段：
 
 ![Nodejs异步模块](../assets/Nodejs异步模块.png)
 
-
 promise、async
 - 定时器
 - I/O操作
@@ -796,10 +872,30 @@ promise、async
 
 
 
+#### Cluster
+
+进程集群
+事件循环的横向扩展
+
+
+#### Worker Thread
+
+Worker Threads 模块 提供了真正的多线程能力
+- 每个Worker有独立的 V8 实例和 EventLoop，完全隔离
+- 共享内存：支持 SharedArrayBuffer 和 Atomics 实现多线程共享数据
+- 轻量级：和 child_process 相比，不需要启动新进程，开销更低
+- 通信方式：通过 postMessage / parentPort 消息通道，或者 MessageChannel
+
+
+#### Child Process
+
+子进程
+
+
 ### Extension
 
 
-#### V8 Inspector
+#### Inspector
 
 调试协议（V8 Inspector Protocol）是 Chrome 浏览器团队设计的一种通信协议，它允许外部工具（比如 Chrome DevTools、VS Code、WebStorm 等）与 V8 引擎（Node.js 用的 JS 引擎）进行调试通信
 - 打断点
