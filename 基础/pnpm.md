@@ -4,6 +4,8 @@
 
 优化版npm
 pnpm使用硬链接和符号链接来共享依赖库，避免重复的依赖安装，从而大大减少了项目的磁盘占用
+- 支持非扁平的node_modules目录
+
 
 ### pnpm
 ```yaml
@@ -30,7 +32,7 @@ pnpm:
         registry:   
     store:
         path: # 查看缓存的路径
-        prune: # 缓存包
+        prune: # 清理store空间
         status:
     update: # 更新依赖
 ```

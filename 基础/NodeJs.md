@@ -3,7 +3,7 @@
 `Nodejs官方文档：https://nodejs.org/en/learn/getting-started/introduction-to-nodejs`
 `npm包官网：https://www.npmjs.com/`
 
-``
+`NodeJS简明教程：P35`
 ``
 
 ## 基础介绍
@@ -14,7 +14,6 @@
 - %NODE_PATH%/node_cache：
 - %NODE_PATH%/node_global：
 - %NODE_PATH%/node_modules：
-
 
 
 ### node
@@ -311,6 +310,8 @@ node: # 共计44个模块
         Reflect: # 反射
         Set:
         String: # 字符串
+            charCodeAt(): # 字符编码获取
+            fromCharCode():
             repeat():
             slice(): # 字符串截取
             split():
@@ -571,16 +572,16 @@ node: # 共计44个模块
     readline: # 交互式命令行输入工具
         promises:
         Interface: 
-            close():
+            close(): # 关闭
             on():
                 _close:
                 _line: # 输入一行
             prompt(): # 输出提示信息
-            question():
+            question(): # 请问并接收输入
             setPrompt():
         createInterface(): # 创建交互式命令行接口
-            input:
-            output:
+            input: # 输入流
+            output: # 输出流
     repl:
     stream: # 流操作（Readable、Writable、Duplex、Transform）（文件流、网络流等）
         consumers:
