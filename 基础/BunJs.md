@@ -62,7 +62,7 @@ bunx:
 ```yaml
 bun:
     sqlite: # sqlite3
-        Database:
+        Database: # 数据库
             exec():
             query():
         Statement:

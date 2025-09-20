@@ -3,7 +3,6 @@
 `Nodejs官方文档：https://nodejs.org/en/learn/getting-started/introduction-to-nodejs`
 `npm包官网：https://www.npmjs.com/`
 
-`NodeJS简明教程：P35`
 ``
 
 ## 基础介绍
@@ -14,6 +13,8 @@
 - %NODE_PATH%/node_cache：
 - %NODE_PATH%/node_global：
 - %NODE_PATH%/node_modules：
+
+- npm create自动运行`create-xxx`包
 
 
 ### node

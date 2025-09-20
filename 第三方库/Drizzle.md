@@ -11,10 +11,12 @@ ts ORM框架
 ## drizzle-kit
 ```yaml
 drizzle-kit:
-    generate:
+    generate: # 生成数据库迁移文件
         --config:
         pg:
-    push:
+    migrate:
+    pull:
+    push: # 数据库迁移
         --config:
         pg:
 ```
@@ -25,7 +27,7 @@ drizzle-kit:
 
 ### dirzzle.config.ts
 ```yaml
-:
+dirzzle.config.ts:
 ```
 
 
@@ -46,9 +48,17 @@ drizzle-kit:
         driver:
         out: # 迁移输出
         schema: # 表定义文件
+    defineConfig():
+        out:
+        schema:
+        dialect:
+        dbCredential:
+            url:
 
 drizzle-orm:
-    neon-http:
+    bun-sqlite:
+        drizzle():
+    neon-http: # neon
         drizzle():
             --- # db
             query:
@@ -56,12 +66,18 @@ drizzle-orm:
                     findMany():
             insert():
                 values():
-    pg-core:
+    pg-core: # postgre 核心
+        integer():
         paTable(): # 表定义
+            $inferInsert:
             logger:
             schema: # 所有表定义
         serial(): # 字段定义
         text():
             notNull():
             primaryKey():    
+        varchar():
+            notNull():
+    sqlite-core: # sqlite3 核心
+    sql(): # 
 ```

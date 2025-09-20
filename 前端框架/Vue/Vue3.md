@@ -2,7 +2,7 @@
 
 >
 > `https://cn.vuejs.org/guide/components/props.html`
-> `Vue简明教程: P64`
+> `Vue简明教程: P118`
 
 
 ## 基础介绍
@@ -311,35 +311,7 @@ class样式绑定、style样式绑定
 slot可以反向传值给template
 
 
-#### 自定义指令
-```jsx
-<div id="app">
-  <input v-focus />
-</div>
 
-<script>
-    const app = Vue.createApp({
-        directives: {
-            // 自定义 v-focus 指令
-            focus: {
-                mounted(el) {
-                    el.focus();
-                }
-            }
-        }
-    });
-    app.mount('#app');
-</script>
-```
-
-指令绑定生命周期：
-- created()：	指令绑定到元素上时
-- beforeMount()：	元素准备挂载到DOM之前
-- mounted()：	元素已经挂载到 DOM
-- beforeUpdate()： 更新前
-- updated()：更新后
-- beforeUnmount()：卸载前
-- unmounted()：元素已经被卸载
 
 #### 事件处理
 
@@ -606,6 +578,38 @@ app.use()会将插件安装到Vue应用实例中。Vue会调用插件的install�
 
 
 自定义插件支持对象式(install)、函数式插件
+
+
+
+#### Directive
+```jsx
+<div id="app">
+  <input v-focus />
+</div>
+
+<script>
+    const app = Vue.createApp({
+        directives: {
+            // 自定义 v-focus 指令
+            focus: {
+                mounted(el) {
+                    el.focus();
+                }
+            }
+        }
+    });
+    app.mount('#app');
+</script>
+```
+
+指令绑定生命周期：
+- created()：	指令绑定到元素上时
+- beforeMount()：	元素准备挂载到DOM之前
+- mounted()：	元素已经挂载到 DOM
+- beforeUpdate()： 更新前
+- updated()：更新后
+- beforeUnmount()：卸载前
+- unmounted()：元素已经被卸载
 
 
 ### 页面路由
