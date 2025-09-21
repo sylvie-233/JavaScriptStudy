@@ -83,6 +83,7 @@ bun:
         error():
         fetch():
         ---
+    sleep(): # 睡眠
 node: # nodejs兼容
     
 ```

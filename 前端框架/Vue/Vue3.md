@@ -2,7 +2,7 @@
 
 >
 > `https://cn.vuejs.org/guide/components/props.html`
-> `Vue简明教程: P118`
+> `Vue简明教程: P135`
 
 
 ## 基础介绍

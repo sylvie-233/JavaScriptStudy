@@ -9,10 +9,9 @@
 
 ![NodeJs运行机制](../assets/NodeJs运行机制.png)
 
-- %NODE_PATH%：nodejs主目录
-- %NODE_PATH%/node_cache：
-- %NODE_PATH%/node_global：
-- %NODE_PATH%/node_modules：
+全局包目录：`C:\Users\<你的用户名>\AppData\Roaming\npm\node_modules`
+全局可执行文件（bin）目录：`C:\Users\<你的用户名>\AppData\Roaming\npm`
+（修改全局安装目录: `npm config set prefix "D:\npm-global"`）
 
 - npm create自动运行`create-xxx`包
 
@@ -58,6 +57,8 @@ nodejs命令行工具
 npm:
     -v: # 版本
     add: # 添加本地路径映射（包）
+    bin:
+        -g: # 查看全局可执行文件安装路径
     cache: # 缓存
         clean: # 清理缓存
     config: # 配置
@@ -193,6 +194,7 @@ ts-node:
 ### tsx
 ```yaml
 tsx:
+    /register: # typescript加载器
     --env-file:
     --inspect: # 调试模式启动
     --loader:

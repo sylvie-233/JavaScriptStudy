@@ -47,6 +47,16 @@ ts-node:
 支持直接运行typescript的node
 
 
+#### tsx
+```yaml
+tsx:
+
+```
+
+ts-node替代品
+
+
+
 #### tsconfig.json
 ```yaml
 tsconfig.json:
