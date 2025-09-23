@@ -789,7 +789,7 @@ Provider部分状态监听，精准消费
 
 
 
-### 原生
+### 扩展
 
 
 #### MethodChannel

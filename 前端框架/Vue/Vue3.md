@@ -2,7 +2,7 @@
 
 >
 > `https://cn.vuejs.org/guide/components/props.html`
-> `Vue简明教程: P135`
+> ``
 
 
 ## 基础介绍
@@ -75,7 +75,7 @@ vue:
     DefineComponent: # 组件定义类型
     InjectionKey: # 依赖注入key
     PropType: # 属性类型
-    Ref: # 引用类型
+    Ref: # ref<>引用类型
     RefImpl:
         value: # 代理数据
     VNode: # 虚拟 DOM 节点

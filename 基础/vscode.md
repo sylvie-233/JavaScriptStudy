@@ -16,7 +16,7 @@ code:
 
 #### settings.json
 ```yaml
-内置变量:
+Inner Variable:
     command:
         python:
             interpreterPath:
@@ -455,4 +455,9 @@ Command、Task 命令、任务
 
 片段body中使用自定义输入：`$1`、`$2`、`${3:默认值}`
 
+
+
+## Copilot
+
+微软AI工具
 

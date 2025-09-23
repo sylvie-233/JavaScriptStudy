@@ -119,9 +119,9 @@ express:
     static(): # 静态目录挂载(中间件)
     urlencoded(): # urlencoded 请求中间件
 
+body-parser:
 cookie-parser:
 cors:
-body-parser:
 ejs:
     render(): # 渲染模板
 express-session: # session
@@ -159,6 +159,7 @@ multer: # 文件上传库
     array():
     single(): # 单文件上传中间件
 pug:
+supertest: # Node.js HTTP 服务测试库
 ```
 
 
@@ -184,24 +185,14 @@ pug:
 - 内置中间件
 - 第三方中间件
 
+#### multer
 
 
 
+### Validation
 
 
-
-#### File Upload
-
-multer库
-
-```js
-
-```
-
-
-
-
-### data validation
+#### zod
 
 ### Error Handler
 
@@ -258,12 +249,14 @@ ejs:
 
 ### Test
 
+#### supertest
+
 
 ### Third-party
 
-#### Mail Sender
 
 
-#### Rate Limiter
+
+#### express-rate-limit
 
 `express-rate-limit`

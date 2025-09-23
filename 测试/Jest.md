@@ -18,7 +18,7 @@ javascript测试库
 ### Jest
 ```yaml
 jest:
-    --coverage:
+    --coverage: # 测试覆盖率
     --watch: # 监听文件变化
 ```
 
@@ -38,7 +38,7 @@ jest.config.js:
 ## 核心内容
 ```yaml
 jest:
-    globals: # @jest/globals
+    globals: # jest全局函数 @jest/globals
         jest:
             mock():
         afterAll():
@@ -48,7 +48,7 @@ jest:
         describe(): # 测试模块
             each():
         expect(): # 测试断言、测试值传递
-            not:
+            not: # 否定
             rejects:
             resolves:
             toBe():
@@ -70,5 +70,8 @@ jest:
     Config:
         automock:
     fn():
+        mock:
+            calls:
+            results:
         mockResolvedValueOnce():
 ```

@@ -144,6 +144,22 @@ package.json:
 nodejs包配置文件
 
 
+#### jsconfig.json
+```yaml
+jsconfig.json:
+    compilerOptions:
+        baseUrl:
+        checkJs:
+        module:
+        paths: # 路径别名配置
+        target:
+    exclude:
+    include:
+```
+
+VSCode里专门给 JavaScript 项目 用的配置文件
+
+
 #### .npmrc
 ```yaml
 .npmrc:
@@ -165,6 +181,14 @@ nodejs包配置文件
 npm配置文件，k-v键值对文件
 
 
+#### node_modules
+```yaml
+node_modules:
+    /.bin: # 可执行文件（nodejs包装脚本文件）
+```
+
+
+npm第三方包安装目录
 
 
 ### nvm
