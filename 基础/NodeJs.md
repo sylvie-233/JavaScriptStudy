@@ -195,12 +195,13 @@ npm第三方包安装目录
 ```yaml
 nvm:
     alias: # 版本别名
+    current:
     install:
         latest:
     list:
         avaliable:
     uninstall:
-    use: # 使用版本
+    use: # 切换nodejs版本
 ```
 
 nodejs版本管理器
