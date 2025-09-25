@@ -1,7 +1,7 @@
 # Electron
 
 `electron官方文档：https://www.electronjs.org/docs/latest/`
-`Electron: P4`
+``
 
 
 ## 基础介绍
@@ -136,6 +136,7 @@ electron:
             createFromDataURL():
     main: # 主进程
         BrowserWindow: # 浏览器窗口
+            parent: # 父窗口
             width:
             height:
             webPreferences:
@@ -154,6 +155,8 @@ electron:
                     before-input-event:
                 openDevTools(): # 打开开发者工具
                 postMessage():  
+            close(): # 关闭窗口
+            fromWebContents(): # 获取内容对应的窗口对象
             getAllWindows():
             loadFile():
             loadURL():
@@ -177,9 +180,11 @@ electron:
             quit(): # 退出程序
             whenReady(): # 应用程序准备完毕
         dialog: # 弹框
+            showMessageBox():
             showOpenDialog():   
         globalShortcut: # 快捷键
             register():
+            registerAll():
         ipcMain: # 主进程
             handle():
             on():
@@ -213,11 +218,13 @@ electron:
     crashReporter:
         start():
     desktopCapturer: # 屏幕截图
+        getSources():
     inAppPurchase:
     ipcRenderer: # 渲染进程
         invoke(): # 
         send():
     nativeImage:
+        createFromDataURL():
     nativeTheme:
     net:
         request():
@@ -228,6 +235,8 @@ electron:
     session:
         defaultSession:
         setDisplayMediaRequestHandler():
+    screen: # 屏幕
+        getPrimaryDisplay():
     webUtils:
 
 electron-updater:

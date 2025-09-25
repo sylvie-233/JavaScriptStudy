@@ -166,7 +166,7 @@ vite-plugin-vue2:
 
 
 
-### 插件
+### Plugin
 ```yaml
 Plugin Hooks:
     config(): # 修改 Vite 配置
