@@ -11,9 +11,9 @@
 
 
 
-### 目录结构
+### 项目结构
 ```yaml
-目录结构:
+项目结构:
     /components:
     /mixins:
     /node_modules:
@@ -30,7 +30,7 @@
 
 #### manifest.json
 ```yaml
-:
+manifest.json:
     mp-weixin:
         appid:
         setting:
@@ -44,7 +44,7 @@
 
 #### pages.json
 ```yaml
-:
+pages.json:
     globalStyle:
         backgroundColor:
         navigationBarTextStyle:
@@ -146,15 +146,7 @@ uni:
 使用Vue模板语法
 
 
-### 页面路由
 
-`uni.navagateTo()`
-
-
-### 状态管理
-
-
-Vuex
 
 
 
@@ -197,7 +189,15 @@ Component:
     $emit():
 ```
 
+### 页面路由
 
+`uni.navagateTo()`
+
+
+### 状态管理
+
+
+Vuex
 
 
 

@@ -23,7 +23,6 @@ React服务端实现
 
 
 
-
 核心依赖：
 - `next`
 - `react`
@@ -259,8 +258,8 @@ next:
         notFound(): # 跳转到404页面
         permanentRedirect(): # 永久重定向
         redirect(): # 重定向响应
-        userPathname(): # 获取url path（仅客户端组件）
-        useRouter(): # 路由器、路由跳转（仅客户端组件）
+        userPathname(): # 获取url path（client）
+        useRouter(): # 路由器、路由跳转（client）
             ---
             isFallback:
             query: # Query参数
