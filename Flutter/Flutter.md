@@ -21,6 +21,10 @@ Flutter SDK中包含了Dart SDK
 ![Flutter 简易声明周期](../assets/flutter简易生命周期.png)
 
 
+- flutter第三方包安装到SDK的`.pub-cache`目录下
+- flutter需要使用android studio安装ndk（原生开发库）
+
+
 ### 项目结构
 ```yaml
 flutter:
@@ -48,7 +52,7 @@ flutter:
 #### 安装目录
 ```yaml
 flutter:
-    /.pub-cache: # 下载的公共模块
+    /.pub-cache: # 下载的第三方包
         /bin:
     /bin:
         /cache:
@@ -63,8 +67,8 @@ flutter:
                 /pkg:
         /internal:
         /mingit:
-        dart:
-        flutter:
+        dart: # dart命令
+        flutter: # flutter命令
     /dev:
     /docs:
     /engine:
@@ -96,9 +100,13 @@ pubspec.yaml:
 flutter:
     -h:
     --version:
+    build:
+        apk:
+        appbundle:
     channel: # 版本管理
         beta:
     create: # 创建项目
+    devices: # 查看设备
     doctor: # 环境检测
     driver: # 驱动
     emulator:
@@ -106,7 +114,9 @@ flutter:
     emulators: # 所有模拟器
         --create:
         --launch:
+    install: # 安装
     run: # 运行项目
+        --release:
         R: # 热重载
         c:
         d:

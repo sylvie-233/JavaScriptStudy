@@ -12,10 +12,12 @@ Husky 是一个用于在 Git 钩子（如 pre-commit、pre-push 等）中运行�
 husky:
     add: # 添加
         .husky:
+            commit-msg: # commit信息
             post-commit:
             post-push:
-            pre-commit:
+            pre-commit: # commit前置钩子
             pre-push:
+    init: # 初始化
     install: # 生成.husky目录
 ```
 

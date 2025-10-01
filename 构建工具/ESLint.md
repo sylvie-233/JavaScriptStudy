@@ -45,8 +45,8 @@ eslint:
         next/core-web-vitals:
     globals: # 全局声明（无需import）
     overrides: # 重写配置
-    parser: # "babel-eslint|"
-    parserOptions:
+    parser: # 解析器 "babel-eslint|"
+    parserOptions: # 解析器配置
         sourceType:
     plugins: # eslint插件
     rules: # 检查规则
@@ -95,7 +95,7 @@ prettier格式化配置文件（vscode插件）
 ```yaml
 ```
 
-
+prettier忽略文件
 
 
 ## 核心内容

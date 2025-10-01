@@ -207,3 +207,29 @@ Vuex
 Vue3组合式API
 
 
+
+
+
+
+
+
+## HBuilderX
+
+### 安装目录
+```yaml
+HBuilderX:
+    /bin:
+    /iconengines:
+    /imageformats:
+    /platforms:
+    /plugins:
+    /redeme:
+    HBuilderX.exe:
+```
+
+
+### Android-SDK
+
+离线打包
+
+

@@ -3,10 +3,14 @@
 
 ## 基础介绍
 
-typescript RPC框架
+typescript RPC框架（基于http协议，没有单独新开端口）
 - @trpc/server 
 - @trpc/client 
 - @trpc/react-query
+
+- 可集成在express中
+- graphql升级版
+
 
 ## 核心内容
 ```yaml
@@ -15,7 +19,7 @@ typescript RPC框架
         createTRPCProxyClient():
         httpBatchLink():
     server: # 服务端
-        adapters:
+        adapters: # 后端适配器
             express:
                 createExpressMiddleware(): # 创建express中间件
                     createContext:
