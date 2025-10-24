@@ -3,7 +3,7 @@
 >
 >`Next.js官方文档：https://nextjs.org/docs/app/building-your-application/caching`
 >
->``
+>`Next.js 全栈开发 - The Road to Next：P56`
 
 ## 基础介绍
 
@@ -169,7 +169,8 @@ next:
     build: # 构建
     dev: # 开发
     export: # 静态页面生成
-    lint:
+    lint: # 代码格式校验
+        --fix: # 代码修复
     start: # 生产运行
 ```
 
