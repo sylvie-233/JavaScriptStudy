@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-``
+`Flutter教程：P3`
 
 
 ## 基础介绍
@@ -600,7 +600,12 @@ Theme 会在应用的 Widget 树中向下传播，这意味着它不仅影响到
 
 ##### AnimationController
 ##### AnimationStatus
+
 ##### Tween
+
+补间动画
+
+
 ##### AnimatedWidget
 ##### AnimatedBuilder
 
