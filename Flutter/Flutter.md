@@ -1,7 +1,7 @@
 # Flutter
 
 `Flutter官方文档：https://docs.flutter.dev/`
-`Flutter教程：P3`
+`Flutter教程：P11`
 
 
 ## 基础介绍
@@ -23,14 +23,23 @@ Flutter SDK中包含了Dart SDK
 
 - flutter第三方包安装到SDK的`.pub-cache`目录下
 - flutter需要使用android studio安装ndk（原生开发库）
+- App -> MaterialApp(Theme、Route) - Scaffold(AppBar) -> Container(Row、Column) -> ListView(GridView) -> Text(Image)
 
 
 ### 项目结构
 ```yaml
 flutter:
     /.dart_tool:
+        /extension_discovery:
+            vs_code.json:
         package_config.json: # 记录第三方包实际路径（本地）
+        package_graph.json:
+        version:
     /.idea:
+        /libraries:
+        /runConfigurations:
+        modules.xml:
+        workspace.xml:
     /android:
     /build:
     /ios:
@@ -44,7 +53,7 @@ flutter:
     /test: # 测试
     .metadata:
     analyasis_options.yaml:
-    xxx.iml:
+    <xxx>.iml:
     pubspec.lock:
     pubspec.yaml:
 ```
@@ -106,6 +115,11 @@ flutter:
     channel: # 版本管理
         beta:
     create: # 创建项目
+        --org: # 包名
+        --platforms: # 平台
+            android:
+            windows:
+        --template:
     devices: # 查看设备
     doctor: # 环境检测
     driver: # 驱动
@@ -501,7 +515,7 @@ flutter:
         Text: # 文本
             maxLines:
             overflow:
-            style:
+            style: # 文本样式（颜色）
             textAlign:
             textDirection:
             textScaleFactor:

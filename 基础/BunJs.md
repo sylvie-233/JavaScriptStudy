@@ -75,17 +75,28 @@ bun:
     _Globals:
         AbortController:
         AbortSignal:
-        ArrayBuffer:
-        Blob:
+        ArrayBuffer: # 原始二进制容器
+            DataView: # 灵活按字节操作
+            Uint8Array: # 定型数组视图
+        Blob: # 二进制数据块，不可变的
+            type: # 类型
+            arrayBuffer():
+            slice():
+            stream():
+            text(): # 读取为文本
         CloseEvent:
         Crypto:
         Event:
-        File:
+        File: # 继承自 Blob 的子类，表示一个真正的文件
+        FileReader: # 异步读取文件内容（文本或二进制）到内存中
+            readAsArrayBuffer():
+            readAsDataURL():
+            readAsText():
         FormData:
         TextDecoder:
         TextEncoder:
-        Uint8Array:
         URL:
+            createObjectURL(): # 创建临时访问 URL（基于Blob、File）
         URLSearchParams:
         fetch():
     ffi:

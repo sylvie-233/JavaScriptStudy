@@ -1,13 +1,16 @@
 # Figma
 
+`2025最新 | 零基础学Figma：P5`
+
 ## 基础介绍
 
 GUI界面设计工具
 
-Page -> Layer -> Frame -> Component -> Group -> Union -> Section
-Frame可嵌套（相当于div容器）
-Component基于名称选项合并
+Page -> Layer -> Section -> (Frame) -> Component -> Group -> Union
 
+
+- Frame可嵌套（相当于div容器）
+- Component基于名称选项合并
 
 
 ## 核心内容

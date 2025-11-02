@@ -157,6 +157,7 @@ javascript:
         target:
         preventDefault(): # 组织默认行为
         stopPropagation(): # 停止冒泡
+    EventSource: # SSE Server-Sent Events
     EventTarget: # 事件对象 基类 
         addEventListener():
         dispatchEvent():
