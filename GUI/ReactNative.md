@@ -19,7 +19,7 @@ Native -> Bridge -> JS
 
 
 
-
+- 使用FlatList进行列表渲染
 
 
 
@@ -135,6 +135,13 @@ react-native:
 
 ### expo
 ```yaml
+create-expo-app: # expo项目脚手架
+    --template:
+        blank:
+        defalut:
+
+expo-doctor: # 环境检测        
+
 expo:
     build:
         --profile: # 指定配置环境Profile 
@@ -162,13 +169,14 @@ expo:
 ```yaml
 eas:
     build: # 远程构建
+        --local: # 本地构建
         --platform:
         configure: # 生成 eas.json远程项目配置文件
     doctor: # 项目环境检测
     login: # 登录expo
 ```
 
-打包命令工具
+远程打包命令工具
 
 
 
@@ -553,6 +561,7 @@ NavigationContainer -> Navigator -> Screen(可嵌套Navigator)
 
 #### Screen
 
+### 第三方包
 
 
 ### 原生模块
@@ -663,6 +672,10 @@ expo-task-manager:
 
 ### expo-font
 
+### expo-image
+
+图片
+
 
 ### expo-linking
 
@@ -679,8 +692,22 @@ expo-task-manager:
 基于文件目录结构的路由，类似nextjs的路由管理、需要显式声明
 支持动态路由、_layout布局
 
+#### _layout.ts
+
+#### Slot
+
+#### Link
+
+#### Tabs
+
+#### Stack
+
+
+#### useRouter
+
 
 ### expo-splash-screen
+### expo-status-bar
 
 
 ### expo-system-ui

@@ -6,14 +6,19 @@
 ## 基础介绍
 
 nodejs ORM框架
+
+npm依赖：
 - `prisma`
 - `@prisma/client`
 
+数据库迁移命令
 `prisma migrate dev`
 
 datasource、generator、model
 默认寻找/prisma文件夹下的schema.prisma文件（支持多文件.prisma）
 自带studio：5555端口
+
+- prisma init初始化项目结构
 
 
 ### 目录结构
@@ -65,20 +70,20 @@ prisma:
         pull: # 根据数据库更新(.prisma)schema文件
         push: # 同步数据库（根据schema.prisma的模型结构更新数据库、不会生成迁移文件）
         seed: # 数据填充（执行prisma/seed.ts）
-    debug:
+    debug: # 
     format: # 格式化schema文件
     generate: # 根据schema生成客户端代码（node_modules/.prisma/client）
         --schema: # 指定schema文件
     init: # 初始化项目（生成/prisma文件夹、.env文件）
-        --datasource-provider:
+        --datasource-provider: # 指定数据库提供器
             mysql:
     migrate: # 
         deploy: # 在生产环境中，应用所有未执行的迁移（不会创建新的迁移文件，只应用prisma/migrations目录下已有的迁移）
-        dev: # 开发数据库迁移（创建迁移sql、更新数据库、、生成客户端代码）
+        dev: # 开发数据库迁移（创建迁移sql、更新数据库、生成客户端代码）
             --create-only: # 仅创建迁移sql
             --name: # 指定迁移名称
         reset: # 重置数据库（删除数据库、重新运行所有迁移、重新填充测试数据）
-    studio: # 可视化网站
+    studio: # web 可视化网站
     validate: # schema语法校验
     version:
 ```
@@ -109,6 +114,7 @@ model: # 模型定义
         Unsupported:
             []: # 数组类型
             ?: # 可选类型
+            @@map: # 数据库表别名
             @db: # 原始数据库类型
                 Boolean():
                 Char():
@@ -119,13 +125,15 @@ model: # 模型定义
                 true:
                 false:
                 autoincrement(): # 主键自增
+                now(): # 当前时间
+                uuid():
             @id: # 主键id
-            @now: # 当前时间
+            @map: # 字段属性映射（别名）
             @relation: # 模型关联（只需在其中一个模型中定义即可）
                 fields: # 自身外键字段
                 references: # 外键依赖字段
             @unique: # 唯一约束
-            @updatedAt:
+            @updatedAt: # 更新时间设置
             @uuzzid:
         @@unique: # 联合约束
     @map: # 定义数据库表名
@@ -157,6 +165,7 @@ model: # 模型定义
                 _min:
             count():
             create(): # 创建
+                data:
             createMany(): # 创建
             delete(): # 删除
             deleteMany():
@@ -169,7 +178,7 @@ model: # 模型定义
                 data: # 数据
                     connect:
                     create: # 关联模型数据创建
-                include: # 包含关联模型
+                include: # 包含关联模型（联表查询）
                     _model:
                 orderBy:
                 select: # 字段投影
@@ -179,11 +188,12 @@ model: # 模型定义
                     OR:
                     contains:
                     startsWith:
-        $connect():
+        $connect(): # 请求连接
         $disconnect(): # 断开连接
         $executeRaw(): # 执行SQL语句（INSERT/UPDATE/DELETE）
         $queryRaw(): # 原始sql查询
         $transaction(): # 事务
+        $use(): # 中间件
 ```
 
 
