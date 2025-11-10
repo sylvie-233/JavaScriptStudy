@@ -34,6 +34,17 @@ bun:
     tsconfig.json:
 ```
 
+
+#### package.json
+```yaml
+package.json:
+    workspaces: # 工作空间
+
+```
+
+项目配置
+
+
 ### bun
 ```yaml
 bun:
