@@ -4,6 +4,16 @@
 
 
 
+vscode核心功能：
+- Color Theme：颜色主题
+- Command：命令
+- Task：任务
+- Terminal：终端
+- TreeView：树形列表
+- WebviewPanel：webview面板
+
+
+
 ### code
 ```yaml
 code:
@@ -249,6 +259,7 @@ vscode:
     authnetication:
     chat:
     commands: # 命令
+        executeCommand(): # 执行命令
         registerCommand(): # 注册命令(多级命令用 . 分隔)
     comments:
     debug:
@@ -262,18 +273,20 @@ vscode:
     tasks: # 任务
     tests: # 测试
     window: # 窗口
-        activeTextEditor:
+        activeTextEditor: # 激活的文本编辑器
         createInputBox():
-        createOutputChannel():
+        createOutputChannel(): # 底部output
         createQuickPick():
         createStatusBarItem(): # 状态栏图标对象
-        createTerminal():
+        createTerminal(): # 终端
         createTreeView():
         createWebviewPanel():
         registerFileDecorationProvider(): # 文件可视化修饰符
         registerTreeDataProvider():
         showErrorMessage():
         showInformationMessage(): # 右下角显示信息
+        showInputBox(): # 弹出输入框
+        showQuickPick(): # 弹出选择框
     workspace: # 工作空间
     ExtensionContext: # 插件上下文
         asAbsolutePath():
@@ -451,6 +464,36 @@ Command、Task 命令、任务
 
 片段body中使用自定义输入：`$1`、`$2`、`${3:默认值}`
 
+
+
+
+### LSP
+
+- 语法高亮：
+- 语义高亮
+- 代码片段
+- 语言配置
+
+
+### Dev Container
+```yaml
+.devcontainer.json:
+    name:
+    dockerFile: # 指定dockerfile环境
+    customizations: # 自定义
+        vscode:
+            settings:
+            extensions:
+    image: # 指定预制镜像
+    features:
+    postCreateCommand:
+    runArgs:
+```
+
+开发环境容器
+`.devcontainer.json`
+
+github codespace
 
 
 ## Copilot
