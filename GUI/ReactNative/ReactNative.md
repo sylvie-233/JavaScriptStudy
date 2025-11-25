@@ -6,7 +6,6 @@
 
 React移动端解决方案
 
-`create-expo-app`expo项目脚手架
 
 
 Native -> Bridge -> JS
@@ -19,13 +18,30 @@ Native -> Bridge -> JS
 
 
 
+- `create-expo-app`expo项目脚手架
+- expo项目本地构建：
+    1. expo prebuild生成本地android项目
+    2. android studio打开android项目
+    3. keytool生成生成签名密钥（Keystore）
+    4. 修改build.gradle使用签名密钥
+    5. gradle执行构建
 - 使用FlatList进行列表渲染
-
+- react-navigation路由管理：NavigationContainer -> Navigator -> Screen(可嵌套Navigator)
+- expo基于 RN 的增强工具链：
+    - 打包工具（expo build，eas build）
+    - 路由系统（expo-router）：基于文件系统的路由
+    - 大量原生组件封装（expo-camera，expo-location…）
+    - Web 支持（React Native for Web）
+    - OTA 更新（expo-updates）：应用市场热更新
+    - 设备 API（Sensors、Haptics、Push…）
+- Expo-Router基于文件系统的路由：
+    - _layout.tsx：根布局组件
+- eas本地构建只支持linux、macos
 
 
 ### 目录结构
 ```yaml
-expo项目:
+expo:
     /app:
     /assets:
     /components:
@@ -51,6 +67,17 @@ expo项目:
 ```yaml
 app.json:
     expo:
+        name: # 应用名称
+        slug:
+        version: # 版本
+        orientation: # 应用方向
+            portrait: # 竖向
+        icon: # 应用图标
+        scheme: # 自定义deeplink（URL Scheme）
+        userInterfaceStyle: # 深色/浅色模式
+            automatic:
+        newArchEnabled:
+        ios: # ios平台配置
         android: # 安卓平台配置
             adaptiveIcon:
                 backgroundColor:
@@ -60,26 +87,21 @@ app.json:
                 CAMERA:
                 LOCATION:
             versionCode:
+        web: # WEB平台配置
+        plugins:
+            expo-router:
         assetBundlePatterns: # 资源文件打包
         extra: # 额外参数（环境变量）,可通过expo-constants获取
             apiBaseUrl: # 常配置api url
-        icon: # 应用图标
-        ios: # ios平台配置
-        name: # 应用名称
-        orientation: # 应用方向
-            portrait: # 竖向
-        scheme: # 自定义deeplink（URL Scheme）
         splash: # 启动画面、首屏广告
             backgroundColor:
             image:
             resizeMode:
-        slug:
         updates: # 远程更新
             fallbackToCacheTimeout:
-        userInterfaceStyle: # 深色/浅色模式
-            automatic:
-        version: # 版本
-        web: # WEB平台配置
+        experiments:
+            reactCompiler:
+            typedRoutes:
 ```
 
 
@@ -154,6 +176,7 @@ expo:
     start: # 开发服务器启动
         --android:
         --ios:
+        --web:
         a: # 安卓启动
         i: # ios启动
         w: # web启动
@@ -173,10 +196,23 @@ eas:
         --platform:
         configure: # 生成 eas.json远程项目配置文件
     doctor: # 项目环境检测
+    expo: # 
     login: # 登录expo
 ```
 
 远程打包命令工具
+
+
+#### Expo Go
+```yaml
+Expo Go:
+    a:
+    j:
+    m: # 打开调试工具菜单
+    r:
+    s:
+    w:    
+```
 
 
 
@@ -184,6 +220,8 @@ eas:
 ```yaml
 react:
     Component: # 类组件
+    PropsWithChildren:
+    ReactElement:
     useState():
 react-native:
     ActiveIndicator: # 加载指示器
@@ -248,6 +286,7 @@ react-native:
             pageSheet:
         visible:
     NativeModules:
+    OpaqueColorValue:
     Platform: # 平台，媒体查询
         OS: # 操作系统
         select():
@@ -282,6 +321,7 @@ react-native:
         backgroundColor: # 背景色
         barStyle: # 预设样式
         hidden: # 隐藏状态条
+    StyleProp:
     StyleSheet: # css样式
         create():
     Text: # <p>
@@ -299,8 +339,19 @@ react-native:
     TouchalbeWithoutFeedback:
     View: # <div>
         style:
+    ViewStyle:
     alert():
+    useColorScheme(): # 
     useWindowDimensions():
+react-native-reanimated: # 动画库
+    Animated:
+        ScrollView:
+        Text:
+        View:
+    interpolate():
+    useAnimatedRef():
+    useAnimatedStyle():
+    useScrollOffset():
 @react-navigation:
     bottom-tabs: # 底部选项卡导航
         createBottomTabNavigator():
@@ -322,10 +373,10 @@ react-native:
             Navigator:
             Screen:
     native: # 核心
-        DartTheme:
-        DefaultTheme:
+        DartTheme: # 黑暗主题
+        DefaultTheme: # 默认主题
         NavigationContainer: # 路由视图容器
-        ThemeProvider:
+        ThemeProvider: # 主题提供器
         useNavigation(): # 编程式导航
             getParent(): # 获取父级导航器
             navigate():
@@ -427,7 +478,7 @@ react-native-webview: # WebView
 
 
 
-### 组件
+### Component
 
 
 
@@ -437,33 +488,26 @@ react-native-webview: # WebView
 - 条件渲染：if
 - 列表渲染：map、FlatList
 
+### LifeCycle
 
-#### 事件机制
-```yaml
-Event:
-    onPress: # 点击事件
-```
+#### componentDidMount
 
-#### 生命周期
+#### componentDidUpdate
 
-##### componentDidMount
-
-##### componentDidUpdate
-
-##### componentWillUnmount
+#### componentWillUnmount
 
 
 
-#### 组件样式
+### Style
 
 
-##### StyleSheet
+#### StyleSheet
 
 样式组件，不能直接使用CSS
 组件样式不具有继承性、可传递多个对象
 
 
-##### Animated
+#### Animated
 
 Animated中Text、View、ScrollView、Image可直接使用动画
 动画播放依赖：动画函数(timing)、动画属性值(Value)
@@ -519,7 +563,7 @@ Store -> Reducer -> Action
 
 
 
-### 组件路由
+### Routing
 ```jsx
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -656,12 +700,18 @@ expo-task-manager:
     tsconfig.json:
 ```
 
+### expo-audio
 
+录音
 
 
 ### expo-av
 
 音频播放
+
+### expo-clipboard
+
+剪贴板
 
 ### expo-constants
 
@@ -670,14 +720,34 @@ expo-task-manager:
 
 相机访问
 
+### expo-file-system
+
+文件系统
+
 ### expo-font
+
+### expo-haptics
+
+震动
 
 ### expo-image
 
-图片
+图像编辑
 
 
 ### expo-linking
+
+### expo-local-authentication
+
+指纹 / FaceID
+
+### expo-location
+
+位置
+
+### expo-network
+
+网络信息
 
 ### expo-notifications
 
@@ -692,24 +762,47 @@ expo-task-manager:
 基于文件目录结构的路由，类似nextjs的路由管理、需要显式声明
 支持动态路由、_layout布局
 
+
+
 #### _layout.ts
+
+布局组件
 
 #### Slot
 
 #### Link
 
+链接
+
 #### Tabs
+
+标签栏布局
+
+##### Screen
+
+标签栏屏幕
+
 
 #### Stack
 
+堆叠布局
+
+##### Screen
+
+堆叠布局页面
+
 
 #### useRouter
+
+### expo-sensors
+
+加速度传感器
 
 
 ### expo-splash-screen
 ### expo-status-bar
 
-
+### expo-symbols
 ### expo-system-ui
 
 

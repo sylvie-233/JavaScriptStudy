@@ -818,6 +818,29 @@ customElements.define('custom-greeting', CustomGreeting);
 ```
 
 
+### Shadow DOM
+
+就像 Vue、React 组件是虚拟 DOM 层面的隔离，Shadow DOM 则是浏览器原生的真正 DOM 隔离机制
+Shadow DOM 隔离的是 JS 和 CSS，而不是开发者工具
+
+
+
+
+### customElements
+
+自定义HTML元素注册
+
+
+
+### slot
+
+浏览器原生支持 `<slot>` 功能，它是 Web Components 标准的一部分，不需要任何框架或库
+`<slot>` 是 Shadow DOM 的内容分发机制（content distribution），专门用来让外部给组件“填内容”
+- Shadow DOM 内部的内容占位符
+- slot 的默认内容（fallback）
+- 支持具名 slot（named slot）
+
+
 
 
 ## WebGL
@@ -935,4 +958,30 @@ gl.drawArrays(gl.TRIANGLE_FAN, 0, 4);
 ## WebAssembly
 
 `.wasm`
+
+### DataTypes
+```yaml
+DataTypes:
+    f32:
+    f64:
+    i32:
+        const:
+        mul:
+    i64:
+```
+
+
+### WAT
+```yaml
+WAT:
+    export: # 模块导出
+    func: # 函数定义
+    local:
+        get: # 本地变量获取
+    module: # 模块定义
+    param: # 函数形参定义
+    result: # 函数结果定义
+```
+
+WebAssembly Text Format（WAT / .wat）
 
