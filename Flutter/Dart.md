@@ -16,11 +16,24 @@ Flutter SDK包含Dart SDK
 - macOS/Linux：`~/.pub-cache`
 
 
-文件结构和Java类似
-每行结束必须携带分号`;`
-Dart万物皆对象，引用传递
-支持自动类型推断，变量声明、函数返回值
-实例化对象不用写new
+- 文件结构和Java类似、每行结束必须携带分号`;`
+- Dart万物皆对象，引用传递
+- 支持自动类型推断，变量声明、函数返回值
+- 实例化对象不用写new
+- dart:core包默认导入
+
+### 项目结构
+```yaml
+dart:
+    /.dart_tool:
+    /bin:
+        main.dart:
+    /lib:
+    /test:
+    analysis_options.yaml:
+    pubspec.lock:
+    pubspec.yaml:
+```
 
 
 ### dart
@@ -31,6 +44,9 @@ dart:
     analyze:
     compile:
     create: # 创建dart项目
+        --force:
+        -t: # 指定项目模板
+            console:
     devtools:
     doc:
     fix: 
@@ -39,7 +55,7 @@ dart:
     pub: # dart包管理工具
         -h:
         -v:
-        add:
+        add: # 添加依赖
         bump:
         cache:
         deps:
@@ -59,20 +75,23 @@ dart:
     test: # 测试
 ```
 
+dart命令行工具
+
 
 
 
 #### pubspec.yaml
 ```yaml
 pubspec.yaml:
+    name: # 项目名
+    description: # 项目描述
+    version: # 项目版本号
     environment: # 项目环境要求
-        sdk:
+        sdk: # sdk要求
     dependencies: # 依赖包
-    description:
-    dev_dependencies:
+    dev_dependencies: # 开发依赖
     flutter:
         uses-material-design:
-    name: # 项目名
 ```
 
 dart包配置文件
@@ -81,16 +100,28 @@ dart包配置文件
 ## 核心内容
 ```yaml
 dart:
-    async:
+    async: # 异步
         Future: # 异步Promise
             catchError():
             then():
-        Stream:
+        Stream: # 连续异步Promise
     cli:
-    collection:
-    convert:
+    collection: # 集合
+        LinkedHashMap: # 
+        HashMap:
+        HashSet:
+        Queue: # 队列
+            addAll():
+            removeFirst():
+        SplayTreeMap:
+    convert: # 转换
         JsonDecoder:
         JsonEncoder:
+        utf8:
+            encode():
+            decode():
+        base64Decode():
+        base64Encode():
         jsonDecoder():
         jsonEncoder():
     core: # 内置模块（默认导入）
@@ -160,7 +191,8 @@ dart:
             toString():
         Pattern:
         Record:
-        RegExp:
+        RegExp: # 正则表达式
+            hasMatch():
         Runes:
         Set: # 集合
             first:
@@ -189,7 +221,8 @@ dart:
         StringBuffer:
         Symbol:
         Type:
-        Uri:
+        Uri: # uri链接
+            parse():
         WeakReference:
         bool: # 布尔（不存在隐式类型转换）
         double: # 浮点数
@@ -208,6 +241,13 @@ dart:
     developer:
     ffi:
     io: # I/O
+        Directory: # 目录
+            list():
+        File: # 文件
+            readAsString():
+            writeAsString():
+        Process: # 进程
+            run(): # 运行子进程
     isolate: # 并发库
         Isolate:
             kill():
@@ -232,21 +272,21 @@ package: # 第三方库
 ```
 
 
-### 数据类型
+### Data Types
 ```yaml
 DataTypes:
-    Enum:
-    Null: # 空类型
-    Object:
     Runes: # 32位字符对象
     String:
-    Symbol: # 标识符
-    Type: # 类型
     bool: # 
-    double: # 浮点数
-    dynamic: # 动态类型，ts中的any
     int:
+    double: # 浮点数
     num: # int、double父类
+    Null: # 空类型
+    Enum:
+    Symbol: # 标识符
+    dynamic: # 动态类型，ts中的any
+    Object:
+    Type: # 类型
 ```
 
 `var`：声明并初始化变量、自动类型推断
@@ -324,7 +364,7 @@ Symbol symbol = #abc;
 标识符
 
 
-### 控制流程
+### Control Flow
 ```yaml
 Control Flow:
     ..: # 对象级联操作运算符
@@ -374,7 +414,7 @@ Control Flow:
 `throw`：抛出异常
 
 
-### 函数
+### Function
 ```dart
 // 函数定义
 int add(int a, int b) {
@@ -461,6 +501,11 @@ Future myfunc() async {
 Future实现异步函数：async函数返回Future、await用于等待Future
 
 
+##### Future
+
+##### Stream
+
+
 #### Generic
 ```dart
 // 定义泛型函数
@@ -472,7 +517,7 @@ T getData<T>(T value) {
 
 
 
-### 面向对象
+### Class
 ```dart
 class Person {
     // 属性定义
@@ -609,7 +654,7 @@ class Person<T extends OtherClass> {}
 - @deprecated：过期
 
 
-### 模块
+### Module
 ```dart
 // 部分引入
 import "xxx" show xxx;
@@ -641,12 +686,12 @@ xxx.loadLibrary(); # 执行模块加载
 用于在主库中默认导入从库
 
 
-### 并发
+### Concurrency
+
+Dart 不同于传统多线程，是 轻量级 isolate 并发
+
+#### SendPort 
+#### ReceivePort
 
 
-#### Async
-
-异步
-
-##### Future
 
