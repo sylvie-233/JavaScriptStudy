@@ -14,5 +14,8 @@ http/http.dart:
             body:
             statusCode:
         get():
+            headers:
         post():
+            headers:
+            body:
 ```
