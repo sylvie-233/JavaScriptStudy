@@ -2,7 +2,7 @@
 
 `Dart官方文档：https://dart.dev/docs`
 `Dart生态库：https://pub.dev/`
-`Dart入门实战教程：P6`
+`Dart入门实战教程：P10`
 
 ## 基础介绍
 
@@ -27,6 +27,8 @@ Flutter SDK包含Dart SDK
 - 每个 Dart 文件本质上是一个 library，如果没有显式写 library xxx;，文件本身就是一个独立的 library
 - 以 _ 开头的符号是私有的（private），私有符号 只能在同一个 library（或 part 文件集合）中访问，库外不可见
 - library中 只有通过 export 的符号才能被包外部访问
+- mixin混入可以使用with、implements实现（mixin 可以像多继承一样复用方法/属性）
+- Iterable惰性计算的可迭代对象
 
 
 ### 项目结构
@@ -146,6 +148,7 @@ dart包配置文件
 dart:
     async: # 异步
         Future: # 异步Promise
+            await(): # 批量异步Future等待
             catchError():
             then():
         Stream: # 连续异步Promise
@@ -266,7 +269,7 @@ dart:
             difference(): # 差集
             intersection(): # 交集
             remove():
-            toList():
+            toList(): # 转换为List列表
             union(): # 并集
         Stream:
         String: # 字符串
@@ -327,6 +330,19 @@ dart:
         max():
         min():
     mirrors: # 反射
+        ClassMirror: # 反射类型对象
+            instanceMembers:
+            metadata: # 反射元数据
+            simpleName:
+            newInstance(): # 创建实例对象 
+        InstanceMirror: # 反射对象
+            type:
+            getField():
+                reflectee:
+            invoke(): # 
+            setField():
+        reflect(): # 获取反射对象InstanceMirror
+        reflectClass(): # 获取反射类型对象classMirror
     typed_data:
 ```
 
@@ -416,7 +432,35 @@ Map<String, int> scores = {
 
 #### Enum
 ```dart
+// 定义枚举
+enum Color {
+  red,
+  green,
+  blue,
+}
 
+// 获取枚举所有值
+// [Color.red, Color.green, Color.blue]
+print(Color.values); 
+
+// 获取枚举的name
+print(Color.red.name)
+
+// 获取枚举的index
+print(Color.red.index); // 0
+
+// 自定义构造枚举
+enum Color {
+  red(0xff0000),
+  green(0x00ff00),
+  blue(0x0000ff);
+
+  final int hex;
+
+  const Color(this.hex);
+
+  void printHex() => print(hex.toRadixString(16));
+}
 ```
 
 枚举
@@ -429,7 +473,7 @@ Map<String, int> scores = {
 Symbol symbol = #abc;
 ```
 
-标识符
+Dart 中用于表示标识符（变量名、类名、方法名）的一种对象
 
 
 ### Control Flow
@@ -457,6 +501,8 @@ Control Flow:
         as: # 别名
         hide:
         show:
+    is / is!: # 类型判断
+    late: # 变量延迟初始化
     part of: # 分库实现
         export: # 导出分库
     switch:
@@ -464,7 +510,6 @@ Control Flow:
         default:
             break:
     typedef: # 类型别名
-    is / is!: # 类型判断
     var: # 自动类型推断
     for ...:
     for ... in ...: # 迭代遍历
@@ -521,9 +566,14 @@ var add = (int a, int b) {
     return a + b;
 };
 
-// 可选参数
+// [] 可选参数定义
 int myfunc(int a, [int b]) {
     ...
+}
+
+// {} 命名参数定义
+void greet({String name = "Guest", int age = 0}) {
+    print('Hello $name, $age');
 }
 ```
 
@@ -537,9 +587,9 @@ int myfunc(int a, [int b]) {
 
 必填参数、可选参数、命名参数、函数参数
 
-不指定参数类型，默认dynamic
-
-不支持函数重载
+- 不指定参数类型，默认dynamic
+- 不支持函数重载
+- 函数内部还可以定义函数
 
 #### Param
 
@@ -697,6 +747,20 @@ getter/setter：方法前面加 get、set关键字
 
 
 #### Getter / Setter
+```dart
+class BankAccount {
+  double _balance = 0;
+
+  double get balance => _balance;
+
+  set balance(double value) {
+    if (value < 0) throw Exception("Balance cannot be negative");
+    _balance = value;
+  }
+}
+```
+
+属性获取器、存储器
 
 
 #### Abstract
@@ -727,13 +791,30 @@ mixin Action {
 
 mixin
 
-混入类只能继承自Object
-不能有构造函数
-后引入的混入覆盖前面的同名属性、方法
+- with、implements使用
+- 混入类只能继承自Object
+- 不能有构造函数
+- 不能继承类（但可以 implements 接口）
+- 不适合作为类型（默认不代表一种类型）
+- 后引入的混入覆盖前面的同名属性、方法
 
 
 
 #### Extension
+```dart
+// 定义扩展函数
+extension StringExtension on String {
+  String capitalize() {
+    // this引用对象实例
+    return this.isEmpty
+        ? this
+        : this[0].toUpperCase() + substring(1);
+  }
+}
+
+// 使用扩展函数
+print("hello".capitalize()); // Hello
+```
 
 
 扩展函数、方法
@@ -762,8 +843,29 @@ class Person<T extends OtherClass> {}
 
 
 #### Metadata
+```dart
+// 自定义注解
+class Api {
+  final String path;
 
-元数据
+  const Api(this.path);
+}
+
+// 使用自定义注解
+@Api("/hello")
+class Hello {}
+
+// 反射获取注解
+var cm = reflectClass(Hello);
+
+for (var m in cm.metadata) {
+    var a = m.reflectee as Api;
+    print(a.path);
+}
+```
+
+注解、元数据
+要自定义一个注解，你只需要创建一个“常量类”
 
 @注解
 - @override：重写

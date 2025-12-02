@@ -25,6 +25,33 @@ Flutter SDK中包含了Dart SDK
 - flutter需要使用android studio安装ndk（原生开发库）
 - App -> MaterialApp(Theme、Route) - Scaffold(AppBar) -> Container(Row、Column) -> ListView(GridView) -> Text(Image)
 
+### 安装目录
+```yaml
+flutter:
+    /.pub-cache: # 下载的第三方包
+        /bin:
+    /bin:
+        /cache:
+            /dart-sdk: # dart运行sdk
+                /bin:
+                    /resources:
+                    /snapshots:
+                    /utils:
+                    dart:
+                /include:
+                /lib:
+                /pkg:
+        /internal:
+        /mingit:
+        dart: # dart命令
+        flutter: # flutter命令
+    /dev:
+    /docs:
+    /engine:
+    /examples:
+    /packages:
+```
+
 
 ### 项目结构
 ```yaml
@@ -58,32 +85,7 @@ flutter:
     pubspec.yaml:
 ```
 
-#### 安装目录
-```yaml
-flutter:
-    /.pub-cache: # 下载的第三方包
-        /bin:
-    /bin:
-        /cache:
-            /dart-sdk: # dart运行sdk
-                /bin:
-                    /resources:
-                    /snapshots:
-                    /utils:
-                    dart:
-                /include:
-                /lib:
-                /pkg:
-        /internal:
-        /mingit:
-        dart: # dart命令
-        flutter: # flutter命令
-    /dev:
-    /docs:
-    /engine:
-    /examples:
-    /packages:
-```
+
 
 
 #### pubspec.yaml
@@ -112,8 +114,11 @@ flutter:
     build:
         apk:
         appbundle:
+        windows:
     channel: # 版本管理
         beta:
+    config:
+        --enable-windows-desktop:
     create: # 创建项目
         --org: # 包名
         --platforms: # 平台
@@ -131,6 +136,8 @@ flutter:
     install: # 安装
     run: # 运行项目
         --release:
+        -d: # 指定运行设备  
+            windows:
         R: # 热重载
         c:
         d:
