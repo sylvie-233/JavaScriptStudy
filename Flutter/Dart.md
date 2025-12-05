@@ -2,7 +2,7 @@
 
 `Dart官方文档：https://dart.dev/docs`
 `Dart生态库：https://pub.dev/`
-`Dart入门实战教程：P10`
+``
 
 ## 基础介绍
 
@@ -22,6 +22,7 @@ Flutter SDK包含Dart SDK
 - 实例化对象不用写new
 - dart:core包默认导入
 - 字符串支持单引号、双引号
+- const：编译时常量、final：运行时常量
 - Isolate 是 Dart 的“线程”，但不共享内存
 - Dart 代码默认只有一个线程（main isolate），一切异步都是事件循环，需要真正 CPU 并发时才会创建额外的 Isolate
 - 每个 Dart 文件本质上是一个 library，如果没有显式写 library xxx;，文件本身就是一个独立的 library
@@ -29,6 +30,7 @@ Flutter SDK包含Dart SDK
 - library中 只有通过 export 的符号才能被包外部访问
 - mixin混入可以使用with、implements实现（mixin 可以像多继承一样复用方法/属性）
 - Iterable惰性计算的可迭代对象
+- Dart 没有单独的 interface 关键字，任何Class类都可以被当作接口来实现
 
 
 ### 项目结构
@@ -739,6 +741,9 @@ getter/setter：方法前面加 get、set关键字
 
 常量构造函数
 单例实现
+- 字段必须都是 final
+- const 构造能让对象在编译期就创建
+- 相同参数的 const 对象是同一个对象
 
 ##### Factory Constructor
 
